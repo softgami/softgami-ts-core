@@ -10,8 +10,10 @@
     "bl": "ng build --prod softgami-ts-core",
     "npm-pack": "cd dist/softgami-ts-core && npm pack",
     "package": "npm run build-lib && npm run npm-pack",
-    "test": "ng test --code-coverage",
-    "t": "ng test --code-coverage",
+    "test": "ng test my-app --code-coverage",
+    "t": "ng test my-app --code-coverage",
+    "test-lib": "ng test softgami-ts-core --code-coverage",
+    "t-lib": "ng test softgami-ts-core --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

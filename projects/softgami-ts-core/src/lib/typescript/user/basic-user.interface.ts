@@ -19,8 +19,8 @@ export interface BasicUser {
         confirm: Password;
         old?: Array<Password>;
     };
-    isActive: boolean;
-    isIndividual: boolean;
+    isActive?: boolean;
+    isIndividual?: boolean;
     language?: Language;
     timezone?: string;
     surname?: string;

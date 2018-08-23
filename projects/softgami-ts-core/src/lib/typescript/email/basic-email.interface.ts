@@ -4,5 +4,5 @@ export interface BasicEmail {
     type: EmailType;
     address: string;
     isPrimary: boolean;
-    isVerified: boolean;
+    isVerified?: boolean;
 }

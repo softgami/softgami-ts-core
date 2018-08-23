@@ -5,7 +5,7 @@ import { Credentials } from '../auth/credentials/credentials.interface';
 import { Email } from '../email/email.interface';
 import { Gender } from '../domain/gender/gender.enum';
 import { Income } from '../domain/income/income.interface';
-import { Language } from '../core/language/language.interface';
+import { Language } from '../core/i18n/language/language.interface';
 import { MaritalStatus } from '../domain/marital-status/marital-status.interface';
 import { Occupation } from '../domain/occupation/occupation.interface';
 import { Phone } from '../phone/phone.interface';

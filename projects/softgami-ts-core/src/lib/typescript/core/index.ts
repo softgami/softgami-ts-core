@@ -1,10 +1,12 @@
 export { Action } from './action/action.interface';
 export { BasicAction } from './action/basic-action.interface';
-export { BasicLanguage } from './language/basic-language.interface';
+export { BasicLanguage } from './i18n/language/basic-language.interface';
 export { BasicPermission } from './permission/basic-permission';
 export { BasicRole } from './role/basic-role.interface';
 export { BasicSubject } from './subject/basic-subject.interface';
-export { Language } from './language/language.interface';
+export { BasicTranslation } from './i18n/translations/basic-translation.interface';
+export { Language } from './i18n/language/language.interface';
 export { Permission } from './permission/permission.interface';
 export { Role } from './role/role.interface';
 export { Subject } from './subject/subject.interface';
+export { Translation } from './i18n/translations/translation.interface';

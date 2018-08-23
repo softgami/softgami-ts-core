@@ -1,24 +1,19 @@
 import { Address } from '../location/address/address.interface';
 import { AppInstance } from '../app/app-instance/app-instance.interface';
 import { Country } from '../location/country/country.interface';
+import { Credentials } from '../auth/credentials/credentials.interface';
 import { Email } from '../email/email.interface';
 import { Gender } from '../domain/gender/gender.enum';
 import { Income } from '../domain/income/income.interface';
 import { Language } from '../core/language/language.interface';
 import { MaritalStatus } from '../domain/marital-status/marital-status.interface';
 import { Occupation } from '../domain/occupation/occupation.interface';
-import { Password } from '../auth//password/password.interface';
 import { Phone } from '../phone/phone.interface';
 
 export interface BasicUser {
     name: string;
     emails: Array<Email>;
-    credentials?: {
-        current: Password;
-        new: Password;
-        confirm: Password;
-        old?: Array<Password>;
-    };
+    credentials?: Credentials;
     isActive?: boolean;
     isIndividual?: boolean;
     language?: Language;

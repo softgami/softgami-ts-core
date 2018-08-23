@@ -4,5 +4,5 @@ export interface BasicPhone {
     type: PhoneType;
     number: string;
     isPrimary: string;
-    isVerified: string;
+    isVerified?: string;
 }

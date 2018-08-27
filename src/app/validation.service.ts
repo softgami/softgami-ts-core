@@ -21,7 +21,15 @@ export class ValidationService {
         this.schema.eachPath((subPath: string, schemaType: any) => {
             // console.log(subPath);
             if (subPath !== '__v') {
-                this.validatePropertyParentNotRequired(object[subPath], schemaType, subPath);
+                if (subPath === '_id') {
+                    if (this.shouldValidateID) {
+                        this.validatePropertyParentRequired(object[subPath], schemaType, subPath);
+                    } else {
+                        this.validatePropertyParentNotRequired(object[subPath], schemaType, subPath);
+                    }
+                } else {
+                    this.validatePropertyParentNotRequired(object[subPath], schemaType, subPath);
+                }
             }
         });
     }
@@ -174,14 +182,40 @@ export class ValidationService {
     validateObjectID(value: any, path: string, isParentRequired: boolean, schemaType: any) {
         // console.log(`[validateObjectID] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
         if (isParentRequired) {
-
+            if (value === undefined) {
+                throw new Error(`invalid ${path}`);
+            } else if (!validator.isMongoId(value)) {
+                throw new Error(`invalid ${path}`);
+            }
         } else {
-
+            if (value === undefined) {
+                return;
+            } else if (!validator.isMongoId(value)) {
+                throw new Error(`invalid ${path}`);
+            }
         }
     }
 
     validateStringRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value);
+        const options: any = schemaType.options;
+        const type: string = (schemaType.instance as string).toLowerCase();
+        const shouldTrim: boolean = options.trim === true ? true : false;
+        const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+        const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
         // console.log(`[validateStringRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (isParentRequired) {
+            if (value === undefined || typeOf !== type || (shouldTrim && value.trim() === '')) {
+                throw new Error(`invalid ${path}${messageEnum}`);
+            }
+            if (options.enum && options.enum.length && !(options.enum.find(res => res === value))) {
+                throw new Error(`invalid ${path}${messageEnum}`);
+            }
+        } else {
+            if (value === undefined) {
+                return;
+            }
+        }
     }
 
     validateStringNotRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {

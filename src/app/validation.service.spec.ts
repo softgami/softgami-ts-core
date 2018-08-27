@@ -288,6 +288,52 @@ fdescribe('ValidationService', () => {
       expect(spy).not.toHaveBeenCalledWith('some value', jasmine.any(Object), 'some value');
   }));
 
+  it('validateObject when path "_id" and should not validate id should call validatePropertyParentNotRequired',
+    inject([ValidationService], (service: ValidationService) => {
+      const __Schema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+      });
+      const spy = spyOn(service, 'validatePropertyParentNotRequired').and.returnValue(true);
+      const spy2 = spyOn(service, 'validatePropertyParentRequired').and.returnValue(true);
+      const object = {
+        name: 'name of the object',
+        __v: 'some value'
+      };
+      service.schema = __Schema;
+      service.shouldValidateID = false;
+
+      service.validateObject(object);
+
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy2).toHaveBeenCalledTimes(0);
+      expect(spy).toHaveBeenCalledWith('name of the object', jasmine.any(Object), 'name');
+      expect(spy).toHaveBeenCalledWith(undefined, jasmine.any(Object), '_id');
+      expect(spy2).not.toHaveBeenCalledWith(undefined, jasmine.any(Object), '_id');
+  }));
+
+  it('validateObject when path "_id" and should validate id should call validatePropertyParentRequired',
+    inject([ValidationService], (service: ValidationService) => {
+      const __Schema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+      });
+      const spy = spyOn(service, 'validatePropertyParentNotRequired').and.returnValue(true);
+      const spy2 = spyOn(service, 'validatePropertyParentRequired').and.returnValue(true);
+      const object = {
+        name: 'name of the object',
+        __v: 'some value'
+      };
+      service.schema = __Schema;
+      service.shouldValidateID = true;
+
+      service.validateObject(object);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy2).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith('name of the object', jasmine.any(Object), 'name');
+      expect(spy).not.toHaveBeenCalledWith(undefined, jasmine.any(Object), '_id');
+      expect(spy2).toHaveBeenCalledWith(undefined, jasmine.any(Object), '_id');
+  }));
+
   it('validatePropertyParentRequired should call validateProperty with parent required',
     inject([ValidationService], (service: ValidationService) => {
       const spy = spyOn(service, 'validateProperty');
@@ -1306,6 +1352,84 @@ fdescribe('ValidationService', () => {
         name: 'some name 3',
         __v: 'some value 3'
       }, 'child', true, schemaType);
+  }));
+
+  it('validateObjectID when parent required and value undefined should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+      const ChildSchema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+        __v: { },
+      });
+      const schemaType = ChildSchema.path('_id');
+      const value = undefined;
+      expect( () => {
+        service.validateObjectID(value, '_id', true, schemaType);
+      }).toThrow(new Error(`invalid _id`));
+  }));
+
+  it('validateObjectID when parent required and value not mongo id should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+      const ChildSchema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+        __v: { },
+      });
+      const schemaType = ChildSchema.path('_id');
+      const value = '123';
+      expect( () => {
+        service.validateObjectID(value, '_id', true, schemaType);
+      }).toThrow(new Error(`invalid _id`));
+  }));
+
+  it('validateObjectID when parent required and value mongo id should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+      const ChildSchema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+        __v: { },
+      });
+      const schemaType = ChildSchema.path('_id');
+      const value = '5b78c1cb9ecb6a8b443aa885';
+      expect( () => {
+        service.validateObjectID(value, '_id', true, schemaType);
+      }).not.toThrow(new Error(`invalid _id`));
+  }));
+
+  it('validateObjectID when parent not required and value undefined should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+      const ChildSchema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+        __v: { },
+      });
+      const schemaType = ChildSchema.path('_id');
+      const value = undefined;
+      expect( () => {
+        service.validateObjectID(value, '_id', false, schemaType);
+      }).not.toThrow(new Error(`invalid _id`));
+  }));
+
+  it('validateObjectID when parent not required and value not mongo id should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+      const ChildSchema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+        __v: { },
+      });
+      const schemaType = ChildSchema.path('_id');
+      const value = '123';
+      expect( () => {
+        service.validateObjectID(value, '_id', false, schemaType);
+      }).toThrow(new Error(`invalid _id`));
+  }));
+
+  it('validateObjectID when parent not required and value mongo id should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+      const ChildSchema: Schema = new Schema({
+        name: { type: String, trim: true, required: true, index: true, unique: true },
+        __v: { },
+      });
+      const schemaType = ChildSchema.path('_id');
+      const value = '5b78c1cb9ecb6a8b443aa885';
+      expect( () => {
+        service.validateObjectID(value, '_id', false, schemaType);
+      }).not.toThrow(new Error(`invalid _id`));
   }));
 
   xit('validateArrayRequired when parent not required and value not empty should call validateEmbeddedObjectRequired 3 times',

@@ -134,7 +134,7 @@ const AppInstanceSchema: Schema = new Schema({
 });
 
 const UserSchema: Schema = new Schema({
-  name: { type: String, required: true, trim: true },
+  name: { type: String, trim: true , required: true},
   emails: { type: [ EmailSchema ], required: true , default: undefined },
   credentials: { type: CredentialsSchema, excludeIndexes: true },
   isActive:  { type: Boolean, default: true },
@@ -160,7 +160,7 @@ const UserSchema: Schema = new Schema({
 let countryObj: any;
 let appObj: any;
 
-fdescribe('ValidationService', () => {
+describe('ValidationService', () => {
 
   countryObj = {
     _id: '5b7701e05ef4f2555873b6e6',
@@ -193,7 +193,6 @@ fdescribe('ValidationService', () => {
     TestBed.configureTestingModule({
       providers: [ValidationService]
     });
-    // expect( function(){ parser.parse(raw); } ).toThrow(new Error("Parsing is not possible"));
   });
 
   it('should be created', inject([ValidationService], (service: ValidationService) => {
@@ -592,9 +591,9 @@ fdescribe('ValidationService', () => {
       expect(spy).toHaveBeenCalledWith(value, path, true, schemaType);
   }));
 
-  it('validateProperty when type "Embedded" and required and Parent required should call validateEmbeddedObjectRequired',
+  it('validateProperty when type "Embedded" and required and Parent required should call validateEmbeddedObject',
     inject([ValidationService], (service: ValidationService) => {
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       const value: any = {};
       const schemaType: any = StateSchema.path('country');
@@ -606,9 +605,9 @@ fdescribe('ValidationService', () => {
       expect(spy).toHaveBeenCalledWith(value, path, true, schemaType);
   }));
 
-  it('validateProperty when type "Embedded" and not required and Parent required should call validateEmbeddedObjectNotRequired',
+  it('validateProperty when type "Embedded" and not required and Parent required should call validateEmbeddedObject',
     inject([ValidationService], (service: ValidationService) => {
-      const spy = spyOn(service, 'validateEmbeddedObjectNotRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       const value: any = {};
       const schemaType: any = StateSchema.path('country');
@@ -622,7 +621,7 @@ fdescribe('ValidationService', () => {
 
   it('validateProperty when type unknown and Parent required should not call validate',
     inject([ValidationService], (service: ValidationService) => {
-      const spyEmbeddedObject = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spyEmbeddedObject = spyOn(service, 'validateEmbeddedObject');
       const spyDate = spyOn(service, 'validateDateRequired');
       const spyNumber = spyOn(service, 'validateNumberRequired');
       const spyBoolean = spyOn(service, 'validateBooleanRequired');
@@ -630,7 +629,6 @@ fdescribe('ValidationService', () => {
       const spyString = spyOn(service, 'validateStringRequired');
       const spyObjectID = spyOn(service, 'validateObjectID');
 
-      const spyEmbeddedObjectNot = spyOn(service, 'validateEmbeddedObjectNotRequired');
       const spyDateNot = spyOn(service, 'validateDateNotRequired');
       const spyNumberNot = spyOn(service, 'validateNumberNotRequired');
       const spyBooleanNot = spyOn(service, 'validateBooleanNotRequired');
@@ -653,7 +651,6 @@ fdescribe('ValidationService', () => {
       expect(spyString).not.toHaveBeenCalled();
       expect(spyObjectID).not.toHaveBeenCalled();
 
-      expect(spyEmbeddedObjectNot).not.toHaveBeenCalled();
       expect(spyDateNot).not.toHaveBeenCalled();
       expect(spyNumberNot).not.toHaveBeenCalled();
       expect(spyBooleanNot).not.toHaveBeenCalled();
@@ -813,9 +810,9 @@ fdescribe('ValidationService', () => {
       expect(spy).toHaveBeenCalledWith(value, path, false, schemaType);
   }));
 
-  it('validateProperty when type "Embedded" and required should call validateEmbeddedObjectRequired',
+  it('validateProperty when type "Embedded" and required should call validateEmbeddedObject',
     inject([ValidationService], (service: ValidationService) => {
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       const value: any = {};
       const schemaType: any = StateSchema.path('country');
@@ -827,9 +824,9 @@ fdescribe('ValidationService', () => {
       expect(spy).toHaveBeenCalledWith(value, path, false, schemaType);
   }));
 
-  it('validateProperty when type "Embedded" and not required and Parent not required should call validateEmbeddedObjectNotRequired',
+  it('validateProperty when type "Embedded" and not required and Parent not required should call validateEmbeddedObject',
     inject([ValidationService], (service: ValidationService) => {
-      const spy = spyOn(service, 'validateEmbeddedObjectNotRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       const value: any = {};
       const schemaType: any = StateSchema.path('country');
@@ -843,7 +840,7 @@ fdescribe('ValidationService', () => {
 
   it('validateProperty when type unknown and Parent not required should not call validate',
     inject([ValidationService], (service: ValidationService) => {
-      const spyEmbeddedObject = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spyEmbeddedObject = spyOn(service, 'validateEmbeddedObject');
       const spyDate = spyOn(service, 'validateDateRequired');
       const spyNumber = spyOn(service, 'validateNumberRequired');
       const spyBoolean = spyOn(service, 'validateBooleanRequired');
@@ -851,7 +848,6 @@ fdescribe('ValidationService', () => {
       const spyString = spyOn(service, 'validateStringRequired');
       const spyObjectID = spyOn(service, 'validateObjectID');
 
-      const spyEmbeddedObjectNot = spyOn(service, 'validateEmbeddedObjectNotRequired');
       const spyDateNot = spyOn(service, 'validateDateNotRequired');
       const spyNumberNot = spyOn(service, 'validateNumberNotRequired');
       const spyBooleanNot = spyOn(service, 'validateBooleanNotRequired');
@@ -874,7 +870,6 @@ fdescribe('ValidationService', () => {
       expect(spyString).not.toHaveBeenCalled();
       expect(spyObjectID).not.toHaveBeenCalled();
 
-      expect(spyEmbeddedObjectNot).not.toHaveBeenCalled();
       expect(spyDateNot).not.toHaveBeenCalled();
       expect(spyNumberNot).not.toHaveBeenCalled();
       expect(spyBooleanNot).not.toHaveBeenCalled();
@@ -960,7 +955,7 @@ fdescribe('ValidationService', () => {
       expect(result).toBeUndefined();
   }));
 
-  it('validateEmbeddedObjectRequired when parent required should call validatePropertyParentRequired 3 times',
+  it('validateEmbeddedObject when parent required should call validatePropertyParentRequired 3 times',
     inject([ValidationService], (service: ValidationService) => {
       const object = {
         name: 'name state',
@@ -972,13 +967,13 @@ fdescribe('ValidationService', () => {
       const schemaType = StateSchema.path('country');
       const spyValidate = spyOn(service, 'validatePropertyParentRequired').and.returnValue(true);
 
-      service.validateEmbeddedObjectRequired(object, 'state', true, schemaType);
+      service.validateEmbeddedObject(object, 'state', true, schemaType);
 
       expect(spyValidate).toHaveBeenCalledTimes(3);
 
   }));
 
-  it('validateEmbeddedObjectRequired when parent required and property "__v" should call validatePropertyParentRequired 2 times',
+  it('validateEmbeddedObject when parent required and property "__v" should call validatePropertyParentRequired 2 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -995,15 +990,16 @@ fdescribe('ValidationService', () => {
       const schemaType = FatherSchema.path('child');
       const spyValidate = spyOn(service, 'validatePropertyParentRequired').and.returnValue(true);
 
-      service.validateEmbeddedObjectRequired(object, 'state', true, schemaType);
+      service.validateEmbeddedObject(object, 'state', true, schemaType);
 
       expect(spyValidate).toHaveBeenCalledTimes(2);
 
   }));
 
-  it('validateEmbeddedObjectRequired when parent not required should call validatePropertyParentRequired 3 times',
+  it('validateEmbeddedObject when parent not required should call validate 3 times',
     inject([ValidationService], (service: ValidationService) => {
       const object = {
+        _id: '5b7701e05ef4f2555873b6e6',
         name: 'name state',
         country: {
           name: 'name country',
@@ -1011,15 +1007,17 @@ fdescribe('ValidationService', () => {
         }
       };
       const schemaType = StateSchema.path('country');
-      const spyValidate = spyOn(service, 'validatePropertyParentNotRequired').and.returnValue(true);
+      const spyValidate = spyOn(service, 'validatePropertyParentRequired').and.returnValue(true);
+      const spyValidateNot = spyOn(service, 'validatePropertyParentNotRequired').and.returnValue(true);
 
-      service.validateEmbeddedObjectRequired(object, 'state', false, schemaType);
+      service.validateEmbeddedObject(object, 'state', false, schemaType);
 
-      expect(spyValidate).toHaveBeenCalledTimes(3);
+      expect(spyValidate).toHaveBeenCalledTimes(1);
+      expect(spyValidateNot).toHaveBeenCalledTimes(2);
 
   }));
 
-  it('validateEmbeddedObjectRequired when parent not required and property "__v" should call validatePropertyParentRequired 2 times',
+  it('validateEmbeddedObject when parent not required and property "__v" should call validate 2 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1030,15 +1028,18 @@ fdescribe('ValidationService', () => {
         child: { type: ChildSchema , required: true }
       });
       const object = {
+        _id: '5b7701e05ef4f2555873b6e6',
         name: 'name of the object',
         __v: 'some value'
       };
       const schemaType = FatherSchema.path('child');
-      const spyValidate = spyOn(service, 'validatePropertyParentNotRequired').and.returnValue(true);
+      const spyValidate = spyOn(service, 'validatePropertyParentRequired').and.returnValue(true);
+      const spyValidateNot = spyOn(service, 'validatePropertyParentNotRequired').and.returnValue(true);
 
-      service.validateEmbeddedObjectRequired(object, 'state', false, schemaType);
+      service.validateEmbeddedObject(object, 'child', false, schemaType);
 
-      expect(spyValidate).toHaveBeenCalledTimes(2);
+      expect(spyValidate).toHaveBeenCalledTimes(1);
+      expect(spyValidateNot).toHaveBeenCalledTimes(1);
 
   }));
 
@@ -1062,7 +1063,7 @@ fdescribe('ValidationService', () => {
       }).toThrow(new Error(`invalid ${path}`));
   }));
 
-  it('validateArrayRequired when parent required and value not empty should call validateEmbeddedObjectRequired 1 times',
+  it('validateArrayRequired when parent required and value not empty should call validateEmbeddedObject 1 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1079,7 +1080,7 @@ fdescribe('ValidationService', () => {
         }
       ];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       service.validateArrayRequired(value, 'child', true, schemaType);
       expect(spy).toHaveBeenCalledTimes(1);
@@ -1089,7 +1090,7 @@ fdescribe('ValidationService', () => {
       }, 'child', true, schemaType);
   }));
 
-  it('validateArrayRequired when parent required and value not empty should call validateEmbeddedObjectRequired 3 times',
+  it('validateArrayRequired when parent required and value not empty should call validateEmbeddedObject 3 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1114,7 +1115,7 @@ fdescribe('ValidationService', () => {
         }
       ];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       service.validateArrayRequired(value, 'child', true, schemaType);
       expect(spy).toHaveBeenCalledTimes(3);
@@ -1144,7 +1145,7 @@ fdescribe('ValidationService', () => {
       });
       const value = undefined;
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       expect( () => {
         service.validateArrayRequired(value, 'child', false, schemaType);
@@ -1165,7 +1166,7 @@ fdescribe('ValidationService', () => {
       });
       const value = [];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       expect( () => {
         service.validateArrayRequired(value, 'child', false, schemaType);
@@ -1174,7 +1175,7 @@ fdescribe('ValidationService', () => {
       expect(spy).not.toHaveBeenCalled();
   }));
 
-  it('validateArrayRequired when parent not required and value not empty should call validateEmbeddedObjectRequired 1 times',
+  it('validateArrayRequired when parent not required and value not empty should call validateEmbeddedObject 1 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1191,7 +1192,7 @@ fdescribe('ValidationService', () => {
         }
       ];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       service.validateArrayRequired(value, 'child', false, schemaType);
       expect(spy).toHaveBeenCalledTimes(1);
@@ -1201,7 +1202,7 @@ fdescribe('ValidationService', () => {
       }, 'child', false, schemaType);
   }));
 
-  it('validateArrayRequired when parent not required and value not empty should call validateEmbeddedObjectRequired 3 times',
+  it('validateArrayRequired when parent not required and value not empty should call validateEmbeddedObject 3 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1226,7 +1227,7 @@ fdescribe('ValidationService', () => {
         }
       ];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       service.validateArrayRequired(value, 'child', false, schemaType);
       expect(spy).toHaveBeenCalledTimes(3);
@@ -1256,7 +1257,7 @@ fdescribe('ValidationService', () => {
       });
       const value = undefined;
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       expect( () => {
         service.validateArrayNotRequired(value, 'child', false, schemaType);
@@ -1276,7 +1277,7 @@ fdescribe('ValidationService', () => {
       });
       const value = [];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       expect( () => {
         service.validateArrayNotRequired(value, 'child', false, schemaType);
@@ -1284,7 +1285,7 @@ fdescribe('ValidationService', () => {
       expect(spy).not.toHaveBeenCalled();
   }));
 
-  it('validateArrayNotRequired when value not empty should call validateEmbeddedObjectRequired 1 times',
+  it('validateArrayNotRequired when value not empty should call validateEmbeddedObject 1 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1301,7 +1302,7 @@ fdescribe('ValidationService', () => {
         }
       ];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       service.validateArrayNotRequired(value, 'child', true, schemaType);
       expect(spy).toHaveBeenCalledTimes(1);
@@ -1311,7 +1312,7 @@ fdescribe('ValidationService', () => {
       }, 'child', true, schemaType);
   }));
 
-  it('validateArrayNotRequired when value not empty should call validateEmbeddedObjectRequired 3 times',
+  it('validateArrayNotRequired when value not empty should call validateEmbeddedObject 3 times',
     inject([ValidationService], (service: ValidationService) => {
       const ChildSchema: Schema = new Schema({
         name: { type: String, trim: true, required: true, index: true, unique: true },
@@ -1336,7 +1337,7 @@ fdescribe('ValidationService', () => {
         }
       ];
       const schemaType = FatherSchema.path('child');
-      const spy = spyOn(service, 'validateEmbeddedObjectRequired');
+      const spy = spyOn(service, 'validateEmbeddedObject');
 
       service.validateArrayNotRequired(value, 'child', true, schemaType);
       expect(spy).toHaveBeenCalledTimes(3);
@@ -1432,65 +1433,744 @@ fdescribe('ValidationService', () => {
       }).not.toThrow(new Error(`invalid _id`));
   }));
 
-  xit('validateArrayRequired when parent not required and value not empty should call validateEmbeddedObjectRequired 3 times',
+  it('validateStringRequired when value undefined should throw error',
     inject([ValidationService], (service: ValidationService) => {
 
-      const object = {
-        'name': 'user',
-        'credentials': {
-          'current': {
-            'hash': '123456',
-            'salt': '123456',
-            'algorithm': 'sha'
-          },
-          'new': {
-            'hash': '123456',
-            'salt': '123456',
-            'algorithm': 'sha'
-          },
-          'confirm': {
-            'hash': '123456',
-            'salt': '123456',
-            'algorithm': 'sha'
-          },
-          'old': [
-            {
-              'hash': '123456',
-              'salt': '123456',
-              'algorithm': 'sha'
-            },
-            {
-              'hash': '123456',
-              'salt': '123456',
-              'algorithm': 'sha'
-            },
-            {
-              'hash': '123456',
-              'salt': '123456',
-              'algorithm': 'sha'
-            }
-        ]
-        },
-        'emails': [
-          {
-            'type': 'work',
-            'address': 'email@email.com',
-            'isPrimary': true
-          }
-        ],
-        'timezone': 'qioqio',
-        'language': {
-          'name': 'ptr',
-          'code': 'pt',
-          'picture': 'qiqoioq'
-        }
-      };
-      service.schema = UserSchema;
-      service.shouldValidateID = false;
-      try {
-        service.validateObject(object);
-      } catch (ex) {
-        console.log(ex);
-      }
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
   }));
+
+  it('validateStringRequired when value null should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringRequired when type not string should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 12;
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringRequired when should trim and value empty should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringRequired when value not in enum should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 'some value';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringRequired when value empty and not trim and not enum should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true },
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringRequired when value ok and not trim and not enum should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true },
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 'some value';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringRequired when value in enum should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 'work';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when value undefined should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when value null should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when trim and value empty should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, trim: true , enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when not trim and value empty should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when not enum and value ok should not not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true },
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 'some value';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when not trim and not enum and value empty should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true },
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when not trim and value not in enum should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 'some value not in enum';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateStringNotRequired when value in enum should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        type: { type: String, required: true, enum: Object.keys(PhoneType).map(key => PhoneType[key])},
+      });
+
+      const path = 'type';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 'work';
+      const options: any = schemaType.options;
+      const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+      const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
+      expect( () => {
+        service.validateStringNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}${messageEnum}`));
+  }));
+
+  it('validateBooleanRequired when value undefined should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+
+      expect(() => {
+        service.validateBooleanRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanRequired when value null should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+
+      expect(() => {
+        service.validateBooleanRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanRequired when value not boolean should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 1;
+
+      expect(() => {
+        service.validateBooleanRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanRequired when value true should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = true;
+
+      expect(() => {
+        service.validateBooleanRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanRequired when value false should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = false;
+
+      expect(() => {
+        service.validateBooleanRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanNotRequired when value undefined should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+
+      expect(() => {
+        service.validateBooleanNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanNotRequired when value null should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+
+      expect(() => {
+        service.validateBooleanNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanNotRequired when value not boolean should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 1;
+
+      expect(() => {
+        service.validateBooleanNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanNotRequired when value true should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = true;
+
+      expect(() => {
+        service.validateBooleanNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateBooleanNotRequired when value false should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        isActive: { type: Boolean, required: true },
+      });
+      const path = 'isActive';
+      const schemaType: any = ChildSchema.path(path);
+      const value = false;
+
+      expect(() => {
+        service.validateBooleanNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberRequired when value undefined should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+
+      expect(() => {
+        service.validateNumberRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberRequired when value null should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+
+      expect(() => {
+        service.validateNumberRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberRequired when value not number should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = true;
+
+      expect(() => {
+        service.validateNumberRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberRequired when value number should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 20;
+
+      expect(() => {
+        service.validateNumberRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberNotRequired when value undefined should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+
+      expect(() => {
+        service.validateNumberNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberNotRequired when value null should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+
+      expect(() => {
+        service.validateNumberNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberNotRequired when value not number should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = true;
+
+      expect(() => {
+        service.validateNumberNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateNumberNotRequired when value number should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        code: { type: Number, required: true },
+      });
+      const path = 'code';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 20;
+
+      expect(() => {
+        service.validateNumberNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateRequired when value undefined should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+
+      expect(() => {
+        service.validateDateRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateRequired when value null should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+
+      expect(() => {
+        service.validateDateRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateRequired when value not string should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 20;
+
+      expect(() => {
+        service.validateDateRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateRequired when should trim and value empty should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true, trim: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+
+      expect(() => {
+        service.validateDateRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateRequired when value not valid date should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true, trim: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '12345678901019';
+
+      expect(() => {
+        service.validateDateRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateRequired when value valid date should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true, trim: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '2011-10-05T14:48:00.000Z';
+
+      expect(() => {
+        service.validateDateRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+
+
+
+  it('validateDateNotRequired when value undefined should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = undefined;
+
+      expect(() => {
+        service.validateDateNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateNotRequired when value null should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = null;
+
+      expect(() => {
+        service.validateDateNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateNotRequired when value not string should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = 20;
+
+      expect(() => {
+        service.validateDateNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateNotRequired when should trim and value empty should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true, trim: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '';
+
+      expect(() => {
+        service.validateDateNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateNotRequired when value not valid date should throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true, trim: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '12345678901019';
+
+      expect(() => {
+        service.validateDateNotRequired(value, path, false, schemaType);
+      }).toThrow(new Error(`invalid ${path}`));
+  }));
+
+  it('validateDateNotRequired when value valid date should not throw error',
+    inject([ValidationService], (service: ValidationService) => {
+
+      const ChildSchema: Schema = new Schema({
+        date: { type: Date, required: true, trim: true },
+      });
+      const path = 'date';
+      const schemaType: any = ChildSchema.path(path);
+      const value = '2011-10-05T14:48:00.000Z';
+
+      expect(() => {
+        service.validateDateNotRequired(value, path, false, schemaType);
+      }).not.toThrow(new Error(`invalid ${path}`));
+  }));
+
 });

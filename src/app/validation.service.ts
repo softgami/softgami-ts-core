@@ -98,11 +98,7 @@ export class ValidationService {
                 }
                 break;
             case 'Embedded':
-                if (isRequired) {
-                    this.validateEmbeddedObjectRequired(value, path, isParentRequired, schemaType);
-                } else {
-                    this.validateEmbeddedObjectNotRequired(value, path, isParentRequired, schemaType);
-                }
+                this.validateEmbeddedObject(value, path, isParentRequired, schemaType);
                 break;
             default:
                 break;
@@ -122,24 +118,20 @@ export class ValidationService {
         }, obj);
     }
 
-    validateEmbeddedObjectRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+    validateEmbeddedObject(value: any, path: string, isParentRequired: boolean, schemaType: any) {
         const schema: Schema = schemaType.schema;
         schema.eachPath((subPath: string, newSchemaType: any) => {
             // console.log(subPath);
             const newPath = path + '.' + subPath;
             const newValue = this.traverse(value, subPath);
             if (subPath !== '__v') {
-                if (isParentRequired) {
+                if (isParentRequired || subPath === '_id') {
                     this.validatePropertyParentRequired(newValue, newSchemaType, newPath);
                 } else {
                     this.validatePropertyParentNotRequired(newValue, newSchemaType, newPath);
                 }
             }
         });
-    }
-
-    validateEmbeddedObjectNotRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
-        this.validateEmbeddedObjectRequired(value, path, isParentRequired, schemaType);
     }
 
     validateArrayRequired(objects: any, path: string, isParentRequired: boolean, schemaType: any) {
@@ -149,7 +141,7 @@ export class ValidationService {
                 throw new Error(`invalid ${path}`);
             }
             objects.forEach(element => {
-                this.validateEmbeddedObjectRequired(element, path, isParentRequired, schemaType);
+                this.validateEmbeddedObject(element, path, isParentRequired, schemaType);
             });
         } else {
             if (objects === undefined) {
@@ -159,7 +151,7 @@ export class ValidationService {
                 throw new Error(`invalid ${path}`);
             }
             objects.forEach(element => {
-                this.validateEmbeddedObjectRequired(element, path, isParentRequired, schemaType);
+                this.validateEmbeddedObject(element, path, isParentRequired, schemaType);
             });
         }
     }
@@ -175,7 +167,7 @@ export class ValidationService {
         }
 
         objects.forEach(element => {
-            this.validateEmbeddedObjectRequired(element, path, true, schemaType);
+            this.validateEmbeddedObject(element, path, true, schemaType);
         });
     }
 
@@ -204,45 +196,115 @@ export class ValidationService {
         const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
         const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
         // console.log(`[validateStringRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
-        if (isParentRequired) {
-            if (value === undefined || typeOf !== type || (shouldTrim && value.trim() === '')) {
+        // if (isParentRequired) {
+            if (value === undefined || value === null || typeOf !== type || (shouldTrim && value.trim() === '')) {
                 throw new Error(`invalid ${path}${messageEnum}`);
             }
             if (options.enum && options.enum.length && !(options.enum.find(res => res === value))) {
                 throw new Error(`invalid ${path}${messageEnum}`);
             }
-        } else {
+        /*} else {
             if (value === undefined) {
                 return;
             }
-        }
+        }*/
     }
 
     validateStringNotRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value);
+        const options: any = schemaType.options;
+        const type: string = (schemaType.instance as string).toLowerCase();
+        const shouldTrim: boolean = options.trim === true ? true : false;
+        const enumTypes: Array<any> = (options.enum && options.enum.length) ? options.enum : undefined;
+        const messageEnum: string = enumTypes ? ` Should be [${enumTypes.toString()}]` : '';
         // console.log(`[validateStringNotRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null) {
+            return;
+        }
+        if (shouldTrim && value.trim() === '') {
+            throw new Error(`invalid ${path}${messageEnum}`);
+        }
+        if (options.enum && options.enum.length && !(options.enum.find(res => res === value))) {
+            throw new Error(`invalid ${path}${messageEnum}`);
+        }
     }
 
     validateBooleanRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value) as string;
+        const type: string = (schemaType.instance as string).toLowerCase();
         // console.log(`[validateBooleanRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null || typeOf !== type) {
+            throw new Error(`invalid ${path}`);
+        }
     }
 
     validateBooleanNotRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value) as string;
+        const type: string = (schemaType.instance as string).toLowerCase();
         // console.log(`[validateBooleanNotRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null) {
+            return;
+        }
+        if (typeOf !== type) {
+            throw new Error(`invalid ${path}`);
+        }
     }
 
     validateNumberRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value) as string;
+        const type: string = (schemaType.instance as string).toLowerCase();
         // console.log(`[validateNumberRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null || typeOf !== type) {
+            throw new Error(`invalid ${path}`);
+        }
     }
 
     validateNumberNotRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value) as string;
+        const type: string = (schemaType.instance as string).toLowerCase();
         // console.log(`[validateNumberNotRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null) {
+            return;
+        }
+        if (typeOf !== type) {
+            throw new Error(`invalid ${path}`);
+        }
     }
 
     validateDateRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value) as string;
+        const type = 'string';
+        const options: any = schemaType.options;
+        const shouldTrim: boolean = options.trim === true ? true : false;
         // console.log(`[validateDateRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null || typeOf !== type) {
+            throw new Error(`invalid ${path}`);
+        }
+        if (shouldTrim && value.trim() === '') {
+            throw new Error(`invalid ${path}`);
+        }
+        if (!(moment(value, moment.ISO_8601, true).isValid())) {
+            throw new Error(`invalid ${path}`);
+        }
     }
 
     validateDateNotRequired(value: any, path: string, isParentRequired: boolean, schemaType: any) {
+        const typeOf: string = (typeof value) as string;
+        const type = 'string';
+        const options: any = schemaType.options;
+        const shouldTrim: boolean = options.trim === true ? true : false;
         // console.log(`[validateDateNotRequired] value:${value}, path:${path}, isParentRequired:${isParentRequired}`);
+        if (value === undefined || value === null) {
+            return;
+        }
+        if (typeOf !== type) {
+            throw new Error(`invalid ${path}`);
+        }
+        if (shouldTrim && value.trim() === '') {
+            throw new Error(`invalid ${path}`);
+        }
+        if (!(moment(value, moment.ISO_8601, true).isValid())) {
+            throw new Error(`invalid ${path}`);
+        }
     }
 }

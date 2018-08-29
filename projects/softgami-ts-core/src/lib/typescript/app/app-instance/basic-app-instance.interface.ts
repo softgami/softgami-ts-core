@@ -6,6 +6,7 @@ export interface BasicAppInstance {
     app: App;
     roles: Array<Role>;
     isActive: boolean;
+    picture: string;
     createdAt?: Date;
     lastUpdate?: Date;
 }

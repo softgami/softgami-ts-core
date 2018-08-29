@@ -1,5 +1,5 @@
 import { AppAlias } from './app-alias.enum';
-import { Role } from '../core/role/role.interface';
+import { Role } from '../core/permissions/role/role.interface';
 
 export interface BasicApp {
     name: string;

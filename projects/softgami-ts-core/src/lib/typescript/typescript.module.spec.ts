@@ -1,13 +1,13 @@
 import { TypescriptModule } from './typescript.module';
 
 describe('TypescriptModule', () => {
-  let typescriptModule: TypescriptModule;
+    let typescriptModule: TypescriptModule;
 
-  beforeEach(() => {
-    typescriptModule = new TypescriptModule();
-  });
+    beforeEach(() => {
+        typescriptModule = new TypescriptModule();
+    });
 
-  it('should create an instance', () => {
-    expect(typescriptModule).toBeTruthy();
-  });
+    it('should create an instance', () => {
+        expect(typescriptModule).toBeTruthy();
+    });
 });

@@ -1,4 +1,3 @@
-export { TypescriptModule } from './typescript.module';
 export * from './app/index';
 export * from './auth/index';
 export * from './core/index';

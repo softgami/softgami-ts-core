@@ -1,3 +1,5 @@
 export enum AppAlias {
-    ITDOCS = 'itdocs'
+    ITDOCS = 'itdocs',
+    COMICSTOOLS = 'comicstools',
+    GAMIBOOKS = 'gamibooks',
 }

@@ -7,7 +7,7 @@ export interface BasicApp {
     isActive: boolean;
     isPublic: boolean;
     roles: Array<Role>;
-    logo?: string;
+    image?: string;
     description?: string;
     createdAt?: Date;
     lastUpdate?: Date;

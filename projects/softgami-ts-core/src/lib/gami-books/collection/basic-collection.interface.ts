@@ -10,7 +10,7 @@ export interface BasicCollection {
     creator: User;
     appInstance: AppInstance;
     parent?: Collection;
-    ancestor?: Array<Collection>;
+    ancestors?: Array<Collection>;
     image?: string;
     description?: string;
     friendlyUrl?: string;

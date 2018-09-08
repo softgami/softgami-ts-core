@@ -1,0 +1,42 @@
+import { City } from '../../location/city/city.interface';
+import { Collection } from '../collection/collection.interface';
+import { DigitalPublicationFormat } from '../digital-publication-format/digital-publication-format.interface';
+import { Language } from '../../core/i18n/language/language.interface';
+import { Person } from '../../shared/person/person.interface';
+import { PublicationCoverType } from './publication-cover-type.enum';
+import { User } from '../../user/user.interface';
+
+export interface BasicPublication {
+    title: string;
+    isActive: boolean;
+    language: Language;
+    creator: User;
+    isDigital: boolean;
+    collection: Collection;
+    authors?: Array<Person>;
+    illustrators?: Array<Person>;
+    publisher?: string;
+    translators?: Array<Person>;
+    description?: string;
+    contentRating?: string;
+    friendlyUrl?: string;
+    digitalPublicationFormat?: DigitalPublicationFormat;
+    sizeBytes?: number;
+    quality?: number;
+    code?: string;
+    number?: string;
+    numberOfPages?: number;
+    year?: number;
+    image?: string;
+    isbn10?: string;
+    isbn13?: string;
+    dimensions?: string;
+    weight?: string;
+    publicationCoverType?: PublicationCoverType;
+    edition?: string;
+    city?: City;
+    url?: string;
+    tags?: Array<string>;
+    createdAt?: Date;
+    lastUpdate?: Date;
+}

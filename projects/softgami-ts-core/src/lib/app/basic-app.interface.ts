@@ -6,7 +6,7 @@ export interface BasicApp {
     alias: AppAlias;
     isActive: boolean;
     isPublic: boolean;
-    roles: Array<Role>;
+    roles?: Array<Role>;
     image?: string;
     description?: string;
     createdAt?: Date;

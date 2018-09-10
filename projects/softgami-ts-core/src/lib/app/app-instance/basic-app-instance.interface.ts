@@ -5,9 +5,9 @@ import { User } from '../../user/user.interface';
 export interface BasicAppInstance {
     name: string;
     app: App;
-    roles: Array<Role>;
     isActive: boolean;
-    creator: User;
+    roles?: Array<Role>;
+    creator?: User;
     image?: string;
     createdAt?: Date;
     lastUpdate?: Date;

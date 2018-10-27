@@ -4,6 +4,7 @@ import { DigitalPublicationFormat } from '../digital-publication-format/digital-
 import { Language } from '../../core/i18n/language/language.interface';
 import { Person } from '../../shared/person/person.interface';
 import { PublicationCoverType } from './publication-cover-type.enum';
+import { Reader } from '../reader/reader.interface';
 import { User } from '../../user/user.interface';
 
 export interface BasicPublication {
@@ -12,7 +13,8 @@ export interface BasicPublication {
     language: Language;
     creator: User;
     isDigital: boolean;
-    collection: Collection;
+    parentCollection: Collection;
+    subTitle?: string;
     authors?: Array<Person>;
     illustrators?: Array<Person>;
     publisher?: string;
@@ -37,6 +39,13 @@ export interface BasicPublication {
     city?: City;
     url?: string;
     tags?: Array<string>;
+    price?: string;
+    extraContent?: string;
+    purchasedAt?: Date;
+    readers?: Array<Reader>;
+    currentReader?: Reader;
+    waitingList?: Array<Reader>;
+    sourcePublicationId?: string;
     createdAt?: Date;
     lastUpdate?: Date;
 }

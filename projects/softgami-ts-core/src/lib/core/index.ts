@@ -1,5 +1,6 @@
 export { Action } from './permissions/action/action.interface';
 export { ActionAlias } from './permissions/action/action-alias.enum';
+export { Actions } from './permissions/action/actions.enum';
 export { BasicAction } from './permissions/action/basic-action.interface';
 export { BasicLanguage } from './i18n/language/basic-language.interface';
 export { BasicPermission } from './permissions/permission/basic-permission';

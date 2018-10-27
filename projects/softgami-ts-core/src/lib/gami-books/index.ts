@@ -6,3 +6,4 @@ export { DigitalPublicationFormat } from './digital-publication-format/digital-p
 export { GamiBooksModule } from './gami-books.module';
 export { Publication } from './publication/publication.interface';
 export { PublicationCoverType } from './publication/publication-cover-type.enum';
+export { Reader } from './reader/reader.interface';

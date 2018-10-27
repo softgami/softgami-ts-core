@@ -1,9 +1,5 @@
-import { User } from '../../user/user.interface';
+import { BasicReader } from './basic-reader.interface';
 
-export interface Reader extends User {
-    readAt?: Date;
-    issuedAt?: Date;
-    dueDate?: Date;
-    returnedAt?: Date;
-    createdAt?: Date;
+export interface Reader extends BasicReader {
+    _id: string;
 }

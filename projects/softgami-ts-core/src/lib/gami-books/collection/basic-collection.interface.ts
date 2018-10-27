@@ -7,8 +7,8 @@ export interface BasicCollection {
     isActive: boolean;
     isCompleted: boolean;
     isFinished: boolean;
-    creator: User;
-    appInstance: AppInstance;
+    creator?: User;
+    appInstance?: AppInstance;
     parent?: Collection;
     ancestors?: Array<Collection>;
     image?: string;

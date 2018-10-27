@@ -1,6 +1,9 @@
 
 export enum ActionAlias {
-    READ = 1,
-    WRITE = 2,
-    DELETE = 4,
+    READ = 'read',
+    WRITE = 'write',
+    DELETE = 'delete',
+    CREATE = 'create',
+    UPDATE = 'update',
+    EXECUTE = 'execute',
 }

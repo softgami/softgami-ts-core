@@ -14,3 +14,4 @@ export { RoleAlias } from './permissions/role/role-alias.enum';
 export { Subject } from './permissions/subject/subject.interface';
 export { SubjectAlias } from './permissions/subject/subject-alias.enum';
 export { Translation } from './i18n/translations/translation.interface';
+export { TranslationType } from './i18n/translations/translation-types.enum';

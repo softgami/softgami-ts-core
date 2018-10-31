@@ -1,5 +1,5 @@
 export enum TranslationType {
-    BACKEND = 1,
-    FRONTEND = 2,
-    ALL = 3,
+    BACKEND = 'backend',
+    FRONTEND = 'frontend',
+    ALL = 'all',
 }

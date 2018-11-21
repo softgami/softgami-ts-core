@@ -16,6 +16,7 @@ export interface BasicCollection {
     friendlyUrl?: string;
     numberOfPublications?: number;
     totalOfPublications?: number;
+    numberOfCollections?: number;
     createdAt?: Date;
     lastUpdate?: Date;
 }

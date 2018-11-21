@@ -10,7 +10,7 @@ import { Occupation } from '../domain/occupation/occupation.interface';
 import { Phone } from '../phone/phone.interface';
 
 export interface BasicUser extends BasicPerson {
-    emails: Array<Email>;
+    emails?: Array<Email>;
     credentials?: Credentials;
     isActive?: boolean;
     isIndividual?: boolean;

@@ -1,10 +1,12 @@
+import { Author } from '../author/author.interface';
 import { City } from '../../location/city/city.interface';
 import { Collection } from '../collection/collection.interface';
 import { DigitalPublicationFormat } from '../digital-publication-format/digital-publication-format.interface';
+import { Illustrator } from '../illustrator/illustrator.interface';
 import { Language } from '../../core/i18n/language/language.interface';
-import { Person } from '../../shared/person/person.interface';
 import { PublicationCoverType } from './publication-cover-type.enum';
 import { Reader } from '../reader/reader.interface';
+import { Translator } from '../translator/translator.interface';
 import { User } from '../../user/user.interface';
 
 export interface BasicPublication {
@@ -15,10 +17,10 @@ export interface BasicPublication {
     isDigital: boolean;
     parentCollection: Collection;
     subTitle?: string;
-    authors?: Array<Person>;
-    illustrators?: Array<Person>;
+    authors?: Array<Author>;
+    illustrators?: Array<Illustrator>;
     publisher?: string;
-    translators?: Array<Person>;
+    translators?: Array<Translator>;
     description?: string;
     contentRating?: string;
     friendlyUrl?: string;

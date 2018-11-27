@@ -141,7 +141,6 @@ const UserSchema: Schema = new Schema({
     isIndividual: { type: Boolean, default: true },
     language: { type: LanguageSchema, excludeIndexes: true },
     timezone: { type: String, trim: true },
-    surname: { type: String, trim: true },
     birthDate: { type: Date, trim: true },
     picture: { type: String, trim: true },
     taxNumber: { type: String, trim: true },

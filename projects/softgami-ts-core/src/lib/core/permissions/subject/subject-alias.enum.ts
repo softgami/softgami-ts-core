@@ -15,4 +15,5 @@ export enum SubjectAlias {
     APPS = 'apps',
     APP_INSTANCES = 'app_instances',
     USERS = 'users',
+    MENUS = 'menus',
 }

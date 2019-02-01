@@ -5,6 +5,7 @@ import { User } from '../../user/user.interface';
 export interface BasicAppPlan {
     name: string;
     alias: string;
+    appId: string;
     description?: string;
     image?: string;
     icon?: string;

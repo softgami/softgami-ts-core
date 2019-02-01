@@ -4,4 +4,5 @@ export interface BasicPrice {
     value: number;
     currency: string;
     dateTimePeriod?: DateTimePeriods;
+    createdAt?: Date;
 }

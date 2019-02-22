@@ -1,5 +1,8 @@
-import { BasicPhone } from './basic-phone.interface';
+import { PhoneType } from './phone-type.enum';
 
-export interface Phone extends BasicPhone {
-    _id: string;
+export interface Phone {
+    type: PhoneType;
+    number: string;
+    isPrimary: string;
+    isVerified?: string;
 }

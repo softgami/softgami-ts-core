@@ -1,5 +1,8 @@
-import { BasicEmail } from './basic-email.interface';
+import { EmailType } from './email-type.enum';
 
-export interface Email extends BasicEmail {
-    _id: string;
+export interface Email {
+    type: EmailType;
+    address: string;
+    isPrimary: boolean;
+    isVerified?: boolean;
 }

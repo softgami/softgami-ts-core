@@ -6,6 +6,7 @@ export interface BasicFile {
     name: string;
     isFile: boolean;
     isDirectory: boolean;
+    newName?: string;
     path?: string;
     isPublic?: boolean;
     mimetype?: string;

@@ -7,7 +7,7 @@ import { Income } from '../domain/income/income.interface';
 import { Language } from '../core/i18n/language/language.interface';
 import { MaritalStatus } from '../domain/marital-status/marital-status.interface';
 import { Occupation } from '../domain/occupation/occupation.interface';
-import { Phone } from '../phone/phone.interface';
+import { Phone } from '../shared/phone/phone.interface';
 
 export interface BasicUser extends BasicPerson {
     emails?: Array<Email>;

@@ -6,6 +6,5 @@ export * from './email/index';
 export * from './gami-books/index';
 export * from './location/index';
 export * from './menu/index';
-export * from './phone/index';
 export * from './shared/index';
 export * from './user/index';

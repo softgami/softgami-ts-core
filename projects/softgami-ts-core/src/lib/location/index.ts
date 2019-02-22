@@ -1,6 +1,5 @@
 export { Address } from './address/address.interface';
 export { AddressType } from './address/address-type.enum';
-export { BasicAddress } from './address/basic-address.interface';
 export { BasicCity } from './city/basic-city.interface';
 export { BasicCountry } from './country/basic-country.interface';
 export { BasicState } from './state/basic-state.interface';

@@ -1,5 +1,13 @@
-import { BasicAddress } from './basic-address.interface';
+import { AddressType } from './address-type.enum';
+import { City } from '../city/city.interface';
 
-export interface Address extends BasicAddress {
-    _id: string;
+export interface Address {
+    type: AddressType;
+    name: string;
+    postalCode: string;
+    street: string;
+    number: string;
+    complement: string;
+    district: string;
+    city: City;
 }

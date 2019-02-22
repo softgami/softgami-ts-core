@@ -1,5 +1,8 @@
-import { BasicPrice } from './basic-price.interface';
+import { DateTimePeriods } from '../date-time/date-time-periods.enum';
 
-export interface Price extends BasicPrice {
-    _id: string;
+export interface Price {
+    value: number;
+    currency: string;
+    dateTimePeriod?: DateTimePeriods;
+    createdAt?: Date;
 }

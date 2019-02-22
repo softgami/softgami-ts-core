@@ -1,7 +1,6 @@
 export { BasicIncome } from './income/basic-income.interface';
 export { BasicMaritalStatus} from './marital-status/basic-marital-status.interface';
 export { BasicOccupation } from './occupation/basic-occupation.interface';
-export { BasicPrice } from './monetary/basic-price.interface';
 export { DateTimePeriods } from './date-time/date-time-periods.enum';
 export { Gender } from './gender/gender.enum';
 export { Income } from './income/income.interface';

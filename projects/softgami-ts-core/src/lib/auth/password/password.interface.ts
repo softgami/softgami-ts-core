@@ -1,5 +1,7 @@
-import { BasicPassword } from './basic-password.interface';
-
-export interface Password extends BasicPassword {
-    _id: string;
+export interface Password {
+    hash: string;
+    salt: string;
+    algorithm: string;
+    createdAt?: Date;
+    lastUpdate?: Date;
 }

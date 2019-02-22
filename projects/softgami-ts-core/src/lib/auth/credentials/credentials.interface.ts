@@ -1,5 +1,8 @@
-import { BasicCredentials } from './basic-credentials.interface';
+import { Password } from '../password/password.interface';
 
-export interface Credentials extends BasicCredentials {
-    _id: string;
+export interface Credentials {
+    current: Password;
+    new?: Password;
+    confirm?: Password;
+    old?: Array<Password>;
 }

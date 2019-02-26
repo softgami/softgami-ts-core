@@ -1,5 +1,5 @@
 import { AppPlanFeature } from '../app-plan-feature/app-plan-feature.interface';
-import { Price } from '../../domain/monetary/price.interface';
+import { MonetaryValue } from '../../domain/monetary/monetary-value.interface';
 import { User } from '../../user/user.interface';
 
 export interface BasicAppPlan {
@@ -10,8 +10,8 @@ export interface BasicAppPlan {
     image?: string;
     icon?: string;
     appPlanFeatures?: AppPlanFeature[];
-    prices?: Price[];
-    pricesHistory?: Price[];
+    prices?: MonetaryValue[];
+    pricesHistory?: MonetaryValue[];
     trialDays?: number;
     creator?: User;
     createdAt?: Date;

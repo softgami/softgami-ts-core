@@ -8,7 +8,7 @@ export interface UnityValue {
     image?: string;
     symbol?: string;
     nativeSymbol?: string;
-    decimal_digits?: number;
+    decimalDigits?: number;
     rounding?: number;
     pluralName?: string;
 }

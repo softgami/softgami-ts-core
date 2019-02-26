@@ -6,6 +6,7 @@ import { Illustrator } from '../illustrator/illustrator.interface';
 import { Language } from '../../core/i18n/language/language.interface';
 import { MonetaryValue } from '../../domain/monetary/monetary-value.interface';
 import { PublicationCoverType } from './publication-cover-type.enum';
+import { Publisher } from '../publisher/publisher.interface';
 import { QuantitativeValue } from '../../core/value/quantitative-value.interface';
 import { Reader } from '../reader/reader.interface';
 import { Translator } from '../translator/translator.interface';
@@ -21,7 +22,7 @@ export interface BasicPublication {
     subTitle?: string;
     authors?: Array<Author>;
     illustrators?: Array<Illustrator>;
-    publisher?: string;
+    publisher?: Publisher;
     translators?: Array<Translator>;
     description?: string;
     contentRating?: string;

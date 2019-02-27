@@ -11,6 +11,7 @@ export enum SubjectAlias {
     COLLECTIONS = 'collections',
     COUNTRIES = 'countries',
     COVERS = 'covers',
+    CURRENCIES = 'currencies',
     CUSTOMERS = 'customers',
     DIGITAL_PUBLICATION_FORMATS = 'digital_publication_formats',
     EMAILS = 'emails',

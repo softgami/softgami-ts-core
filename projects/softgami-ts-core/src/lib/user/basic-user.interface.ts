@@ -2,6 +2,7 @@ import { Address } from '../location/address/address.interface';
 import { AppInstance } from '../app/app-instance/app-instance.interface';
 import { BasicPerson } from '../shared/person/basic-person.interface';
 import { Credentials } from '../auth/credentials/credentials.interface';
+import { Currency } from '../domain/monetary/currency.interface';
 import { EducationLevel } from '../domain/education-level/education-level.interface';
 import { Email } from '../email/email.interface';
 import { Income } from '../domain/income/income.interface';
@@ -25,4 +26,5 @@ export interface BasicUser extends BasicPerson {
     educationLevel?: EducationLevel;
     addresses?: Array<Address>;
     appInstances?: Array<AppInstance>;
+    currency?: Currency;
 }

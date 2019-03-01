@@ -1,5 +1,5 @@
-import { UnityValue } from '../../core/value/unity-value.interface';
+import { BasicCurrency } from './basic-currency.interface';
 
-export interface Currency extends UnityValue {
+export interface Currency extends BasicCurrency {
     _id: string;
 }

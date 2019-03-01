@@ -1,3 +1,4 @@
+export { BasicCurrency } from './monetary/basic-currency.interface';
 export { BasicEducationLevel } from './education-level/basic-education-level.interface';
 export { BasicIncome } from './income/basic-income.interface';
 export { BasicMaritalStatus} from './marital-status/basic-marital-status.interface';

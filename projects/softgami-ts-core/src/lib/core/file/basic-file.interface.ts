@@ -6,11 +6,12 @@ export interface BasicFile {
     name: string;
     isFile: boolean;
     isDirectory: boolean;
-    newName?: string;
     path?: string;
     isPublic?: boolean;
     mimetype?: string;
     size?: number;
+    totalFilesChildren?: number;
+    totalDirectoriesChildren?: number;
     parent?: File;
     ancestors?: File[];
     creator?: User;

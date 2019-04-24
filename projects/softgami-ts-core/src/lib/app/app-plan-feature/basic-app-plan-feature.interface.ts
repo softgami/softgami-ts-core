@@ -1,9 +1,8 @@
-export interface BasicAppPlanFeature {
-    name: string;
+import { Thing } from '../../shared/thing/thing.interface';
+
+export interface BasicAppPlanFeature extends Thing {
     alias: string;
     value?: number;
     info?: string[];
-    description?: string;
-    image?: string;
     icon?: string;
 }

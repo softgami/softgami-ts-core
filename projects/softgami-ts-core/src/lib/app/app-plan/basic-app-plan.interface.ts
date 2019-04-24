@@ -1,19 +1,13 @@
 import { AppPlanFeature } from '../app-plan-feature/app-plan-feature.interface';
 import { MonetaryValue } from '../../domain/monetary/monetary-value.interface';
-import { User } from '../../user/user.interface';
+import { Thing } from '../../shared/thing/thing.interface';
 
-export interface BasicAppPlan {
-    name: string;
+export interface BasicAppPlan extends Thing {
     alias: string;
     appId: string;
-    description?: string;
-    image?: string;
     icon?: string;
     appPlanFeatures?: AppPlanFeature[];
     prices?: MonetaryValue[];
     pricesHistory?: MonetaryValue[];
     trialDays?: number;
-    creator?: User;
-    createdAt?: Date;
-    lastUpdate?: Date;
 }

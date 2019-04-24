@@ -1,10 +1,7 @@
 import { SubjectAlias } from './subject-alias.enum';
+import { Thing } from '../../../shared/thing/thing.interface';
 
-export interface BasicSubject {
-    name: string;
+export interface BasicSubject extends Thing {
     alias: SubjectAlias;
     isActive: boolean;
-    description?: string;
-    createdAt?: Date;
-    lastUpdate?: Date;
 }

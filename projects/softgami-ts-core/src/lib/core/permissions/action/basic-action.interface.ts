@@ -1,10 +1,7 @@
 import { ActionAlias } from './action-alias.enum';
+import { Thing } from '../../../shared/thing/thing.interface';
 
-export interface BasicAction {
-    name: string;
+export interface BasicAction extends Thing {
     alias: ActionAlias;
     value: number;
-    description?: string;
-    createdAt?: Date;
-    lastUpdate?: Date;
 }

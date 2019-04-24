@@ -1,9 +1,9 @@
 import { AppInstance } from '../../app/app-instance/app-instance.interface';
 import { File } from './file.interface';
+import { Thing } from '../../shared/thing/thing.interface';
 import { User } from '../../user/user.interface';
 
-export interface BasicFile {
-    name: string;
+export interface BasicFile extends Thing {
     isFile: boolean;
     isDirectory: boolean;
     path?: string;
@@ -14,12 +14,9 @@ export interface BasicFile {
     totalDirectoriesChildren?: number;
     parent?: File;
     ancestors?: File[];
-    creator?: User;
     appInstance?: AppInstance;
     downloads?: {
         user: User,
         downloadedAt: Date,
     }[];
-    createdAt?: Date;
-    lastUpdate?: Date;
 }

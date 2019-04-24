@@ -1,16 +1,9 @@
 import { PermissionCheck } from '../core/permissions/permission/permission-check.interface';
-import { User } from '../user/user.interface';
+import { Thing } from '../shared/thing/thing.interface';
 
-export interface BasicMenu {
-    name: string;
+export interface BasicMenu extends Thing {
     index: number;
     permissionCheck?: PermissionCheck;
-    description?: string;
     isActive?: boolean;
-    creator?: User;
-    url?: string;
-    image?: string;
     icon?: string;
-    createdAt?: Date;
-    lastUpdate?: Date;
 }

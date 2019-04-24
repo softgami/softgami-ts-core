@@ -9,11 +9,11 @@ import { PublicationCoverType } from './publication-cover-type.enum';
 import { Publisher } from '../publisher/publisher.interface';
 import { QuantitativeValue } from '../../core/value/quantitative-value.interface';
 import { Reader } from '../reader/reader.interface';
+import { Thing } from '../../shared/thing/thing.interface';
 import { Translator } from '../translator/translator.interface';
 import { User } from '../../user/user.interface';
 
-export interface BasicPublication {
-    title: string;
+export interface BasicPublication extends Thing {
     isActive: boolean;
     language: Language;
     creator: User;
@@ -24,7 +24,6 @@ export interface BasicPublication {
     illustrators?: Array<Illustrator>;
     publisher?: Publisher;
     translators?: Array<Translator>;
-    description?: string;
     contentRating?: string;
     friendlyUrl?: string;
     digitalPublicationFormat?: DigitalPublicationFormat;
@@ -34,7 +33,6 @@ export interface BasicPublication {
     number?: string;
     numberOfPages?: number;
     year?: number;
-    image?: string;
     isbn10?: string;
     isbn13?: string;
     dimensions?: Array<QuantitativeValue>;
@@ -42,7 +40,6 @@ export interface BasicPublication {
     publicationCoverType?: PublicationCoverType;
     edition?: string;
     city?: City;
-    url?: string;
     tags?: Array<string>;
     price?: MonetaryValue;
     extraContent?: string;
@@ -51,6 +48,4 @@ export interface BasicPublication {
     currentReader?: Reader;
     waitingList?: Array<Reader>;
     sourcePublicationId?: string;
-    createdAt?: Date;
-    lastUpdate?: Date;
 }

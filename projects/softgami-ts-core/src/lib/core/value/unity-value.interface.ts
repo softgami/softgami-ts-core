@@ -1,11 +1,9 @@
 import { CurrencyCodes } from '../../domain/monetary/currency-codes.enum';
+import { Thing } from '../../shared/thing/thing.interface';
 import { UnityValueCodes } from './unity-value-codes.enum';
 
-export interface UnityValue {
+export interface UnityValue extends Thing {
     code: UnityValueCodes | CurrencyCodes;
-    name?: string;
-    description?: string;
-    image?: string;
     symbol?: string;
     nativeSymbol?: string;
     decimalDigits?: number;

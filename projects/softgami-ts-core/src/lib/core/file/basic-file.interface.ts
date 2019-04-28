@@ -6,6 +6,7 @@ import { User } from '../../user/user.interface';
 export interface BasicFile extends Thing {
     isFile: boolean;
     isDirectory: boolean;
+    creator?: User;
     path?: string;
     isPublic?: boolean;
     mimetype?: string;

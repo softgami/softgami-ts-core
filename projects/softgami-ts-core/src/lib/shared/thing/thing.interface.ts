@@ -5,7 +5,6 @@ export interface Thing {
     description?: string;
     url?: string;
     image?: string;
-    creator?: User;
     createdAt?: Date;
     lastUpdate?: Date;
 }

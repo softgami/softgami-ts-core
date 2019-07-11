@@ -13,10 +13,10 @@ import { Phone } from '../shared/phone/phone.interface';
 import { User } from './user.interface';
 
 export interface BasicUser extends BasicPerson {
+    isIndividual: boolean;
     emails?: Array<Email>;
     credentials?: Credentials;
     isActive?: boolean;
-    isIndividual?: boolean;
     language?: Language;
     timezone?: string;
     taxNumber?: string;

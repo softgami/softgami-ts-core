@@ -8,5 +8,5 @@ export interface BasicMenu extends Thing {
     permissionCheck?: PermissionCheck;
     icon?: string;
     creator?: User;
-    subMenus?: BasicMenu;
+    subMenus?: BasicMenu[];
 }

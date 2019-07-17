@@ -4,8 +4,9 @@ import { User } from '../user/user.interface';
 
 export interface BasicMenu extends Thing {
     index: number;
+    isActive: boolean;
     permissionCheck?: PermissionCheck;
-    isActive?: boolean;
     icon?: string;
     creator?: User;
+    subMenus?: BasicMenu;
 }

@@ -40,7 +40,11 @@
     },
     "softgami-ts-core-tester": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+            "styleext": "scss"
+        }
+      },
       "root": "projects/softgami-ts-core-tester",
       "sourceRoot": "projects/softgami-ts-core-tester/src",
       "prefix": "app",

@@ -16,6 +16,7 @@ export { Mapper } from './base/mapper.interface';
 export { QuantitativeValue } from './value/quantitative-value.interface';
 export { Role } from './permissions/role/role.interface';
 export { RoleAlias } from './permissions/role/role-alias.enum';
+export { SoftgamiTsUtilsService } from './services/softgami-ts-utils.service';
 export { Subject } from './permissions/subject/subject.interface';
 export { SubjectAlias } from './permissions/subject/subject-alias.enum';
 export { Translation } from './i18n/translations/translation.interface';

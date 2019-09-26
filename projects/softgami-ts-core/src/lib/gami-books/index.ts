@@ -9,7 +9,6 @@ export { BasicReader } from './reader/basic-reader.interface';
 export { BasicTranslator } from './translator/basic-translator.interface';
 export { Collection } from './collection/collection.interface';
 export { DigitalPublicationFormat } from './digital-publication-format/digital-publication-format.interface';
-export { GamiBooksModule } from './gami-books.module';
 export { Illustrator } from './illustrator/illustrator.interface';
 export { Publication } from './publication/publication.interface';
 export { PublicationCoverType } from './publication/publication-cover-type.enum';

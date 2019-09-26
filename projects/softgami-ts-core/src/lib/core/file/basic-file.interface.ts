@@ -1,7 +1,7 @@
-import { AppInstance } from '../../app/app-instance/app-instance.interface';
+import { AppInstance } from '../app/app-instance/app-instance.interface';
 import { File } from './file.interface';
-import { Thing } from '../../shared/thing/thing.interface';
-import { User } from '../../user/user.interface';
+import { Thing } from '../shared/thing/thing.interface';
+import { User } from '../user/user.interface';
 
 export interface BasicFile extends Thing {
     isFile: boolean;

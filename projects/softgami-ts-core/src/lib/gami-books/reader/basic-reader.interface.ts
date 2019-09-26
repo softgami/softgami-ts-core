@@ -1,4 +1,4 @@
-import { BasicUser } from '../../user/basic-user.interface';
+import { BasicUser } from '../../core/user/basic-user.interface';
 
 export interface BasicReader extends BasicUser {
     readAt?: Date;

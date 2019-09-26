@@ -1,7 +1,7 @@
-import { AppInstance } from '../../app/app-instance/app-instance.interface';
+import { AppInstance } from '../../core/app/app-instance/app-instance.interface';
 import { Collection } from './collection.interface';
-import { Thing } from '../../shared/thing/thing.interface';
-import { User } from '../../user/user.interface';
+import { Thing } from '../../core/shared/thing/thing.interface';
+import { User } from '../../core/user/user.interface';
 
 export interface BasicCollection extends Thing {
     isActive: boolean;

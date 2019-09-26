@@ -1,17 +1,17 @@
 import { Author } from '../author/author.interface';
-import { City } from '../../location/city/city.interface';
+import { City } from '../../core/shared/location/city/city.interface';
 import { Collection } from '../collection/collection.interface';
 import { DigitalPublicationFormat } from '../digital-publication-format/digital-publication-format.interface';
 import { Illustrator } from '../illustrator/illustrator.interface';
-import { Language } from '../../core/i18n/language/language.interface';
-import { MonetaryValue } from '../../domain/monetary/monetary-value.interface';
+import { Language } from '../../content-maker/i18n/language/language.interface';
+import { MonetaryValue } from '../../core/shared/monetary/monetary-value.interface';
 import { PublicationCoverType } from './publication-cover-type.enum';
 import { Publisher } from '../publisher/publisher.interface';
-import { QuantitativeValue } from '../../core/value/quantitative-value.interface';
+import { QuantitativeValue } from '../../core/shared/value/quantitative-value.interface';
 import { Reader } from '../reader/reader.interface';
-import { Thing } from '../../shared/thing/thing.interface';
+import { Thing } from '../../core/shared/thing/thing.interface';
 import { Translator } from '../translator/translator.interface';
-import { User } from '../../user/user.interface';
+import { User } from '../../core/user/user.interface';
 
 export interface BasicPublication extends Thing {
     isActive: boolean;

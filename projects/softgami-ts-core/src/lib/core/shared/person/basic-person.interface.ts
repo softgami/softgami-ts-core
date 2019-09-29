@@ -1,10 +1,11 @@
 import { Country } from '../location/country/country.interface';
-import { Gender } from '../../../content-maker/domain/gender/gender.enum';
+import { Domain } from '../../../content-maker/domain/domain.interface';
+import { DomainType } from '../../../content-maker/domain/domain-type.enum';
 import { QuantitativeValue } from '../value/quantitative-value.interface';
 import { Thing } from '../thing/thing.interface';
 
 export interface BasicPerson extends Thing {
-    gender?: Gender;
+    gender?: Domain<DomainType.GENDER, string>;
     birthDate?: Date;
     deathDate?: Date;
     birthPlace?: Country;

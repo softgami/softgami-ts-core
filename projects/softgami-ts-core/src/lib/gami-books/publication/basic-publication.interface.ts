@@ -1,11 +1,11 @@
 import { Author } from '../author/author.interface';
 import { City } from '../../core/shared/location/city/city.interface';
 import { Collection } from '../collection/collection.interface';
-import { DigitalPublicationFormat } from '../digital-publication-format/digital-publication-format.interface';
+import { Domain } from '../../content-maker/domain/domain.interface';
+import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { Illustrator } from '../illustrator/illustrator.interface';
 import { Language } from '../../content-maker/i18n/language/language.interface';
 import { MonetaryValue } from '../../core/shared/monetary/monetary-value.interface';
-import { PublicationCoverType } from './publication-cover-type.enum';
 import { Publisher } from '../publisher/publisher.interface';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.interface';
 import { Reader } from '../reader/reader.interface';
@@ -26,7 +26,7 @@ export interface BasicPublication extends Thing {
     translators?: Array<Translator>;
     contentRating?: string;
     friendlyUrl?: string;
-    digitalPublicationFormat?: DigitalPublicationFormat;
+    digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT, string>;
     sizeBytes?: number;
     quality?: number;
     code?: string;
@@ -37,7 +37,7 @@ export interface BasicPublication extends Thing {
     isbn13?: string;
     dimensions?: Array<QuantitativeValue>;
     weight?: QuantitativeValue;
-    publicationCoverType?: PublicationCoverType;
+    publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE, string>;
     edition?: string;
     city?: City;
     tags?: Array<string>;

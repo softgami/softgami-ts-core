@@ -5,7 +5,7 @@ import { QuantitativeValue } from '../value/quantitative-value.interface';
 import { Thing } from '../thing/thing.interface';
 
 export interface BasicPerson extends Thing {
-    gender?: Domain<DomainType.GENDER, string>;
+    gender?: Domain<DomainType.GENDER>;
     birthDate?: Date;
     deathDate?: Date;
     birthPlace?: Country;

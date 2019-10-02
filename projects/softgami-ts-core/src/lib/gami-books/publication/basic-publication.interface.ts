@@ -26,7 +26,7 @@ export interface BasicPublication extends Thing {
     translators?: Array<Translator>;
     contentRating?: string;
     friendlyUrl?: string;
-    digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT, string>;
+    digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT>;
     sizeBytes?: number;
     quality?: number;
     code?: string;
@@ -37,7 +37,7 @@ export interface BasicPublication extends Thing {
     isbn13?: string;
     dimensions?: Array<QuantitativeValue>;
     weight?: QuantitativeValue;
-    publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE, string>;
+    publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE>;
     edition?: string;
     city?: City;
     tags?: Array<string>;

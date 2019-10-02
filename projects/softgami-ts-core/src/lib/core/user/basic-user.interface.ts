@@ -20,10 +20,10 @@ export interface BasicUser extends BasicPerson {
     taxNumber?: string;
     creator?: User;
     phones?: Array<Phone>;
-    maritalStatus?: Domain<DomainType.MARITAL_STATUS, string>;
-    occupation?: Domain<DomainType.OCCUPATION, string>;
-    income?: Domain<DomainType.INCOME, string>;
-    educationLevel?: Domain<DomainType.EDUCATION_LEVEL, string>;
+    maritalStatus?: Domain<DomainType.MARITAL_STATUS>;
+    occupation?: Domain<DomainType.OCCUPATION>;
+    income?: Domain<DomainType.INCOME>;
+    educationLevel?: Domain<DomainType.EDUCATION_LEVEL>;
     addresses?: Array<Address>;
     appInstances?: Array<AppInstance>;
     currency?: Currency;

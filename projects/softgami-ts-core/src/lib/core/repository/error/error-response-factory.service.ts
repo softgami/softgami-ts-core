@@ -1,7 +1,5 @@
-
-import * as HttpStatus from 'http-status-codes';
-
 import { ErrorResponse } from './error-response.interface';
+import { HttpStatus } from '../http-status.enum';
 import { RequestErrorResponse } from './request-error-response.service';
 import { ServerErrorResponse } from './server-error-response.service';
 

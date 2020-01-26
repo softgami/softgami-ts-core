@@ -1,14 +1,8 @@
-export { Author } from './author/author.interface';
-export { BasicAuthor } from './author/basic-author.interface';
 export { BasicCollection } from './collection/basic-collection.interface';
-export { BasicIllustrator } from './illustrator/basic-illustrator.interface';
 export { BasicPublication } from './publication/basic-publication.interface';
 export { BasicPublisher } from './publisher/basic-publisher.interface';
 export { BasicReader } from './reader/basic-reader.interface';
-export { BasicTranslator } from './translator/basic-translator.interface';
 export { Collection } from './collection/collection.interface';
-export { Illustrator } from './illustrator/illustrator.interface';
 export { Publication } from './publication/publication.interface';
 export { Publisher } from './publisher/publisher.interface';
 export { Reader } from './reader/reader.interface';
-export { Translator } from './translator/translator.interface';

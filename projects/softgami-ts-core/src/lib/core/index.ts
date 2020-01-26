@@ -1,7 +1,6 @@
 export * from './app/index';
 export * from './auth/index';
 export * from './base/index';
-export * from './file/index';
 export * from './permissions/index';
 export * from './repository/index';
 export * from './services/index';

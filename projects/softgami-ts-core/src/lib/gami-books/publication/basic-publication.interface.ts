@@ -1,16 +1,15 @@
-import { Author } from '../author/author.interface';
-import { City } from '../../core/shared/location/city/city.interface';
+import { City } from '../../content-maker/location/city/city.interface';
 import { Collection } from '../collection/collection.interface';
 import { Domain } from '../../content-maker/domain/domain.interface';
 import { DomainType } from '../../content-maker/domain/domain-type.enum';
-import { Illustrator } from '../illustrator/illustrator.interface';
 import { Language } from '../../content-maker/i18n/language/language.interface';
 import { MonetaryValue } from '../../core/shared/monetary/monetary-value.interface';
+import { Person } from '../../content-maker/person/person.interface';
+import { PersonType } from '../../content-maker/person/person-type.enum';
 import { Publisher } from '../publisher/publisher.interface';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.interface';
 import { Reader } from '../reader/reader.interface';
 import { Thing } from '../../core/shared/thing/thing.interface';
-import { Translator } from '../translator/translator.interface';
 import { User } from '../../core/user/user.interface';
 
 export interface BasicPublication extends Thing {
@@ -20,10 +19,10 @@ export interface BasicPublication extends Thing {
     isDigital: boolean;
     parentCollection: Collection;
     subTitle?: string;
-    authors?: Array<Author>;
-    illustrators?: Array<Illustrator>;
+    authors?: Person<PersonType.AUTHOR>[];
+    illustrators?: Person<PersonType.ILLUSTRATOR>[];
     publisher?: Publisher;
-    translators?: Array<Translator>;
+    translators?: Person<PersonType.TRANSLATOR>[];
     contentRating?: string;
     friendlyUrl?: string;
     digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT>;
@@ -35,17 +34,17 @@ export interface BasicPublication extends Thing {
     year?: number;
     isbn10?: string;
     isbn13?: string;
-    dimensions?: Array<QuantitativeValue>;
+    dimensions?: QuantitativeValue[];
     weight?: QuantitativeValue;
     publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE>;
     edition?: string;
     city?: City;
-    tags?: Array<string>;
+    tags?: string[];
     price?: MonetaryValue;
     extraContent?: string;
     purchasedAt?: Date;
-    readers?: Array<Reader>;
+    readers?: Reader[];
     currentReader?: Reader;
-    waitingList?: Array<Reader>;
+    waitingList?: Reader[];
     sourcePublicationId?: string;
 }

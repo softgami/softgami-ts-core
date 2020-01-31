@@ -7,8 +7,8 @@ import { QuantitativeValue } from '../../core/shared/value/quantitative-value.in
 import { Thing } from '../../core/shared/thing/thing.interface';
 
 export interface BasicPerson<T extends PersonType> extends Thing {
-    appInstance: AppInstance;
     type: T;
+    appInstance?: AppInstance;
     gender?: Domain<DomainType.GENDER>;
     birthDate?: Date;
     deathDate?: Date;

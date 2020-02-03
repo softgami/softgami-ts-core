@@ -37,7 +37,7 @@ export interface BasicPublication extends Thing {
     number?: string;
     numberOfPages?: number;
     year?: number;
-    originalYear: number;
+    originalYear?: number;
     isbn10?: string;
     isbn13?: string;
     dimensions?: QuantitativeValue[];

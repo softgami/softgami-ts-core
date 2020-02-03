@@ -1,3 +1,4 @@
+import { AppInstance } from '../../core/app/app-instance/app-instance.interface';
 import { City } from '../../content-maker/location/city/city.interface';
 import { Collection } from '../collection/collection.interface';
 import { Domain } from '../../content-maker/domain/domain.interface';
@@ -17,11 +18,15 @@ export interface BasicPublication extends Thing {
     language: Language;
     creator: User;
     isDigital: boolean;
-    parentCollection: Collection;
+    collections: Collection[];
+    appInstance: AppInstance;
+    originalName?: string;
     subTitle?: string;
+    originalSubtitle?: string;
     authors?: Person<PersonType.AUTHOR>[];
     illustrators?: Person<PersonType.ILLUSTRATOR>[];
     publisher?: Publisher;
+    originalPublisher?: Publisher;
     translators?: Person<PersonType.TRANSLATOR>[];
     contentRating?: string;
     friendlyUrl?: string;
@@ -32,6 +37,7 @@ export interface BasicPublication extends Thing {
     number?: string;
     numberOfPages?: number;
     year?: number;
+    originalYear: number;
     isbn10?: string;
     isbn13?: string;
     dimensions?: QuantitativeValue[];
@@ -39,6 +45,7 @@ export interface BasicPublication extends Thing {
     publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE>;
     edition?: string;
     city?: City;
+    originalCity?: City;
     tags?: string[];
     price?: MonetaryValue;
     extraContent?: string;

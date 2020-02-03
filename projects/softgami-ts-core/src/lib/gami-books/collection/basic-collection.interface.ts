@@ -7,6 +7,7 @@ export interface BasicCollection extends Thing {
     isActive: boolean;
     isCompleted: boolean;
     isFinished: boolean;
+    orderIndex?: number;
     creator?: User;
     appInstance?: AppInstance;
     parent?: Collection;

@@ -22,7 +22,7 @@ export interface BasicPublication extends Thing {
     appInstance: AppInstance;
     originalName?: string;
     subTitle?: string;
-    originalSubtitle?: string;
+    originalSubTitle?: string;
     authors?: Person<PersonType.AUTHOR>[];
     illustrators?: Person<PersonType.ILLUSTRATOR>[];
     publisher?: Publisher;
@@ -44,6 +44,7 @@ export interface BasicPublication extends Thing {
     weight?: QuantitativeValue;
     publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE>;
     edition?: string;
+    originalEdition?: string;
     city?: City;
     originalCity?: City;
     tags?: string[];

@@ -1,1 +1,1 @@
-export { Thing } from './thing.interface';
+export { Thing } from './thing.model';

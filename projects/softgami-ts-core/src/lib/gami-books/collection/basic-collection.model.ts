@@ -1,17 +1,17 @@
-import { AppInstance } from '@lib/core/app/app-instance/app-instance.model';
+import { AppInstance } from 'projects/softgami-ts-core/src/lib/core/app/app-instance/app-instance.model';
 import { Collection } from './collection.model';
-import { Default } from '@lib/core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from '@lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '@lib/core/shared/decorators/extends.decorator';
-import { QueryParam } from '@lib/core/shared/decorators/query-param.decorator';
-import { Required } from '@lib/core/shared/decorators/required.decorator';
-import { Schemable } from '@lib/core/shared/decorators/schemable.decorator';
-import { Sortable } from '@lib/core/shared/decorators/sortable.decorator';
-import { Thing } from '@lib/core/shared/thing/thing.model';
-import { Trim } from '@lib/core/shared/decorators/trim.decorator';
-import { Type } from '@lib/core/shared/decorators/type.decorator';
-import { Types } from '@lib/core/shared/models/types.enum';
-import { User } from '@lib/core/user/user.model';
+import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
+import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
+import { QueryParam } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/query-param.decorator';
+import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
+import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
+import { Sortable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/sortable.decorator';
+import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
+import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
+import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
+import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
+import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
 
 @Extends(Thing)
 export class BasicCollection extends Thing {

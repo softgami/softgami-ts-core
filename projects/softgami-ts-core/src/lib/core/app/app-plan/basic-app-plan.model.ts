@@ -1,15 +1,15 @@
-import { AppPlanFeature } from '@lib/core/app/app-plan-feature/app-plan-feature.model';
-import { Default } from '@lib/core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from '@lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '@lib/core/shared/decorators/extends.decorator';
-import { MonetaryValue } from '@lib/content-maker/currency/monetary-value.model';
-import { Required } from '@lib/core/shared/decorators/required.decorator';
-import { Schemable } from '@lib/core/shared/decorators/schemable.decorator';
-import { Thing } from '@lib/core/shared/thing/thing.model';
-import { Trim } from '@lib/core/shared/decorators/trim.decorator';
-import { Type } from '@lib/core/shared/decorators/type.decorator';
-import { Types } from '@lib/core/shared/models/types.enum';
-import { User } from '@lib/core/user/user.model';
+import { AppPlanFeature } from 'projects/softgami-ts-core/src/lib/core/app/app-plan-feature/app-plan-feature.model';
+import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
+import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
+import { MonetaryValue } from 'projects/softgami-ts-core/src/lib/content-maker/currency/monetary-value.model';
+import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
+import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
+import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
+import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
+import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
+import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
+import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
 
 @Extends(Thing)
 export class BasicAppPlan extends Thing {

@@ -1,12 +1,12 @@
 import { Actions } from '../action/actions.enum';
-import { Enum } from '@lib/core/shared/decorators/enum.decorator';
-import { Required } from '@lib/core/shared/decorators/required.decorator';
+import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
+import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
 import { RoleAlias } from '../role/role-alias.enum';
-import { Schemable } from '@lib/core/shared/decorators/schemable.decorator';
-import { SkipID } from '@lib/core/shared/decorators/skip-id.decorator';
+import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
+import { SkipID } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/skip-id.decorator';
 import { SubjectAlias } from '../subject/subject-alias.enum';
-import { Type } from '@lib/core/shared/decorators/type.decorator';
-import { Types } from '@lib/core/shared/models/types.enum';
+import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
+import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
 
 // @dynamic
 @SkipID()

@@ -1,8 +1,8 @@
-import { BasicUser } from '@lib/core/user/basic-user.model';
-import { Extends } from '@lib/core/shared/decorators/extends.decorator';
-import { Schemable } from '@lib/core/shared/decorators/schemable.decorator';
-import { Type } from '@lib/core/shared/decorators/type.decorator';
-import { Types } from '@lib/core/shared/models/types.enum';
+import { BasicUser } from 'projects/softgami-ts-core/src/lib/core/user/basic-user.model';
+import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
+import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
+import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
+import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
 
 @Extends(BasicUser)
 export class BasicReader extends BasicUser {

@@ -1,19 +1,19 @@
-import { AppInstance } from '@lib/core/app/app-instance/app-instance.model';
-import { Country } from '@lib/content-maker/location/country/country.model';
-import { Domain } from '@lib/content-maker/domain/domain.model';
-import { DomainType } from '@lib/content-maker/domain/domain-type.enum';
-import { Enum } from '@lib/core/shared/decorators/enum.decorator';
-import { ExcludeIndexes } from '@lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '@lib/core/shared/decorators/extends.decorator';
-import { Index } from '@lib/core/shared/decorators/index.decorator';
+import { AppInstance } from 'projects/softgami-ts-core/src/lib/core/app/app-instance/app-instance.model';
+import { Country } from 'projects/softgami-ts-core/src/lib/content-maker/location/country/country.model';
+import { Domain } from 'projects/softgami-ts-core/src/lib/content-maker/domain/domain.model';
+import { DomainType } from 'projects/softgami-ts-core/src/lib/content-maker/domain/domain-type.enum';
+import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
+import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
+import { Index } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/index.decorator';
 import { PersonType } from './person-type.enum';
-import { QuantitativeValue } from '@lib/core/shared/value/quantitative-value.model';
-import { Required } from '@lib/core/shared/decorators/required.decorator';
-import { Schemable } from '@lib/core/shared/decorators/schemable.decorator';
-import { Thing } from '@lib/core/shared/thing/thing.model';
-import { Trim } from '@lib/core/shared/decorators/trim.decorator';
-import { Type } from '@lib/core/shared/decorators/type.decorator';
-import { Types } from '@lib/core/shared/models/types.enum';
+import { QuantitativeValue } from 'projects/softgami-ts-core/src/lib/core/shared/value/quantitative-value.model';
+import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
+import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
+import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
+import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
+import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
+import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
 
 // @dynamic
 @Extends(Thing)

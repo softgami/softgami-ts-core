@@ -6,4 +6,6 @@ export enum Types {
     DATE = 'date',
     OBJECT = 'object',
     ARRAY = 'array',
+    DECIMAL128 = 'decimal128',
+    ENUM = 'enum',
 }

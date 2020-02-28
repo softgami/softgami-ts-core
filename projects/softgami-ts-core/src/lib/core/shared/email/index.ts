@@ -1,2 +1,2 @@
-export { Email } from './email.interface';
+export { Email } from './email.model';
 export { EmailType } from './email-type.enum';

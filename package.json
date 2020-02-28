@@ -1,6 +1,6 @@
 {
   "name": "softgami-ts-core",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot softgami-ts-core-tester",
@@ -17,7 +17,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~8.0.0",
     "@angular/common": "~8.0.0",

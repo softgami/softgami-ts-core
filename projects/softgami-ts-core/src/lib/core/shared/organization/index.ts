@@ -1,1 +1,1 @@
-export { Organization } from './organization.interface';
+export { Organization } from './organization.model';

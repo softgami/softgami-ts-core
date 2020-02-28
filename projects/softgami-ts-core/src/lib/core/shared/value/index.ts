@@ -1,3 +1,3 @@
-export { QuantitativeValue } from './quantitative-value.interface';
-export { UnityValue } from './unity-value.interface';
+export { QuantitativeValue } from './quantitative-value.model';
+export { UnityValue } from './unity-value.model';
 export { UnityValueCodes } from './unity-value-codes.enum';

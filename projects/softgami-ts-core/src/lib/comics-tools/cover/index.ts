@@ -1,1 +1,1 @@
-export { Cover } from './cover.interface';
+export { Cover } from './cover.model';

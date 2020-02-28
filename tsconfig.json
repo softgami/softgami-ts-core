@@ -24,6 +24,9 @@
       ],
       "softgami-ts-core/*": [
         "dist/softgami-ts-core/*"
+      ],
+      "@lib/*": [
+        "projects/softgami-ts-core/src/lib/*"
       ]
     }
   }

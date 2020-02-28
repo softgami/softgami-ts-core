@@ -1,2 +1,2 @@
-export { BasicUser } from './basic-user.interface';
-export { User } from './user.interface';
+export { BasicUser } from './basic-user.model';
+export { User } from './user.model';

@@ -1,3 +1,3 @@
-export { BasicDomain } from './basic-domain.interface';
-export { Domain } from './domain.interface';
+export { BasicDomain } from './basic-domain.model';
+export { Domain } from './domain.model';
 export { DomainType } from './domain-type.enum';

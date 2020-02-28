@@ -1,4 +1,5 @@
-export { Credentials } from './credentials/credentials.interface';
-export { Jwt } from './jwt/jwt.interface';
-export { JwtPayload } from './jwt/jwt-payload.interface';
-export { Password } from './password/password.interface';
+export { Credentials } from './credentials/credentials.model';
+export { Jwt } from './jwt/jwt.model';
+export { JwtPayload } from './jwt/jwt-payload.model';
+export { JwtRole } from './jwt/jwt-role.model';
+export { Password } from './password/password.model';

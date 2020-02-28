@@ -1,19 +1,22 @@
 import 'reflect-metadata';
 
-import { Index } from '../decorators/index.decorator';
-import { QueryParam } from '../decorators/query-param.decorator';
-import { QueryParamMetadataKey } from '../decorators/query-param-metadata-keys';
-import { Required } from '../decorators/required.decorator';
-import { Schemable } from '../decorators/schemable.decorator';
-import { Sortable } from '../decorators/sortable.decorator';
-import { SortableMetadataKey } from '../decorators/sortable-metadata-key';
-import { SortBySelectOption } from '../models/sort-by-select-options.interface';
-import { Trim } from '../decorators/trim.decorator';
-import { Type } from '../decorators/type.decorator';
-import { TypeMetadataKey } from '../decorators/type-metadata-key';
-import { TypeParams } from '../models/type-params.interface';
-import { Types } from '../models/types.enum';
+import { CompoundIndexMetadataKey } from '@lib/core/shared/decorators/compound-index-metadata-key';
+import { Index } from '@lib/core/shared/decorators/index.decorator';
+import { QueryParam } from '@lib/core/shared/decorators/query-param.decorator';
+import { QueryParamMetadataKey } from '@lib/core/shared/decorators/query-param-metadata-keys';
+import { Required } from '@lib/core/shared/decorators/required.decorator';
+import { Schemable } from '@lib/core/shared/decorators/schemable.decorator';
+import { SkipID } from '@lib/core/shared/decorators/skip-id.decorator';
+import { Sortable } from '@lib/core/shared/decorators/sortable.decorator';
+import { SortableMetadataKey } from '@lib/core/shared/decorators/sortable-metadata-key';
+import { SortBySelectOption } from '@lib/core/shared/models/sort-by-select-options.interface';
+import { Trim } from '@lib/core/shared/decorators/trim.decorator';
+import { Type } from '@lib/core/shared/decorators/type.decorator';
+import { TypeMetadataKey } from '@lib/core/shared/decorators/type-metadata-key';
+import { TypeParams } from '@lib/core/shared/models/type-params.interface';
+import { Types } from '@lib/core/shared/models/types.enum';
 
+@SkipID()
 export class Thing {
 
     @Schemable()
@@ -68,6 +71,12 @@ export class Thing {
     @Type({ type: Types.DATE })
     lastUpdate?: Date = null;
 
+    static getCompoundIndexes(classDefinition: any) {
+
+        return Reflect.getMetadata(CompoundIndexMetadataKey, classDefinition);
+
+    }
+
     getType<T>(property: string): TypeParams<T> {
 
         return Reflect.getMetadata(TypeMetadataKey, this, property);
@@ -98,7 +107,6 @@ export class Thing {
     }
 
     recursiveGenerateParamsObject(source: any, parentPath: string, object: { [param: string]: string | string[] }) {
-
 
         Object.getOwnPropertyNames(source).forEach((property: string) => {
 
@@ -278,24 +286,51 @@ export class Thing {
 
     }
 
-    updateStringParam(object: any, property: string, value: string, isArrayItem?: boolean) {
+    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean) {
 
         if (property === 'sort') {
-            if (object.canUpdateSortParam(value)) {
+            if (object.canUpdateSortParam(object, value)) {
                 object[property] = value;
             }
         } else object[property] = value;
 
     }
 
-    canUpdateSortParam(object: any, param: string): boolean {
+    canUpdateSortParam(object: any, value: string): boolean {
 
-        if (param === null || param === undefined || param === '') return true;
-        const arrValues: string[] = param.split(':');
-        if (arrValues[0] && object.hasOwnProperty(arrValues[0])) {
+        if (value === null || value === undefined || value === '') return false;
+        const arrValues: string[] = value.split(':');
+        if (arrValues[0] && this.hasProperty(object, arrValues[0])) {
             return true;
         }
         return false;
+    }
+
+    hasProperty(object: any, property: string) {
+
+        const clone: any = Object.assign({}, object);
+
+        if (clone === null || clone === undefined || typeof clone !== 'object') return false;
+        if (property === null || property === undefined || property === '') return false;
+
+        const arrProperties: string[] = property.split('.');
+
+        if (arrProperties.length === 1) {
+            return clone.hasOwnProperty(arrProperties[0]);
+        }
+
+        if (clone[arrProperties[0]] === null || clone[arrProperties[0]] === undefined) {
+            const typeParams: TypeParams<string> = object.getType(arrProperties[0]);
+            if (typeParams.type === Types.OBJECT && typeParams.class) {
+                clone[arrProperties[0]] = new typeParams.class();
+            }
+        }
+
+        const subProperties: string[] = Object.assign([], arrProperties);
+        subProperties.shift();
+
+        return this.hasProperty(clone[arrProperties[0]], subProperties.join('.'));
+
     }
 
 }

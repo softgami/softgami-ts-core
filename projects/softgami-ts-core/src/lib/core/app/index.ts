@@ -1,9 +1,9 @@
-export { App } from './app.interface';
+export { App } from './app.model';
 export { AppAlias } from './app-alias.enum';
-export { AppInstance } from './app-instance/app-instance.interface';
-export { AppPlan } from './app-plan/app-plan.interface';
-export { AppPlanFeature } from './app-plan-feature/app-plan-feature.interface';
-export { BasicApp } from './basic-app.interface';
-export { BasicAppInstance } from './app-instance/basic-app-instance.interface';
-export { BasicAppPlan } from './app-plan/basic-app-plan.interface';
-export { BasicAppPlanFeature } from './app-plan-feature/basic-app-plan-feature.interface';
+export { AppInstance } from './app-instance/app-instance.model';
+export { AppPlan } from './app-plan/app-plan.model';
+export { AppPlanFeature } from './app-plan-feature/app-plan-feature.model';
+export { BasicApp } from './basic-app.model';
+export { BasicAppInstance } from './app-instance/basic-app-instance.model';
+export { BasicAppPlan } from './app-plan/basic-app-plan.model';
+export { BasicAppPlanFeature } from './app-plan-feature/basic-app-plan-feature.model';

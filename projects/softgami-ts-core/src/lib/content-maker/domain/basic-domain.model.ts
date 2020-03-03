@@ -1,16 +1,16 @@
-import { AppInstance } from 'projects/softgami-ts-core/src/lib/core/app/app-instance/app-instance.model';
+import { AppInstance } from '../../core/app/app-instance/app-instance.model';
 import { DomainType } from './domain-type.enum';
-import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
-import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Index } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/index.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
+import { Enum } from '../../core/shared/decorators/enum.decorator';
+import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { Index } from '../../core/shared/decorators/index.decorator';
+import { Required } from '../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Thing } from '../../core/shared/thing/thing.model';
+import { Trim } from '../../core/shared/decorators/trim.decorator';
+import { Type } from '../../core/shared/decorators/type.decorator';
+import { Types } from '../../core/shared/models/types.enum';
+import { User } from '../../core/user/user.model';
 
 // @dynamic
 @Extends(Thing)

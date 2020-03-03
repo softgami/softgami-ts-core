@@ -1,19 +1,19 @@
-import { AppInstance } from 'projects/softgami-ts-core/src/lib/core/app/app-instance/app-instance.model';
-import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
-import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Index } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/index.decorator';
-import { Language } from 'projects/softgami-ts-core/src/lib/content-maker/i18n/language/language.model';
-import { QueryParam } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/query-param.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { Sortable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/sortable.decorator';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
+import { AppInstance } from '../../../core/app/app-instance/app-instance.model';
+import { Enum } from '../../../core/shared/decorators/enum.decorator';
+import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Index } from '../../../core/shared/decorators/index.decorator';
+import { Language } from '../../../content-maker/i18n/language/language.model';
+import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../../core/shared/decorators/sortable.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
 import { TranslationType } from './translation-types.enum';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
+import { User } from '../../../core/user/user.model';
 
 // @dynamic
 @Extends(Thing)

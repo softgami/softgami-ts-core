@@ -1,16 +1,16 @@
-import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
-import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Index } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/index.decorator';
-import { Override } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/override.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
+import { Default } from '../../../core/shared/decorators/default.decorator';
+import { Enum } from '../../../core/shared/decorators/enum.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Index } from '../../../core/shared/decorators/index.decorator';
+import { Override } from '../../../core/shared/decorators/override.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SubjectAlias } from './subject-alias.enum';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { Unique } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/unique.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
+import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 // @dynamic
 @Extends(Thing)

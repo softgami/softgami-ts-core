@@ -1,13 +1,13 @@
-import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
+import { Default } from '../../../core/shared/decorators/default.decorator';
 import { EmailType } from './email-type.enum';
-import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { SkipID } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/skip-id.decorator';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { Unique } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/unique.decorator';
+import { Enum } from '../../../core/shared/decorators/enum.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
+import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 // @dynamic
 @SkipID()

@@ -1,7 +1,7 @@
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
 
 export class JwtRole {
 

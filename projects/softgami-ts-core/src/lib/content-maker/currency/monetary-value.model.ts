@@ -1,18 +1,18 @@
 import { Currency } from './currency.model';
-import { DateTimePeriods } from 'projects/softgami-ts-core/src/lib/core/shared/date-time/date-time-periods.enum';
-import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
-import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Index } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/index.decorator';
-import { Override } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/override.decorator';
-import { QuantitativeValue } from 'projects/softgami-ts-core/src/lib/core/shared/value/quantitative-value.model';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { SkipID } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/skip-id.decorator';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { Unique } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/unique.decorator';
+import { DateTimePeriods } from '../../core/shared/date-time/date-time-periods.enum';
+import { Enum } from '../../core/shared/decorators/enum.decorator';
+import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { Index } from '../../core/shared/decorators/index.decorator';
+import { Override } from '../../core/shared/decorators/override.decorator';
+import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
+import { Required } from '../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../core/shared/decorators/skip-id.decorator';
+import { Trim } from '../../core/shared/decorators/trim.decorator';
+import { Type } from '../../core/shared/decorators/type.decorator';
+import { Types } from '../../core/shared/models/types.enum';
+import { Unique } from '../../core/shared/decorators/unique.decorator';
 
 // @dynamic
 @SkipID()

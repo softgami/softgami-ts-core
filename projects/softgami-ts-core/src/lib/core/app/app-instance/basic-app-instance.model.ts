@@ -1,15 +1,15 @@
 import { App } from '../app.model';
-import { AppPlan } from 'projects/softgami-ts-core/src/lib/core/app/app-plan/app-plan.model';
-import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Role } from 'projects/softgami-ts-core/src/lib/core/permissions/role/role.model';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
+import { AppPlan } from '../../../core/app/app-plan/app-plan.model';
+import { Default } from '../../../core/shared/decorators/default.decorator';
+import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Role } from '../../../core/permissions/role/role.model';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
+import { User } from '../../../core/user/user.model';
 
 @Extends(Thing)
 export class BasicAppInstance extends Thing {

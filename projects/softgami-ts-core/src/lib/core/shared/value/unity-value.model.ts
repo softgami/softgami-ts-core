@@ -1,15 +1,15 @@
-import { CurrencyCodes } from 'projects/softgami-ts-core/src/lib/content-maker/currency/currency-codes.enum';
-import { Enum } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/enum.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Index } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/index.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { SkipID } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/skip-id.decorator';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { Unique } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/unique.decorator';
+import { CurrencyCodes } from '../../../content-maker/currency/currency-codes.enum';
+import { Enum } from '../../../core/shared/decorators/enum.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Index } from '../../../core/shared/decorators/index.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
+import { Unique } from '../../../core/shared/decorators/unique.decorator';
 import { UnityValueCodes } from './unity-value-codes.enum';
 
 const unityValueCodes: string[] = Object.keys(UnityValueCodes).map((k: string) => UnityValueCodes[k]);

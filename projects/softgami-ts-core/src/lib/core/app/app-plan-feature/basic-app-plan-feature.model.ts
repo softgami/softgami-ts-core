@@ -1,11 +1,11 @@
-import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
+import { Default } from '../../../core/shared/decorators/default.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
 
 @Extends(Thing)
 export class BasicAppPlanFeature extends Thing {

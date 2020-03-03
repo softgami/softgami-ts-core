@@ -1,15 +1,15 @@
-import { Default } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/extends.decorator';
-import { PermissionCheck } from 'projects/softgami-ts-core/src/lib/core/permissions/permission/permission-check.model';
-import { Required } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/required.decorator';
-import { Schemable } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/schemable.decorator';
-import { SkipID } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/skip-id.decorator';
-import { Thing } from 'projects/softgami-ts-core/src/lib/core/shared/thing/thing.model';
-import { Trim } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/trim.decorator';
-import { Type } from 'projects/softgami-ts-core/src/lib/core/shared/decorators/type.decorator';
-import { Types } from 'projects/softgami-ts-core/src/lib/core/shared/models/types.enum';
-import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
+import { Default } from '../../core/shared/decorators/default.decorator';
+import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { PermissionCheck } from '../../core/permissions/permission/permission-check.model';
+import { Required } from '../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../core/shared/decorators/skip-id.decorator';
+import { Thing } from '../../core/shared/thing/thing.model';
+import { Trim } from '../../core/shared/decorators/trim.decorator';
+import { Type } from '../../core/shared/decorators/type.decorator';
+import { Types } from '../../core/shared/models/types.enum';
+import { User } from '../../core/user/user.model';
 
 @SkipID()
 @Extends(Thing)

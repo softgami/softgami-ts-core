@@ -1,4 +1,3 @@
-
 export { Cover } from './comics-tools/cover/cover.model';
 
 export { BasicCurrency } from './content-maker/currency/basic-currency.model';

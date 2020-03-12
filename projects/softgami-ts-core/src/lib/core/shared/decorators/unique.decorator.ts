@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { UniqueMetadataKey } from './unique-metadata-key';
+import { UniqueMetadataKey } from '../../../internal';
 
 export function Unique(isUnique = true) {
 

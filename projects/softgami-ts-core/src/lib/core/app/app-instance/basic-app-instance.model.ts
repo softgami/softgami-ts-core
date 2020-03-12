@@ -1,15 +1,15 @@
-import { App } from '../app.model';
-import { AppPlan } from '../../../core/app/app-plan/app-plan.model';
-import { Default } from '../../../core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Role } from '../../../core/permissions/role/role.model';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { User } from '../../../core/user/user.model';
+import { App } from '../../../internal';
+import { AppPlan } from '../../../internal';
+import { Default } from '../../../internal';
+import { ExcludeIndexes } from '../../../internal';
+import { Extends } from '../../../internal';
+import { Required } from '../../../internal';
+import { Role } from '../../../internal';
+import { Schemable } from '../../../internal';
+import { Thing } from '../../../internal';
+import { Type } from '../../../internal';
+import { Types } from '../../../internal';
+import { User } from '../../../internal';
 
 @Extends(Thing)
 export class BasicAppInstance extends Thing {

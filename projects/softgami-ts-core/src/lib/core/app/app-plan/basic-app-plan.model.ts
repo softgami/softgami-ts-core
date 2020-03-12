@@ -1,15 +1,15 @@
-import { AppPlanFeature } from '../../../core/app/app-plan-feature/app-plan-feature.model';
-import { Default } from '../../../core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { MonetaryValue } from '../../../content-maker/currency/monetary-value.model';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { User } from '../../../core/user/user.model';
+import { AppPlanFeature } from '../../../internal';
+import { Default } from '../../../internal';
+import { ExcludeIndexes } from '../../../internal';
+import { Extends } from '../../../internal';
+import { MonetaryValue } from '../../../internal';
+import { Required } from '../../../internal';
+import { Schemable } from '../../../internal';
+import { Thing } from '../../../internal';
+import { Trim } from '../../../internal';
+import { Type } from '../../../internal';
+import { Types } from '../../../internal';
+import { User } from '../../../internal';
 
 @Extends(Thing)
 export class BasicAppPlan extends Thing {

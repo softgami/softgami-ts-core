@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { OverrideMetadataKey } from './override-metadata-key';
+import { OverrideMetadataKey } from '../../../internal';
 
 export function Override(override = true) {
 

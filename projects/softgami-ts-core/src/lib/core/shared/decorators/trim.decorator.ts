@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { TrimMetadataKey } from './trim-metadata-key';
+import { TrimMetadataKey } from '../../../internal';
 
 export function Trim(shouldTrim = true) {
 

@@ -1,19 +1,19 @@
-import { AppInstance } from '../../../core/app/app-instance/app-instance.model';
-import { Enum } from '../../../core/shared/decorators/enum.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
-import { Language } from '../../../content-maker/i18n/language/language.model';
-import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Sortable } from '../../../core/shared/decorators/sortable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { TranslationType } from './translation-types.enum';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { User } from '../../../core/user/user.model';
+import { AppInstance } from '../../../internal';
+import { Enum } from '../../../internal';
+import { ExcludeIndexes } from '../../../internal';
+import { Extends } from '../../../internal';
+import { Index } from '../../../internal';
+import { Language } from '../../../internal';
+import { QueryParam } from '../../../internal';
+import { Required } from '../../../internal';
+import { Schemable } from '../../../internal';
+import { Sortable } from '../../../internal';
+import { Thing } from '../../../internal';
+import { TranslationType } from '../../../internal';
+import { Trim } from '../../../internal';
+import { Type } from '../../../internal';
+import { Types } from '../../../internal';
+import { User } from '../../../internal';
 
 // @dynamic
 @Extends(Thing)

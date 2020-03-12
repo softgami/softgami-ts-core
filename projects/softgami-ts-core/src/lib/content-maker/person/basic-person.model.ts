@@ -1,19 +1,19 @@
-import { AppInstance } from '../../core/app/app-instance/app-instance.model';
-import { Country } from '../../content-maker/location/country/country.model';
-import { Domain } from '../../content-maker/domain/domain.model';
-import { DomainType } from '../../content-maker/domain/domain-type.enum';
-import { Enum } from '../../core/shared/decorators/enum.decorator';
-import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
-import { PersonType } from './person-type.enum';
-import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
-import { Required } from '../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../core/shared/thing/thing.model';
-import { Trim } from '../../core/shared/decorators/trim.decorator';
-import { Type } from '../../core/shared/decorators/type.decorator';
-import { Types } from '../../core/shared/models/types.enum';
+import { AppInstance } from '../../internal';
+import { Country } from '../../internal';
+import { Domain } from '../../internal';
+import { DomainType } from '../../internal';
+import { Enum } from '../../internal';
+import { ExcludeIndexes } from '../../internal';
+import { Extends } from '../../internal';
+import { Index } from '../../internal';
+import { PersonType } from '../../internal';
+import { QuantitativeValue } from '../../internal';
+import { Required } from '../../internal';
+import { Schemable } from '../../internal';
+import { Thing } from '../../internal';
+import { Trim } from '../../internal';
+import { Type } from '../../internal';
+import { Types } from '../../internal';
 
 // @dynamic
 @Extends(Thing)

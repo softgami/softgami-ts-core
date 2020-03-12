@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { DefaultMetadataKey } from './default-metadata-key';
+import { DefaultMetadataKey } from '../../../internal';
 
 export function Default<T>(value: T) {
 

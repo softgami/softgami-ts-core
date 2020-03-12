@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { SchemableMetadataKey } from './schemable-metadata-key';
+import { SchemableMetadataKey } from '../../../internal';
 
 export function Schemable(isSchemable = true) {
 

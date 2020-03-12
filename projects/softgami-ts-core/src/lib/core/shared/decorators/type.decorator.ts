@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
-import { TypeMetadataKey } from './type-metadata-key';
-import { TypeParams } from '../models/type-params.interface';
+import { TypeMetadataKey } from '../../../internal';
+import { TypeParams } from '../../../internal';
 
 export function Type<T>(typeParams: TypeParams<T>) {
 

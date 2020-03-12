@@ -70,10 +70,10 @@ export { Subject } from './core/permissions/subject/subject.model';
 export { SubjectAlias } from './core/permissions/subject/subject-alias.enum';
 
 export { ErrorResponse } from './core/repository/error/error-response.interface';
-export { ErrorResponseFactory } from './core/repository/error/error-response-factory.service';
+export { ErrorResponseFactory } from './core/repository/error/error-response-factory';
 export { HttpStatus } from './core/repository/http-status.enum';
-export { RequestErrorResponse } from './core/repository/error/request-error-response.service';
-export { ServerErrorResponse } from './core/repository/error/server-error-response.service';
+export { RequestErrorResponse } from './core/repository/error/request-error-response';
+export { ServerErrorResponse } from './core/repository/error/server-error-response';
 
 export { SoftgamiTsUtilsService } from './core/services/softgami-ts-utils.service';
 

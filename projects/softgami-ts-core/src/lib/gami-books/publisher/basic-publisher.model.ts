@@ -1,10 +1,10 @@
-import { AppInstance } from '../../core/app/app-instance/app-instance.model';
-import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Organization } from '../../core/shared/organization/organization.model';
-import { Schemable } from '../../core/shared/decorators/schemable.decorator';
-import { Type } from '../../core/shared/decorators/type.decorator';
-import { Types } from '../../core/shared/models/types.enum';
+import { AppInstance } from '../../internal';
+import { ExcludeIndexes } from '../../internal';
+import { Extends } from '../../internal';
+import { Organization } from '../../internal';
+import { Schemable } from '../../internal';
+import { Type } from '../../internal';
+import { Types } from '../../internal';
 
 @Extends(Organization)
 export class BasicPublisher extends Organization {

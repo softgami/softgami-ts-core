@@ -1,11 +1,11 @@
-import { Default } from '../../../core/shared/decorators/default.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
+import { Default } from '../../../internal';
+import { Extends } from '../../../internal';
+import { Required } from '../../../internal';
+import { Schemable } from '../../../internal';
+import { Thing } from '../../../internal';
+import { Trim } from '../../../internal';
+import { Type } from '../../../internal';
+import { Types } from '../../../internal';
 
 @Extends(Thing)
 export class BasicAppPlanFeature extends Thing {

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { ExcludeIndexesMetadataKey } from './exclude-indexes-metadata-key';
+import { ExcludeIndexesMetadataKey } from '../../../internal';
 
 export function ExcludeIndexes(shouldExclude = true) {
 

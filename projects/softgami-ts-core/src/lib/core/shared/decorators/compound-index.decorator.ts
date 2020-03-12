@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
-import { CompoundIndexMetadataKey } from './compound-index-metadata-key';
-import { CompoundIndexOption } from 'projects/softgami-ts-core/src/lib/core/shared/models/compound-index-option.interface';
+import { CompoundIndexMetadataKey } from '../../../internal';
+import { CompoundIndexOption } from '../../../internal';
 
 export function CompoundIndex(options: CompoundIndexOption[]) {
 

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { SkipIDMetadataKey } from './skip-id-metadata-key';
+import { SkipIDMetadataKey } from '../../../internal';
 
 export function SkipID() {
 

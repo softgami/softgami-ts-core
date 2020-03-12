@@ -1,9 +1,9 @@
 
-import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Required } from '../../core/shared/decorators/required.decorator';
-import { Thing } from '../../core/shared/thing/thing.model';
-import { Type } from '../../core/shared/decorators/type.decorator';
-import { Types } from '../../core/shared/models/types.enum';
+import { Extends } from '../../internal';
+import { Required } from '../../internal';
+import { Thing } from '../../internal';
+import { Type } from '../../internal';
+import { Types } from '../../internal';
 
 @Extends(Thing)
 export class Cover extends Thing {

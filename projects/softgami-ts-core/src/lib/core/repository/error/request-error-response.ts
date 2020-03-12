@@ -1,4 +1,4 @@
-import { ErrorResponse } from './error-response.interface';
+import { ErrorResponse } from '../../../internal';
 
 export class RequestErrorResponse implements ErrorResponse {
     statusCode: number;

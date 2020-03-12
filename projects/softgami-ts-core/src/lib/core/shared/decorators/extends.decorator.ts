@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { ExtendsMetadataKey } from './extends-metadata-key';
+import { ExtendsMetadataKey } from '../../../internal';
 
 export function Extends(classDefinition: any) {
 

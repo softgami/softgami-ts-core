@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
-import { SortableMetadataKey } from '../../../internal';
-import { SortBySelectOption } from '../../../internal';
+import { SortableMetadataKey } from './sortable-metadata-key';
+import { SortBySelectOption } from '../models/sort-by-select-options.interface';
 
 export function Sortable(options?: SortBySelectOption | boolean) {
 

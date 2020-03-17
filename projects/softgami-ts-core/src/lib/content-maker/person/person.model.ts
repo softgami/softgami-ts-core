@@ -1,15 +1,15 @@
-import { BasicPerson } from '../../internal';
-import { CompoundIndex } from '../../internal';
-import { Extends } from '../../internal';
-import { Index } from '../../internal';
-import { PersonType } from '../../internal';
-import { QueryParam } from '../../internal';
-import { Required } from '../../internal';
-import { Schemable } from '../../internal';
-import { Trim } from '../../internal';
-import { Type } from '../../internal';
-import { Types } from '../../internal';
-import { Unique } from '../../internal';
+import { BasicPerson } from './basic-person.model';
+import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
+import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { Index } from '../../core/shared/decorators/index.decorator';
+import { PersonType } from './person-type.enum';
+import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
+import { Required } from '../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Trim } from '../../core/shared/decorators/trim.decorator';
+import { Type } from '../../core/shared/decorators/type.decorator';
+import { Types } from '../../core/shared/models/types.enum';
+import { Unique } from '../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},

@@ -1,4 +1,4 @@
-import { Types } from '../../../internal';
+import { Types } from './types.enum';
 
 export interface TypeParams<T> {
     type: Types;

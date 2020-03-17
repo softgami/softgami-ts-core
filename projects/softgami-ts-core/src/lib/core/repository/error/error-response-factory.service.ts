@@ -1,7 +1,7 @@
-import { ErrorResponse } from '../../../internal';
-import { HttpStatus } from '../../../internal';
-import { RequestErrorResponse } from '../../../internal';
-import { ServerErrorResponse } from '../../../internal';
+import { ErrorResponse } from './error-response.interface';
+import { HttpStatus } from '../http-status.enum';
+import { RequestErrorResponse } from './request-error-response.service';
+import { ServerErrorResponse } from './server-error-response.service';
 
 export class ErrorResponseFactory {
 

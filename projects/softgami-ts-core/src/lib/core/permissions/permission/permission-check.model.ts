@@ -1,12 +1,12 @@
-import { Actions } from '../../../internal';
-import { Enum } from '../../../internal';
-import { Required } from '../../../internal';
-import { RoleAlias } from '../../../internal';
-import { Schemable } from '../../../internal';
-import { SkipID } from '../../../internal';
-import { SubjectAlias } from '../../../internal';
-import { Type } from '../../../internal';
-import { Types } from '../../../internal';
+import { Actions } from '../action/actions.enum';
+import { Enum } from '../../../core/shared/decorators/enum.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { RoleAlias } from '../role/role-alias.enum';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
+import { SubjectAlias } from '../subject/subject-alias.enum';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
 
 // @dynamic
 @SkipID()

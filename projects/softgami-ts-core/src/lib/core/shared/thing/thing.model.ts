@@ -1,20 +1,20 @@
 import 'reflect-metadata';
 
-import { CompoundIndexMetadataKey } from '../../../internal';
-import { Index } from '../../../internal';
-import { QueryParam } from '../../../internal';
-import { QueryParamMetadataKey } from '../../../internal';
-import { Required } from '../../../internal';
-import { Schemable } from '../../../internal';
-import { SkipID } from '../../../internal';
-import { Sortable } from '../../../internal';
-import { SortableMetadataKey } from '../../../internal';
-import { SortBySelectOption } from '../../../internal';
-import { Trim } from '../../../internal';
-import { Type } from '../../../internal';
-import { TypeMetadataKey } from '../../../internal';
-import { TypeParams } from '../../../internal';
-import { Types } from '../../../internal';
+import { CompoundIndexMetadataKey } from '../../../core/shared/decorators/compound-index-metadata-key';
+import { Index } from '../../../core/shared/decorators/index.decorator';
+import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
+import { QueryParamMetadataKey } from '../../../core/shared/decorators/query-param-metadata-keys';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
+import { Sortable } from '../../../core/shared/decorators/sortable.decorator';
+import { SortableMetadataKey } from '../../../core/shared/decorators/sortable-metadata-key';
+import { SortBySelectOption } from '../../../core/shared/models/sort-by-select-options.interface';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { TypeMetadataKey } from '../../../core/shared/decorators/type-metadata-key';
+import { TypeParams } from '../../../core/shared/models/type-params.interface';
+import { Types } from '../../../core/shared/models/types.enum';
 
 @SkipID()
 export class Thing {

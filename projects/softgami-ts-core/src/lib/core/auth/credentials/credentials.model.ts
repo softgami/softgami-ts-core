@@ -1,10 +1,10 @@
-import { Default } from '../../../internal';
-import { Password } from '../../../internal';
-import { Required } from '../../../internal';
-import { Schemable } from '../../../internal';
-import { SkipID } from '../../../internal';
-import { Type } from '../../../internal';
-import { Types } from '../../../internal';
+import { Default } from '../../../core/shared/decorators/default.decorator';
+import { Password } from '../password/password.model';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
 
 @SkipID()
 export class Credentials {

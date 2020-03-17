@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { RequiredMetadataKey } from '../../../internal';
+import { RequiredMetadataKey } from './required-metadata-key';
 
 export function Required(isRequired = true) {
 

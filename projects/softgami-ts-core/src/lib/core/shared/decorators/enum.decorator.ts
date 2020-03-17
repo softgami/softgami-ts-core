@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { EnumMetadataKey } from '../../../internal';
+import { EnumMetadataKey } from './enum-metadata-key';
 
 export function Enum(values: string[]) {
 

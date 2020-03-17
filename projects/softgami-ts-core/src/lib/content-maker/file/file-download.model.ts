@@ -1,10 +1,10 @@
-import { ExcludeIndexes } from '../../internal';
-import { Required } from '../../internal';
-import { Schemable } from '../../internal';
-import { SkipID } from '../../internal';
-import { Type } from '../../internal';
-import { Types } from '../../internal';
-import { User } from '../../internal';
+import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
+import { Required } from '../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../core/shared/decorators/skip-id.decorator';
+import { Type } from '../../core/shared/decorators/type.decorator';
+import { Types } from '../../core/shared/models/types.enum';
+import { User } from '../../core/user/user.model';
 
 @SkipID()
 export class FileDownload {

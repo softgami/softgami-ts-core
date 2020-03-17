@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { QueryParamMetadataKey } from '../../../internal';
+import { QueryParamMetadataKey } from './query-param-metadata-keys';
 
 export function QueryParam(isQueryParam = true) {
 

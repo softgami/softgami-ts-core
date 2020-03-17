@@ -1,13 +1,13 @@
-import { ExcludeIndexes } from '../../../internal';
-import { Extends } from '../../../internal';
-import { Required } from '../../../internal';
-import { Schemable } from '../../../internal';
-import { SkipID } from '../../../internal';
-import { Thing } from '../../../internal';
-import { Trim } from '../../../internal';
-import { Type } from '../../../internal';
-import { Types } from '../../../internal';
-import { UnityValue } from '../../../internal';
+import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Required } from '../../../core/shared/decorators/required.decorator';
+import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
+import { Trim } from '../../../core/shared/decorators/trim.decorator';
+import { Type } from '../../../core/shared/decorators/type.decorator';
+import { Types } from '../../../core/shared/models/types.enum';
+import { UnityValue } from './unity-value.model';
 
 @SkipID()
 @Extends(Thing)

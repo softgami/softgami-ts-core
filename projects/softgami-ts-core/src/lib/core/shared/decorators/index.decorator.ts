@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { IndexMetadataKey } from '../../../internal';
+import { IndexMetadataKey } from './index-metadata-key';
 
 export function Index(isIndex = true) {
 

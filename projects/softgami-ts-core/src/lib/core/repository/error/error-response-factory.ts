@@ -1,7 +1,7 @@
 import { ErrorResponse } from './error-response.interface';
 import { HttpStatus } from '../http-status.enum';
-import { RequestErrorResponse } from './request-error-response.service';
-import { ServerErrorResponse } from './server-error-response.service';
+import { RequestErrorResponse } from './request-error-response';
+import { ServerErrorResponse } from './server-error-response';
 
 export class ErrorResponseFactory {
 

@@ -1,10 +1,12 @@
-import { BasicState } from './basic-state.model';
+import { Country } from '../country/country.model';
 import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
+import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
 import { Index } from '../../../core/shared/decorators/index.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Thing } from '../../../core/shared/thing/thing.model';
 import { Trim } from '../../../core/shared/decorators/trim.decorator';
 import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
@@ -16,8 +18,8 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
     { fields: { 'country.name': 1 }, options: { unique: false }},
     { fields: { 'country.code': 1 }, options: { unique: false }},
 ])
-@Extends(BasicState)
-export class State extends BasicState {
+@Extends(Thing)
+export class State extends Thing {
 
     @Schemable()
     @Index()
@@ -28,5 +30,17 @@ export class State extends BasicState {
     @Type({ type: Types.STRING })
     // tslint:disable-next-line: variable-name
     _id: string = null;
+
+    @Schemable()
+    @Required()
+    @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: Country })
+    country: Country = null;
+
+    @Schemable()
+    @Trim()
+    @Index()
+    @Type({ type: Types.STRING })
+    code?: string = null;
 
 }

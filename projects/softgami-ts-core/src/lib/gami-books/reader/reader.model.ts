@@ -1,4 +1,3 @@
-import { BasicReader } from './basic-reader.model';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { Index } from '../../core/shared/decorators/index.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
@@ -8,9 +7,10 @@ import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
+import { User } from '../../core/user/user.model';
 
-@Extends(BasicReader)
-export class Reader extends BasicReader {
+@Extends(User)
+export class Reader extends User {
 
     @Schemable()
     @Index()
@@ -21,5 +21,25 @@ export class Reader extends BasicReader {
     @Type({ type: Types.STRING })
     // tslint:disable-next-line: variable-name
     _id: string = null;
+
+    @Schemable()
+    @Type({ type: Types.DATE })
+    readAt?: Date = null;
+
+    @Schemable()
+    @Type({ type: Types.DATE })
+    issuedAt?: Date = null;
+
+    @Schemable()
+    @Type({ type: Types.DATE })
+    dueDate?: Date = null;
+
+    @Schemable()
+    @Type({ type: Types.DATE })
+    returnedAt?: Date = null;
+
+    @Schemable()
+    @Type({ type: Types.DATE })
+    createdAt?: Date = null;
 
 }

@@ -1,16 +1,19 @@
 import { AppInstance } from '../../core/app/app-instance/app-instance.model';
-import { BasicMenu } from './basic-menu.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
+import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { Index } from '../../core/shared/decorators/index.decorator';
+import { PermissionCheck } from '../../core/permissions/permission/permission-check.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Thing } from '../../core/shared/thing/thing.model';
 import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
+import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
@@ -20,8 +23,8 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
     { fields: { 'permissionCheck.subject' : 1 }, options: { unique : false }},
     { fields: { 'permissionCheck.action' : 1 }, options: { unique : false }},
 ])
-@Extends(BasicMenu)
-export class Menu extends BasicMenu {
+@Extends(Thing)
+export class Menu extends Thing {
 
     @Schemable()
     @Index()
@@ -32,6 +35,38 @@ export class Menu extends BasicMenu {
     @Type({ type: Types.STRING })
     // tslint:disable-next-line: variable-name
     _id: string = null;
+
+    @Schemable()
+    @Required()
+    @Default(1)
+    @Type({ type: Types.NUMBER })
+    index: number = null;
+
+    @Schemable()
+    @Required()
+    @Type({ type: Types.BOOLEAN })
+    isActive: boolean = null;
+
+    @Schemable()
+    @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: PermissionCheck })
+    permissionCheck?: PermissionCheck = null;
+
+    @Schemable()
+    @Trim()
+    @Type({ type: Types.STRING })
+    icon?: string = null;
+
+    @Schemable()
+    @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: User })
+    creator?: User = null;
+
+    @Schemable()
+    @ExcludeIndexes()
+    @Default(null)
+    @Type({ type: Types.ARRAY, class: Menu, arrayItemType: Types.OBJECT, isSelf: true })
+    subMenus?: Menu[] = null;
 
     @Schemable()
     @ExcludeIndexes()

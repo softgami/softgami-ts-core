@@ -1,10 +1,6 @@
 export { Action } from './action/action.model';
 export { ActionAlias } from './action/action-alias.enum';
 export { Actions } from './action/actions.enum';
-export { BasicAction } from './action/basic-action.model';
-export { BasicPermission } from './permission/basic-permission.model';
-export { BasicRole } from './role/basic-role.model';
-export { BasicSubject } from './subject/basic-subject.model';
 export { Permission } from './permission/permission.model';
 export { PermissionCheck } from './permission/permission-check.model';
 export { Role } from './role/role.model';

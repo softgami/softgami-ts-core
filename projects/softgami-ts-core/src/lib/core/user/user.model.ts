@@ -1,17 +1,16 @@
 import { Address } from '../../content-maker/location/address/address.model';
-import { AppInstance } from '../../core/app/app-instance/app-instance.model';
+import { BaseDomain } from '../../content-maker/domain/base-domain.model';
+import { BasePerson } from '../../content-maker/person/base-person.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { Credentials } from '../../core/auth/credentials/credentials.model';
 import { Currency } from '../../content-maker/currency/currency.model';
 import { Default } from '../../core/shared/decorators/default.decorator';
-import { Domain } from '../../content-maker/domain/domain.model';
 import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { Email } from '../../core/shared/email/email.model';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { Index } from '../../core/shared/decorators/index.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
-import { Person } from '../../content-maker/person/person.model';
 import { PersonType } from '../../content-maker/person/person-type.enum';
 import { Phone } from '../../core/shared/phone/phone.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
@@ -39,8 +38,8 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
     }},
     { fields: { 'creator._id': 1 }, options: { unique: false }},
 ])
-@Extends(Person)
-export class User extends Person<PersonType.USER> {
+@Extends(BasePerson)
+export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
     @Index()
@@ -101,35 +100,29 @@ export class User extends Person<PersonType.USER> {
 
     @Schemable()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: Domain })
-    maritalStatus?: Domain<DomainType.MARITAL_STATUS> = null;
+    @Type({ type: Types.OBJECT, class: BaseDomain })
+    maritalStatus?: BaseDomain<DomainType.MARITAL_STATUS> = null;
 
     @Schemable()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: Domain })
-    occupation?: Domain<DomainType.OCCUPATION> = null;
+    @Type({ type: Types.OBJECT, class: BaseDomain })
+    occupation?: BaseDomain<DomainType.OCCUPATION> = null;
 
     @Schemable()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: Domain })
-    income?: Domain<DomainType.INCOME> = null;
+    @Type({ type: Types.OBJECT, class: BaseDomain })
+    income?: BaseDomain<DomainType.INCOME> = null;
 
     @Schemable()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: Domain })
-    educationLevel?: Domain<DomainType.EDUCATION_LEVEL> = null;
+    @Type({ type: Types.OBJECT, class: BaseDomain })
+    educationLevel?: BaseDomain<DomainType.EDUCATION_LEVEL> = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Address, arrayItemType: Types.OBJECT })
     addresses?: Address[] = null;
-
-    @Schemable()
-    @Default(null)
-    @ExcludeIndexes()
-    @Type({ type: Types.ARRAY, class: AppInstance, arrayItemType: Types.OBJECT })
-    appInstances?: AppInstance[] = null;
 
     @Schemable()
     @ExcludeIndexes()

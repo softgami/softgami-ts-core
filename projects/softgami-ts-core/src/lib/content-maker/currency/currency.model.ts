@@ -14,7 +14,7 @@ import { UnityValue } from '../../core/shared/value/unity-value.model';
 
 // @dynamic
 @Extends(UnityValue)
-export class Currency {
+export class Currency extends UnityValue {
 
     @Schemable()
     @Index()

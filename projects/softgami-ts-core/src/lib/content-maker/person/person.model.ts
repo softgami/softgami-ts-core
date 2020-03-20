@@ -12,6 +12,7 @@ import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
+import { User } from '../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
@@ -37,5 +38,10 @@ export class Person<T extends PersonType> extends BasePerson<T> {
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;
+
+    @Schemable()
+    @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: User })
+    creator?: User = null;
 
 }

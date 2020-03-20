@@ -1,4 +1,5 @@
 import { Actions } from '../action/actions.enum';
+import { Default } from '../../../core/shared/decorators/default.decorator';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { RoleAlias } from '../role/role-alias.enum';
@@ -31,9 +32,11 @@ export class PermissionCheck {
 
     @Schemable()
     @Type({ type: Types.BOOLEAN })
+    @Default(true)
     shouldValidateBodyAppInstance?: boolean;
 
     @Schemable()
+    @Default(true)
     @Type({ type: Types.BOOLEAN })
     shouldValidateQueryAppInstance?: boolean;
 

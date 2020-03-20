@@ -64,9 +64,14 @@ export class Menu extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: Menu, isSelf: true })
+    parent?: Menu = null;
+
+    @Schemable()
     @Default(null)
+    @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Menu, arrayItemType: Types.OBJECT, isSelf: true })
-    subMenus?: Menu[] = null;
+    ancestors?: Menu[] = null;
 
     @Schemable()
     @ExcludeIndexes()

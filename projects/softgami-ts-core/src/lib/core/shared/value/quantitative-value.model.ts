@@ -4,7 +4,6 @@ import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
 import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
 import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
 import { UnityValue } from './unity-value.model';
@@ -23,11 +22,6 @@ export class QuantitativeValue extends Thing {
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: UnityValue })
     unityValue: UnityValue = null;
-
-    @Schemable()
-    @Trim()
-    @Type({ type: Types.STRING })
-    description?: string = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })

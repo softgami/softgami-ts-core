@@ -73,4 +73,10 @@ export class AppInstance extends Thing {
     @Type({ type: Types.OBJECT, class: AppPlan })
     appPlans?: AppPlan[] = null;
 
+    @Schemable()
+    @ExcludeIndexes()
+    @Default(null)
+    @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
+    users?: User[] = null;
+
 }

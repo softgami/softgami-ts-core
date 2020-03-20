@@ -4,11 +4,13 @@ import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
 import { Trim } from '../../../core/shared/decorators/trim.decorator';
 import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
 
 // @dynamic
+@SkipID()
 export class Address {
 
     @Schemable()

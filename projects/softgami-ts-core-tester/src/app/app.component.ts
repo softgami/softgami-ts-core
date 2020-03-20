@@ -13,7 +13,8 @@ export class AppComponent {
     constructor() {
         const d: Domain<DomainType> = new Domain();
         console.log(d);
-        const u: User = new User();
+        const u: User = new User().toCleanObject();
+        console.log(u);
     }
 
 }

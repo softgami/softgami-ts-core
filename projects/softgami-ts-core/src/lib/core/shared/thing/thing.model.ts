@@ -333,4 +333,15 @@ export class Thing {
 
     }
 
+    toCleanObject() {
+
+        Object.getOwnPropertyNames(this).forEach((property: string) => {
+
+            delete this[property];
+
+        });
+        return this;
+
+    }
+
 }

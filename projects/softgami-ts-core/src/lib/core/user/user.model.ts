@@ -15,6 +15,7 @@ import { PersonType } from '../../content-maker/person/person-type.enum';
 import { Phone } from '../../core/shared/phone/phone.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
+import { Role } from '../../core/permissions/role/role.model';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
 import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
@@ -128,5 +129,11 @@ export class User extends BasePerson<PersonType.USER> {
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Currency })
     currency?: Currency = null;
+
+    @Schemable()
+    @ExcludeIndexes()
+    @Default(null)
+    @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
+    roles?: Role[] = null;
 
 }

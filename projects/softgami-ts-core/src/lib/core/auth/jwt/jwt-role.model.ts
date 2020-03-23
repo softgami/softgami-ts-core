@@ -7,7 +7,7 @@ export class JwtRole {
 
     @Required()
     @Trim()
-    @Type({ type: Types.STRING })
+    @Type({ type: Types.MONGO_OBJECT_ID })
     appId: string = null;
 
     @Required()
@@ -17,12 +17,12 @@ export class JwtRole {
 
     @Required()
     @Trim()
-    @Type({ type: Types.STRING })
+    @Type({ type: Types.MONGO_OBJECT_ID })
     appInstanceId: string = null;
 
     @Required()
     @Trim()
-    @Type({ type: Types.STRING })
+    @Type({ type: Types.MONGO_OBJECT_ID })
     roleId: string = null;
 
     @Required()

@@ -8,7 +8,7 @@ export class JwtPayload {
 
     @Required()
     @Trim()
-    @Type({ type: Types.STRING })
+    @Type({ type: Types.MONGO_OBJECT_ID })
     userId: string = null;
 
     @Required()

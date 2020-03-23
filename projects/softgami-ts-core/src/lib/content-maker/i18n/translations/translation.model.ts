@@ -34,7 +34,7 @@ export class Translation extends Thing {
     @Trim()
     @QueryParam()
     @Unique()
-    @Type({ type: Types.STRING })
+    @Type({ type: Types.MONGO_OBJECT_ID })
     // tslint:disable-next-line: variable-name
     _id: string = null;
 

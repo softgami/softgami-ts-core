@@ -27,7 +27,7 @@ export class Publisher extends Organization {
     @Trim()
     @QueryParam()
     @Unique()
-    @Type({ type: Types.STRING })
+    @Type({ type: Types.MONGO_OBJECT_ID })
     // tslint:disable-next-line: variable-name
     _id: string = null;
 

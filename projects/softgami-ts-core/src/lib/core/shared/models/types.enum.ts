@@ -8,4 +8,5 @@ export enum Types {
     ARRAY = 'array',
     DECIMAL128 = 'decimal128',
     ENUM = 'enum',
+    MONGO_OBJECT_ID = 'mongo_object_id',
 }

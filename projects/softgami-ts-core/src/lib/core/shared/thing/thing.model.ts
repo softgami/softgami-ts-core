@@ -319,14 +319,17 @@ export class Thing {
             case Types.NUMBER:
                 this.updateNumberParam(object, property, params[parentPath], isArrayItem);
                 break;
+            case Types.DECIMAL128:
             case Types.DECIMAL:
                 this.updateDecimalParam(object, property, params[parentPath], isArrayItem);
                 break;
             case Types.BOOLEAN:
                 this.updateBooleanParam(object, property, params[parentPath], isArrayItem);
                 break;
-            case Types.STRING:
+            case Types.MONGO_OBJECT_ID:
+            case Types.ENUM:
             case Types.DATE:
+            case Types.STRING:
                 this.updateStringParam(object, property, params[parentPath], isArrayItem);
                 break;
             default:

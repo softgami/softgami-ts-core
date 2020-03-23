@@ -1,7 +1,6 @@
 import { CurrencyCodes } from './currency-codes.enum';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { Override } from '../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -17,7 +16,6 @@ import { UnityValue } from '../../core/shared/value/unity-value.model';
 export class Currency extends UnityValue {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -30,7 +28,6 @@ export class Currency extends UnityValue {
     @Override()
     @Required()
     @Enum(Object.keys(CurrencyCodes).map((key: string) => CurrencyCodes[key]))
-    @Index()
     @Unique()
     @Trim()
     @Type({ type: Types.ENUM })

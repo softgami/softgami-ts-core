@@ -1,7 +1,6 @@
 import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Role } from '../role/role.model';
@@ -25,7 +24,6 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
 export class Permission extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

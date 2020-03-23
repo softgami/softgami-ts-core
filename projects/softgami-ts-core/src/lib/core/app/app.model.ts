@@ -5,7 +5,6 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { Override } from '../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -36,12 +35,13 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
     { fields: { 'appPlans.pricesHistory.currency' : 1 }, options: { unique : false }},
     { fields: { 'appPlans.pricesHistory.dateTimePeriod' : 1 }, options: { unique : false }},
     { fields: { 'appPlans.trialDays' : 1 }, options: { unique : false }},
+    { fields: { name: 1 }, options: { unique : true }},
+    { fields: { alias: 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class App extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -51,7 +51,6 @@ export class App extends Thing {
     _id: string = null;
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @Override()
@@ -61,7 +60,6 @@ export class App extends Thing {
 
     @Schemable()
     @Required()
-    @Index()
     @Unique()
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(AppAlias).map((key: string) => AppAlias[key]))

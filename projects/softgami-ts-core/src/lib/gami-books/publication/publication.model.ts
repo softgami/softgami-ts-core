@@ -7,7 +7,6 @@ import { Domain } from '../../content-maker/domain/domain.model';
 import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
 import { MonetaryValue } from '../../content-maker/currency/monetary-value.model';
 import { Person } from '../../content-maker/person/person.model';
@@ -27,6 +26,8 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
+    { fields: { name : 1 }, options: { unique : false }},
+    { fields: { createdAt : 1 }, options: { unique : false }},
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
     { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
     { fields: { originalName : 1 }, options: { unique : false }},
@@ -78,7 +79,6 @@ import { User } from '../../core/user/user.model';
 export class Publication extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

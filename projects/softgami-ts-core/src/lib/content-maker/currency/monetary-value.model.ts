@@ -3,7 +3,6 @@ import { DateTimePeriods } from '../../core/shared/date-time/date-time-periods.e
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { Override } from '../../core/shared/decorators/override.decorator';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -34,7 +33,6 @@ export class MonetaryValue extends QuantitativeValue {
     @Schemable()
     @Required()
     @Trim()
-    @Index()
     @Unique()
     @Enum(Object.keys(DateTimePeriods).map((key: string) => DateTimePeriods[key]))
     @Type({ type: Types.ENUM })

@@ -4,7 +4,6 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { FileDownload } from './file-download.model';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -16,13 +15,17 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
+    { fields: { isFile: 1 }, options: { unique : false }},
+    { fields: { isDirectory: 1 }, options: { unique : false }},
+    { fields: { path: 1 }, options: { unique : false }},
+    { fields: { isPublic: 1 }, options: { unique : false }},
+    { fields: { mimetype: 1 }, options: { unique : false }},
     { fields: { name: 1, 'parent._id': 1, isPublic: 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class File extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -34,14 +37,12 @@ export class File extends Thing {
     @Schemable()
     @Required()
     @Default(true)
-    @Index()
     @Type({ type: Types.BOOLEAN })
     isFile: boolean = null;
 
     @Schemable()
     @Required()
     @Default(false)
-    @Index()
     @Type({ type: Types.BOOLEAN })
     isDirectory: boolean = null;
 
@@ -51,19 +52,16 @@ export class File extends Thing {
     creator?: User = null;
 
     @Schemable()
-    @Index()
     @Trim()
     @Type({ type: Types.STRING })
     path?: string = null;
 
     @Schemable()
     @Default(true)
-    @Index()
     @Type({ type: Types.BOOLEAN })
     isPublic?: boolean = null;
 
     @Schemable()
-    @Index()
     @Trim()
     @Type({ type: Types.STRING })
     mimetype?: string = null;

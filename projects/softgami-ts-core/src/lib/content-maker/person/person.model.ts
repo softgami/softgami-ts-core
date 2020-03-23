@@ -3,7 +3,6 @@ import { BasePerson } from './base-person.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { PersonType } from './person-type.enum';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -20,12 +19,12 @@ import { User } from '../../core/user/user.model';
     { fields: { 'appInstance.app._id' : 1 }, options: { unique : false }},
     { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
     { fields: { name: 1 }, options: { unique: false }},
+    { fields: { type: 1 }, options: { unique: false }},
 ])
 @Extends(BasePerson)
 export class Person<T extends PersonType> extends BasePerson<T> {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

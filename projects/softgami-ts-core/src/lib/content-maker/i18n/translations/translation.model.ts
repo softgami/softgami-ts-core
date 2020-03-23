@@ -3,7 +3,6 @@ import { CompoundIndex } from '../../../core/shared/decorators/compound-index.de
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { Language } from '../../../content-maker/i18n/language/language.model';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -19,6 +18,8 @@ import { User } from '../../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
+    { fields: { value: 1 }, options: { unique: false }},
+    { fields: { type: 1 }, options: { unique: false }},
     { fields: { 'language._id': 1 }, options: { unique: false }},
     { fields: { 'language.code': 1 }, options: { unique: false }},
     { fields: { name : 1, 'language.code' : 1 }, options: { unique : true }},
@@ -29,7 +30,6 @@ import { User } from '../../../core/user/user.model';
 export class Translation extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -41,7 +41,6 @@ export class Translation extends Thing {
     @Schemable()
     @Required()
     @Trim()
-    @Index()
     @QueryParam()
     @Sortable({ label: 'VALUE' })
     @Type({ type: Types.STRING })
@@ -49,7 +48,6 @@ export class Translation extends Thing {
 
     @Schemable()
     @Required()
-    @Index()
     @Enum(Object.keys(TranslationType).map((key: string) => TranslationType[key]))
     @QueryParam()
     @Sortable({ label: 'TYPE' })

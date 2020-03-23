@@ -4,7 +4,6 @@ import { CompoundIndex } from '../../../core/shared/decorators/compound-index.de
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Role } from '../../../core/permissions/role/role.model';
@@ -30,12 +29,13 @@ import { User } from '../../../core/user/user.model';
     { fields: { 'appPlan.prices.currency' : 1 }, options: { unique : false }},
     { fields: { 'appPlan.prices.dateTimePeriod' : 1 }, options: { unique : false }},
     { fields: { 'appPlan.trialDays' : 1 }, options: { unique : false }},
+    { fields: { 'users._id' : 1 }, options: { unique : false }},
+    { fields: { 'users.name' : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class AppInstance extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

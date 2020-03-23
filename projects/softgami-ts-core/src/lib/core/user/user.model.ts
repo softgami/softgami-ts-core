@@ -1,26 +1,27 @@
 import { Address } from '../../content-maker/location/address/address.model';
 import { BaseDomain } from '../../content-maker/domain/base-domain.model';
 import { BasePerson } from '../../content-maker/person/base-person.model';
-import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
-import { Credentials } from '../../core/auth/credentials/credentials.model';
+import { CompoundIndex } from '../shared/decorators/compound-index.decorator';
+import { Credentials } from '../auth/credentials/credentials.model';
 import { Currency } from '../../content-maker/currency/currency.model';
-import { Default } from '../../core/shared/decorators/default.decorator';
+import { Default } from '../shared/decorators/default.decorator';
 import { DomainType } from '../../content-maker/domain/domain-type.enum';
-import { Email } from '../../core/shared/email/email.model';
-import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
+import { Email } from '../shared/email/email.model';
+import { Enum } from '../shared/decorators/enum.decorator';
+import { ExcludeIndexes } from '../shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../shared/decorators/extends.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
+import { Override } from '../shared/decorators/override.decorator';
 import { PersonType } from '../../content-maker/person/person-type.enum';
-import { Phone } from '../../core/shared/phone/phone.model';
-import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
-import { Required } from '../../core/shared/decorators/required.decorator';
-import { Role } from '../../core/permissions/role/role.model';
-import { Schemable } from '../../core/shared/decorators/schemable.decorator';
-import { Trim } from '../../core/shared/decorators/trim.decorator';
-import { Type } from '../../core/shared/decorators/type.decorator';
-import { Types } from '../../core/shared/models/types.enum';
-import { Unique } from '../../core/shared/decorators/unique.decorator';
+import { Phone } from '../shared/phone/phone.model';
+import { QueryParam } from '../shared/decorators/query-param.decorator';
+import { Required } from '../shared/decorators/required.decorator';
+import { Role } from '../permissions/role/role.model';
+import { Schemable } from '../shared/decorators/schemable.decorator';
+import { Trim } from '../shared/decorators/trim.decorator';
+import { Type } from '../shared/decorators/type.decorator';
+import { Types } from '../shared/models/types.enum';
+import { Unique } from '../shared/decorators/unique.decorator';
 
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false }},
@@ -43,7 +44,6 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -51,6 +51,14 @@ export class User extends BasePerson<PersonType.USER> {
     @Type({ type: Types.STRING })
     // tslint:disable-next-line: variable-name
     _id: string = null;
+
+    @Schemable()
+    @Required()
+    @Trim()
+    @Enum(['user'])
+    @Override()
+    @Type({ type: Types.ENUM })
+    type: PersonType.USER = null;
 
     @Schemable()
     @Required()

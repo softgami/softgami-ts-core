@@ -8,8 +8,6 @@ export { ExcludeIndexes } from './exclude-indexes.decorator';
 export { ExcludeIndexesMetadataKey } from './exclude-indexes-metadata-key';
 export { Extends } from './extends.decorator';
 export { ExtendsMetadataKey } from './extends-metadata-key';
-export { Index } from './index.decorator';
-export { IndexMetadataKey } from './index-metadata-key';
 export { Override } from './override.decorator';
 export { OverrideMetadataKey} from './override-metadata-key';
 export { QueryParam } from './query-param.decorator';

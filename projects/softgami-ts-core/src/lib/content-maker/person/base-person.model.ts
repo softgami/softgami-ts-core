@@ -4,7 +4,6 @@ import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { PersonType } from './person-type.enum';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -20,7 +19,6 @@ export class BasePerson<T extends PersonType> extends Thing {
 
     @Schemable()
     @Required()
-    @Index()
     @Trim()
     @Enum(Object.keys(PersonType).map((key: string) => PersonType[key]))
     @Type({ type: Types.ENUM })

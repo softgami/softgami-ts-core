@@ -1,5 +1,5 @@
+import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { Override } from '../../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -11,11 +11,14 @@ import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
+@CompoundIndex([
+    { fields: { name: 1 }, options: { unique : true }},
+    { fields: { code: 1 }, options: { unique : true }},
+])
 @Extends(Thing)
 export class Country extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -25,7 +28,6 @@ export class Country extends Thing {
     _id: string;
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -38,7 +40,6 @@ export class Country extends Thing {
     @Schemable()
     @Required()
     @Trim()
-    @Index()
     @Unique()
     @QueryParam()
     @Sortable({ label: 'CODE' })

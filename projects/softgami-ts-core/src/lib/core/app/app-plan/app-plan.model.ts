@@ -3,7 +3,6 @@ import { CompoundIndex } from '../../../core/shared/decorators/compound-index.de
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { MonetaryValue } from '../../../content-maker/currency/monetary-value.model';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -36,7 +35,6 @@ import { User } from '../../../core/user/user.model';
 export class AppPlan extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

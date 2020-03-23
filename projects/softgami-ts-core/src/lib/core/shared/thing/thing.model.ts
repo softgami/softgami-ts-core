@@ -1,26 +1,35 @@
 import 'reflect-metadata';
 
-import { CompoundIndexMetadataKey } from '../../../core/shared/decorators/compound-index-metadata-key';
-import { Index } from '../../../core/shared/decorators/index.decorator';
-import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
-import { QueryParamMetadataKey } from '../../../core/shared/decorators/query-param-metadata-keys';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
-import { Sortable } from '../../../core/shared/decorators/sortable.decorator';
-import { SortableMetadataKey } from '../../../core/shared/decorators/sortable-metadata-key';
-import { SortBySelectOption } from '../../../core/shared/models/sort-by-select-options.interface';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { TypeMetadataKey } from '../../../core/shared/decorators/type-metadata-key';
-import { TypeParams } from '../../../core/shared/models/type-params.interface';
-import { Types } from '../../../core/shared/models/types.enum';
+import { CompoundIndexMetadataKey } from '../decorators/compound-index-metadata-key';
+import { CompoundIndexOption } from '../models/compound-index-option.interface';
+import { DefaultMetadataKey } from '../decorators/default-metadata-key';
+import { EnumMetadataKey } from '../decorators/enum-metadata-key';
+import { ExcludeIndexesMetadataKey } from '../decorators/exclude-indexes-metadata-key';
+import { ExtendsMetadataKey } from '../decorators/extends-metadata-key';
+import { OverrideMetadataKey } from '../decorators/override-metadata-key';
+import { PropertyInfo } from '../models/property-info.interface';
+import { QueryParam } from '../decorators/query-param.decorator';
+import { QueryParamMetadataKey } from '../decorators/query-param-metadata-keys';
+import { Required } from '../decorators/required.decorator';
+import { RequiredMetadataKey } from '../decorators/required-metadata-key';
+import { Schemable } from '../decorators/schemable.decorator';
+import { SchemableMetadataKey } from '../decorators/schemable-metadata-key';
+import { SkipID } from '../decorators/skip-id.decorator';
+import { Sortable } from '../decorators/sortable.decorator';
+import { SortableMetadataKey } from '../decorators/sortable-metadata-key';
+import { SortBySelectOption } from '../models/sort-by-select-options.interface';
+import { Trim } from '../decorators/trim.decorator';
+import { TrimMetadataKey } from '../decorators/trim-metadata-key';
+import { Type } from '../decorators/type.decorator';
+import { TypeMetadataKey } from '../decorators/type-metadata-key';
+import { TypeParams } from '../models/type-params.interface';
+import { Types } from '../models/types.enum';
+import { UniqueMetadataKey } from '../decorators/unique-metadata-key';
 
 @SkipID()
 export class Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -59,7 +68,6 @@ export class Thing {
     image?: string = null;
 
     @Schemable()
-    @Index()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'CREATED_AT' })
@@ -71,15 +79,92 @@ export class Thing {
     @Type({ type: Types.DATE })
     lastUpdate?: Date = null;
 
-    static getCompoundIndexes(classDefinition: any) {
+    static getCompoundIndexes(classDefinition: any): CompoundIndexOption[] {
 
         return Reflect.getMetadata(CompoundIndexMetadataKey, classDefinition);
+
+    }
+
+    static getDeepPropertyInfo(typeClass: new () => any, property: string): PropertyInfo {
+
+        const maxLevel = 6;
+        let level = 1;
+        const arrProperties: string[] = property.split('.');
+        let propertyLevel: string;
+        let object: Thing = new typeClass();
+        let propertyInfo: PropertyInfo;
+        let typeParams: TypeParams<any>;
+        const isIndex = Thing.isIndex(typeClass, property);
+
+        while (arrProperties.length > 0 && level <= maxLevel) {
+            propertyLevel = arrProperties.shift();
+            level++;
+            typeParams = object.getType(propertyLevel);
+            if (arrProperties.length === 0) {
+                propertyInfo = {
+                    typeParams,
+                };
+
+                if (typeParams.type === Types.ENUM) propertyInfo.enumValues = object.getEnumValues(propertyLevel);
+
+                propertyInfo.sortableOptions = object.getSortableOptions(propertyLevel);
+
+                propertyInfo.extendsClass = object.extendsClass(propertyLevel);
+
+                propertyInfo.isDefault = object.isDefault(propertyLevel);
+
+                propertyInfo.isExcludeIndexes = object.isExcludeIndexes(propertyLevel);
+
+                propertyInfo.isIndex = isIndex;
+
+                propertyInfo.isOverride = object.isOverride(propertyLevel);
+
+                propertyInfo.isQueryParam = object.isQueryParam(propertyLevel);
+
+                propertyInfo.isRequired = object.isRequired(propertyLevel);
+
+                propertyInfo.isSchemable = object.isSchemable(propertyLevel);
+
+                propertyInfo.isTrim = object.isTrim(propertyLevel);
+
+                propertyInfo.isUnique = object.isUnique(propertyLevel);
+
+                return propertyInfo;
+            }
+
+            if (!typeParams || (typeParams.type !== Types.OBJECT && typeParams.type !== Types.ARRAY)) {
+                return null;
+            }
+
+            object = new typeParams.class();
+
+        }
+        return propertyInfo;
+
+    }
+
+    static isIndex(typeClass: new () => Thing, property: string): boolean {
+
+        const compoundIndexes: CompoundIndexOption[] = Thing.getCompoundIndexes(typeClass);
+
+        const index: CompoundIndexOption = compoundIndexes.find((c: CompoundIndexOption) => {
+            if (c.fields[property] && Object.getOwnPropertyNames(c.fields).length === 1) return true;
+        });
+
+        const isIndex: boolean = index ? true : false;
+        return isIndex;
 
     }
 
     getType<T>(property: string): TypeParams<T> {
 
         return Reflect.getMetadata(TypeMetadataKey, this, property);
+
+    }
+
+    getEnumValues<T>(property: string): string[] {
+
+        return Reflect.getMetadata(EnumMetadataKey, this, property);
 
     }
 
@@ -93,6 +178,62 @@ export class Thing {
 
         const isQueryParam: boolean = Reflect.getMetadata(QueryParamMetadataKey, this, property);
         return isQueryParam;
+
+    }
+
+    isRequired(property: string): boolean {
+
+        const isRequired: boolean = Reflect.getMetadata(RequiredMetadataKey, this, property);
+        return isRequired;
+
+    }
+
+    isSchemable(property: string): boolean {
+
+        const isSchemable: boolean = Reflect.getMetadata(SchemableMetadataKey, this, property);
+        return isSchemable;
+
+    }
+
+    isTrim(property: string): boolean {
+
+        const isTrim: boolean = Reflect.getMetadata(TrimMetadataKey, this, property);
+        return isTrim;
+
+    }
+
+    isUnique(property: string): boolean {
+
+        const isUnique: boolean = Reflect.getMetadata(UniqueMetadataKey, this, property);
+        return isUnique;
+
+    }
+
+    isDefault(property: string): boolean {
+
+        const isDefault: boolean = Reflect.getMetadata(DefaultMetadataKey, this, property);
+        return isDefault;
+
+    }
+
+    isExcludeIndexes(property: string): boolean {
+
+        const isExcludeIndexes: boolean = Reflect.getMetadata(ExcludeIndexesMetadataKey, this, property);
+        return isExcludeIndexes;
+
+    }
+
+    isOverride(property: string): boolean {
+
+        const isOverride: boolean = Reflect.getMetadata(OverrideMetadataKey, this, property);
+        return isOverride;
+
+    }
+
+    extendsClass(property: string): new () => any {
+
+        const typeClass: new () => any = Reflect.getMetadata(ExtendsMetadataKey, this, property);
+        return typeClass;
 
     }
 

@@ -3,7 +3,6 @@ import { CompoundIndex } from '../../core/shared/decorators/compound-index.decor
 import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -16,6 +15,8 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
+    { fields: { name : 1 }, options: { unique : false }},
+    { fields: { createdAt : 1 }, options: { unique : false }},
     { fields: { isActive : 1 }, options: { unique : false }},
     { fields: { isCompleted : 1 }, options: { unique : false }},
     { fields: { isFinished : 1 }, options: { unique : false }},
@@ -31,7 +32,6 @@ import { User } from '../../core/user/user.model';
 export class Collection extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

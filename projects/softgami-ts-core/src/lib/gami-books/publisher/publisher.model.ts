@@ -2,7 +2,6 @@ import { AppInstance } from '../../core/app/app-instance/app-instance.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
-import { Index } from '../../core/shared/decorators/index.decorator';
 import { Organization } from '../../core/shared/organization/organization.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -13,6 +12,7 @@ import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
+    { fields: { createdAt : 1 }, options: { unique : false }},
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
     { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
     { fields: { taxNumber: 1 }, options: { unique: false }},
@@ -23,7 +23,6 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 export class Publisher extends Organization {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()

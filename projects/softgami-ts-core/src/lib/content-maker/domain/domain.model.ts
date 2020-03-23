@@ -12,6 +12,9 @@ import { User } from '../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
+    { fields: { type: 1 }, options: { unique : false }},
+    { fields: { value: 1 }, options: { unique : false }},
+    { fields: { additionalMetadata: 1 }, options: { unique : false }},
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
     { fields: { 'creator._id' : 1 }, options: { unique : false }},
     { fields: { name : 1, type : 1, value: 1 }, options: { unique : true }},

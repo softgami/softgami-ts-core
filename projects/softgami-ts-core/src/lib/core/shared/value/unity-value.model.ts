@@ -1,7 +1,6 @@
 import { CurrencyCodes } from '../../../content-maker/currency/currency-codes.enum';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
@@ -23,7 +22,6 @@ export class UnityValue extends Thing {
 
     @Schemable()
     @Required()
-    @Index()
     @Unique()
     @Trim()
     @Enum(codes)

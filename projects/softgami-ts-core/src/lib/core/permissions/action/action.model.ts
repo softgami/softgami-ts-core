@@ -1,7 +1,7 @@
 import { ActionAlias } from './action-alias.enum';
+import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Index } from '../../../core/shared/decorators/index.decorator';
 import { Override } from '../../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -13,11 +13,14 @@ import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 // @dynamic
+@CompoundIndex([
+    { fields: { name: 1 }, options: { unique : true }},
+    { fields: { alias: 1 }, options: { unique : true }},
+])
 @Extends(Thing)
 export class Action extends Thing {
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @QueryParam()
@@ -27,7 +30,6 @@ export class Action extends Thing {
     _id: string = null;
 
     @Schemable()
-    @Index()
     @Required()
     @Trim()
     @Override()
@@ -38,7 +40,6 @@ export class Action extends Thing {
     @Schemable()
     @Required()
     @Trim()
-    @Index()
     @Unique()
     @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key]))
     @Type({ type: Types.ENUM })

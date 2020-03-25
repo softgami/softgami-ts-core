@@ -69,6 +69,7 @@ export class Collection extends Thing {
     creator?: User = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;

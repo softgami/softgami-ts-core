@@ -33,6 +33,7 @@ export class Publisher extends Organization {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance})
     appInstance?: AppInstance = null;
 

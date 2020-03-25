@@ -43,6 +43,10 @@ import { User } from '../../core/user/user.model';
     { fields: { 'collections.orderIndex' : 1 }, options: { unique : false }},
     { fields: { 'authors._id': 1 }, options: { unique: false }},
     { fields: { 'authors.name': 1 }, options: { unique: false }},
+    { fields: { 'illustrators._id': 1 }, options: { unique: false }},
+    { fields: { 'illustrators.name': 1 }, options: { unique: false }},
+    { fields: { 'translators._id': 1 }, options: { unique: false }},
+    { fields: { 'translators.name': 1 }, options: { unique: false }},
     { fields: { description: 1 }, options: { unique: false }},
     { fields: { subTitle: 1 }, options: { unique: false }},
     { fields: { originalSubTitle: 1 }, options: { unique: false }},
@@ -126,6 +130,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance: AppInstance = null;
@@ -155,6 +160,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
     illustrators?: Person<PersonType.ILLUSTRATOR>[] = null;
@@ -172,6 +178,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
     translators?: Person<PersonType.TRANSLATOR>[] = null;

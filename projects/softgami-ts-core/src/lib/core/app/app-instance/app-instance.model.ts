@@ -74,6 +74,7 @@ export class AppInstance extends Thing {
     appPlans?: AppPlan[] = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })

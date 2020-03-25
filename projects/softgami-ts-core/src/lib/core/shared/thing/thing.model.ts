@@ -254,12 +254,15 @@ export class Thing {
             if (source.isQueryParam(property) === true && source[property] !== null && source[property] !== undefined) {
                 const typeParams: TypeParams<string> = source.getType(property);
                 const joinedPath = parentPath ? [parentPath, property].join('.') : property;
-                if (typeParams.type !== Types.OBJECT) {
-                    object[joinedPath] = source[property];
-                } else {
+                if (typeParams.type === Types.OBJECT) {
                     this.recursiveGenerateParamsObject(source[property], joinedPath, object);
+                } else if (typeParams.type === Types.ARRAY) {
+                    this.recursiveGenerateParamsObject(source[property][0], joinedPath, object);
+                } else {
+                    object[joinedPath] = source[property];
                 }
             }
+
         });
 
         return object;

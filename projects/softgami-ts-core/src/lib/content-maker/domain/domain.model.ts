@@ -4,6 +4,7 @@ import { CompoundIndex } from '../../core/shared/decorators/compound-index.decor
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { DomainType } from './domain-type.enum';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
@@ -27,6 +28,7 @@ export class Domain<T extends DomainType> extends BaseDomain<T> {
     creator?: User = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance})
     appInstance?: AppInstance = null;

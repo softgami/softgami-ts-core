@@ -395,13 +395,16 @@ export class Thing {
                 return;
             }
         } else {
-            if (objectParams.length) object[property] = object[property] = [];
+            if (objectParams.length) object[property] = [];
             else return;
         }
 
-        typeParams.type = typeParams.arrayItemType;
+        const type: TypeParams<any> = {
+            type: typeParams.arrayItemType,
+            class: typeParams.class,
+        };
 
-        this.updatePropertyByType(object[property], '0', property, typeParams, 1, true, params);
+        this.updatePropertyByType(object[property], '0', property, type, 1, true, params);
 
     }
 

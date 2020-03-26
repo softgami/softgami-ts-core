@@ -34,6 +34,7 @@ export class Person<T extends PersonType> extends BasePerson<T> {
     _id: string = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;

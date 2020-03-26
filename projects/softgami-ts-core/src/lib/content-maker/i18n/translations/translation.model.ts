@@ -68,6 +68,7 @@ export class Translation extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;
 

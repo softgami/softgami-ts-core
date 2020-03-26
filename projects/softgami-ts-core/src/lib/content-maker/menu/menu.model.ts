@@ -21,6 +21,10 @@ import { User } from '../../core/user/user.model';
     { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
     { fields: { 'permissionCheck.subject' : 1 }, options: { unique : false }},
     { fields: { 'permissionCheck.action' : 1 }, options: { unique : false }},
+    { fields: { 'parent._id' : 1 }, options: { unique : false }},
+    { fields: { 'parent.name' : 1 }, options: { unique : false }},
+    { fields: { 'ancestors._id' : 1 }, options: { unique : false }},
+    { fields: { 'ancestors.name' : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Menu extends Thing {
@@ -61,18 +65,21 @@ export class Menu extends Thing {
     creator?: User = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Menu, isSelf: true })
     parent?: Menu = null;
 
     @Schemable()
     @Default(null)
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Menu, arrayItemType: Types.OBJECT, isSelf: true })
     ancestors?: Menu[] = null;
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;
 

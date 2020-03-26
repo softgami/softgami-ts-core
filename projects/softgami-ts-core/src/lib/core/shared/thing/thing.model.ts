@@ -85,13 +85,19 @@ export class Thing {
 
     }
 
-    static getDeepPropertyInfo(typeClass: new () => any, property: string): PropertyInfo {
+    static getDeepPropertyInfo(typeClass: new () => Thing, property: string): PropertyInfo {
 
         const maxLevel = 6;
         let level = 1;
         const arrProperties: string[] = property.split('.');
         let propertyLevel: string;
         let object: Thing = new typeClass();
+
+        if (!(object instanceof Thing)) {
+            console.warn(`${typeClass.name} is not a instance of Thing.`);
+            return null;
+        }
+
         let propertyInfo: PropertyInfo;
         let typeParams: TypeParams<any>;
         const isIndex = Thing.isIndex(typeClass, property);
@@ -100,6 +106,9 @@ export class Thing {
             propertyLevel = arrProperties.shift();
             level++;
             typeParams = object.getType(propertyLevel);
+
+            if (!typeParams) return null;
+
             if (arrProperties.length === 0) {
                 propertyInfo = {
                     typeParams,
@@ -146,6 +155,8 @@ export class Thing {
     static isIndex(typeClass: new () => Thing, property: string): boolean {
 
         const compoundIndexes: CompoundIndexOption[] = Thing.getCompoundIndexes(typeClass);
+
+        if (!compoundIndexes) return false;
 
         const index: CompoundIndexOption = compoundIndexes.find((c: CompoundIndexOption) => {
             if (c.fields[property] && Object.getOwnPropertyNames(c.fields).length === 1) return true;
@@ -248,6 +259,11 @@ export class Thing {
     }
 
     recursiveGenerateParamsObject(source: any, parentPath: string, object: { [param: string]: string | string[] }) {
+
+        if (!(source instanceof Thing)) {
+            console.warn(`${source.constructor.name} is not a instance of Thing.`);
+            return null;
+        }
 
         Object.getOwnPropertyNames(source).forEach((property: string) => {
 

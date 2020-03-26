@@ -24,6 +24,7 @@ export class BaseDomain<T extends DomainType> extends Thing {
     _id: string = null;
 
     @Schemable()
+    @QueryParam()
     @Trim()
     @Required()
     @Enum(Object.keys(DomainType).map((key: string) => DomainType[key]))
@@ -31,12 +32,14 @@ export class BaseDomain<T extends DomainType> extends Thing {
     type: T = null;
 
     @Schemable()
+    @QueryParam()
     @Trim()
     @Required()
     @Type({ type: Types.STRING })
     value: string = null;
 
     @Schemable()
+    @QueryParam()
     @Trim()
     @Type({ type: Types.STRING })
     additionalMetadata?: string = null;

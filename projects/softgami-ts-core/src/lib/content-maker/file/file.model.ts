@@ -21,6 +21,7 @@ import { User } from '../../core/user/user.model';
     { fields: { isPublic: 1 }, options: { unique : false }},
     { fields: { mimetype: 1 }, options: { unique : false }},
     { fields: { name: 1, 'parent._id': 1, isPublic: 1 }, options: { unique : true }},
+    { fields: { 'appInstance._id': 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class File extends Thing {
@@ -90,6 +91,7 @@ export class File extends Thing {
     ancestors?: File[] = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;

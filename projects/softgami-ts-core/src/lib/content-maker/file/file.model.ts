@@ -15,6 +15,7 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
+    { fields: { name: 1 }, options: { unique: false }},
     { fields: { isFile: 1 }, options: { unique : false }},
     { fields: { isDirectory: 1 }, options: { unique : false }},
     { fields: { path: 1 }, options: { unique : false }},

@@ -6,6 +6,7 @@ import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { PersonType } from './person-type.enum';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
+import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
 import { Thing } from '../../core/shared/thing/thing.model';
@@ -18,6 +19,7 @@ import { Types } from '../../core/shared/models/types.enum';
 export class BasePerson<T extends PersonType> extends Thing {
 
     @Schemable()
+    @QueryParam()
     @Required()
     @Trim()
     @Enum(Object.keys(PersonType).map((key: string) => PersonType[key]))

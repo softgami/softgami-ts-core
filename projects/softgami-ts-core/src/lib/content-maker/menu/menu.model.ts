@@ -15,6 +15,7 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
+    { fields: { name: 1 }, options: { unique: false }},
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
     { fields: { index : 1 }, options: { unique : false }},
     { fields: { isActive : 1 }, options: { unique : false }},

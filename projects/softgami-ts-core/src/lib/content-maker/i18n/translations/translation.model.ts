@@ -18,6 +18,7 @@ import { User } from '../../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
+    { fields: { name: 1 }, options: { unique: false }},
     { fields: { value: 1 }, options: { unique: false }},
     { fields: { type: 1 }, options: { unique: false }},
     { fields: { 'language._id': 1 }, options: { unique: false }},

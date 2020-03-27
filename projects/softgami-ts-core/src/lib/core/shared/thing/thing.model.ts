@@ -466,7 +466,7 @@ export class Thing {
 
     canUpdateSortParam(object: any, value: string): boolean {
 
-        if (value === null || value === undefined || value === '') return false;
+        if (value === null || value === undefined) return true;
         const arrValues: string[] = value.split(':');
         if (arrValues[0] && this.hasProperty(object, arrValues[0])) {
             return true;

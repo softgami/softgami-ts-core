@@ -9,6 +9,7 @@ import { QuantitativeValue } from '../../core/shared/value/quantitative-value.mo
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../core/shared/decorators/sortable.decorator';
 import { Thing } from '../../core/shared/thing/thing.model';
 import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
@@ -23,6 +24,7 @@ export class BasePerson<T extends PersonType> extends Thing {
     @Required()
     @Trim()
     @Enum(Object.keys(PersonType).map((key: string) => PersonType[key]))
+    @Sortable({ label: 'TYPE' })
     @Type({ type: Types.ENUM })
     type: T = null;
 

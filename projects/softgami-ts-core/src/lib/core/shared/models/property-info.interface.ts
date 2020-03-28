@@ -12,7 +12,7 @@ export interface PropertyInfo {
     isExcludeIndexes?: boolean;
     isRequired?: boolean;
     isSchemable?: boolean;
-    sortableOptions?: SortBySelectOption;
+    sortableOptions?: SortBySelectOption | SortBySelectOption[];
     isUnique?: boolean;
     isIndex?: boolean;
 }

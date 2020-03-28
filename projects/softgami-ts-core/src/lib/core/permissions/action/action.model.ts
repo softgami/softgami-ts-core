@@ -6,6 +6,7 @@ import { Override } from '../../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../../core/shared/decorators/sortable.decorator';
 import { Thing } from '../../../core/shared/thing/thing.model';
 import { Trim } from '../../../core/shared/decorators/trim.decorator';
 import { Type } from '../../../core/shared/decorators/type.decorator';
@@ -16,6 +17,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique : true }},
     { fields: { alias: 1 }, options: { unique : true }},
+    { fields: { value: 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class Action extends Thing {
@@ -34,6 +36,7 @@ export class Action extends Thing {
     @Trim()
     @Override()
     @Unique()
+    @Sortable({ label: 'NAME' })
     @Type({ type: Types.STRING })
     name: string = null;
 
@@ -42,11 +45,13 @@ export class Action extends Thing {
     @Trim()
     @Unique()
     @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key]))
+    @Sortable({ label: 'ALIAS' })
     @Type({ type: Types.ENUM })
     alias: ActionAlias = null;
 
     @Schemable()
     @Required()
+    @Sortable({ label: 'VALUE' })
     @Type({ type: Types.NUMBER })
     value: number = null;
 

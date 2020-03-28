@@ -7,6 +7,7 @@ import { QueryParam } from '../../../core/shared/decorators/query-param.decorato
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { RoleAlias } from './role-alias.enum';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../../core/shared/decorators/sortable.decorator';
 import { Thing } from '../../../core/shared/thing/thing.model';
 import { Trim } from '../../../core/shared/decorators/trim.decorator';
 import { Type } from '../../../core/shared/decorators/type.decorator';
@@ -17,6 +18,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique : true }},
     { fields: { alias: 1 }, options: { unique : true }},
+    { fields: { isActive: 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class Role extends Thing {
@@ -35,6 +37,7 @@ export class Role extends Thing {
     @Trim()
     @Override()
     @Unique()
+    @Sortable({ label: 'NAME' })
     @Type({ type: Types.STRING })
     name: string = null;
 
@@ -43,12 +46,14 @@ export class Role extends Thing {
     @Trim()
     @Unique()
     @Enum(Object.keys(RoleAlias).map((key: string) => RoleAlias[key]))
+    @Sortable({ label: 'ALIAS' })
     @Type({ type: Types.ENUM })
     alias: RoleAlias = null;
 
     @Schemable()
     @Required()
     @Default(true)
+    @Sortable({ label: 'STATUS' })
     @Type({ type: Types.BOOLEAN })
     isActive: boolean = null;
 

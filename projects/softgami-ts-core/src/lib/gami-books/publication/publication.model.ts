@@ -102,7 +102,7 @@ export class Publication extends Thing {
     @Required()
     @ExcludeIndexes()
     @QueryParam()
-    @Sortable({ label: 'LANGUAGE' })
+    @Sortable({ label: 'LANGUAGE', field: 'language._id' })
     @Type({ type: Types.OBJECT, class: Language })
     language: Language = null;
 
@@ -124,7 +124,10 @@ export class Publication extends Thing {
     @ExcludeIndexes()
     @Default(null)
     @QueryParam()
-    @Sortable({ label: 'COLLECTION' })
+    @Sortable([
+        { label: 'COLLECTION', field: 'collections._id' },
+        { label: 'ORDER', field: 'collections.orderIndex' },
+    ])
     @Type({ type: Types.ARRAY, class: Collection, arrayItemType: Types.OBJECT })
     collections: Collection[] = null;
 
@@ -196,7 +199,7 @@ export class Publication extends Thing {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Sortable({ label: 'DIGITAL_PUBLICATION_FORMAT' })
+    @Sortable({ label: 'DIGITAL_PUBLICATION_FORMAT', field: 'digitalPublicationFormat._id' })
     @Type({ type: Types.OBJECT, class: Domain })
     digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT> = null;
 
@@ -266,7 +269,7 @@ export class Publication extends Thing {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Sortable({ label: 'PUBLICATION_COVER_TYPE' })
+    @Sortable({ label: 'PUBLICATION_COVER_TYPE', field: 'publicationCoverType._id' })
     @Type({ type: Types.OBJECT, class: Domain })
     publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE> = null;
 
@@ -294,7 +297,7 @@ export class Publication extends Thing {
     @Default(null)
     @Trim()
     @QueryParam()
-    @Sortable({ label: 'TAGS' })
+    @Sortable({ label: 'TAGS', field: 'tags' })
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
     tags?: string[] = null;
 

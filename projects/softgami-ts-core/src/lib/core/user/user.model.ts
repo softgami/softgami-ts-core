@@ -55,7 +55,7 @@ export class User extends BasePerson<PersonType.USER> {
     @Schemable()
     @Required()
     @Trim()
-    @Enum(['user'])
+    @Enum([PersonType.USER])
     @Override()
     @Type({ type: Types.ENUM })
     type: PersonType.USER = null;

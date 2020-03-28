@@ -167,6 +167,15 @@ export class Thing {
 
     }
 
+    static isSortParam(object: Thing, property: string): boolean {
+
+        const options: SortBySelectOption[] = object.toSortOptions();
+        const sortOption: SortBySelectOption = options.find((o: SortBySelectOption) => o.field === property);
+
+        return sortOption ? true : false;
+
+    }
+
     getType<T>(property: string): TypeParams<T> {
 
         return Reflect.getMetadata(TypeMetadataKey, this, property);
@@ -179,9 +188,9 @@ export class Thing {
 
     }
 
-    getSortableOptions(property: string): SortBySelectOption {
+    getSortableOptions(property: string): SortBySelectOption | SortBySelectOption[] {
 
-        return Reflect.getMetadata(SortableMetadataKey, this, property) as SortBySelectOption;
+        return Reflect.getMetadata(SortableMetadataKey, this, property);
 
     }
 
@@ -292,12 +301,17 @@ export class Thing {
         const returnValues: SortBySelectOption[] = [];
         Object.getOwnPropertyNames(this).forEach((property: string) => {
             const typeParams: TypeParams<string> = this.getType(property);
-            const options: SortBySelectOption = this.getSortableOptions(property);
+            let options: SortBySelectOption | SortBySelectOption[] = this.getSortableOptions(property);
 
             if (options) {
-                if (typeParams.type !== Types.OBJECT) options.field = property;
-                returnValues.push(options);
+                if (!Array.isArray(options)) options = [options];
+
+                options.forEach((o: SortBySelectOption) => {
+                    if (typeParams.type !== Types.OBJECT && typeParams.type !== Types.ARRAY) o.field = property;
+                    returnValues.push(o);
+                });
             }
+
         });
 
         return returnValues;
@@ -456,11 +470,17 @@ export class Thing {
 
     updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean) {
 
-        if (property === 'sort') {
-            if (object.canUpdateSortParam(object, value)) {
-                object[property] = value;
-            }
-        } else object[property] = value;
+        if (property === 'sort') return this.updateSortParam(object, value, isArrayItem);
+
+        object[property] = value;
+
+    }
+
+    updateSortParam(object: Thing, value: string, isArrayItem?: boolean) {
+
+        if (object.canUpdateSortParam(object, value)) {
+            object.sort = value;
+        }
 
     }
 
@@ -468,10 +488,12 @@ export class Thing {
 
         if (value === null || value === undefined) return true;
         const arrValues: string[] = value.split(':');
-        if (arrValues[0] && this.hasProperty(object, arrValues[0])) {
+
+        if (arrValues[0] && Thing.isSortParam(object, arrValues[0])) {
             return true;
         }
         return false;
+
     }
 
     hasProperty(object: any, property: string) {

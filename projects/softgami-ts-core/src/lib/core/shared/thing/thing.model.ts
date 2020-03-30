@@ -283,7 +283,11 @@ export class Thing {
                     this.recursiveGenerateParamsObject(source[property], joinedPath, object);
                 } else if (typeParams.type === Types.ARRAY) {
                     if (source[property][0]) {
-                        this.recursiveGenerateParamsObject(source[property][0], joinedPath, object);
+                        if (typeParams.arrayItemType === Types.OBJECT) {
+                            this.recursiveGenerateParamsObject(source[property][0], joinedPath, object);
+                        } else {
+                            object[joinedPath] = source[property][0];
+                        }
                     }
                 } else {
                     object[joinedPath] = source[property];

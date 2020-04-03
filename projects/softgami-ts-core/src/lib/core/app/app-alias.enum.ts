@@ -3,4 +3,5 @@ export enum AppAlias {
     COMICSTOOLS = 'comicstools',
     GAMIBOOKS = 'gamibooks',
     CONTENTMAKER = 'contentmaker',
+    BLUEBIRDTASK = 'bluebirdtask',
 }

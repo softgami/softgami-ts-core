@@ -1,3 +1,6 @@
+export * from './board/index';
+export * from './checklist/index';
+export * from './comment/index';
 export * from './decorators/index';
 export * from './date-time/index';
 export * from './email/index';

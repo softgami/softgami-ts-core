@@ -8,6 +8,7 @@ import { ProjectStatus } from './project-status.enum';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../core/shared/decorators/sortable.decorator';
 import { Thing } from '../../core/shared/thing/thing.model';
 import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
@@ -49,6 +50,7 @@ export class Project extends Thing {
     @Trim()
     @QueryParam()
     @Unique()
+    @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
     key: string = null;
 
@@ -56,6 +58,7 @@ export class Project extends Thing {
     @Required()
     @Trim()
     @QueryParam()
+    @Sortable({ label: 'STATUS' })
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(ProjectStatus).map((key: string) => ProjectStatus[key]))
     status: ProjectStatus = null;

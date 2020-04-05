@@ -7,6 +7,7 @@ import { Project } from '../project/project.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../core/shared/decorators/sortable.decorator';
 import { Sprint } from '../sprint/sprint.model';
 import { TaskStatus } from '../task/task-status.enum';
 import { Thing } from '../../core/shared/thing/thing.model';
@@ -51,6 +52,7 @@ export class Story extends Thing {
     @Trim()
     @QueryParam()
     @Type({ type: Types.ENUM })
+    @Sortable({ label: 'STATUS' })
     @Enum(Object.keys(TaskStatus).map((key: string) => TaskStatus[key]))
     status: TaskStatus = null;
 
@@ -58,6 +60,7 @@ export class Story extends Thing {
     @Required()
     @QueryParam()
     @ExcludeIndexes()
+    @Sortable({ label: 'PROJECT', field: 'project.name' })
     @Type({ type: Types.OBJECT, class: Project })
     project: Project = null;
 
@@ -80,12 +83,14 @@ export class Story extends Thing {
     @Trim()
     @QueryParam()
     @Unique()
+    @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
     key: string = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
+    @Sortable({ label: 'SPRINT', field: 'sprint.name' })
     @Type({ type: Types.OBJECT, class: Sprint })
     sprint?: Sprint = null;
 

@@ -8,6 +8,7 @@ import { Project } from '../project/project.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
+import { Sortable } from '../../core/shared/decorators/sortable.decorator';
 import { SprintStatus } from './sprint-status.enum';
 import { Thing } from '../../core/shared/thing/thing.model';
 import { Trim } from '../../core/shared/decorators/trim.decorator';
@@ -52,6 +53,7 @@ export class Sprint extends Thing {
     @Required()
     @Trim()
     @QueryParam()
+    @Sortable({ label: 'STATUS' })
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(SprintStatus).map((key: string) => SprintStatus[key]))
     status: SprintStatus = null;
@@ -60,6 +62,7 @@ export class Sprint extends Thing {
     @Required()
     @QueryParam()
     @ExcludeIndexes()
+    @Sortable({ label: 'PROJECT', field: 'project.name' })
     @Type({ type: Types.OBJECT, class: Project })
     project: Project = null;
 
@@ -82,24 +85,28 @@ export class Sprint extends Thing {
     @Trim()
     @QueryParam()
     @Unique()
+    @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
     key: string = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
+    @Sortable({ label: 'DUE_DATE' })
     @Type({ type: Types.DATE })
     dueDate?: Date = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
+    @Sortable({ label: 'START_DATE' })
     @Type({ type: Types.DATE })
     startedAt?: Date = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
+    @Sortable({ label: 'FINISH_DATE' })
     @Type({ type: Types.DATE })
     finishedAt?: Date = null;
 

@@ -59,7 +59,7 @@ export class Translation extends Thing {
     @Required()
     @ExcludeIndexes()
     @QueryParam()
-    @Sortable({ label: 'LANGUAGE', field: 'language._id' })
+    @Sortable({ label: 'LANGUAGE', field: 'language.name' })
     @Type({ type: Types.OBJECT, class: Language })
     language: Language = null;
 

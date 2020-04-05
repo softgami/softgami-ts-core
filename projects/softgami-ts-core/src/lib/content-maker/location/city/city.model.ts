@@ -37,8 +37,8 @@ export class City extends Thing {
     @Required()
     @ExcludeIndexes()
     @Sortable([
-        { label: 'STATE', field: 'state._id' },
-        { label: 'COUNTRY', field: 'state.country._id' },
+        { label: 'STATE', field: 'state.name' },
+        { label: 'COUNTRY', field: 'state.country.name' },
     ])
     @Type({ type: Types.OBJECT, class: State })
     state: State = null;

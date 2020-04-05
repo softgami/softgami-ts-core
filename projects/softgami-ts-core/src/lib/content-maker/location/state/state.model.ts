@@ -34,7 +34,7 @@ export class State extends Thing {
     @Schemable()
     @Required()
     @ExcludeIndexes()
-    @Sortable({ label: 'COUNTRY', field: 'country._id' })
+    @Sortable({ label: 'COUNTRY', field: 'country.name' })
     @Type({ type: Types.OBJECT, class: Country })
     country: Country = null;
 

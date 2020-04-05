@@ -77,7 +77,7 @@ export class Collection extends Thing {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Sortable({ label: 'COLLECTION', field: 'parent._id' })
+    @Sortable({ label: 'COLLECTION', field: 'parent.name' })
     @Type({ type: Types.OBJECT, class: Collection, isSelf: true })
     parent?: Collection = null;
 

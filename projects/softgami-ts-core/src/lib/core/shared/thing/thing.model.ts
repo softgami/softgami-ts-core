@@ -54,6 +54,7 @@ export class Thing {
 
     @Schemable()
     @Trim()
+    @QueryParam()
     @Type({ type: Types.STRING })
     description?: string = null;
 

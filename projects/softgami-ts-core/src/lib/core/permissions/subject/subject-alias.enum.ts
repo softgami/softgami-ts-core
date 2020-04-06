@@ -41,7 +41,7 @@ export enum SubjectAlias {
     ROLES = 'roles',
     SPRINTS = 'sprints',
     STATES = 'states',
-    STORYS = 'storys',
+    STORIES = 'stories',
     SUBJECTS = 'subjects',
     TASKS = 'tasks',
     THINGS = 'things',

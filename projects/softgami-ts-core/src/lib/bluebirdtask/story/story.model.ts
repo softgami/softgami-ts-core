@@ -21,8 +21,7 @@ import { User } from '../../core/user/user.model';
 @CompoundIndex([
     { fields: { name : 1 }, options: { unique : false }},
     { fields: { createdAt : 1 }, options: { unique : false }},
-    { fields: { key : 1 }, options: { unique : false }},
-    { fields: { key : 1, 'project._id' : 1 }, options: { unique : true }},
+    { fields: { key : 1 }, options: { unique : true }},
     { fields: { status : 1 }, options: { unique : true }},
     { fields: { 'project._id' : 1 }, options: { unique : false }},
     { fields: { 'project.name' : 1 }, options: { unique : false }},

@@ -1,17 +1,20 @@
 import { Actions } from '../action/actions.enum';
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
+import { Extends } from '../../../core/shared/decorators/extends.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { RoleAlias } from '../role/role-alias.enum';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
 import { SubjectAlias } from '../subject/subject-alias.enum';
+import { Thing } from '../../../core/shared/thing/thing.model';
 import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
 
 // @dynamic
 @SkipID()
-export class PermissionCheck {
+@Extends(Thing)
+export class PermissionCheck extends Thing {
 
     @Schemable()
     @Required()

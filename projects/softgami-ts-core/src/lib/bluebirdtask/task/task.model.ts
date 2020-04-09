@@ -137,6 +137,7 @@ export class Task extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Sortable({ label: 'STORY', field: 'story.name' })
     @Type({ type: Types.OBJECT, class: Story })
     story?: Story = null;
@@ -171,6 +172,7 @@ export class Task extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Sortable({ label: 'SPRINT', field: 'sprint.name' })
     @Type({ type: Types.OBJECT, class: Sprint })
     sprint?: Sprint = null;

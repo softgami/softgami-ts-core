@@ -26,8 +26,10 @@ import { UserAppInstance } from './user-app-instance.model';
 
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false }},
+    { fields: { 'language._id': 1 }, options: { unique: false }},
     { fields: { 'language.code': 1 }, options: { unique: false }},
     { fields: { isActive: 1 }, options: { unique: false }},
+    { fields: { isIndividual: 1 }, options: { unique: false }},
     { fields: { birthDate: 1 }, options: { unique: false }},
     { fields: { gender: 1 }, options: { unique: false }},
     { fields: { 'appInstances._id': 1 }, options: { unique: false }},
@@ -39,6 +41,15 @@ import { UserAppInstance } from './user-app-instance.model';
             'nationality._id': { $exists: true },
         },
     }},
+    { fields: { 'emails.address': 1 }, options: { unique: false }},
+    { fields: { 'emails.isVerified': 1 }, options: { unique: false }},
+    { fields: { 'emails.isPrimary': 1 }, options: { unique: false }},
+    { fields: { 'emails.type': 1 }, options: { unique: false }},
+    { fields: { 'phones.type': 1 }, options: { unique: false }},
+    { fields: { 'phones.number': 1 }, options: { unique: false }},
+    { fields: { 'phones.isPrimary': 1 }, options: { unique: false }},
+    { fields: { 'phones.isVerified': 1 }, options: { unique: false }},
+    { fields: { timezone: 1 }, options: { unique: false }},
     { fields: { 'creator._id': 1 }, options: { unique: false }},
     { fields: { 'appInstances.appInstanceId': 1 }, options: { unique: false }},
     { fields: { 'appInstances.roles._id': 1 }, options: { unique: false }},
@@ -58,6 +69,7 @@ export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Enum([PersonType.USER])
     @Override()
@@ -66,12 +78,14 @@ export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
     isIndividual: boolean = null;
 
     @Schemable()
     @Default(undefined)
+    @QueryParam()
     @Type({ type: Types.ARRAY, class: Email, arrayItemType: Types.OBJECT })
     emails?: Email[] = null;
 
@@ -87,27 +101,32 @@ export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Type({ type: Types.OBJECT, class: Language })
     language?: Language = null;
 
     @Schemable()
     @Trim()
+    @QueryParam()
     @Type({ type: Types.STRING })
     timezone?: string = null;
 
     @Schemable()
     @Trim()
+    @QueryParam()
     @Type({ type: Types.STRING })
     taxNumber?: string = null;
 
     @Schemable()
     @ExcludeIndexes()
+    @QueryParam()
     @Type({ type: Types.OBJECT, class: User })
     creator?: User = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
+    @QueryParam()
     @Type({ type: Types.ARRAY, class: Phone, arrayItemType: Types.OBJECT })
     phones?: Phone[] = null;
 

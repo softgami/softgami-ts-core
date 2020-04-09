@@ -22,6 +22,7 @@ import { Trim } from '../shared/decorators/trim.decorator';
 import { Type } from '../shared/decorators/type.decorator';
 import { Types } from '../shared/models/types.enum';
 import { Unique } from '../shared/decorators/unique.decorator';
+import { UserAppInstance } from './user-app-instance.model';
 
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false }},
@@ -39,6 +40,9 @@ import { Unique } from '../shared/decorators/unique.decorator';
         },
     }},
     { fields: { 'creator._id': 1 }, options: { unique: false }},
+    { fields: { 'appInstances.appInstanceId': 1 }, options: { unique: false }},
+    { fields: { 'appInstances.roles._id': 1 }, options: { unique: false }},
+    { fields: { 'appInstances.roles.alias': 1 }, options: { unique: false }},
 ])
 @Extends(BasePerson)
 export class User extends BasePerson<PersonType.USER> {
@@ -143,5 +147,11 @@ export class User extends BasePerson<PersonType.USER> {
     @Default(null)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles?: Role[] = null;
+
+    @Schemable()
+    @Default(null)
+    @QueryParam()
+    @Type({ type: Types.ARRAY, class: UserAppInstance, arrayItemType: Types.OBJECT })
+    appInstances?: UserAppInstance[];
 
 }

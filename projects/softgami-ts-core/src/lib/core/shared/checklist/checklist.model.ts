@@ -43,17 +43,15 @@ export class Checklist extends Thing {
     items: ChecklistItem[] = null;
 
     @Schemable()
-    @Required()
-    @QueryParam()
-    @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
-
-    @Schemable()
-    @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator?: User = null;
+
+    @Schemable()
+    @QueryParam()
+    @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: AppInstance })
+    appInstance?: AppInstance = null;
 
 }

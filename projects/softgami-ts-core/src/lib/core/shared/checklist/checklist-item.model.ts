@@ -23,11 +23,10 @@ export class ChecklistItem extends Thing {
     isDone: boolean = null;
 
     @Schemable()
-    @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator?: User = null;
 
     @Schemable()
     @QueryParam()

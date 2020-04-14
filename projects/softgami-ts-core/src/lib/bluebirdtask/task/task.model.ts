@@ -232,7 +232,7 @@ export class Task extends Thing {
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Checklist, arrayItemType: Types.OBJECT })
-    checkLists?: Checklist[] = null;
+    checklists?: Checklist[] = null;
 
     @Schemable()
     @ExcludeIndexes()

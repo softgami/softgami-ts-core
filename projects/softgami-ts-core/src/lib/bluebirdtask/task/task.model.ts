@@ -60,6 +60,13 @@ import { WorkLog } from './work-log.model';
     { fields: { 'sprint._id' : 1 }, options: { unique : false }},
     { fields: { 'sprint.key' : 1 }, options: { unique : false }},
     { fields: { 'column._id' : 1 }, options: { unique : false }},
+    { fields: { 'workLogs._id' : 1 }, options: { unique : false }},
+    { fields: { 'workLogs.creator._id' : 1 }, options: { unique : false }},
+    { fields: { 'workLogs.creator.name' : 1 }, options: { unique : false }},
+    { fields: { 'workLogs.timeTracking' : 1 }, options: { unique : false }},
+    { fields: { 'workLogs.startDate' : 1 }, options: { unique : false }},
+    { fields: { 'workLogs.endDate' : 1 }, options: { unique : false }},
+    { fields: { 'column._id' : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Task extends Thing {

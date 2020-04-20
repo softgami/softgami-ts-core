@@ -48,4 +48,5 @@ export enum SubjectAlias {
     TRANSLATIONS = 'translations',
     TRANSLATORS = 'translators',
     USERS = 'users',
+    WORK_LOGS = 'work_logs',
 }

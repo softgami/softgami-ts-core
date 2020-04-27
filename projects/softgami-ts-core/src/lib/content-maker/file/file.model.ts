@@ -21,7 +21,14 @@ import { User } from '../../core/user/user.model';
     { fields: { path: 1 }, options: { unique : false }},
     { fields: { isPublic: 1 }, options: { unique : false }},
     { fields: { mimetype: 1 }, options: { unique : false }},
-    { fields: { name: 1, 'parent._id': 1, isPublic: 1 }, options: { unique : true }},
+    { fields: { isPersonal: 1 }, options: { unique : false }},
+    { fields: { name: 1, 'parent._id': 1, isPublic: 1, isPersonal: 1 }, options: {
+        unique: true,
+        partialFilterExpression: {
+            parent: { $exists: true },
+            isPersonal: true,
+        },
+    }},
     { fields: { 'appInstance._id': 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
@@ -62,6 +69,11 @@ export class File extends Thing {
     @Default(true)
     @Type({ type: Types.BOOLEAN })
     isPublic?: boolean = null;
+
+    @Schemable()
+    @Default(true)
+    @Type({ type: Types.BOOLEAN })
+    isPersonal?: boolean = null;
 
     @Schemable()
     @Trim()

@@ -21,8 +21,8 @@ import { User } from '../../user/user.model';
     { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
     { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
     { fields: { 'creator._id' : 1 }, options: { unique : false }},
-    { fields: { 'columns._id' : 1 }, options: { unique : false }},
-    { fields: { 'columns.orderIndex' : 1 }, options: { unique : false }},
+    { fields: { 'boardLists._id' : 1 }, options: { unique : false }},
+    { fields: { 'boardLists.orderIndex' : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Board extends Thing {
@@ -55,6 +55,6 @@ export class Board extends Thing {
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: BoardList, arrayItemType: Types.OBJECT })
-    columns?: BoardList[] = null;
+    boardLists?: BoardList[] = null;
 
 }

@@ -1,4 +1,5 @@
 import { AppInstance } from '../../app/app-instance/app-instance.model';
+import { BoardListItem } from './board-list-item.interface';
 import { CompoundIndex } from '../decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../decorators/extends.decorator';
@@ -52,5 +53,8 @@ export class BoardList extends Thing {
     @QueryParam()
     @Type({ type: Types.NUMBER })
     orderIndex: number = null;
+
+    @Type({ type: Types.ARRAY, arrayItemType: Types.OBJECT })
+    items?: BoardListItem[] = null;
 
 }

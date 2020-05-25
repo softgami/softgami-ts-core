@@ -1,7 +1,7 @@
 
-export class SoftgamiTsUtilsService {
+export abstract class SoftgamiTsUtilsService {
 
-    resolveObjectPath<T>(obj: any, path: string): T {
+    static resolveObjectPath<T>(obj: any, path: string): T {
 
         if (obj === null || obj === undefined) return undefined;
         if (path === null || path === undefined) return undefined;
@@ -17,6 +17,16 @@ export class SoftgamiTsUtilsService {
         }, obj);
 
         return result;
+
+    }
+
+    static truncateDecimals(inputNumber: number, digits: number): number {
+
+        const multiplier: number = Math.pow(10, digits);
+        const adjustedNum: number = inputNumber * multiplier;
+        const truncatedNum: number = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+
+        return truncatedNum / multiplier;
 
     }
 

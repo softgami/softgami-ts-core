@@ -68,6 +68,7 @@ import { WorkLog } from './work-log.model';
     { fields: { 'workLogs.endDate' : 1 }, options: { unique : false }},
     { fields: { 'boardLists._id' : 1 }, options: { unique : false }},
     { fields: { orderIndex : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Task extends Thing implements BoardListItem {
@@ -260,5 +261,10 @@ export class Task extends Thing implements BoardListItem {
     @QueryParam()
     @Type({ type: Types.NUMBER })
     orderIndex?: number = null;
+
+    @Schemable()
+    @QueryParam()
+    @Type({ type: Types.NUMBER })
+    incrementalId?: number = null;
 
 }

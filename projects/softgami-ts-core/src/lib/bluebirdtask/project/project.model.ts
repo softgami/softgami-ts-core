@@ -32,6 +32,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'defaultAssignee.name' : 1 }, options: { unique : false }},
     { fields: { 'members._id' : 1 }, options: { unique : false }},
     { fields: { 'members.name' : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Project extends Thing {
@@ -97,5 +98,10 @@ export class Project extends Thing {
     @Default(null)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
     members?: User[] = null;
+
+    @Schemable()
+    @QueryParam()
+    @Type({ type: Types.NUMBER })
+    incrementalId?: number = null;
 
 }

@@ -36,6 +36,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'creator.name' : 1 }, options: { unique : false }},
     { fields: { 'board._id' : 1 }, options: { unique : false }},
     { fields: { 'board.name' : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Sprint extends Thing {
@@ -115,5 +116,10 @@ export class Sprint extends Thing {
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Board })
     board?: Board = null;
+
+    @Schemable()
+    @QueryParam()
+    @Type({ type: Types.NUMBER })
+    incrementalId?: number = null;
 
 }

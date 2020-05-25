@@ -34,6 +34,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'sprint._id' : 1 }, options: { unique : false }},
     { fields: { 'sprint.name' : 1 }, options: { unique : false }},
     { fields: { 'sprint.key' : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1 }, options: { unique : false }},
 ])
 @Extends(Thing)
 export class Story extends Thing {
@@ -93,5 +94,10 @@ export class Story extends Thing {
     @Sortable({ label: 'SPRINT', field: 'sprint.name' })
     @Type({ type: Types.OBJECT, class: Sprint })
     sprint?: Sprint = null;
+
+    @Schemable()
+    @QueryParam()
+    @Type({ type: Types.NUMBER })
+    incrementalId?: number = null;
 
 }

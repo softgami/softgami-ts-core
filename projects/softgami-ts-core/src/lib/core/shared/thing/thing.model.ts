@@ -6,6 +6,10 @@ import { DefaultMetadataKey } from '../decorators/default-metadata-key';
 import { EnumMetadataKey } from '../decorators/enum-metadata-key';
 import { ExcludeIndexesMetadataKey } from '../decorators/exclude-indexes-metadata-key';
 import { ExtendsMetadataKey } from '../decorators/extends-metadata-key';
+import { MaxLengthMetadataKey } from '../decorators/max-length-metadata-key';
+import { MaxMetadataKey } from '../decorators/max-metadata-key';
+import { MinLengthMetadataKey } from '../decorators/min-length-metadata-key';
+import { MinMetadataKey } from '../decorators/min-metadata-key';
 import { OverrideMetadataKey } from '../decorators/override-metadata-key';
 import { PropertyInfo } from '../models/property-info.interface';
 import { QueryParam } from '../decorators/query-param.decorator';
@@ -119,7 +123,7 @@ export class Thing {
 
                 propertyInfo.sortableOptions = object.getSortableOptions(propertyLevel);
 
-                propertyInfo.extendsClass = object.extendsClass(propertyLevel);
+                propertyInfo.extendsClass = object.getExtendsClass(propertyLevel);
 
                 propertyInfo.isDefault = object.isDefault(propertyLevel);
 
@@ -251,10 +255,38 @@ export class Thing {
 
     }
 
-    extendsClass(property: string): new () => any {
+    getExtendsClass(property: string): new () => any {
 
         const typeClass: new () => any = Reflect.getMetadata(ExtendsMetadataKey, this, property);
         return typeClass;
+
+    }
+
+    getMax(property: string) {
+
+        const max: number = Reflect.getMetadata(MaxMetadataKey, this, property);
+        return max;
+
+    }
+
+    getMaxLength(property: string) {
+
+        const maxLength: number = Reflect.getMetadata(MaxLengthMetadataKey, this, property);
+        return maxLength;
+
+    }
+
+    getMin(property: string) {
+
+        const min: number = Reflect.getMetadata(MinMetadataKey, this, property);
+        return min;
+
+    }
+
+    getMinLength(property: string) {
+
+        const minLength: number = Reflect.getMetadata(MinLengthMetadataKey, this, property);
+        return minLength;
 
     }
 

@@ -222,7 +222,7 @@ export class Task extends Thing implements BoardListItem {
 
     @Schemable()
     @Sortable({ label: 'ESTIMATE_HOURS' })
-    @Type({ type: Types.NUMBER })
+    @Type({ type: Types.DECIMAL })
     estimateHours?: number = null;
 
     @Schemable()
@@ -232,7 +232,7 @@ export class Task extends Thing implements BoardListItem {
 
     @Schemable()
     @Sortable({ label: 'TIME_TRACKING_HOURS' })
-    @Type({ type: Types.NUMBER })
+    @Type({ type: Types.DECIMAL })
     timeTrackingHours?: number = null;
 
     @Schemable()

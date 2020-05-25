@@ -33,7 +33,7 @@ export class WorkLog extends Thing {
     @Schemable()
     @Required()
     @QueryParam()
-    @Type({ type: Types.NUMBER })
+    @Type({ type: Types.DECIMAL })
     timeTracking: number = null;
 
     @Schemable()

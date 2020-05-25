@@ -34,6 +34,8 @@ import { User } from '../../core/user/user.model';
     { fields: { isActive : 1 }, options: { unique : false }},
     { fields: { 'language.code': 1 }, options: { unique: false }},
     { fields: { 'language._id': 1 }, options: { unique: false }},
+    { fields: { 'originalLanguage._id': 1 }, options: { unique: false }},
+    { fields: { 'originalLanguage.code': 1 }, options: { unique: false }},
     { fields: { 'creator._id' : 1 }, options: { unique : false }},
     { fields: { isDigital : 1 }, options: { unique : false }},
     { fields: { 'collections._id' : 1 }, options: { unique : false }},
@@ -142,6 +144,11 @@ export class Publication extends Thing {
     @Trim()
     @Type({ type: Types.STRING })
     originalName?: string = null;
+
+    @Schemable()
+    @ExcludeIndexes()
+    @Type({ type: Types.OBJECT, class: Language })
+    originalLanguage?: Language = null;
 
     @Schemable()
     @Trim()

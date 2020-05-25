@@ -571,4 +571,31 @@ export class Thing {
 
     }
 
+    clone(): this {
+
+        const clone: this = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+        Object.getOwnPropertyNames(clone).forEach((property: string) => {
+
+            if (clone[property] !== null && clone[property] !== undefined) {
+                const typeParams: TypeParams<string> = clone.getType(property);
+                if (typeParams.type === Types.OBJECT && typeParams.class) {
+                    clone[property] = clone[property].clone();
+                } else if (
+                    typeParams.type === Types.ARRAY && typeParams.arrayItemType === Types.OBJECT && typeParams.class
+                    && clone[property].length) {
+
+                    const arrClone = [];
+                    clone[property].forEach((obj, index) => {
+                        arrClone[index] = obj.clone();
+                    });
+                    clone[property] = arrClone;
+
+                }
+            }
+
+        });
+        return clone;
+
+    }
+
 }

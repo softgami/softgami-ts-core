@@ -26,6 +26,7 @@ import { User } from '../../../core/user/user.model';
     { fields: { name : 1, 'language.code' : 1 }, options: { unique : true }},
     { fields: { 'creator._id': 1 }, options: { unique: false }},
     { fields: { 'appInstance._id': 1 }, options: { unique: false }},
+    { fields: { createdAt: 1 }, options: { unique: false }},
 ])
 @Extends(Thing)
 export class Translation extends Thing {

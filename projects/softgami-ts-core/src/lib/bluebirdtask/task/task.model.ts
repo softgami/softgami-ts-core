@@ -69,6 +69,7 @@ import { WorkLog } from './work-log.model';
     { fields: { 'boardLists._id' : 1 }, options: { unique : false }},
     { fields: { orderIndex : 1 }, options: { unique : false }},
     { fields: { incrementalId : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1, 'project._id': 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class Task extends Thing implements BoardListItem {

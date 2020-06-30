@@ -37,6 +37,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'board._id' : 1 }, options: { unique : false }},
     { fields: { 'board.name' : 1 }, options: { unique : false }},
     { fields: { incrementalId : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1, 'project._id': 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class Sprint extends Thing {

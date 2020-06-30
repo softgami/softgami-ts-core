@@ -33,6 +33,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'members._id' : 1 }, options: { unique : false }},
     { fields: { 'members.name' : 1 }, options: { unique : false }},
     { fields: { incrementalId : 1 }, options: { unique : false }},
+    { fields: { incrementalId : 1, 'appInstance._id': 1 }, options: { unique : true }},
 ])
 @Extends(Thing)
 export class Project extends Thing {

@@ -37,7 +37,6 @@ export class Language extends Thing {
     @Type({ type: Types.STRING })
     name: string = null;
 
-
     @Schemable()
     @Required()
     @Trim()
@@ -46,5 +45,12 @@ export class Language extends Thing {
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
     code: string = null;
+
+    @Schemable()
+    @Override()
+    @Trim()
+    @QueryParam()
+    @Type({ type: Types.DATE })
+    createdAt?: Date = null;
 
 }

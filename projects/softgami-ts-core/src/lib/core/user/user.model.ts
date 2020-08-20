@@ -2,6 +2,7 @@ import { Address } from '../../content-maker/location/address/address.model';
 import { BaseDomain } from '../../content-maker/domain/base-domain.model';
 import { BasePerson } from '../../content-maker/person/base-person.model';
 import { CompoundIndex } from '../shared/decorators/compound-index.decorator';
+import { Country } from '../../content-maker/location/country/country.model';
 import { Credentials } from '../auth/credentials/credentials.model';
 import { Currency } from '../../content-maker/currency/currency.model';
 import { Default } from '../shared/decorators/default.decorator';
@@ -54,6 +55,8 @@ import { UserAppInstance } from './user-app-instance.model';
     { fields: { 'appInstances.appInstanceId': 1 }, options: { unique: false }},
     { fields: { 'appInstances.roles._id': 1 }, options: { unique: false }},
     { fields: { 'appInstances.roles.alias': 1 }, options: { unique: false }},
+    { fields: { 'country._id': 1 }, options: { unique: false }},
+    { fields: { 'country.code': 1 }, options: { unique: false }},
 ])
 @Extends(BasePerson)
 export class User extends BasePerson<PersonType.USER> {
@@ -172,5 +175,11 @@ export class User extends BasePerson<PersonType.USER> {
     @QueryParam()
     @Type({ type: Types.ARRAY, class: UserAppInstance, arrayItemType: Types.OBJECT })
     appInstances?: UserAppInstance[];
+
+    @Schemable()
+    @ExcludeIndexes()
+    @QueryParam()
+    @Type({ type: Types.OBJECT, class: Country })
+    country?: Country = null;
 
 }

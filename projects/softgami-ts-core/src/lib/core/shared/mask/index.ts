@@ -1,3 +1,3 @@
 export { AbstractMaskFactory } from './abstract-mask-factory';
-export * from './phone-masks/index';
-export * from './tax-numbers-masks/index';
+export * from './phone/index';
+export * from './tax-numbers/index';

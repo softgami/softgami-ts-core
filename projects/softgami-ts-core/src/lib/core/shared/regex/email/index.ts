@@ -1,1 +1,1 @@
-export { VALID_EMAIL } from './valid-email.regex';
+export { VALID_EMAIL_REGEX } from './valid-email.regex';

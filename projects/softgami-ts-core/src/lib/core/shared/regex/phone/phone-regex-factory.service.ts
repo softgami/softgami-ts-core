@@ -1,6 +1,6 @@
 import { AbstractRegexFactory } from '../abstract-regex-factory';
 import { Country } from '../../../../content-maker/location/country/country.model';
-import { VALID_PHONE_BR } from './valid-phone-br.regex';
+import { VALID_PHONE_BR_REGEX } from './valid-phone-br.regex';
 
 export class PhoneRegexFactoryService extends AbstractRegexFactory {
 
@@ -16,9 +16,9 @@ export class PhoneRegexFactoryService extends AbstractRegexFactory {
 
         switch (code.toLowerCase()) {
             case 'br':
-                return VALID_PHONE_BR;
+                return VALID_PHONE_BR_REGEX;
             default:
-                return VALID_PHONE_BR;
+                return VALID_PHONE_BR_REGEX;
         }
 
     }

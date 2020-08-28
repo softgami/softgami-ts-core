@@ -1,0 +1,1 @@
+export const TAX_NUMBER_BR_CPF_MASK = '000.000.000-00';

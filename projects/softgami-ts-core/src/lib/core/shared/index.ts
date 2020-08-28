@@ -10,3 +10,4 @@ export * from './phone/index';
 export * from './thing/index';
 export * from './value/index';
 export * from './regex/index';
+export * from './mask/index';

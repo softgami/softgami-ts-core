@@ -3,3 +3,4 @@ export * from './date/index';
 export * from './email/index';
 export * from './phone/index';
 export * from './numbers/index';
+export * from './zip-code/index';

@@ -4,12 +4,12 @@ import { TAX_NUMBER_BR_CPF_MASK } from './tax-number-br-cpf-mask';
 
 export class TaskNumberMaskFactoryService extends AbstractMaskFactory {
 
-    getRegexByLocale(locale: string): string[] {
+    getMasksByLocale(locale: string, length?: number): string[] {
 
-        if (!locale) locale = 'br';
+        if (!locale) locale = 'pt-br';
 
         switch (locale.toLowerCase()) {
-            case 'br':
+            case 'pt-br':
             default:
                 if (length === null || length === undefined || length <= 0) {
                     return [TAX_NUMBER_BR_CPF_MASK, TAX_NUMBER_BR_CNPJ_MASK];

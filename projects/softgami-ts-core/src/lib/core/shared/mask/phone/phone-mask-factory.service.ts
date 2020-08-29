@@ -4,12 +4,12 @@ import { PHONE_BR_SHORT_MASK } from './phone-br-short-mask';
 
 export class PhoneMaskFactoryService extends AbstractMaskFactory {
 
-    getRegexByLocale(locale: string): string[] {
+    getMasksByLocale(locale: string, length?: number): string[] {
 
         if (!locale) locale = 'pt-br';
 
         switch (locale.toLowerCase()) {
-            case 'br':
+            case 'pt-br':
             default:
                 if (length === null || length === undefined || length <= 0) {
                     return [PHONE_BR_SHORT_MASK, PHONE_BR_LONG_MASK];

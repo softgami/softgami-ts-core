@@ -3,7 +3,7 @@ import { Language } from '../../../content-maker/i18n/language/language.model';
 
 export abstract class AbstractMaskFactory {
 
-    abstract getRegexByLocale(locale: string): string[];
+    abstract getMasksByLocale(locale: string, length?: number): string[];
     abstract getMasksByCountryCode(code: string, length?: number): string[];
 
     getMasksByCountry(country: Country, length?: number): string[] {
@@ -12,9 +12,9 @@ export abstract class AbstractMaskFactory {
 
     }
 
-    getRegexByLanguage(language: Language): string[] {
+    getMasksByLanguage(language: Language, length?: number): string[] {
 
-        return this.getRegexByLocale(language ? language.code : null);
+        return this.getMasksByLocale(language ? language.code : null, length);
 
     }
 

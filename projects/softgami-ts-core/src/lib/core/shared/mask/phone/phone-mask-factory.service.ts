@@ -16,7 +16,7 @@ export class PhoneMaskFactoryService extends AbstractMaskFactory {
                 } else if (length <= 10) {
                     return [PHONE_BR_SHORT_MASK];
                 } else {
-                    return [PHONE_BR_SHORT_MASK];
+                    return [PHONE_BR_LONG_MASK];
                 }
         }
 
@@ -34,7 +34,7 @@ export class PhoneMaskFactoryService extends AbstractMaskFactory {
                 } else if (length <= 10) {
                     return [PHONE_BR_SHORT_MASK];
                 } else {
-                    return [PHONE_BR_SHORT_MASK];
+                    return [PHONE_BR_LONG_MASK];
                 }
         }
 

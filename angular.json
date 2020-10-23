@@ -13,8 +13,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/softgami-ts-core/tsconfig.lib.json",
-            "project": "projects/softgami-ts-core/ng-package.json",
-            "poll": 1000
+            "project": "projects/softgami-ts-core/ng-package.json"
           }
         },
         "test": {

@@ -42,7 +42,7 @@ import { UserAppInstance } from './user-app-instance.model';
             'nationality._id': { $exists: true },
         },
     }},
-    { fields: { 'emails.address': 1 }, options: { unique: false }},
+    { fields: { 'emails.address': 1 }, options: { unique: true }},
     { fields: { 'emails.isVerified': 1 }, options: { unique: false }},
     { fields: { 'emails.isPrimary': 1 }, options: { unique: false }},
     { fields: { 'emails.type': 1 }, options: { unique: false }},
@@ -174,7 +174,7 @@ export class User extends BasePerson<PersonType.USER> {
     @Default(null)
     @QueryParam()
     @Type({ type: Types.ARRAY, class: UserAppInstance, arrayItemType: Types.OBJECT })
-    appInstances?: UserAppInstance[];
+    appInstances?: UserAppInstance[] = null;
 
     @Schemable()
     @ExcludeIndexes()

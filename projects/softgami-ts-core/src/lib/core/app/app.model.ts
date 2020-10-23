@@ -89,4 +89,9 @@ export class App extends Thing {
     @Type({ type: Types.ARRAY, class: AppPlan, arrayItemType: Types.OBJECT })
     appPlans?: AppPlan[] = null;
 
+    @Schemable()
+    @Trim()
+    @Type({ type: Types.STRING })
+    icon: string = null;
+
 }

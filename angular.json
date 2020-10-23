@@ -13,7 +13,8 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/softgami-ts-core/tsconfig.lib.json",
-            "project": "projects/softgami-ts-core/ng-package.json"
+            "project": "projects/softgami-ts-core/ng-package.json",
+            "poll": 1000
           }
         },
         "test": {
@@ -65,7 +66,8 @@
             "styles": [
               "projects/softgami-ts-core-tester/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "poll": 1000
           },
           "configurations": {
             "production": {

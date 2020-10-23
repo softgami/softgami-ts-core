@@ -50,6 +50,7 @@ export class Menu extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Type({ type: Types.BOOLEAN })
     isActive: boolean = null;
 

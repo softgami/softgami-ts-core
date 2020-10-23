@@ -36,17 +36,17 @@ export class Permission extends Thing {
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Subject })
-    subject: Subject;
+    subject: Subject = null;
 
     @Schemable()
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Role })
-    role: Role;
+    role: Role = null;
 
     @Required()
     @Schemable()
     @Type({ type: Types.NUMBER })
-    value: number;
+    value: number = null;
 
 }

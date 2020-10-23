@@ -32,7 +32,7 @@ export class Country extends Thing {
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
     // tslint:disable-next-line: variable-name
-    _id: string;
+    _id: string = null;
 
     @Schemable()
     @Required()

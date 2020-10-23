@@ -40,11 +40,11 @@ export class WorkLog extends Thing {
     @Required()
     @QueryParam()
     @Type({ type: Types.DATE })
-    startDate: Date;
+    startDate: Date = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.DATE })
-    endDate?: Date;
+    endDate?: Date = null;
 
 }

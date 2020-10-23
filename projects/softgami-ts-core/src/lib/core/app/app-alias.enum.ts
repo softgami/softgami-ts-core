@@ -4,4 +4,5 @@ export enum AppAlias {
     GAMIBOOKS = 'gamibooks',
     CONTENTMAKER = 'contentmaker',
     BLUEBIRDTASK = 'bluebirdtask',
+    CORE = 'core',
 }

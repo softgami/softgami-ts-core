@@ -477,6 +477,8 @@ export class Thing {
 
     updateNumberParam(object: any, property: string, value: string, isArrayItem?: boolean) {
 
+        if (value !== null && value !== undefined) value = value.toString();
+
         if (value && value !== null && value !== undefined) {
             const numberValue: number = parseInt(value, 10);
             object[property] = !isNaN(numberValue) ? numberValue : undefined;
@@ -486,6 +488,8 @@ export class Thing {
 
     updateDecimalParam(object: any, property: string, value: string, isArrayItem?: boolean) {
 
+        if (value !== null && value !== undefined) value = value.toString();
+
         if (value && value !== null && value !== undefined) {
             const decimal: number = parseFloat(value);
             object[property] = !isNaN(decimal) ? decimal : undefined;
@@ -494,6 +498,8 @@ export class Thing {
     }
 
     updateBooleanParam(object: any, property: string, value: string, isArrayItem?: boolean) {
+
+        if (value !== null && value !== undefined) value = value.toString();
 
         if (value && value !== null && value !== undefined) {
             if (value === 'true') {
@@ -595,6 +601,139 @@ export class Thing {
 
         });
         return clone;
+
+    }
+
+    fromJson(json?: any): this {
+
+        const uniqueId: number = this.uniqueId;
+        const object: this = this.clone();
+        object.uniqueId = uniqueId;
+
+        if (!json) return object;
+
+        Object.getOwnPropertyNames(this)
+        .filter((property: string) => property !== 'sort' && property !== 'limit' && property !== 'skip' && property !== 'uniqueId')
+        .forEach((property: string) => {
+
+            const typeParams: TypeParams<string> = this.getType(property);
+
+            const initialLevel = 1;
+            object.updatePropertyByTypeFromJson(object, property, typeParams, initialLevel, false, json);
+
+        });
+
+        return object;
+
+    }
+
+    updatePropertyByTypeFromJson(
+        object: any, property: string, typeParams: TypeParams<string>, level: number = 1, isArrayItem: boolean,
+        json: {
+            [key: string]: any;
+        },
+    ) {
+
+        switch (typeParams.type) {
+            case Types.OBJECT:
+                this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json);
+                break;
+            case Types.ARRAY:
+                this.updateArrayFromJson(object, property, typeParams, json);
+                break;
+            case Types.NUMBER:
+                this.updateNumberParam(object, property, json[property], isArrayItem);
+                break;
+            case Types.DECIMAL128:
+            case Types.DECIMAL:
+                this.updateDecimalParam(object, property, json[property], isArrayItem);
+                break;
+            case Types.BOOLEAN:
+                this.updateBooleanParam(object, property, json[property], isArrayItem);
+                break;
+            case Types.MONGO_OBJECT_ID:
+            case Types.ENUM:
+            case Types.DATE:
+            case Types.STRING:
+                this.updateStringParam(object, property, json[property], isArrayItem);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    updateObjectFromJson<T>(
+        object: any, property: string, typeClass: new () => T, level: number = 1, isArrayItem: boolean,
+        json: {
+            [key: string]: any;
+        }) {
+
+        const maxLevel = 10;
+        if (level > maxLevel) return;
+
+        if (object.hasOwnProperty(property) || (isArrayItem === true && property === '0')) {
+
+            if (object[property]) {
+                if (!json[property]) {
+                    object[property] = null;
+                    return;
+                }
+            } else {
+                if (json[property]) object[property] = new typeClass();
+                else return;
+            }
+
+            Object.getOwnPropertyNames(object[property])
+            .filter((p: string) => p !== 'sort' && p !== 'limit' && p !== 'skip' && p !== 'uniqueId')
+            .forEach((p: string) => {
+
+                const typeParams: TypeParams<string> = object[property].getType(p);
+
+                this.updatePropertyByTypeFromJson(
+                    object[property],
+                    p,
+                    typeParams,
+                    level + 1,
+                    isArrayItem,
+                    json[property],
+                );
+
+            });
+
+        }
+
+    }
+
+    updateArrayFromJson(object: any, property: string, typeParams: TypeParams<string>, json: {
+        [key: string]: any;
+    }) {
+
+        if (object[property]) {
+            if (!json[property]) {
+                object[property] = null;
+                return;
+            }
+        } else {
+            if (json[property]) object[property] = [];
+            else return;
+        }
+
+        const type: TypeParams<any> = {
+            type: typeParams.arrayItemType,
+            class: typeParams.class,
+        };
+
+        if (json[property].length) {
+            json[property].forEach((element: any) => {
+                const hostObject = {};
+                hostObject[property] = null;
+                const jsonHost = {};
+                jsonHost[property] = element;
+                this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost);
+                object[property].push(hostObject[property]);
+            });
+        }
 
     }
 

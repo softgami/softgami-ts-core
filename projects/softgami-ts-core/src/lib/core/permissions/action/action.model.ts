@@ -33,6 +33,7 @@ export class Action extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Override()
     @Unique()
@@ -42,6 +43,7 @@ export class Action extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Unique()
     @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key]))
@@ -50,6 +52,7 @@ export class Action extends Thing {
     alias: ActionAlias = null;
 
     @Schemable()
+    @QueryParam()
     @Required()
     @Sortable({ label: 'VALUE' })
     @Type({ type: Types.NUMBER })

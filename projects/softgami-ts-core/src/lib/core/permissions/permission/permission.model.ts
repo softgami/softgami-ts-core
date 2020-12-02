@@ -34,12 +34,14 @@ export class Permission extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Subject })
     subject: Subject = null;
 
     @Schemable()
     @Required()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Role })
     role: Role = null;

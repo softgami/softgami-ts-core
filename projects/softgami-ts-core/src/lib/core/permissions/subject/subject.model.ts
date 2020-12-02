@@ -34,6 +34,7 @@ export class Subject extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Override()
     @Unique()
@@ -43,6 +44,7 @@ export class Subject extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Unique()
     @Enum(Object.keys(SubjectAlias).map((key: string) => SubjectAlias[key]))
@@ -52,6 +54,7 @@ export class Subject extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Default(true)
     @Sortable({ label: 'STATUS' })
     @Type({ type: Types.BOOLEAN })

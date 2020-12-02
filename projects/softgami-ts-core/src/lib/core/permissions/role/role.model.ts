@@ -34,6 +34,7 @@ export class Role extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Override()
     @Unique()
@@ -43,6 +44,7 @@ export class Role extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Trim()
     @Unique()
     @Enum(Object.keys(RoleAlias).map((key: string) => RoleAlias[key]))
@@ -52,6 +54,7 @@ export class Role extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @Default(true)
     @Sortable({ label: 'STATUS' })
     @Type({ type: Types.BOOLEAN })

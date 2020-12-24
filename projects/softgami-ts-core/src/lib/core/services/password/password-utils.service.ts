@@ -52,6 +52,10 @@ export class PasswordUtilsService {
 
     static getPasswordStrength(password: string): number {
 
+        if (!password) {
+            return 0;
+        }
+
         let score = 0;
         const maxLength = 20;
         const maxDifferentChars = 20;
@@ -63,8 +67,6 @@ export class PasswordUtilsService {
             (PASSWORD_VALIDATION_SPECIAL_CHARS.length * specialCharBonus);
 
         const chars: string[] = password.split('');
-
-        if (PasswordUtilsService.validatePassword(password) !== true) return 0;
 
         score += password.length * lengthCharBonus;
 

@@ -46,29 +46,34 @@ export class AppInstance extends Thing {
     _id: string = null;
 
     @Schemable()
+    @QueryParam()
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: App })
     app: App = null;
 
     @Schemable()
+    @QueryParam()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
     isActive: boolean = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
     creator?: User = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles?: Role[] = null;
 
     @Schemable()
+    @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.OBJECT, class: AppPlan })

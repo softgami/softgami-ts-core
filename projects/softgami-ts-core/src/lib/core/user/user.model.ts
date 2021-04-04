@@ -27,6 +27,7 @@ import { UserAppInstance } from './user-app-instance.model';
 
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false }},
+    { fields: { isActive: 1 }, options: { unique: false }},
     { fields: { 'language._id': 1 }, options: { unique: false }},
     { fields: { 'language.code': 1 }, options: { unique: false }},
     { fields: { isActive: 1 }, options: { unique: false }},

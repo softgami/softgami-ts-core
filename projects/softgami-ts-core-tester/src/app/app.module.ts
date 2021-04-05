@@ -15,6 +15,6 @@ import { PasswordTesterComponent } from './password-tester/password-tester.compo
         AppRoutingModule,
     ],
     providers: [],
-    bootstrap: [AppComponent],
+    bootstrap: [ AppComponent ],
 })
 export class AppModule { }

@@ -38,4 +38,5 @@ export class Phone extends Thing {
     @Default(false)
     @Type({ type: Types.BOOLEAN })
     isVerified?: boolean = null;
+
 }

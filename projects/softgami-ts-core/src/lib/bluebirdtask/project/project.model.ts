@@ -18,22 +18,22 @@ import { User } from '../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
-    { fields: { name : 1 }, options: { unique : false }},
-    { fields: { createdAt : 1 }, options: { unique : false }},
-    { fields: { key : 1 }, options: { unique : true }},
-    { fields: { status : 1 }, options: { unique : false }},
-    { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
-    { fields: { 'creator._id' : 1 }, options: { unique : false }},
-    { fields: { 'creator.name' : 1 }, options: { unique : false }},
-    { fields: { 'lead._id' : 1 }, options: { unique : false }},
-    { fields: { 'lead.name' : 1 }, options: { unique : false }},
-    { fields: { 'defaultAssignee._id' : 1 }, options: { unique : false }},
-    { fields: { 'defaultAssignee.name' : 1 }, options: { unique : false }},
-    { fields: { 'members._id' : 1 }, options: { unique : false }},
-    { fields: { 'members.name' : 1 }, options: { unique : false }},
-    { fields: { incrementalId : 1 }, options: { unique : false }},
-    { fields: { incrementalId : 1, 'appInstance._id': 1 }, options: { unique : true }},
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { createdAt: 1 }, options: { unique: false } },
+    { fields: { key: 1 }, options: { unique: true } },
+    { fields: { status: 1 }, options: { unique: false } },
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance.creator._id': 1 }, options: { unique: false } },
+    { fields: { 'creator._id': 1 }, options: { unique: false } },
+    { fields: { 'creator.name': 1 }, options: { unique: false } },
+    { fields: { 'lead._id': 1 }, options: { unique: false } },
+    { fields: { 'lead.name': 1 }, options: { unique: false } },
+    { fields: { 'defaultAssignee._id': 1 }, options: { unique: false } },
+    { fields: { 'defaultAssignee.name': 1 }, options: { unique: false } },
+    { fields: { 'members._id': 1 }, options: { unique: false } },
+    { fields: { 'members.name': 1 }, options: { unique: false } },
+    { fields: { incrementalId: 1 }, options: { unique: false } },
+    { fields: { incrementalId: 1, 'appInstance._id': 1 }, options: { unique: true } },
 ])
 @Extends(Thing)
 export class Project extends Thing {

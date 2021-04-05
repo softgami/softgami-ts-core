@@ -15,18 +15,18 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
-    { fields: { name : 1 }, options: { unique : false }},
-    { fields: { createdAt : 1 }, options: { unique : false }},
-    { fields: { isActive : 1 }, options: { unique : false }},
-    { fields: { isCompleted : 1 }, options: { unique : false }},
-    { fields: { isFinished : 1 }, options: { unique : false }},
-    { fields: { 'creator._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
-    { fields: { 'parent._id' : 1 }, options: { unique : false }},
-    { fields: { 'parent.name' : 1 }, options: { unique : false }},
-    { fields: { 'ancestors._id' : 1 }, options: { unique : false }},
-    { fields: { 'ancestors.name' : 1 }, options: { unique : false }},
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { createdAt: 1 }, options: { unique: false } },
+    { fields: { isActive: 1 }, options: { unique: false } },
+    { fields: { isCompleted: 1 }, options: { unique: false } },
+    { fields: { isFinished: 1 }, options: { unique: false } },
+    { fields: { 'creator._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance.creator._id': 1 }, options: { unique: false } },
+    { fields: { 'parent._id': 1 }, options: { unique: false } },
+    { fields: { 'parent.name': 1 }, options: { unique: false } },
+    { fields: { 'ancestors._id': 1 }, options: { unique: false } },
+    { fields: { 'ancestors.name': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class Collection extends Thing {

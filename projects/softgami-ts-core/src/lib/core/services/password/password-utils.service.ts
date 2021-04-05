@@ -28,7 +28,9 @@ export class PasswordUtilsService {
 
         const chars: string[] = password.split('');
         for (let i = 0; i < chars.length; i++) {
+
             if (chars[i] === chars[i + 1] && chars[i] === chars[i + 2]) return PasswordValidationErrors.REPEATED_CHARS;
+
         }
 
         return true;
@@ -38,12 +40,16 @@ export class PasswordUtilsService {
     static testForSequences(s: string): boolean {
 
         for (let i = 0; i < s.length; i++) {
+
             if (+s[+i + 1] === +s[i] + 1 && +s[+i + 2] === +s[i] + 2) return true;
+
         }
 
         for (let i = 0; i < s.length; i++) {
-            if (String.fromCharCode(s.charCodeAt(i) + 1) === s[+i + 1]
-                && String.fromCharCode(s.charCodeAt(i) + 2) === s[+i + 2]) return true;
+
+            if (String.fromCharCode(s.charCodeAt(i) + 1) === s[+i + 1] &&
+                String.fromCharCode(s.charCodeAt(i) + 2) === s[+i + 2]) return true;
+
         }
 
         return false;
@@ -53,7 +59,9 @@ export class PasswordUtilsService {
     static getPasswordStrength(password: string): number {
 
         if (!password) {
+
             return 0;
+
         }
 
         let score = 0;
@@ -70,9 +78,9 @@ export class PasswordUtilsService {
 
         score += password.length * lengthCharBonus;
 
-        score += [...new Set(chars)].length * differentCharBonus;
+        score += [ ...new Set(chars) ].length * differentCharBonus;
 
-        score += [...new Set(chars.filter((c: string) => PASSWORD_VALIDATION_SPECIAL_CHARS.includes(c)))].length * specialCharBonus;
+        score += [ ...new Set(chars.filter((c: string) => PASSWORD_VALIDATION_SPECIAL_CHARS.includes(c))) ].length * specialCharBonus;
 
         return Math.floor(score / maxScore * 100);
 

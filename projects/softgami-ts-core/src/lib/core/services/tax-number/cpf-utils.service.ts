@@ -12,7 +12,9 @@ export class CpfUtilsService extends AbstractTaxNumberUtilsService {
         if (value === '') return false;
 
         if (value.length !== 11) {
+
             return false;
+
         }
 
         const REJECT_LIST = [
@@ -29,28 +31,42 @@ export class CpfUtilsService extends AbstractTaxNumberUtilsService {
         ];
 
         if (REJECT_LIST.includes(value)) {
+
             return false;
+
         }
         for (let i = 1; i <= 9; i++) {
+
             sum = sum + parseInt(value.substring(i - 1, i), 10) * (11 - i);
+
         }
         remainder = (sum * 10) % 11;
         if ((remainder === 10) || (remainder === 11)) {
+
             remainder = 0;
+
         }
-        if (remainder !== parseInt(value.substring(9, 10), 10) ) {
+        if (remainder !== parseInt(value.substring(9, 10), 10)) {
+
             return false;
+
         }
         sum = 0;
         for (let i = 1; i <= 10; i++) {
+
             sum = sum + parseInt(value.substring(i - 1, i), 10) * (12 - i);
+
         }
         remainder = (sum * 10) % 11;
         if ((remainder === 10) || (remainder === 11)) {
+
             remainder = 0;
+
         }
-        if (remainder !== parseInt(value.substring(10, 11), 10) ) {
+        if (remainder !== parseInt(value.substring(10, 11), 10)) {
+
             return false;
+
         }
         return true;
 

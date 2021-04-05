@@ -13,11 +13,11 @@ import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
-    { fields: { code: 1 }, options: { unique: false }},
-    { fields: { name: 1 }, options: { unique: false }},
-    { fields: { 'country._id': 1 }, options: { unique: false }},
-    { fields: { 'country.name': 1 }, options: { unique: false }},
-    { fields: { 'country.code': 1 }, options: { unique: false }},
+    { fields: { code: 1 }, options: { unique: false } },
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { 'country._id': 1 }, options: { unique: false } },
+    { fields: { 'country.name': 1 }, options: { unique: false } },
+    { fields: { 'country.code': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class State extends Thing {

@@ -15,12 +15,12 @@ import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
-    { fields: { name: 1 }, options: { unique : true }},
-    { fields: { code: 1 }, options: { unique : true }},
-    { fields: { 'language._id': 1 }, options: { unique: false }},
-    { fields: { 'language.code': 1 }, options: { unique: false }},
-    { fields: { 'languages._id': 1 }, options: { unique: false }},
-    { fields: { 'languages.code': 1 }, options: { unique: false }},
+    { fields: { name: 1 }, options: { unique: true } },
+    { fields: { code: 1 }, options: { unique: true } },
+    { fields: { 'language._id': 1 }, options: { unique: false } },
+    { fields: { 'language.code': 1 }, options: { unique: false } },
+    { fields: { 'languages._id': 1 }, options: { unique: false } },
+    { fields: { 'languages.code': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class Country extends Thing {

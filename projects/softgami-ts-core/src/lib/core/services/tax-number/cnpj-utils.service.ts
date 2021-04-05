@@ -9,7 +9,9 @@ export class CnpjUtilsService extends AbstractTaxNumberUtilsService {
         if (value === '') return false;
 
         if (value.length !== 14) {
+
             return false;
+
         }
 
         const REJECT_LIST = [
@@ -26,7 +28,9 @@ export class CnpjUtilsService extends AbstractTaxNumberUtilsService {
         ];
 
         if (REJECT_LIST.includes(value)) {
+
             return false;
+
         }
 
         let tamanho = value.length - 2;
@@ -35,14 +39,20 @@ export class CnpjUtilsService extends AbstractTaxNumberUtilsService {
         let soma = 0;
         let pos = tamanho - 7;
         for (let i = tamanho; i >= 1; i--) {
+
             soma += parseInt(numeros.charAt(tamanho - i), 10) * pos--;
             if (pos < 2) {
+
                 pos = 9;
+
             }
+
         }
         let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado !== parseInt(digitos.charAt(0), 10)) {
+
             return false;
+
         }
 
         tamanho = tamanho + 1;
@@ -50,14 +60,20 @@ export class CnpjUtilsService extends AbstractTaxNumberUtilsService {
         soma = 0;
         pos = tamanho - 7;
         for (let i = tamanho; i >= 1; i--) {
+
             soma += parseInt(numeros.charAt(tamanho - i), 10) * pos--;
             if (pos < 2) {
+
                 pos = 9;
+
             }
+
         }
         resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado !== parseInt(digitos.charAt(1), 10)) {
+
             return false;
+
         }
 
         return true;

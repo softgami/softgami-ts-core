@@ -15,21 +15,24 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
 @CompoundIndex([
-    { fields: { name: 1 }, options: { unique: false }},
-    { fields: { isFile: 1 }, options: { unique : false }},
-    { fields: { isDirectory: 1 }, options: { unique : false }},
-    { fields: { path: 1 }, options: { unique : false }},
-    { fields: { isPublic: 1 }, options: { unique : false }},
-    { fields: { mimetype: 1 }, options: { unique : false }},
-    { fields: { isPersonal: 1 }, options: { unique : false }},
-    { fields: { name: 1, 'parent._id': 1, isPublic: 1, isPersonal: 1 }, options: {
-        unique: true,
-        partialFilterExpression: {
-            parent: { $exists: true },
-            isPersonal: true,
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { isFile: 1 }, options: { unique: false } },
+    { fields: { isDirectory: 1 }, options: { unique: false } },
+    { fields: { path: 1 }, options: { unique: false } },
+    { fields: { isPublic: 1 }, options: { unique: false } },
+    { fields: { mimetype: 1 }, options: { unique: false } },
+    { fields: { isPersonal: 1 }, options: { unique: false } },
+    {
+        fields: { name: 1, 'parent._id': 1, isPublic: 1, isPersonal: 1 },
+        options: {
+            unique: true,
+            partialFilterExpression: {
+                parent: { $exists: true },
+                isPersonal: true,
+            },
         },
-    }},
-    { fields: { 'appInstance._id': 1 }, options: { unique : false }},
+    },
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class File extends Thing {

@@ -16,11 +16,11 @@ import { User } from '../../user/user.model';
 
 // @dynamic
 @CompoundIndex([
-    { fields: { name : 1 }, options: { unique : false }},
-    { fields: { createdAt : 1 }, options: { unique : false }},
-    { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
-    { fields: { 'creator._id' : 1 }, options: { unique : false }},
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { createdAt: 1 }, options: { unique: false } },
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance.creator._id': 1 }, options: { unique: false } },
+    { fields: { 'creator._id': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class Checklist extends Thing {

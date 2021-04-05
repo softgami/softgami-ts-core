@@ -12,8 +12,8 @@ import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
-    { fields: { name: 1 }, options: { unique : true }},
-    { fields: { code: 1 }, options: { unique : true }},
+    { fields: { name: 1 }, options: { unique: true } },
+    { fields: { code: 1 }, options: { unique: true } },
 ])
 @Extends(Thing)
 export class Language extends Thing {

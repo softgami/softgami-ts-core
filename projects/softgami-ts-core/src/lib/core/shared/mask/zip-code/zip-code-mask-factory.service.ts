@@ -8,9 +8,11 @@ export class ZipCodeMaskFactoryService extends AbstractMaskFactory {
         if (!locale) locale = 'pt-br';
 
         switch (locale.toLowerCase()) {
+
             case 'pt-br':
             default:
-                return [ZIP_CODE_BR_MASK];
+                return [ ZIP_CODE_BR_MASK ];
+
         }
 
     }
@@ -20,9 +22,11 @@ export class ZipCodeMaskFactoryService extends AbstractMaskFactory {
         if (!code) code = 'br';
 
         switch (code.toLowerCase()) {
+
             case 'br':
             default:
-                return [ZIP_CODE_BR_MASK];
+                return [ ZIP_CODE_BR_MASK ];
+
         }
 
     }

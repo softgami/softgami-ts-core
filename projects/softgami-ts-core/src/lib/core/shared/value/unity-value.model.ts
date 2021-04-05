@@ -13,7 +13,7 @@ import { UnityValueCodes } from './unity-value-codes.enum';
 
 const unityValueCodes: string[] = Object.keys(UnityValueCodes).map((k: string) => UnityValueCodes[k]);
 const currencyCodes: string[] = Object.keys(CurrencyCodes).map((k: string) => CurrencyCodes[k]);
-const codes: string[] = [...new Set(unityValueCodes.concat(currencyCodes))];
+const codes: string[] = [ ...new Set(unityValueCodes.concat(currencyCodes)) ];
 
 // @dynamic
 @SkipID()

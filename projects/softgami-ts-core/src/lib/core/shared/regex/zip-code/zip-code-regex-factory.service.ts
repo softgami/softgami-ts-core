@@ -8,10 +8,12 @@ export class ZipCodeRegexFactoryService extends AbstractRegexFactory {
         if (!code) code = 'br';
 
         switch (code.toLowerCase()) {
+
             case 'br':
                 return ZIP_CODE_BR_REGEX;
             default:
                 return ZIP_CODE_BR_REGEX;
+
         }
 
     }
@@ -21,10 +23,12 @@ export class ZipCodeRegexFactoryService extends AbstractRegexFactory {
         if (!locale) locale = 'pt-br';
 
         switch (locale.toLowerCase()) {
+
             case 'pt-br':
                 return ZIP_CODE_BR_REGEX;
             default:
                 return ZIP_CODE_BR_REGEX;
+
         }
 
     }

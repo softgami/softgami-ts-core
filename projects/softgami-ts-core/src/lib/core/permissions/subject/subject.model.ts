@@ -16,9 +16,9 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 // @dynamic
 @CompoundIndex([
-    { fields: { name: 1 }, options: { unique : true }},
-    { fields: { alias: 1 }, options: { unique : true }},
-    { fields: { isActive: 1 }, options: { unique : true }},
+    { fields: { name: 1 }, options: { unique: true } },
+    { fields: { alias: 1 }, options: { unique: true } },
+    { fields: { isActive: 1 }, options: { unique: true } },
 ])
 @Extends(Thing)
 export class Subject extends Thing {

@@ -13,25 +13,25 @@ import { User } from '../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
-    { fields: { type: 1 }, options: { unique : false }},
-    { fields: { name: 1 }, options: { unique: false }},
-    { fields: { value: 1 }, options: { unique : false }},
-    { fields: { additionalMetadata: 1 }, options: { unique : false }},
-    { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
-    { fields: { 'creator._id' : 1 }, options: { unique : false }},
-    { fields: { name : 1, type : 1, value: 1 }, options: { unique : true }},
+    { fields: { type: 1 }, options: { unique: false } },
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { value: 1 }, options: { unique: false } },
+    { fields: { additionalMetadata: 1 }, options: { unique: false } },
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
+    { fields: { 'creator._id': 1 }, options: { unique: false } },
+    { fields: { name: 1, type: 1, value: 1 }, options: { unique: true } },
 ])
 @Extends(BaseDomain)
 export class Domain<T extends DomainType> extends BaseDomain<T> {
 
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: User})
+    @Type({ type: Types.OBJECT, class: User })
     creator?: User = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: AppInstance})
+    @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;
 
 }

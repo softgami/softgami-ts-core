@@ -12,12 +12,12 @@ import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
-    { fields: { createdAt : 1 }, options: { unique : false }},
-    { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
-    { fields: { taxNumber: 1 }, options: { unique: false }},
-    { fields: { name: 1 }, options: { unique: false }},
-    { fields: { 'creator._id': 1 }, options: { unique: false }},
+    { fields: { createdAt: 1 }, options: { unique: false } },
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance.creator._id': 1 }, options: { unique: false } },
+    { fields: { taxNumber: 1 }, options: { unique: false } },
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { 'creator._id': 1 }, options: { unique: false } },
 ])
 @Extends(Organization)
 export class Publisher extends Organization {
@@ -34,7 +34,7 @@ export class Publisher extends Organization {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Type({ type: Types.OBJECT, class: AppInstance})
+    @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance = null;
 
 }

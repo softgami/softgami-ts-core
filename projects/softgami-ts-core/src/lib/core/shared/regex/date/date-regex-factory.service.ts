@@ -8,10 +8,12 @@ export class DateRegexFactoryService extends AbstractRegexFactory {
         if (!code) code = 'br';
 
         switch (code.toLowerCase()) {
+
             case 'br':
                 return VALID_DATE_BR_REGEX;
             default:
                 return VALID_DATE_BR_REGEX;
+
         }
 
     }
@@ -21,10 +23,12 @@ export class DateRegexFactoryService extends AbstractRegexFactory {
         if (!locale) locale = 'pt-br';
 
         switch (locale.toLowerCase()) {
+
             case 'pt-br':
                 return VALID_DATE_BR_REGEX;
             default:
                 return VALID_DATE_BR_REGEX;
+
         }
 
     }

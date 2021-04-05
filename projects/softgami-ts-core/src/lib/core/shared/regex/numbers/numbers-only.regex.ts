@@ -1,1 +1,1 @@
-export const NUMBERS_ONLY_REGEX: RegExp = /^-?\d*(\.\d+)?$/;
+export const NUMBERS_ONLY_REGEX = /^-?\d*(\.\d+)?$/;

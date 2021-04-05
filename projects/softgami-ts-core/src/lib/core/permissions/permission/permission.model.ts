@@ -13,12 +13,12 @@ import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 @CompoundIndex([
-    { fields: { 'subject._id' : 1, 'role._id' : 1 }, options: { unique : true }},
-    { fields: { 'subject.alias' : 1, 'role.alias' : 1 }, options: { unique : true }},
-    { fields: { 'subject.alias' : 1 }, options: { unique : false }},
-    { fields: { 'subject._id' : 1 }, options: { unique : false }},
-    { fields: { 'role.alias' : 1 }, options: { unique : false }},
-    { fields: { 'role._id' : 1 }, options: { unique : false }},
+    { fields: { 'subject._id': 1, 'role._id': 1 }, options: { unique: true } },
+    { fields: { 'subject.alias': 1, 'role.alias': 1 }, options: { unique: true } },
+    { fields: { 'subject.alias': 1 }, options: { unique: false } },
+    { fields: { 'subject._id': 1 }, options: { unique: false } },
+    { fields: { 'role.alias': 1 }, options: { unique: false } },
+    { fields: { 'role._id': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class Permission extends Thing {

@@ -15,11 +15,11 @@ import { User } from '../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
-    { fields: { 'appInstance._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance.app._id' : 1 }, options: { unique : false }},
-    { fields: { 'appInstance.creator._id' : 1 }, options: { unique : false }},
-    { fields: { name: 1 }, options: { unique: false }},
-    { fields: { type: 1 }, options: { unique: false }},
+    { fields: { 'appInstance._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance.app._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstance.creator._id': 1 }, options: { unique: false } },
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { type: 1 }, options: { unique: false } },
 ])
 @Extends(BasePerson)
 export class Person<T extends PersonType> extends BasePerson<T> {

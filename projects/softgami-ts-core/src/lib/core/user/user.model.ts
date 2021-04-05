@@ -26,38 +26,41 @@ import { Unique } from '../shared/decorators/unique.decorator';
 import { UserAppInstance } from './user-app-instance.model';
 
 @CompoundIndex([
-    { fields: { name: 1 }, options: { unique: false }},
-    { fields: { isActive: 1 }, options: { unique: false }},
-    { fields: { 'language._id': 1 }, options: { unique: false }},
-    { fields: { 'language.code': 1 }, options: { unique: false }},
-    { fields: { isActive: 1 }, options: { unique: false }},
-    { fields: { isIndividual: 1 }, options: { unique: false }},
-    { fields: { birthDate: 1 }, options: { unique: false }},
-    { fields: { gender: 1 }, options: { unique: false }},
-    { fields: { 'appInstances._id': 1 }, options: { unique: false }},
-    { fields: { 'appInstances.app._id': 1 }, options: { unique: false }},
-    { fields: { taxNumber: 1, 'nationality._id': 1 }, options: {
-        unique: true,
-        partialFilterExpression: {
-            taxNumber: { $exists: true },
-            'nationality._id': { $exists: true },
+    { fields: { name: 1 }, options: { unique: false } },
+    { fields: { isActive: 1 }, options: { unique: false } },
+    { fields: { 'language._id': 1 }, options: { unique: false } },
+    { fields: { 'language.code': 1 }, options: { unique: false } },
+    { fields: { isActive: 1 }, options: { unique: false } },
+    { fields: { isIndividual: 1 }, options: { unique: false } },
+    { fields: { birthDate: 1 }, options: { unique: false } },
+    { fields: { gender: 1 }, options: { unique: false } },
+    { fields: { 'appInstances._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstances.app._id': 1 }, options: { unique: false } },
+    {
+        fields: { taxNumber: 1, 'nationality._id': 1 },
+        options: {
+            unique: true,
+            partialFilterExpression: {
+                taxNumber: { $exists: true },
+                'nationality._id': { $exists: true },
+            },
         },
-    }},
-    { fields: { 'emails.address': 1 }, options: { unique: true }},
-    { fields: { 'emails.isVerified': 1 }, options: { unique: false }},
-    { fields: { 'emails.isPrimary': 1 }, options: { unique: false }},
-    { fields: { 'emails.type': 1 }, options: { unique: false }},
-    { fields: { 'phones.type': 1 }, options: { unique: false }},
-    { fields: { 'phones.number': 1 }, options: { unique: false }},
-    { fields: { 'phones.isPrimary': 1 }, options: { unique: false }},
-    { fields: { 'phones.isVerified': 1 }, options: { unique: false }},
-    { fields: { timezone: 1 }, options: { unique: false }},
-    { fields: { 'creator._id': 1 }, options: { unique: false }},
-    { fields: { 'appInstances.appInstanceId': 1 }, options: { unique: false }},
-    { fields: { 'appInstances.roles._id': 1 }, options: { unique: false }},
-    { fields: { 'appInstances.roles.alias': 1 }, options: { unique: false }},
-    { fields: { 'country._id': 1 }, options: { unique: false }},
-    { fields: { 'country.code': 1 }, options: { unique: false }},
+    },
+    { fields: { 'emails.address': 1 }, options: { unique: true } },
+    { fields: { 'emails.isVerified': 1 }, options: { unique: false } },
+    { fields: { 'emails.isPrimary': 1 }, options: { unique: false } },
+    { fields: { 'emails.type': 1 }, options: { unique: false } },
+    { fields: { 'phones.type': 1 }, options: { unique: false } },
+    { fields: { 'phones.number': 1 }, options: { unique: false } },
+    { fields: { 'phones.isPrimary': 1 }, options: { unique: false } },
+    { fields: { 'phones.isVerified': 1 }, options: { unique: false } },
+    { fields: { timezone: 1 }, options: { unique: false } },
+    { fields: { 'creator._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstances.appInstanceId': 1 }, options: { unique: false } },
+    { fields: { 'appInstances.roles._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstances.roles.alias': 1 }, options: { unique: false } },
+    { fields: { 'country._id': 1 }, options: { unique: false } },
+    { fields: { 'country.code': 1 }, options: { unique: false } },
 ])
 @Extends(BasePerson)
 export class User extends BasePerson<PersonType.USER> {
@@ -75,7 +78,7 @@ export class User extends BasePerson<PersonType.USER> {
     @Required()
     @QueryParam()
     @Trim()
-    @Enum([PersonType.USER])
+    @Enum([ PersonType.USER ])
     @Override()
     @Type({ type: Types.ENUM })
     type: PersonType.USER = null;

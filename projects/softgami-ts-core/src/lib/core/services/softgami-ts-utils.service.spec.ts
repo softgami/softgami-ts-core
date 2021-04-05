@@ -46,7 +46,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return "some value" when object and path "value"', () => {
 
-            const obj: any  = {value: 'some value'};
+            const obj = { value: 'some value' };
             const result: string = SoftgamiTsUtilsService.resolveObjectPath<string>(obj, 'value');
 
             expect(result).toBe('some value');
@@ -55,7 +55,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return "some value" when object string and path ""', () => {
 
-            const obj: any  = 'some value';
+            const obj = 'some value';
             const result: string = SoftgamiTsUtilsService.resolveObjectPath<string>(obj, '');
 
             expect(result).toBe('some value');
@@ -64,7 +64,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return true when object boolean and path ""', () => {
 
-            const obj: any  = true;
+            const obj = true;
             const result: boolean = SoftgamiTsUtilsService.resolveObjectPath<boolean>(obj, '');
 
             expect(result).toBe(true);
@@ -73,7 +73,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return number when object number and path ""', () => {
 
-            const obj: any  = 10;
+            const obj = 10;
             const result: number = SoftgamiTsUtilsService.resolveObjectPath<number>(obj, '');
 
             expect(result).toEqual(10);
@@ -82,7 +82,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return "some value content" when object and path "value.content"', () => {
 
-            const obj: any  = {
+            const obj = {
                 value: {
                     content: 'some value content',
                 },
@@ -95,7 +95,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return "some another value content" when object and path "value.content.another"', () => {
 
-            const obj: any  = {
+            const obj = {
                 value: {
                     content: {
                         another: 'some another value content',
@@ -110,7 +110,7 @@ describe('SoftgamiTsUtilsService', () => {
 
         it('resolveObjectPath should return undefined when object and path doesnt exists in object', () => {
 
-            const obj: any  = {
+            const obj = {
                 value: {
                     content: {
                         another: 'some another value content',

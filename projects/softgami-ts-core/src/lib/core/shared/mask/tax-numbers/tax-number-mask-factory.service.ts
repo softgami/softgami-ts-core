@@ -9,15 +9,23 @@ export class TaskNumberMaskFactoryService extends AbstractMaskFactory {
         if (!locale) locale = 'pt-br';
 
         switch (locale.toLowerCase()) {
+
             case 'pt-br':
             default:
                 if (length === null || length === undefined || length <= 0) {
-                    return [TAX_NUMBER_BR_CPF_MASK, TAX_NUMBER_BR_CNPJ_MASK];
+
+                    return [ TAX_NUMBER_BR_CPF_MASK, TAX_NUMBER_BR_CNPJ_MASK ];
+
                 } else if (length <= 11) {
-                    return [TAX_NUMBER_BR_CPF_MASK];
+
+                    return [ TAX_NUMBER_BR_CPF_MASK ];
+
                 } else {
-                    return [TAX_NUMBER_BR_CNPJ_MASK];
+
+                    return [ TAX_NUMBER_BR_CNPJ_MASK ];
+
                 }
+
         }
 
     }
@@ -27,15 +35,23 @@ export class TaskNumberMaskFactoryService extends AbstractMaskFactory {
         if (!code) code = 'br';
 
         switch (code.toLowerCase()) {
+
             case 'br':
             default:
                 if (length === null || length === undefined || length <= 0) {
-                    return [TAX_NUMBER_BR_CPF_MASK, TAX_NUMBER_BR_CNPJ_MASK];
+
+                    return [ TAX_NUMBER_BR_CPF_MASK, TAX_NUMBER_BR_CNPJ_MASK ];
+
                 } else if (length <= 11) {
-                    return [TAX_NUMBER_BR_CPF_MASK];
+
+                    return [ TAX_NUMBER_BR_CPF_MASK ];
+
                 } else {
-                    return [TAX_NUMBER_BR_CNPJ_MASK];
+
+                    return [ TAX_NUMBER_BR_CNPJ_MASK ];
+
                 }
+
         }
 
     }

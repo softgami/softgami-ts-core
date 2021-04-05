@@ -16,9 +16,11 @@ export class TaxNumberUtilsFactoryService {
         if (!code) code = 'br';
 
         switch (code.toLowerCase()) {
+
             case 'br':
             default:
                 return isIndividual ? new CpfUtilsService() : new CnpjUtilsService();
+
         }
 
     }

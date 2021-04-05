@@ -1,3 +1,6 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
 
 import { CompoundIndexMetadataKey } from '../decorators/compound-index-metadata-key';
@@ -267,9 +270,9 @@ export class Thing {
 
     }
 
-    getExtendsClass(property: string): new () => any {
+    getExtendsClass(property: string): new () => Thing {
 
-        const typeClass: new () => any = Reflect.getMetadata(ExtendsMetadataKey, this, property);
+        const typeClass: new () => Thing = Reflect.getMetadata(ExtendsMetadataKey, this, property);
         return typeClass;
 
     }
@@ -312,9 +315,11 @@ export class Thing {
 
     }
 
-    recursiveGenerateParamsObject(source: any, parentPath: string, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } {
+    recursiveGenerateParamsObject(source: Thing, parentPath: string, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } {
 
-        if (!(source instanceof Thing)) {
+        let isThingInstance = false;
+        if (source instanceof Thing) isThingInstance = true;
+        if (!isThingInstance) {
 
             console.warn(`${source.constructor.name} is not a instance of Thing.`);
             return null;
@@ -389,7 +394,7 @@ export class Thing {
     }
 
     updatePropertiesFromParams(params: {
-        [key: string]: any;
+        [key: string]: string;
     }): void {
 
         Object.getOwnPropertyNames(this).forEach((property: string) => {
@@ -410,7 +415,7 @@ export class Thing {
     updatePropertyByType(
         object: any, property: string, parentPath: string, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
         params: {
-            [key: string]: any;
+            [key: string]: string;
         },
     ): void {
 
@@ -438,7 +443,7 @@ export class Thing {
             case Types.ENUM:
             case Types.DATE:
             case Types.STRING:
-                this.updateStringParam(object, property, params[parentPath], isArrayItem);
+                this.updateStringParam(object as Thing, property, params[parentPath], isArrayItem);
                 break;
             default:
                 break;
@@ -448,9 +453,9 @@ export class Thing {
     }
 
     updateObjectParam<T>(
-        object: any, property: string, parentPath: string, typeClass: new () => T, level = 1, isArrayItem: boolean,
+        object: any, property: string, parentPath: string, TypeClass: new () => T, level = 1, isArrayItem: boolean,
         params: {
-            [key: string]: any;
+            [key: string]: string;
         }):void {
 
         const maxLevel = 3;
@@ -473,7 +478,7 @@ export class Thing {
 
             } else {
 
-                if (objectParams.length) object[property] = new typeClass();
+                if (objectParams.length) object[property] = new TypeClass();
                 else return;
 
             }
@@ -495,7 +500,7 @@ export class Thing {
     }
 
     updateArrayParam(object: any, property: string, typeParams: TypeParams<string>, params: {
-        [key: string]: any;
+        [key: string]: string;
     }): void {
 
         const objectParams: string[] = Object.getOwnPropertyNames(params).filter((p: string) => p.indexOf(property) === 0);
@@ -516,7 +521,7 @@ export class Thing {
 
         }
 
-        const type: TypeParams<any> = {
+        const type: TypeParams<string> = {
             type: typeParams.arrayItemType,
             class: typeParams.class,
         };
@@ -594,7 +599,7 @@ export class Thing {
         if (value === null || value === undefined) return true;
         const arrValues: string[] = value.split(':');
 
-        if (arrValues[0] && Thing.isSortParam(object, arrValues[0])) {
+        if (arrValues[0] && Thing.isSortParam(object as Thing, arrValues[0])) {
 
             return true;
 
@@ -603,9 +608,9 @@ export class Thing {
 
     }
 
-    hasProperty(object: any, property: string): boolean {
+    hasProperty(object: Thing, property: string): boolean {
 
-        const clone: any = Object.assign({}, object);
+        const clone: Thing = Object.assign({}, object);
 
         if (clone === null || clone === undefined || typeof clone !== 'object') return false;
         if (property === null || property === undefined || property === '') return false;
@@ -623,7 +628,8 @@ export class Thing {
             const typeParams: TypeParams<string> = object.getType(arrProperties[0]);
             if (typeParams.type === Types.OBJECT && typeParams.class) {
 
-                clone[arrProperties[0]] = new typeParams.class();
+                const TypeClass = typeParams.class;
+                clone[arrProperties[0]] = new TypeClass();
 
             }
 
@@ -680,7 +686,9 @@ export class Thing {
 
     }
 
-    fromJson(json?: any): this {
+    fromJson(json?: {
+        [key: string]: string;
+    }): this {
 
         const uniqueId: number = this.uniqueId;
         const object: this = this.clone();
@@ -706,9 +714,9 @@ export class Thing {
     updatePropertyByTypeFromJson(
         object: any, property: string, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
         json: {
-            [key: string]: any;
+            [key: string]: string;
         },
-    ) {
+    ): void {
 
         switch (typeParams.type) {
 
@@ -732,7 +740,7 @@ export class Thing {
             case Types.ENUM:
             case Types.DATE:
             case Types.STRING:
-                this.updateStringParam(object, property, json[property], isArrayItem);
+                this.updateStringParam(object as Thing, property, json[property], isArrayItem);
                 break;
             default:
                 break;
@@ -742,7 +750,7 @@ export class Thing {
     }
 
     updateObjectFromJson<T>(
-        object: any, property: string, typeClass: new () => T, level = 1, isArrayItem: boolean,
+        object: any, property: string, TypeClass: new () => T, level = 1, isArrayItem: boolean,
         json: {
             [key: string]: any;
         }): void {
@@ -763,7 +771,7 @@ export class Thing {
 
             } else {
 
-                if (json[property]) object[property] = new typeClass();
+                if (json[property]) object[property] = new TypeClass();
                 else return;
 
             }
@@ -780,7 +788,9 @@ export class Thing {
                         typeParams,
                         level + 1,
                         isArrayItem,
-                        json[property],
+                        json[property] as {
+                            [key: string]: string;
+                        },
                     );
 
                 });
@@ -809,14 +819,14 @@ export class Thing {
 
         }
 
-        const type: TypeParams<any> = {
+        const type: TypeParams<string> = {
             type: typeParams.arrayItemType,
             class: typeParams.class,
         };
 
-        if (json[property].length) {
+        if ((json[property] as any[]).length) {
 
-            json[property].forEach((element: any) => {
+            (json[property] as any[]).forEach((element: any) => {
 
                 const hostObject = {};
                 hostObject[property] = null;

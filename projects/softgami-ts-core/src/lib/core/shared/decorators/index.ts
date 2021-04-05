@@ -17,7 +17,7 @@ export { MinLength } from './min-length.decorator';
 export { MinLengthMetadataKey } from './min-length-metadata-key';
 export { MinMetadataKey } from './min-metadata-key';
 export { Override } from './override.decorator';
-export { OverrideMetadataKey} from './override-metadata-key';
+export { OverrideMetadataKey } from './override-metadata-key';
 export { QueryParam } from './query-param.decorator';
 export { QueryParamMetadataKey } from './query-param-metadata-keys';
 export { Required } from './required.decorator';

@@ -84,30 +84,30 @@ export class Thing {
     @Type({ type: Types.DATE })
     lastUpdate?: Date = null;
 
-    static getCompoundIndexes(classDefinition: any): CompoundIndexOption[] {
+    static getCompoundIndexes(classDefinition: new () => Thing): CompoundIndexOption[] {
 
         return Reflect.getMetadata(CompoundIndexMetadataKey, classDefinition);
 
     }
 
-    static getDeepPropertyInfo(typeClass: new () => Thing, property: string): PropertyInfo {
+    static getDeepPropertyInfo(TypeClass: new () => Thing, property: string): PropertyInfo<Thing> {
 
         const maxLevel = 6;
         let level = 1;
         const arrProperties: string[] = property.split('.');
         let propertyLevel: string;
-        let object: Thing = new typeClass();
+        let object: Thing = new TypeClass();
 
         if (!(object instanceof Thing)) {
 
-            console.warn(`${typeClass.name} is not a instance of Thing.`);
+            console.warn(`${TypeClass.name} is not a instance of Thing.`);
             return null;
 
         }
 
-        let propertyInfo: PropertyInfo;
-        let typeParams: TypeParams<any>;
-        const isIndex = Thing.isIndex(typeClass, property);
+        let propertyInfo: PropertyInfo<Thing>;
+        let typeParams: TypeParams<Thing>;
+        const isIndex = Thing.isIndex(TypeClass, property);
 
         while (arrProperties.length > 0 && level <= maxLevel) {
 
@@ -157,7 +157,9 @@ export class Thing {
 
             }
 
-            object = new typeParams.class();
+            const ClassDef = typeParams.class;
+
+            object = new ClassDef();
 
         }
         return propertyInfo;
@@ -173,6 +175,7 @@ export class Thing {
         const index: CompoundIndexOption = compoundIndexes.find((c: CompoundIndexOption) => {
 
             if (c.fields[property] && Object.getOwnPropertyNames(c.fields).length === 1) return true;
+            return false;
 
         });
 
@@ -196,7 +199,7 @@ export class Thing {
 
     }
 
-    getEnumValues<T>(property: string): string[] {
+    getEnumValues(property: string): string[] {
 
         return Reflect.getMetadata(EnumMetadataKey, this, property);
 
@@ -271,28 +274,28 @@ export class Thing {
 
     }
 
-    getMax(property: string) {
+    getMax(property: string): number {
 
         const max: number = Reflect.getMetadata(MaxMetadataKey, this, property);
         return max;
 
     }
 
-    getMaxLength(property: string) {
+    getMaxLength(property: string): number {
 
         const maxLength: number = Reflect.getMetadata(MaxLengthMetadataKey, this, property);
         return maxLength;
 
     }
 
-    getMin(property: string) {
+    getMin(property: string): number {
 
         const min: number = Reflect.getMetadata(MinMetadataKey, this, property);
         return min;
 
     }
 
-    getMinLength(property: string) {
+    getMinLength(property: string): number {
 
         const minLength: number = Reflect.getMetadata(MinLengthMetadataKey, this, property);
         return minLength;
@@ -309,7 +312,7 @@ export class Thing {
 
     }
 
-    recursiveGenerateParamsObject(source: any, parentPath: string, object: { [param: string]: string | string[] }) {
+    recursiveGenerateParamsObject(source: any, parentPath: string, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } {
 
         if (!(source instanceof Thing)) {
 
@@ -387,7 +390,7 @@ export class Thing {
 
     updatePropertiesFromParams(params: {
         [key: string]: any;
-    }) {
+    }): void {
 
         Object.getOwnPropertyNames(this).forEach((property: string) => {
 
@@ -409,7 +412,7 @@ export class Thing {
         params: {
             [key: string]: any;
         },
-    ) {
+    ): void {
 
         if (!parentPath) parentPath = property;
 
@@ -448,7 +451,7 @@ export class Thing {
         object: any, property: string, parentPath: string, typeClass: new () => T, level = 1, isArrayItem: boolean,
         params: {
             [key: string]: any;
-        }) {
+        }):void {
 
         const maxLevel = 3;
         if (level > maxLevel) return;
@@ -493,7 +496,7 @@ export class Thing {
 
     updateArrayParam(object: any, property: string, typeParams: TypeParams<string>, params: {
         [key: string]: any;
-    }) {
+    }): void {
 
         const objectParams: string[] = Object.getOwnPropertyNames(params).filter((p: string) => p.indexOf(property) === 0);
 
@@ -522,7 +525,7 @@ export class Thing {
 
     }
 
-    updateNumberParam(object: any, property: string, value: string, isArrayItem?: boolean) {
+    updateNumberParam(object: any, property: string, value: string, isArrayItem?: boolean): void {
 
         if (value !== null && value !== undefined) value = value.toString();
 
@@ -535,7 +538,7 @@ export class Thing {
 
     }
 
-    updateDecimalParam(object: any, property: string, value: string, isArrayItem?: boolean) {
+    updateDecimalParam(object: any, property: string, value: string, isArrayItem?: boolean): void {
 
         if (value !== null && value !== undefined) value = value.toString();
 
@@ -548,7 +551,7 @@ export class Thing {
 
     }
 
-    updateBooleanParam(object: any, property: string, value: string, isArrayItem?: boolean) {
+    updateBooleanParam(object: any, property: string, value: string, isArrayItem?: boolean): void {
 
         if (value !== null && value !== undefined) value = value.toString();
 
@@ -568,7 +571,7 @@ export class Thing {
 
     }
 
-    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean) {
+    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean): void {
 
         if (property === 'sort') return this.updateSortParam(object, value, isArrayItem);
 
@@ -576,7 +579,7 @@ export class Thing {
 
     }
 
-    updateSortParam(object: Thing, value: string, isArrayItem?: boolean) {
+    updateSortParam(object: Thing, value: string, isArrayItem?: boolean): void {
 
         if (object.canUpdateSortParam(object, value)) {
 
@@ -600,7 +603,7 @@ export class Thing {
 
     }
 
-    hasProperty(object: any, property: string) {
+    hasProperty(object: any, property: string): boolean {
 
         const clone: any = Object.assign({}, object);
 
@@ -633,7 +636,7 @@ export class Thing {
 
     }
 
-    toCleanObject() {
+    toCleanObject(): this {
 
         Object.getOwnPropertyNames(this).forEach((property: string) => {
 
@@ -742,7 +745,7 @@ export class Thing {
         object: any, property: string, typeClass: new () => T, level = 1, isArrayItem: boolean,
         json: {
             [key: string]: any;
-        }) {
+        }): void {
 
         const maxLevel = 10;
         if (level > maxLevel) return;
@@ -788,7 +791,7 @@ export class Thing {
 
     updateArrayFromJson(object: any, property: string, typeParams: TypeParams<string>, json: {
         [key: string]: any;
-    }) {
+    }): void {
 
         if (object[property]) {
 

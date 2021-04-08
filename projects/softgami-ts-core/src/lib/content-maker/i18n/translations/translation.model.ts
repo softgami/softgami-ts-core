@@ -49,7 +49,7 @@ export class Translation extends Thing {
 
     @Schemable()
     @Required()
-    @Enum(Object.keys(TranslationType).map((key: string) => TranslationType[key]))
+    @Enum(Object.keys(TranslationType).map((key: string) => TranslationType[key as keyof typeof TranslationType]))
     @QueryParam()
     @Sortable({ label: 'TYPE' })
     @Type({ type: Types.ENUM })

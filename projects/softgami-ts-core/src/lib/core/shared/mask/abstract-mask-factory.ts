@@ -3,8 +3,8 @@ import { Language } from '../../../content-maker/i18n/language/language.model';
 
 export abstract class AbstractMaskFactory {
 
-    abstract getMasksByLocale(locale: string, length?: number): string[];
-    abstract getMasksByCountryCode(code: string, length?: number): string[];
+    abstract getMasksByLocale(locale: string | null, length?: number): string[];
+    abstract getMasksByCountryCode(code: string | null, length?: number): string[];
 
     getMasksByCountry(country: Country, length?: number): string[] {
 

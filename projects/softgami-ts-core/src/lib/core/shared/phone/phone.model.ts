@@ -18,7 +18,7 @@ export class Phone extends Thing {
     @Schemable()
     @Required()
     @Trim()
-    @Enum(Object.keys(PhoneType).map((key: string) => PhoneType[key]))
+    @Enum(Object.keys(PhoneType).map((key: string) => PhoneType[key as keyof typeof PhoneType]))
     @Type({ type: Types.ENUM })
     type: PhoneType | null = null;
 

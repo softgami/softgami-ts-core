@@ -19,7 +19,7 @@ export class Currency extends UnityValue {
     @Schemable()
     @Override()
     @Required()
-    @Enum(Object.keys(CurrencyCodes).map((key: string) => CurrencyCodes[key]))
+    @Enum(Object.keys(CurrencyCodes).map((key: string) => CurrencyCodes[key as keyof typeof CurrencyCodes]))
     @Unique()
     @Trim()
     @Type({ type: Types.ENUM })

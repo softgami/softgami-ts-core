@@ -45,7 +45,7 @@ export class Action extends Thing {
     @QueryParam()
     @Trim()
     @Unique()
-    @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key]))
+    @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key as keyof typeof ActionAlias]))
     @Sortable({ label: 'ALIAS' })
     @Type({ type: Types.ENUM })
     alias: ActionAlias | null = null;

@@ -3,8 +3,8 @@ import { Language } from '../../../content-maker/i18n/language/language.model';
 
 export abstract class AbstractRegexFactory {
 
-    abstract getRegexByLocale(locale: string): RegExp;
-    abstract getRegexByCountryCode(code: string): RegExp;
+    abstract getRegexByLocale(locale: string | null): RegExp;
+    abstract getRegexByCountryCode(code: string | null): RegExp;
 
     getRegexByCountry(country: Country): RegExp {
 

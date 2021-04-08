@@ -11,7 +11,7 @@ export class TaxNumberUtilsFactoryService {
 
     }
 
-    getUtilsServiceByCountryCode(code: string, isIndividual?: boolean): AbstractTaxNumberUtilsService {
+    getUtilsServiceByCountryCode(code: string | null, isIndividual?: boolean): AbstractTaxNumberUtilsService {
 
         if (!code) code = 'br';
 

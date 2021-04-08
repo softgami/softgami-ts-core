@@ -26,7 +26,7 @@ export class Address extends Thing {
 
     @Schemable()
     @Required()
-    @Enum(Object.keys(AddressType).map((key: string) => AddressType[key]))
+    @Enum(Object.keys(AddressType).map((key: string) => AddressType[key as keyof typeof AddressType]))
     @Trim()
     @Type({ type: Types.ENUM })
     type: AddressType | null = null;

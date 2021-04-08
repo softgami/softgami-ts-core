@@ -26,7 +26,7 @@ export class BaseDomain<T extends DomainType> extends Thing {
     @QueryParam()
     @Trim()
     @Required()
-    @Enum(Object.keys(DomainType).map((key: string) => DomainType[key]))
+    @Enum(Object.keys(DomainType).map((key: string) => DomainType[key as keyof typeof DomainType]))
     @Type({ type: Types.ENUM })
     type: T | null = null;
 

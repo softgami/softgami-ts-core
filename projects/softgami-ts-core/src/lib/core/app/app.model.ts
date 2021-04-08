@@ -61,7 +61,7 @@ export class App extends Thing {
     @Required()
     @Unique()
     @Type({ type: Types.ENUM })
-    @Enum(Object.keys(AppAlias).map((key: string) => AppAlias[key]))
+    @Enum(Object.keys(AppAlias).map((key: string) => AppAlias[key as keyof typeof AppAlias]))
     alias: AppAlias | null = null;
 
     @Schemable()

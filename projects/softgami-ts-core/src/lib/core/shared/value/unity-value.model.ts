@@ -11,8 +11,8 @@ import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 import { UnityValueCodes } from './unity-value-codes.enum';
 
-const unityValueCodes: string[] = Object.keys(UnityValueCodes).map((k: string) => UnityValueCodes[k]);
-const currencyCodes: string[] = Object.keys(CurrencyCodes).map((k: string) => CurrencyCodes[k]);
+const unityValueCodes: string[] = Object.keys(UnityValueCodes).map<string>((k: string) => UnityValueCodes[k as keyof typeof UnityValueCodes]);
+const currencyCodes: string[] = Object.keys(CurrencyCodes).map<string>((k: string) => CurrencyCodes[k as keyof typeof CurrencyCodes]);
 const codes: string[] = [ ...new Set(unityValueCodes.concat(currencyCodes)) ];
 
 // @dynamic

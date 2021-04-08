@@ -2,10 +2,10 @@ import { ErrorResponse } from './error-response.interface';
 
 export class ServerErrorResponse implements ErrorResponse {
 
-    statusCode: number;
-    message: string;
-    path: string;
-    dateTime: string;
-    errorCode: number;
+    statusCode: number | null = null;
+    message: string | null = null;
+    path: string | null = null;
+    dateTime: string | null = null;
+    errorCode: number | null = null;
 
 }

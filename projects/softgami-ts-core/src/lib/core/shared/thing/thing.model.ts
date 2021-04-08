@@ -93,12 +93,12 @@ export class Thing {
 
     }
 
-    static getDeepPropertyInfo(TypeClass: new () => Thing, property: string): PropertyInfo<Thing> {
+    static getDeepPropertyInfo(TypeClass: new () => Thing, property: string): PropertyInfo<Thing> | null {
 
         const maxLevel = 6;
         let level = 1;
         const arrProperties: string[] = property.split('.');
-        let propertyLevel: string;
+        let propertyLevel = '';
         let object: Thing = new TypeClass();
 
         if (!(object instanceof Thing)) {
@@ -108,13 +108,15 @@ export class Thing {
 
         }
 
-        let propertyInfo: PropertyInfo<Thing>;
+        let propertyInfo: PropertyInfo<Thing> | null = null;
         let typeParams: TypeParams<Thing>;
         const isIndex = Thing.isIndex(TypeClass, property);
 
         while (arrProperties.length > 0 && level <= maxLevel) {
 
-            propertyLevel = arrProperties.shift();
+            const firstElem = arrProperties.shift();
+            if (firstElem) propertyLevel = firstElem;
+            
             level++;
             typeParams = object.getType(propertyLevel);
 
@@ -162,7 +164,7 @@ export class Thing {
 
             const ClassDef = typeParams.class;
 
-            object = new ClassDef();
+            if (ClassDef) object = new ClassDef();
 
         }
         return propertyInfo;
@@ -175,7 +177,7 @@ export class Thing {
 
         if (!compoundIndexes) return false;
 
-        const index: CompoundIndexOption = compoundIndexes.find((c: CompoundIndexOption) => {
+        const index: CompoundIndexOption | undefined = compoundIndexes.find((c: CompoundIndexOption) => {
 
             if (c.fields[property] && Object.getOwnPropertyNames(c.fields).length === 1) return true;
             return false;
@@ -190,7 +192,7 @@ export class Thing {
     static isSortParam(object: Thing, property: string): boolean {
 
         const options: SortBySelectOption[] = object.toSortOptions();
-        const sortOption: SortBySelectOption = options.find((o: SortBySelectOption) => o.field === property);
+        const sortOption: SortBySelectOption | undefined = options.find((o: SortBySelectOption) => o.field === property);
 
         return !!sortOption;
 
@@ -305,9 +307,9 @@ export class Thing {
 
     }
 
-    toQueryParamsObject(): { [param: string]: string | string[] } {
+    toQueryParamsObject(): { [param: string]: string | string[] } | null {
 
-        let object: { [param: string]: string | string[] } = {};
+        let object: { [param: string]: string | string[] } | null = {};
 
         object = this.recursiveGenerateParamsObject(this, null, object);
 
@@ -315,7 +317,7 @@ export class Thing {
 
     }
 
-    recursiveGenerateParamsObject(source: Thing, parentPath: string, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } {
+    recursiveGenerateParamsObject(source: Thing, parentPath: string | null, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } | null {
 
         let isThingInstance = false;
         if (source instanceof Thing) isThingInstance = true;
@@ -328,25 +330,25 @@ export class Thing {
 
         Object.getOwnPropertyNames(source).forEach((property: string) => {
 
-            if (source.isQueryParam(property) === true && source[property] !== null && source[property] !== undefined) {
+            if (source.isQueryParam(property) === true && (source as any)[property] !== null && (source as any)[property] !== undefined) {
 
                 const typeParams: TypeParams<string> = source.getType(property);
                 const joinedPath = parentPath ? [ parentPath, property ].join('.') : property;
                 if (typeParams.type === Types.OBJECT) {
 
-                    this.recursiveGenerateParamsObject(source[property], joinedPath, object);
+                    this.recursiveGenerateParamsObject((source as any)[property], joinedPath, object);
 
                 } else if (typeParams.type === Types.ARRAY) {
 
-                    if (source[property][0]) {
+                    if ((source as any)[property][0]) {
 
                         if (typeParams.arrayItemType === Types.OBJECT) {
 
-                            this.recursiveGenerateParamsObject(source[property][0], joinedPath, object);
+                            this.recursiveGenerateParamsObject((source as any)[property][0], joinedPath, object);
 
                         } else {
 
-                            object[joinedPath] = source[property][0];
+                            object[joinedPath] = (source as any)[property][0];
 
                         }
 
@@ -354,7 +356,7 @@ export class Thing {
 
                 } else {
 
-                    object[joinedPath] = source[property];
+                    object[joinedPath] = (source as any)[property];
 
                 }
 
@@ -413,7 +415,7 @@ export class Thing {
     }
 
     updatePropertyByType(
-        object: any, property: string, parentPath: string, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
+        object: any, property: string, parentPath: string | null, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
         params: {
             [key: string]: string;
         },
@@ -424,7 +426,9 @@ export class Thing {
         switch (typeParams.type) {
 
             case Types.OBJECT:
-                this.updateObjectParam(object, property, parentPath, typeParams.class, level, isArrayItem, params);
+                if (typeParams.class !== undefined) {
+                    this.updateObjectParam(object, property, parentPath, typeParams.class, level, isArrayItem, params);
+                }
                 break;
             case Types.ARRAY:
                 this.updateArrayParam(object, property, typeParams, params);
@@ -521,12 +525,14 @@ export class Thing {
 
         }
 
-        const type: TypeParams<string> = {
-            type: typeParams.arrayItemType,
-            class: typeParams.class,
-        };
-
-        this.updatePropertyByType(object[property], '0', property, type, 1, true, params);
+        if (typeParams.arrayItemType) {
+            const type: TypeParams<string> = {
+                type: typeParams.arrayItemType,
+                class: typeParams.class,
+            };
+    
+            this.updatePropertyByType(object[property], '0', property, type, 1, true, params);
+        }
 
     }
 
@@ -580,7 +586,7 @@ export class Thing {
 
         if (property === 'sort') return this.updateSortParam(object, value, isArrayItem);
 
-        object[property] = value;
+        (object as any)[property] = value;
 
     }
 
@@ -623,13 +629,13 @@ export class Thing {
 
         }
 
-        if (clone[arrProperties[0]] === null || clone[arrProperties[0]] === undefined) {
+        if ((clone as any)[arrProperties[0]] === null || (clone as any)[arrProperties[0]] === undefined) {
 
             const typeParams: TypeParams<string> = object.getType(arrProperties[0]);
             if (typeParams.type === Types.OBJECT && typeParams.class) {
 
                 const TypeClass = typeParams.class;
-                clone[arrProperties[0]] = new TypeClass();
+                (clone as any)[arrProperties[0]] = new TypeClass();
 
             }
 
@@ -638,7 +644,7 @@ export class Thing {
         const subProperties: string[] = Object.assign([], arrProperties);
         subProperties.shift();
 
-        return this.hasProperty(clone[arrProperties[0]], subProperties.join('.'));
+        return this.hasProperty((clone as any)[arrProperties[0]], subProperties.join('.'));
 
     }
 
@@ -646,7 +652,7 @@ export class Thing {
 
         Object.getOwnPropertyNames(this).forEach((property: string) => {
 
-            delete this[property];
+            delete (this as any)[property];
 
         });
         return this;
@@ -658,24 +664,24 @@ export class Thing {
         const clone: this = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
         Object.getOwnPropertyNames(clone).forEach((property: string) => {
 
-            if (clone[property] !== null && clone[property] !== undefined) {
+            if ((clone as any)[property] !== null && (clone as any)[property] !== undefined) {
 
                 const typeParams: TypeParams<string> = clone.getType(property);
                 if (typeParams.type === Types.OBJECT && typeParams.class) {
 
-                    clone[property] = clone[property].clone();
+                    (clone as any)[property] = (clone as any)[property].clone();
 
                 } else if (
                     typeParams.type === Types.ARRAY && typeParams.arrayItemType === Types.OBJECT && typeParams.class &&
-                    clone[property].length) {
+                    (clone as any)[property].length) {
 
-                    const arrClone = [];
-                    clone[property].forEach((obj, index) => {
+                    const arrClone: any[] = [];
+                    (clone as any)[property].forEach((obj: Thing, index: number) => {
 
                         arrClone[index] = obj.clone();
 
                     });
-                    clone[property] = arrClone;
+                    (clone as any)[property] = arrClone;
 
                 }
 
@@ -690,7 +696,7 @@ export class Thing {
         [key: string]: string;
     }): this {
 
-        const uniqueId: number = this.uniqueId;
+        const uniqueId: number | null | undefined = this.uniqueId;
         const object: this = this.clone();
         object.uniqueId = uniqueId;
 
@@ -721,7 +727,9 @@ export class Thing {
         switch (typeParams.type) {
 
             case Types.OBJECT:
-                this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json);
+                if (typeParams.class) {
+                    this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json);
+                }
                 break;
             case Types.ARRAY:
                 this.updateArrayFromJson(object, property, typeParams, json);
@@ -819,24 +827,26 @@ export class Thing {
 
         }
 
-        const type: TypeParams<string> = {
-            type: typeParams.arrayItemType,
-            class: typeParams.class,
-        };
-
-        if ((json[property] as any[]).length) {
-
-            (json[property] as any[]).forEach((element: any) => {
-
-                const hostObject = {};
-                hostObject[property] = null;
-                const jsonHost = {};
-                jsonHost[property] = element;
-                this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost);
-                object[property].push(hostObject[property]);
-
-            });
-
+        if (typeParams.arrayItemType) {
+            const type: TypeParams<string> = {
+                type: typeParams.arrayItemType,
+                class: typeParams.class,
+            };
+    
+            if ((json[property] as any[]).length) {
+    
+                (json[property] as any[]).forEach((element: any) => {
+    
+                    const hostObject = {};
+                    (hostObject as any)[property] = null;
+                    const jsonHost = {};
+                    (jsonHost as any)[property] = element;
+                    this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost);
+                    object[property].push((hostObject as any)[property]);
+    
+                });
+    
+            }
         }
 
     }

@@ -23,7 +23,7 @@ export class BasePerson<T extends PersonType> extends Thing {
     @QueryParam()
     @Required()
     @Trim()
-    @Enum(Object.keys(PersonType).map((key: string) => PersonType[key]))
+    @Enum(Object.keys(PersonType).map((key: string) => PersonType[key as keyof typeof PersonType]))
     @Sortable({ label: 'TYPE' })
     @Type({ type: Types.ENUM })
     type: T | null = null;

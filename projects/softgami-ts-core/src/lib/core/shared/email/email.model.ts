@@ -17,7 +17,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
 export class Email extends Thing {
 
     @Schemable()
-    @Enum(Object.keys(EmailType).map((key: string) => EmailType[key]))
+    @Enum(Object.keys(EmailType).map((key: string) => EmailType[key as keyof typeof EmailType]))
     @Required()
     @Trim()
     @Type({ type: Types.ENUM })

@@ -46,7 +46,7 @@ export class Subject extends Thing {
     @QueryParam()
     @Trim()
     @Unique()
-    @Enum(Object.keys(SubjectAlias).map((key: string) => SubjectAlias[key]))
+    @Enum(Object.keys(SubjectAlias).map((key: string) => SubjectAlias[key as keyof typeof SubjectAlias]))
     @Sortable({ label: 'ALIAS' })
     @Type({ type: Types.ENUM })
     alias: SubjectAlias | null = null;

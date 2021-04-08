@@ -1,7 +1,7 @@
 export interface ErrorResponse {
-    statusCode: number;
-    message: string;
-    path: string;
-    dateTime: string;
-    errorCode: number;
+    statusCode: number | null;
+    message: string | null;
+    path: string | null;
+    dateTime: string | null;
+    errorCode: number | null;
 }

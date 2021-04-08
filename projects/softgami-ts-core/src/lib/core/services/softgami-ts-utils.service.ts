@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export abstract class SoftgamiTsUtilsService {
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     static resolveObjectPath<T>(obj: any, path: string): T | undefined {
 
         if (obj === null || obj === undefined) return undefined;

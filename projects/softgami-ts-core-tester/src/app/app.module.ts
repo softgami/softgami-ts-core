@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { PasswordTesterComponent } from './password-tester/password-tester.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PasswordTesterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PasswordTesterComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+    ],
+    providers: [],
+    bootstrap: [ AppComponent ],
 })
 export class AppModule { }

@@ -20,7 +20,9 @@ export class PasswordTesterComponent {
 
         const inputElement: HTMLInputElement | null = element as HTMLInputElement;
         if (inputElement && inputElement.value) {
+
             this.passwordValidation = PasswordUtilsService.validatePassword(inputElement.value);
+
         }
 
     }
@@ -29,7 +31,9 @@ export class PasswordTesterComponent {
 
         const inputElement: HTMLInputElement | null = element as HTMLInputElement;
         if (inputElement && inputElement.value) {
+
             this.passwordStrength = PasswordUtilsService.getPasswordStrength(inputElement.value);
+
         }
 
     }

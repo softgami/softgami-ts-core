@@ -33,6 +33,7 @@ import { TypeParams } from '../models/type-params.interface';
 import { Types } from '../models/types.enum';
 import { UniqueMetadataKey } from '../decorators/unique-metadata-key';
 
+// @dynamic
 @SkipID()
 export class Thing {
 
@@ -116,7 +117,7 @@ export class Thing {
 
             const firstElem = arrProperties.shift();
             if (firstElem) propertyLevel = firstElem;
-            
+
             level++;
             typeParams = object.getType(propertyLevel);
 
@@ -427,7 +428,9 @@ export class Thing {
 
             case Types.OBJECT:
                 if (typeParams.class !== undefined) {
+
                     this.updateObjectParam(object, property, parentPath, typeParams.class, level, isArrayItem, params);
+
                 }
                 break;
             case Types.ARRAY:
@@ -526,12 +529,14 @@ export class Thing {
         }
 
         if (typeParams.arrayItemType) {
+
             const type: TypeParams<string> = {
                 type: typeParams.arrayItemType,
                 class: typeParams.class,
             };
-    
+
             this.updatePropertyByType(object[property], '0', property, type, 1, true, params);
+
         }
 
     }
@@ -728,7 +733,9 @@ export class Thing {
 
             case Types.OBJECT:
                 if (typeParams.class) {
+
                     this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json);
+
                 }
                 break;
             case Types.ARRAY:
@@ -828,25 +835,27 @@ export class Thing {
         }
 
         if (typeParams.arrayItemType) {
+
             const type: TypeParams<string> = {
                 type: typeParams.arrayItemType,
                 class: typeParams.class,
             };
-    
+
             if ((json[property] as any[]).length) {
-    
+
                 (json[property] as any[]).forEach((element: any) => {
-    
+
                     const hostObject = {};
                     (hostObject as any)[property] = null;
                     const jsonHost = {};
                     (jsonHost as any)[property] = element;
                     this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost);
                     object[property].push((hostObject as any)[property]);
-    
+
                 });
-    
+
             }
+
         }
 
     }

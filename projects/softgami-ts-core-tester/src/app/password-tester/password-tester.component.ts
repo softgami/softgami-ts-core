@@ -11,20 +11,26 @@ import {
 })
 export class PasswordTesterComponent {
 
-    passwordValidation: boolean | PasswordValidationErrors;
+    passwordValidation: boolean | PasswordValidationErrors | null = null;
     PasswordValidationErrorsEnum = PasswordValidationErrors;
     PASSWORD_VALIDATION_SPECIAL_CHARS = PASSWORD_VALIDATION_SPECIAL_CHARS;
-    passwordStrength: number;
+    passwordStrength: number | null = null;
 
-    onChangePassword(value: string): void {
+    onChangePassword(element: EventTarget | null): void {
 
-        this.passwordValidation = PasswordUtilsService.validatePassword(value);
+        const inputElement: HTMLInputElement | null = element as HTMLInputElement;
+        if (inputElement && inputElement.value) {
+            this.passwordValidation = PasswordUtilsService.validatePassword(inputElement.value);
+        }
 
     }
 
-    onChangePasswordStrength(value: string): void {
+    onChangePasswordStrength(element: EventTarget | null): void {
 
-        this.passwordStrength = PasswordUtilsService.getPasswordStrength(value);
+        const inputElement: HTMLInputElement | null = element as HTMLInputElement;
+        if (inputElement && inputElement.value) {
+            this.passwordStrength = PasswordUtilsService.getPasswordStrength(inputElement.value);
+        }
 
     }
 

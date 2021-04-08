@@ -10,10 +10,15 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/softgami-ts-core/tsconfig.lib.json",
             "project": "projects/softgami-ts-core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/softgami-ts-core/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -42,7 +47,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-            "styleext": "scss"
+          "style": "scss"
         }
       },
       "root": "projects/softgami-ts-core-tester",
@@ -57,16 +62,15 @@
             "main": "projects/softgami-ts-core-tester/src/main.ts",
             "polyfills": "projects/softgami-ts-core-tester/src/polyfills.ts",
             "tsConfig": "projects/softgami-ts-core-tester/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/softgami-ts-core-tester/src/favicon.ico",
               "projects/softgami-ts-core-tester/src/assets"
             ],
             "styles": [
-              "projects/softgami-ts-core-tester/src/styles.css"
+              "projects/softgami-ts-core-tester/src/styles.scss"
             ],
-            "scripts": [],
-            "poll": 1000
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -79,9 +83,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -90,6 +92,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -124,7 +131,7 @@
               "projects/softgami-ts-core-tester/src/assets"
             ],
             "styles": [
-              "projects/softgami-ts-core-tester/src/styles.css"
+              "projects/softgami-ts-core-tester/src/styles.scss"
             ],
             "scripts": []
           }
@@ -155,6 +162,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "softgami-ts-core"
 }

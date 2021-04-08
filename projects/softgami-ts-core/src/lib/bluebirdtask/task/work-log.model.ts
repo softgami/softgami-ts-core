@@ -20,31 +20,30 @@ export class WorkLog extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @Type({ type: Types.DECIMAL })
-    timeTracking: number = null;
+    timeTracking: number | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @Type({ type: Types.DATE })
-    startDate: Date = null;
+    startDate: Date | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.DATE })
-    endDate?: Date = null;
+    endDate?: Date | null = null;
 
 }

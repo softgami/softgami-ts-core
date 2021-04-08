@@ -13,16 +13,16 @@ export class JwtPayload extends Thing {
     @Required()
     @Trim()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    userId: string = null;
+    userId: string | null = null;
 
     @Required()
     @Type({ type: Types.ARRAY, class: JwtRole, arrayItemType: Types.OBJECT })
-    roles: JwtRole[] = null;
+    roles: JwtRole[] | null = null;
 
     @Type({ type: Types.NUMBER })
-    iat?: number = null;
+    iat?: number | null = null;
 
     @Type({ type: Types.NUMBER })
-    exp?: number = null;
+    exp?: number | null = null;
 
 }

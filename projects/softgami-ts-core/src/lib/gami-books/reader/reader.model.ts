@@ -11,22 +11,22 @@ export class Reader extends User {
 
     @Schemable()
     @Type({ type: Types.DATE })
-    readAt?: Date = null;
+    readAt?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    issuedAt?: Date = null;
+    issuedAt?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    dueDate?: Date = null;
+    dueDate?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    returnedAt?: Date = null;
+    returnedAt?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    createdAt?: Date = null;
+    createdAt?: Date | null = null;
 
 }

@@ -46,8 +46,7 @@ export class Story extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -56,7 +55,7 @@ export class Story extends Thing {
     @Type({ type: Types.ENUM })
     @Sortable({ label: 'STATUS' })
     @Enum(Object.keys(TaskStatus).map((key: string) => TaskStatus[key]))
-    status: TaskStatus = null;
+    status: TaskStatus | null = null;
 
     @Schemable()
     @Required()
@@ -64,21 +63,21 @@ export class Story extends Thing {
     @ExcludeIndexes()
     @Sortable({ label: 'PROJECT', field: 'project.name' })
     @Type({ type: Types.OBJECT, class: Project })
-    project: Project = null;
+    project: Project | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
+    appInstance: AppInstance | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
@@ -87,18 +86,18 @@ export class Story extends Thing {
     @Unique()
     @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
-    key: string = null;
+    key: string | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Sortable({ label: 'SPRINT', field: 'sprint.name' })
     @Type({ type: Types.OBJECT, class: Sprint })
-    sprint?: Sprint = null;
+    sprint?: Sprint | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    incrementalId?: number = null;
+    incrementalId?: number | null = null;
 
 }

@@ -10,12 +10,12 @@ export class Cover extends Thing {
 
     @Required()
     @Type({ type: Types.NUMBER })
-    index: number = null;
+    index: number | null = null;
 
     @Type({ type: Types.NUMBER })
-    totalCovers?: number = null;
+    totalCovers?: number | null = null;
 
     @Type({ type: Types.BOOLEAN })
-    isLoading?: boolean = null;
+    isLoading?: boolean | null = null;
 
 }

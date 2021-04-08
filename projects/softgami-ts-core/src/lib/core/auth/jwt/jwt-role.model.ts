@@ -12,26 +12,26 @@ export class JwtRole extends Thing {
     @Required()
     @Trim()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    appId: string = null;
+    appId: string | null = null;
 
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    appAlias: string = null;
+    appAlias: string | null = null;
 
     @Required()
     @Trim()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    appInstanceId: string = null;
+    appInstanceId: string | null = null;
 
     @Required()
     @Trim()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    roleId: string = null;
+    roleId: string | null = null;
 
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    roleAlias: string = null;
+    roleAlias: string | null = null;
 
 }

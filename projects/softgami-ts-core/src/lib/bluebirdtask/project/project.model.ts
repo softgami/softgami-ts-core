@@ -44,8 +44,7 @@ export class Project extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -54,7 +53,7 @@ export class Project extends Thing {
     @Unique()
     @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
-    key: string = null;
+    key: string | null = null;
 
     @Schemable()
     @Required()
@@ -63,46 +62,46 @@ export class Project extends Thing {
     @Sortable({ label: 'STATUS' })
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(ProjectStatus).map((key: string) => ProjectStatus[key]))
-    status: ProjectStatus = null;
+    status: ProjectStatus | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
+    appInstance: AppInstance | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    lead?: User = null;
+    lead?: User | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    defaultAssignee?: User = null;
+    defaultAssignee?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
-    members?: User[] = null;
+    members?: User[] | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    incrementalId?: number = null;
+    incrementalId?: number | null = null;
 
 }

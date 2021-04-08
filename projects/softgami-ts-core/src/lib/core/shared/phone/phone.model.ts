@@ -20,23 +20,23 @@ export class Phone extends Thing {
     @Trim()
     @Enum(Object.keys(PhoneType).map((key: string) => PhoneType[key]))
     @Type({ type: Types.ENUM })
-    type: PhoneType = null;
+    type: PhoneType | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    number: string = null;
+    number: string | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isPrimary: boolean = null;
+    isPrimary: boolean | null = null;
 
     @Schemable()
     @Default(false)
     @Type({ type: Types.BOOLEAN })
-    isVerified?: boolean = null;
+    isVerified?: boolean | null = null;
 
 }

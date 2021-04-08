@@ -13,11 +13,11 @@ export class Organization extends Thing {
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    taxNumber?: string = null;
+    taxNumber?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
 }

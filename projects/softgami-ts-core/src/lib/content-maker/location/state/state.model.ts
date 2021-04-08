@@ -28,20 +28,19 @@ export class State extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @ExcludeIndexes()
     @Sortable({ label: 'COUNTRY', field: 'country.name' })
     @Type({ type: Types.OBJECT, class: Country })
-    country: Country = null;
+    country: Country | null = null;
 
     @Schemable()
     @Trim()
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
-    code?: string = null;
+    code?: string | null = null;
 
 }

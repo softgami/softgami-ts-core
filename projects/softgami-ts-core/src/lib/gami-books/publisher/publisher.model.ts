@@ -28,13 +28,12 @@ export class Publisher extends Organization {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
 }

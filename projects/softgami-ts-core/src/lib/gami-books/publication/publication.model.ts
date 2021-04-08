@@ -90,15 +90,14 @@ export class Publication extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isActive: boolean = null;
+    isActive: boolean | null = null;
 
     @Schemable()
     @Required()
@@ -106,20 +105,20 @@ export class Publication extends Thing {
     @QueryParam()
     @Sortable({ label: 'LANGUAGE', field: 'language.name' })
     @Type({ type: Types.OBJECT, class: Language })
-    language: Language = null;
+    language: Language | null = null;
 
     @Schemable()
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
     @Default(false)
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isDigital: boolean = null;
+    isDigital: boolean | null = null;
 
     @Schemable()
     @Required()
@@ -131,174 +130,174 @@ export class Publication extends Thing {
         { label: 'ORDER', field: 'collections.orderIndex' },
     ])
     @Type({ type: Types.ARRAY, class: Collection, arrayItemType: Types.OBJECT })
-    collections: Collection[] = null;
+    collections: Collection[] | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
+    appInstance: AppInstance | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    originalName?: string = null;
+    originalName?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Language })
-    originalLanguage?: Language = null;
+    originalLanguage?: Language | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Type({ type: Types.STRING })
-    subTitle?: string = null;
+    subTitle?: string | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    originalSubTitle?: string = null;
+    originalSubTitle?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @QueryParam()
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
-    authors?: Person<PersonType.AUTHOR>[] = null;
+    authors?: Person<PersonType.AUTHOR>[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
-    illustrators?: Person<PersonType.ILLUSTRATOR>[] = null;
+    illustrators?: Person<PersonType.ILLUSTRATOR>[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: Publisher })
-    publisher?: Publisher = null;
+    publisher?: Publisher | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Publisher })
-    originalPublisher?: Publisher = null;
+    originalPublisher?: Publisher | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
-    translators?: Person<PersonType.TRANSLATOR>[] = null;
+    translators?: Person<PersonType.TRANSLATOR>[] | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    contentRating?: string = null;
+    contentRating?: string | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    friendlyUrl?: string = null;
+    friendlyUrl?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'DIGITAL_PUBLICATION_FORMAT', field: 'digitalPublicationFormat.name' })
     @Type({ type: Types.OBJECT, class: Domain })
-    digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT> = null;
+    digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT> | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    sizeBytes?: number = null;
+    sizeBytes?: number | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'QUALITY' })
     @Type({ type: Types.NUMBER })
-    quality?: number = null;
+    quality?: number | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
-    code?: string = null;
+    code?: string | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'NUMBER' })
     @Type({ type: Types.STRING })
-    number?: string = null;
+    number?: string | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'NUMBER_OF_PAGES' })
     @Type({ type: Types.NUMBER })
-    numberOfPages?: number = null;
+    numberOfPages?: number | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'YEAR' })
     @Type({ type: Types.NUMBER })
-    year?: number = null;
+    year?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    originalYear?: number = null;
+    originalYear?: number | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'ISBN10' })
     @Type({ type: Types.STRING })
-    isbn10?: string = null;
+    isbn10?: string | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'ISBN13' })
     @Type({ type: Types.STRING })
-    isbn13?: string = null;
+    isbn13?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: QuantitativeValue, arrayItemType: Types.OBJECT })
-    dimensions?: QuantitativeValue[] = null;
+    dimensions?: QuantitativeValue[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: QuantitativeValue })
-    weight?: QuantitativeValue = null;
+    weight?: QuantitativeValue | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'PUBLICATION_COVER_TYPE', field: 'publicationCoverType.name' })
     @Type({ type: Types.OBJECT, class: Domain })
-    publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE> = null;
+    publicationCoverType?: Domain<DomainType.PUBLICATION_COVER_TYPE> | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    edition?: string = null;
+    edition?: string | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    originalEdition?: string = null;
+    originalEdition?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: City })
-    city?: City = null;
+    city?: City | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: City })
-    originalCity?: City = null;
+    originalCity?: City | null = null;
 
     @Schemable()
     @Default(null)
@@ -306,42 +305,42 @@ export class Publication extends Thing {
     @QueryParam()
     @Sortable({ label: 'TAGS', field: 'tags' })
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
-    tags?: string[] = null;
+    tags?: string[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: MonetaryValue })
-    price?: MonetaryValue = null;
+    price?: MonetaryValue | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    extraContent?: string = null;
+    extraContent?: string | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    purchasedAt?: Date = null;
+    purchasedAt?: Date | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Reader, arrayItemType: Types.OBJECT })
-    readers?: Reader[] = null;
+    readers?: Reader[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Reader })
-    currentReader?: Reader = null;
+    currentReader?: Reader | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Reader, arrayItemType: Types.OBJECT })
-    waitingList?: Reader[] = null;
+    waitingList?: Reader[] | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    sourcePublicationId?: string = null;
+    sourcePublicationId?: string | null = null;
 
 }

@@ -24,8 +24,7 @@ export class Language extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -35,7 +34,7 @@ export class Language extends Thing {
     @Override()
     @Unique()
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Schemable()
     @Required()
@@ -44,13 +43,13 @@ export class Language extends Thing {
     @QueryParam()
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
-    code: string = null;
+    code: string | null = null;
 
     @Schemable()
     @Override()
     @Trim()
     @QueryParam()
     @Type({ type: Types.DATE })
-    createdAt?: Date = null;
+    createdAt?: Date | null = null;
 
 }

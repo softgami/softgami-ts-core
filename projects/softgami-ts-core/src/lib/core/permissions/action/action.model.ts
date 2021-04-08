@@ -28,8 +28,7 @@ export class Action extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -39,7 +38,7 @@ export class Action extends Thing {
     @Unique()
     @Sortable({ label: 'NAME' })
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Schemable()
     @Required()
@@ -49,13 +48,13 @@ export class Action extends Thing {
     @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key]))
     @Sortable({ label: 'ALIAS' })
     @Type({ type: Types.ENUM })
-    alias: ActionAlias = null;
+    alias: ActionAlias | null = null;
 
     @Schemable()
     @QueryParam()
     @Required()
     @Sortable({ label: 'VALUE' })
     @Type({ type: Types.NUMBER })
-    value: number = null;
+    value: number | null = null;
 
 }

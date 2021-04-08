@@ -20,17 +20,17 @@ export class ChecklistItem extends Thing {
     @Default(false)
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isDone: boolean = null;
+    isDone: boolean | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    orderIndex?: number = null;
+    orderIndex?: number | null = null;
 
 }

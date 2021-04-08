@@ -31,8 +31,7 @@ export class Checklist extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -40,18 +39,18 @@ export class Checklist extends Thing {
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: ChecklistItem, arrayItemType: Types.OBJECT })
-    items: ChecklistItem[] = null;
+    items: ChecklistItem[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
 }

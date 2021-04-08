@@ -21,24 +21,24 @@ export class Email extends Thing {
     @Required()
     @Trim()
     @Type({ type: Types.ENUM })
-    type: EmailType = null;
+    type: EmailType | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Unique()
     @Type({ type: Types.STRING })
-    address: string = null;
+    address: string | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isPrimary: boolean = null;
+    isPrimary: boolean | null = null;
 
     @Schemable()
     @Default(false)
     @Type({ type: Types.BOOLEAN })
-    isVerified?: boolean = null;
+    isVerified?: boolean | null = null;
 
 }

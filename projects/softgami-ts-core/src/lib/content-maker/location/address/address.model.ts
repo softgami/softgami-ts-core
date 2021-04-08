@@ -22,56 +22,55 @@ export class Address extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Enum(Object.keys(AddressType).map((key: string) => AddressType[key]))
     @Trim()
     @Type({ type: Types.ENUM })
-    type: AddressType = null;
+    type: AddressType | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    postalCode: string = null;
+    postalCode: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    street: string = null;
+    street: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    number: string = null;
+    number: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    complement: string = null;
+    complement: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    district: string = null;
+    district: string | null = null;
 
     @Schemable()
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: City })
-    city: City = null;
+    city: City | null = null;
 
 }

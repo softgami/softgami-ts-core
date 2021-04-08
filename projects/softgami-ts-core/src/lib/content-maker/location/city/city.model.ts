@@ -30,8 +30,7 @@ export class City extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -41,6 +40,6 @@ export class City extends Thing {
         { label: 'COUNTRY', field: 'state.country.name' },
     ])
     @Type({ type: Types.OBJECT, class: State })
-    state: State = null;
+    state: State | null = null;
 
 }

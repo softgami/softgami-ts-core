@@ -29,26 +29,25 @@ export class Permission extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Subject })
-    subject: Subject = null;
+    subject: Subject | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Role })
-    role: Role = null;
+    role: Role | null = null;
 
     @Required()
     @Schemable()
     @Type({ type: Types.NUMBER })
-    value: number = null;
+    value: number | null = null;
 
 }

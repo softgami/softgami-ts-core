@@ -37,71 +37,70 @@ export class Collection extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isActive: boolean = null;
+    isActive: boolean | null = null;
 
     @Schemable()
     @Default(false)
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isCompleted?: boolean = null;
+    isCompleted?: boolean | null = null;
 
     @Schemable()
     @Default(false)
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isFinished?: boolean = null;
+    isFinished?: boolean | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    orderIndex?: number = null;
+    orderIndex?: number | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'COLLECTION', field: 'parent.name' })
     @Type({ type: Types.OBJECT, class: Collection, isSelf: true })
-    parent?: Collection = null;
+    parent?: Collection | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Collection, arrayItemType: Types.OBJECT, isSelf: true })
-    ancestors?: Collection[] = null;
+    ancestors?: Collection[] | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    friendlyUrl?: string = null;
+    friendlyUrl?: string | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    numberOfPublications?: number = null;
+    numberOfPublications?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    totalOfPublications?: number = null;
+    totalOfPublications?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    numberOfCollections?: number = null;
+    numberOfCollections?: number | null = null;
 
 }

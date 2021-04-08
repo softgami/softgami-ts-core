@@ -31,8 +31,7 @@ export class Country extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -42,7 +41,7 @@ export class Country extends Thing {
     @Override()
     @Unique()
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Schemable()
     @Required()
@@ -51,14 +50,14 @@ export class Country extends Thing {
     @QueryParam()
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
-    code: string = null;
+    code: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'LANGUAGE', field: 'language.name' })
     @Type({ type: Types.OBJECT, class: Language })
-    language?: Language = null;
+    language?: Language | null = null;
 
     @Schemable()
     @Default(undefined)
@@ -66,6 +65,6 @@ export class Country extends Thing {
     @QueryParam()
     @Sortable({ label: 'LANGUAGE', field: 'language.name' })
     @Type({ type: Types.ARRAY, class: Language, arrayItemType: Types.OBJECT })
-    languages?: Language = null;
+    languages?: Language | null = null;
 
 }

@@ -40,51 +40,50 @@ export class AppPlan extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    alias: string = null;
+    alias: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    appId: string = null;
+    appId: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    icon?: string = null;
+    icon?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: AppPlanFeature, arrayItemType: Types.OBJECT })
-    appPlanFeatures?: AppPlanFeature[] = null;
+    appPlanFeatures?: AppPlanFeature[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: MonetaryValue, arrayItemType: Types.OBJECT })
-    prices?: MonetaryValue[] = null;
+    prices?: MonetaryValue[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: MonetaryValue, arrayItemType: Types.OBJECT })
-    pricesHistory?: MonetaryValue[] = null;
+    pricesHistory?: MonetaryValue[] | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    trialDays?: number = null;
+    trialDays?: number | null = null;
 
 }

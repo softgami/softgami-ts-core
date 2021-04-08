@@ -47,8 +47,7 @@ export class App extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -56,42 +55,42 @@ export class App extends Thing {
     @Override()
     @Unique()
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Schemable()
     @Required()
     @Unique()
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(AppAlias).map((key: string) => AppAlias[key]))
-    alias: AppAlias = null;
+    alias: AppAlias | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isActive: boolean = null;
+    isActive: boolean | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isPublic: boolean = null;
+    isPublic: boolean | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
-    roles?: Role[] = null;
+    roles?: Role[] | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: AppPlan, arrayItemType: Types.OBJECT })
-    appPlans?: AppPlan[] = null;
+    appPlans?: AppPlan[] | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    icon: string = null;
+    icon: string | null = null;
 
 }

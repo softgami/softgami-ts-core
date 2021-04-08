@@ -12,31 +12,31 @@ export class Jwt extends Thing {
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    accessToken: string = null;
+    accessToken: string | null = null;
 
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    tokenType: string = null;
+    tokenType: string | null = null;
 
     @Required()
     @Type({ type: Types.NUMBER })
-    expiresIn: number = null;
+    expiresIn: number | null = null;
 
     @Trim()
     @Type({ type: Types.STRING })
-    refreshToken?: string = null;
+    refreshToken?: string | null = null;
 
     @Trim()
     @Type({ type: Types.STRING })
-    idToken?: string = null;
+    idToken?: string | null = null;
 
     @Trim()
     @Type({ type: Types.STRING })
-    scope?: string = null;
+    scope?: string | null = null;
 
     @Trim()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    userId?: string = null;
+    userId?: string | null = null;
 
 }

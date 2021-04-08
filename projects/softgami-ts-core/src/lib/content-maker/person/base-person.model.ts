@@ -26,43 +26,43 @@ export class BasePerson<T extends PersonType> extends Thing {
     @Enum(Object.keys(PersonType).map((key: string) => PersonType[key]))
     @Sortable({ label: 'TYPE' })
     @Type({ type: Types.ENUM })
-    type: T = null;
+    type: T | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: BaseDomain })
-    gender?: BaseDomain<DomainType.GENDER> = null;
+    gender?: BaseDomain<DomainType.GENDER> | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    birthDate?: Date = null;
+    birthDate?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    deathDate?: Date = null;
+    deathDate?: Date | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Country })
-    birthPlace?: Country = null;
+    birthPlace?: Country | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Country })
-    nationality?: Country = null;
+    nationality?: Country | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: QuantitativeValue })
-    height?: QuantitativeValue = null;
+    height?: QuantitativeValue | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: QuantitativeValue })
-    weight?: QuantitativeValue = null;
+    weight?: QuantitativeValue | null = null;
 
     @Schemable()
     @Type({ type: Types.STRING })
-    jobTitle?: string = null;
+    jobTitle?: string | null = null;
 
 }

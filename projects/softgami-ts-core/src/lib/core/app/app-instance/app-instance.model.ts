@@ -43,48 +43,47 @@ export class AppInstance extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @QueryParam()
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: App })
-    app: App = null;
+    app: App | null = null;
 
     @Schemable()
     @QueryParam()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isActive: boolean = null;
+    isActive: boolean | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
-    roles?: Role[] = null;
+    roles?: Role[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.OBJECT, class: AppPlan })
-    appPlans?: AppPlan[] = null;
+    appPlans?: AppPlan[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
-    users?: User[] = null;
+    users?: User[] | null = null;
 
 }

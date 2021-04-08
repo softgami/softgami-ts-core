@@ -15,28 +15,28 @@ export class QuantitativeValue extends Thing {
     @Schemable()
     @Required()
     @Type({ type: Types.DECIMAL })
-    value: number = null;
+    value: number | null = null;
 
     @Schemable()
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: UnityValue })
-    unityValue: UnityValue = null;
+    unityValue: UnityValue | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    maxValue?: number = null;
+    maxValue?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    minValue?: number = null;
+    minValue?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    validFrom?: Date = null;
+    validFrom?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    validThrough?: Date = null;
+    validThrough?: Date | null = null;
 
 }

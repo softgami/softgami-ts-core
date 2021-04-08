@@ -21,21 +21,20 @@ export class Comment extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
+    appInstance: AppInstance | null = null;
 
 }

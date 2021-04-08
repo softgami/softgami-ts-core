@@ -20,27 +20,27 @@ export class PermissionCheck extends Thing {
     @Required()
     @Enum(Object.keys(SubjectAlias).map((key: string) => SubjectAlias[key]))
     @Type({ type: Types.ENUM })
-    subject: SubjectAlias = null;
+    subject: SubjectAlias | null = null;
 
     @Schemable()
     @Required()
     @Enum(Object.keys(Actions).map((key: string) => Actions[key]))
     @Type({ type: Types.ENUM })
-    action: Actions = null;
+    action: Actions | null = null;
 
     @Schemable()
     @Enum(Object.keys(RoleAlias).map((key: string) => RoleAlias[key]))
     @Type({ type: Types.ENUM })
-    role?: RoleAlias = null;
+    role?: RoleAlias | null = null;
 
     @Schemable()
     @Type({ type: Types.BOOLEAN })
     @Default(true)
-    shouldValidateBodyAppInstance?: boolean = null;
+    shouldValidateBodyAppInstance?: boolean | null = null;
 
     @Schemable()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    shouldValidateQueryAppInstance?: boolean = null;
+    shouldValidateQueryAppInstance?: boolean | null = null;
 
 }

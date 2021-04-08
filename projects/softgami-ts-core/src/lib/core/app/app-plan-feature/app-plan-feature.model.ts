@@ -18,28 +18,27 @@ export class AppPlanFeature extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    alias: string = null;
+    alias: string | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    value?: number = null;
+    value?: number | null = null;
 
     @Schemable()
     @Trim()
     @Default(null)
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
-    info?: string[] = null;
+    info?: string[] | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    icon?: string = null;
+    icon?: string | null = null;
 
 }

@@ -23,6 +23,6 @@ export class Currency extends UnityValue {
     @Unique()
     @Trim()
     @Type({ type: Types.ENUM })
-    code: CurrencyCodes = null;
+    code: CurrencyCodes | null = null;
 
 }

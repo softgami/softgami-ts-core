@@ -20,8 +20,7 @@ export class BaseDomain<T extends DomainType> extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @QueryParam()
@@ -29,19 +28,19 @@ export class BaseDomain<T extends DomainType> extends Thing {
     @Required()
     @Enum(Object.keys(DomainType).map((key: string) => DomainType[key]))
     @Type({ type: Types.ENUM })
-    type: T = null;
+    type: T | null = null;
 
     @Schemable()
     @QueryParam()
     @Trim()
     @Required()
     @Type({ type: Types.STRING })
-    value: string = null;
+    value: string | null = null;
 
     @Schemable()
     @QueryParam()
     @Trim()
     @Type({ type: Types.STRING })
-    additionalMetadata?: string = null;
+    additionalMetadata?: string | null = null;
 
 }

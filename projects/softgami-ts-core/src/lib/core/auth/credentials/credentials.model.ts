@@ -16,19 +16,19 @@ export class Credentials extends Thing {
     @Schemable()
     @Required()
     @Type({ type: Types.OBJECT, class: Password })
-    current: Password = null;
+    current: Password | null = null;
 
     @Schemable()
     @Type({ type: Types.OBJECT, class: Password })
-    new?: Password = null;
+    new?: Password | null = null;
 
     @Schemable()
     @Type({ type: Types.OBJECT, class: Password })
-    confirm?: Password = null;
+    confirm?: Password | null = null;
 
     @Schemable()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Password, arrayItemType: Types.OBJECT })
-    old?: Password[] = null;
+    old?: Password[] | null = null;
 
 }

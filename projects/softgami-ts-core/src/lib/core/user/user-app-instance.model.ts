@@ -16,12 +16,12 @@ export class UserAppInstance extends Thing {
     @Schemable()
     @QueryParam()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    appInstanceId: string = null;
+    appInstanceId: string | null = null;
 
     @Schemable()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
-    roles?: Role[] = null;
+    roles?: Role[] | null = null;
 
 }

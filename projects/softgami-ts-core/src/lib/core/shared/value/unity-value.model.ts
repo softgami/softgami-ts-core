@@ -26,29 +26,29 @@ export class UnityValue extends Thing {
     @Trim()
     @Enum(codes)
     @Type({ type: Types.ENUM })
-    code: UnityValueCodes | CurrencyCodes = null;
+    code: UnityValueCodes | CurrencyCodes | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    symbol?: string = null;
+    symbol?: string | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    nativeSymbol?: string = null;
+    nativeSymbol?: string | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    decimalDigits?: number = null;
+    decimalDigits?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    rounding?: number = null;
+    rounding?: number | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    pluralName?: string = null;
+    pluralName?: string | null = null;
 
 }

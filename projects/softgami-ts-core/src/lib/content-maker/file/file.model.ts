@@ -43,79 +43,78 @@ export class File extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isFile: boolean = null;
+    isFile: boolean | null = null;
 
     @Schemable()
     @Required()
     @Default(false)
     @Type({ type: Types.BOOLEAN })
-    isDirectory: boolean = null;
+    isDirectory: boolean | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    path?: string = null;
+    path?: string | null = null;
 
     @Schemable()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isPublic?: boolean = null;
+    isPublic?: boolean | null = null;
 
     @Schemable()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isPersonal?: boolean = null;
+    isPersonal?: boolean | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    mimetype?: string = null;
+    mimetype?: string | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    size?: number = null;
+    size?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    totalFilesChildren?: number = null;
+    totalFilesChildren?: number | null = null;
 
     @Schemable()
     @Type({ type: Types.NUMBER })
-    totalDirectoriesChildren?: number = null;
+    totalDirectoriesChildren?: number | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: File, isSelf: true })
-    parent?: File = null;
+    parent?: File | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: File, arrayItemType: Types.OBJECT, isSelf: true })
-    ancestors?: File[] = null;
+    ancestors?: File[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: FileDownload, arrayItemType: Types.OBJECT })
-    downloads?: FileDownload[] = null;
+    downloads?: FileDownload[] | null = null;
 
 }

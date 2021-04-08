@@ -26,12 +26,12 @@ export class Domain<T extends DomainType> extends BaseDomain<T> {
 
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
 }

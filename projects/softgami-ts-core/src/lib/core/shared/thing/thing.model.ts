@@ -42,50 +42,50 @@ export class Thing {
     @QueryParam()
     @Sortable({ label: 'NAME' })
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Type({ type: Types.NUMBER })
-    uniqueId?: number = new Date().getTime();
+    uniqueId?: number | null = new Date().getTime();
 
     @QueryParam()
     @Type({ type: Types.STRING })
-    sort?: string = null;
+    sort?: string | null = null;
 
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    limit?: number = null;
+    limit?: number | null = null;
 
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    skip?: number = null;
+    skip?: number | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Type({ type: Types.STRING })
-    description?: string = null;
+    description?: string | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    url?: string = null;
+    url?: string | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    image?: string = null;
+    image?: string | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'CREATED_AT' })
     @Type({ type: Types.DATE })
-    createdAt?: Date = null;
+    createdAt?: Date | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.DATE })
-    lastUpdate?: Date = null;
+    lastUpdate?: Date | null = null;
 
     static getCompoundIndexes(classDefinition: new () => Thing): CompoundIndexOption[] {
 

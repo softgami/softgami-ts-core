@@ -81,7 +81,7 @@ export class Task extends Thing implements BoardListItem {
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
     // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -90,7 +90,7 @@ export class Task extends Thing implements BoardListItem {
     @Type({ type: Types.ENUM })
     @Sortable({ label: 'TYPE' })
     @Enum(Object.keys(TaskType).map((key: string) => TaskType[key]))
-    type: TaskType = null;
+    type: TaskType | null = null;
 
     @Schemable()
     @Required()
@@ -99,7 +99,7 @@ export class Task extends Thing implements BoardListItem {
     @Unique()
     @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
-    key: string = null;
+    key: string | null = null;
 
     @Schemable()
     @Required()
@@ -108,21 +108,21 @@ export class Task extends Thing implements BoardListItem {
     @Sortable({ label: 'STATUS' })
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(TaskStatus).map((key: string) => TaskStatus[key]))
-    status: TaskStatus = null;
+    status: TaskStatus | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
+    appInstance: AppInstance | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
@@ -130,7 +130,7 @@ export class Task extends Thing implements BoardListItem {
     @ExcludeIndexes()
     @Sortable({ label: 'PROJECT', field: 'project.name' })
     @Type({ type: Types.OBJECT, class: Project })
-    project: Project = null;
+    project: Project | null = null;
 
     @Schemable()
     @Required()
@@ -138,39 +138,39 @@ export class Task extends Thing implements BoardListItem {
     @QueryParam()
     @Sortable({ label: 'BACKLOG' })
     @Type({ type: Types.BOOLEAN })
-    isBacklog: boolean = null;
+    isBacklog: boolean | null = null;
 
     @Schemable()
     @Sortable({ label: 'PERCENT_DONE' })
     @Type({ type: Types.NUMBER })
-    percentDone?: number = null;
+    percentDone?: number | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'STORY', field: 'story.name' })
     @Type({ type: Types.OBJECT, class: Story })
-    story?: Story = null;
+    story?: Story | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: File, arrayItemType: Types.OBJECT })
-    attachments?: File[] = null;
+    attachments?: File[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
-    assignees?: User[] = null;
+    assignees?: User[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    reporter?: User = null;
+    reporter?: User | null = null;
 
     @Schemable()
     @Trim()
@@ -178,71 +178,71 @@ export class Task extends Thing implements BoardListItem {
     @Sortable({ label: 'PRIORITY' })
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(Priority).map((key: string) => Priority[key]))
-    priority?: Priority = null;
+    priority?: Priority | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'SPRINT', field: 'sprint.name' })
     @Type({ type: Types.OBJECT, class: Sprint })
-    sprint?: Sprint = null;
+    sprint?: Sprint | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: WorkLog, arrayItemType: Types.OBJECT })
-    workLogs?: WorkLog[] = null;
+    workLogs?: WorkLog[] | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'DUE_DATE' })
     @Type({ type: Types.DATE })
-    dueDate?: Date = null;
+    dueDate?: Date | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'START_DATE' })
     @Type({ type: Types.DATE })
-    startDate?: Date = null;
+    startDate?: Date | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'FINISH_DATE' })
     @Type({ type: Types.DATE })
-    finishedAt?: Date = null;
+    finishedAt?: Date | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Comment, arrayItemType: Types.OBJECT })
-    comments?: Comment[] = null;
+    comments?: Comment[] | null = null;
 
     @Schemable()
     @Sortable({ label: 'ESTIMATE_HOURS' })
     @Type({ type: Types.DECIMAL })
-    estimateHours?: number = null;
+    estimateHours?: number | null = null;
 
     @Schemable()
     @Sortable({ label: 'ESTIMATE_POINTS' })
     @Type({ type: Types.NUMBER })
-    estimatePoints?: number = null;
+    estimatePoints?: number | null = null;
 
     @Schemable()
     @Sortable({ label: 'TIME_TRACKING_HOURS' })
     @Type({ type: Types.DECIMAL })
-    timeTrackingHours?: number = null;
+    timeTrackingHours?: number | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Checklist, arrayItemType: Types.OBJECT })
-    checklists?: Checklist[] = null;
+    checklists?: Checklist[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
@@ -251,21 +251,21 @@ export class Task extends Thing implements BoardListItem {
     @Trim()
     @Sortable({ label: 'TAGS' })
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
-    tags?: string[] = null;
+    tags?: string[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: BoardList })
-    boardList?: BoardList = null;
+    boardList?: BoardList | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    orderIndex?: number = null;
+    orderIndex?: number | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    incrementalId?: number = null;
+    incrementalId?: number | null = null;
 
 }

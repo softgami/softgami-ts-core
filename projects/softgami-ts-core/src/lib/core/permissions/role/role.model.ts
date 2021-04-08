@@ -29,8 +29,7 @@ export class Role extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -40,7 +39,7 @@ export class Role extends Thing {
     @Unique()
     @Sortable({ label: 'NAME' })
     @Type({ type: Types.STRING })
-    name: string = null;
+    name: string | null = null;
 
     @Schemable()
     @Required()
@@ -50,7 +49,7 @@ export class Role extends Thing {
     @Enum(Object.keys(RoleAlias).map((key: string) => RoleAlias[key]))
     @Sortable({ label: 'ALIAS' })
     @Type({ type: Types.ENUM })
-    alias: RoleAlias = null;
+    alias: RoleAlias | null = null;
 
     @Schemable()
     @Required()
@@ -58,6 +57,6 @@ export class Role extends Thing {
     @Default(true)
     @Sortable({ label: 'STATUS' })
     @Type({ type: Types.BOOLEAN })
-    isActive: boolean = null;
+    isActive: boolean | null = null;
 
 }

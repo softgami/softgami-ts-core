@@ -17,11 +17,11 @@ export class FileDownload extends Thing {
     @Required()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    user: User = null;
+    user: User | null = null;
 
     @Schemable()
     @Required()
     @Type({ type: Types.DATE })
-    downloadedAt: Date = null;
+    downloadedAt: Date | null = null;
 
 }

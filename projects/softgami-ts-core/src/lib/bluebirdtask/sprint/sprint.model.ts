@@ -48,8 +48,7 @@ export class Sprint extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -58,7 +57,7 @@ export class Sprint extends Thing {
     @Sortable({ label: 'STATUS' })
     @Type({ type: Types.ENUM })
     @Enum(Object.keys(SprintStatus).map((key: string) => SprintStatus[key]))
-    status: SprintStatus = null;
+    status: SprintStatus | null = null;
 
     @Schemable()
     @Required()
@@ -66,21 +65,21 @@ export class Sprint extends Thing {
     @ExcludeIndexes()
     @Sortable({ label: 'PROJECT', field: 'project.name' })
     @Type({ type: Types.OBJECT, class: Project })
-    project: Project = null;
+    project: Project | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance: AppInstance = null;
+    appInstance: AppInstance | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator: User = null;
+    creator: User | null = null;
 
     @Schemable()
     @Required()
@@ -89,38 +88,38 @@ export class Sprint extends Thing {
     @Unique()
     @Sortable({ label: 'KEY' })
     @Type({ type: Types.STRING })
-    key: string = null;
+    key: string | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'DUE_DATE' })
     @Type({ type: Types.DATE })
-    dueDate?: Date = null;
+    dueDate?: Date | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'START_DATE' })
     @Type({ type: Types.DATE })
-    startedAt?: Date = null;
+    startedAt?: Date | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Sortable({ label: 'FINISH_DATE' })
     @Type({ type: Types.DATE })
-    finishedAt?: Date = null;
+    finishedAt?: Date | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Board })
-    board?: Board = null;
+    board?: Board | null = null;
 
     @Schemable()
     @QueryParam()
     @Type({ type: Types.NUMBER })
-    incrementalId?: number = null;
+    incrementalId?: number | null = null;
 
 }

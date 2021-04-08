@@ -71,8 +71,7 @@ export class User extends BasePerson<PersonType.USER> {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -81,109 +80,109 @@ export class User extends BasePerson<PersonType.USER> {
     @Enum([ PersonType.USER ])
     @Override()
     @Type({ type: Types.ENUM })
-    type: PersonType.USER = null;
+    type: PersonType.USER | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isIndividual: boolean = null;
+    isIndividual: boolean | null = null;
 
     @Schemable()
     @Default(undefined)
     @QueryParam()
     @Type({ type: Types.ARRAY, class: Email, arrayItemType: Types.OBJECT })
-    emails?: Email[] = null;
+    emails?: Email[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Credentials })
-    credentials?: Credentials = null;
+    credentials?: Credentials | null = null;
 
     @Schemable()
     @Default(true)
     @Type({ type: Types.BOOLEAN })
-    isActive?: boolean = null;
+    isActive?: boolean | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: Language })
-    language?: Language = null;
+    language?: Language | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Type({ type: Types.STRING })
-    timezone?: string = null;
+    timezone?: string | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
     @Type({ type: Types.STRING })
-    taxNumber?: string = null;
+    taxNumber?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.ARRAY, class: Phone, arrayItemType: Types.OBJECT })
-    phones?: Phone[] = null;
+    phones?: Phone[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: BaseDomain })
-    maritalStatus?: BaseDomain<DomainType.MARITAL_STATUS> = null;
+    maritalStatus?: BaseDomain<DomainType.MARITAL_STATUS> | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: BaseDomain })
-    occupation?: BaseDomain<DomainType.OCCUPATION> = null;
+    occupation?: BaseDomain<DomainType.OCCUPATION> | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: BaseDomain })
-    income?: BaseDomain<DomainType.INCOME> = null;
+    income?: BaseDomain<DomainType.INCOME> | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: BaseDomain })
-    educationLevel?: BaseDomain<DomainType.EDUCATION_LEVEL> = null;
+    educationLevel?: BaseDomain<DomainType.EDUCATION_LEVEL> | null = null;
 
     @Schemable()
     @Default(null)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Address, arrayItemType: Types.OBJECT })
-    addresses?: Address[] = null;
+    addresses?: Address[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Currency })
-    currency?: Currency = null;
+    currency?: Currency | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Default(null)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
-    roles?: Role[] = null;
+    roles?: Role[] | null = null;
 
     @Schemable()
     @Default(null)
     @QueryParam()
     @Type({ type: Types.ARRAY, class: UserAppInstance, arrayItemType: Types.OBJECT })
-    appInstances?: UserAppInstance[] = null;
+    appInstances?: UserAppInstance[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: Country })
-    country?: Country = null;
+    country?: Country | null = null;
 
 }

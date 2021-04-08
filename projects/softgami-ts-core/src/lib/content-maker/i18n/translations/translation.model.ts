@@ -37,8 +37,7 @@ export class Translation extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
@@ -46,7 +45,7 @@ export class Translation extends Thing {
     @QueryParam()
     @Sortable({ label: 'VALUE' })
     @Type({ type: Types.STRING })
-    value: string = null;
+    value: string | null = null;
 
     @Schemable()
     @Required()
@@ -54,7 +53,7 @@ export class Translation extends Thing {
     @QueryParam()
     @Sortable({ label: 'TYPE' })
     @Type({ type: Types.ENUM })
-    type: TranslationType = null;
+    type: TranslationType | null = null;
 
     @Schemable()
     @Required()
@@ -62,17 +61,17 @@ export class Translation extends Thing {
     @QueryParam()
     @Sortable({ label: 'LANGUAGE', field: 'language.name' })
     @Type({ type: Types.OBJECT, class: Language })
-    language: Language = null;
+    language: Language | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
 }

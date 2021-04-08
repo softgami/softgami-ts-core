@@ -16,26 +16,26 @@ export class Password extends Thing {
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    hash: string = null;
+    hash: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    salt: string = null;
+    salt: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
     @Type({ type: Types.STRING })
-    algorithm: string = null;
+    algorithm: string | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    createdAt?: Date = null;
+    createdAt?: Date | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    lastUpdate?: Date = null;
+    lastUpdate?: Date | null = null;
 
 }

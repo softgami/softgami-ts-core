@@ -22,13 +22,13 @@ export class MonetaryValue extends QuantitativeValue {
     @Required()
     @Override()
     @Type({ type: Types.DECIMAL128 })
-    value: number = null;
+    value: number | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Required()
     @Type({ type: Types.OBJECT, class: Currency })
-    currency: Currency = null;
+    currency: Currency | null = null;
 
     @Schemable()
     @Required()
@@ -36,10 +36,10 @@ export class MonetaryValue extends QuantitativeValue {
     @Unique()
     @Enum(Object.keys(DateTimePeriods).map((key: string) => DateTimePeriods[key]))
     @Type({ type: Types.ENUM })
-    dateTimePeriod: DateTimePeriods = null;
+    dateTimePeriod: DateTimePeriods | null = null;
 
     @Schemable()
     @Type({ type: Types.DATE })
-    createdAt?: Date = null;
+    createdAt?: Date | null = null;
 
 }

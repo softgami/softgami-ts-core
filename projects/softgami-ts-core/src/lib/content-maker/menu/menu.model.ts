@@ -39,59 +39,58 @@ export class Menu extends Thing {
     @QueryParam()
     @Unique()
     @Type({ type: Types.MONGO_OBJECT_ID })
-    // tslint:disable-next-line: variable-name
-    _id: string = null;
+    _id: string | null = null;
 
     @Schemable()
     @Required()
     @Default(1)
     @Type({ type: Types.NUMBER })
-    index: number = null;
+    index: number | null = null;
 
     @Schemable()
     @Required()
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
-    isActive: boolean = null;
+    isActive: boolean | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: PermissionCheck })
-    permissionCheck?: PermissionCheck = null;
+    permissionCheck?: PermissionCheck | null = null;
 
     @Schemable()
     @Trim()
     @Type({ type: Types.STRING })
-    icon?: string = null;
+    icon?: string | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
-    creator?: User = null;
+    creator?: User | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Menu, isSelf: true })
-    parent?: Menu = null;
+    parent?: Menu | null = null;
 
     @Schemable()
     @Default(null)
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Menu, arrayItemType: Types.OBJECT, isSelf: true })
-    ancestors?: Menu[] = null;
+    ancestors?: Menu[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
-    appInstance?: AppInstance = null;
+    appInstance?: AppInstance | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.OBJECT, class: App })
-    app?: App = null;
+    app?: App | null = null;
 
 }

@@ -102,6 +102,7 @@ export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
     @Default(true)
+    @QueryParam()
     @Type({ type: Types.BOOLEAN })
     isActive?: boolean | null = null;
 

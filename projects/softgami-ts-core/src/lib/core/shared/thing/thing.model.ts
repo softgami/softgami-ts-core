@@ -308,9 +308,9 @@ export class Thing {
 
     }
 
-    toQueryParamsObject(): { [param: string]: string | string[] } | null {
+    toQueryParamsObject(): { [param: string]: string | string[] } | undefined {
 
-        let object: { [param: string]: string | string[] } | null = {};
+        let object: { [param: string]: string | string[] } | undefined = {};
 
         object = this.recursiveGenerateParamsObject(this, null, object);
 
@@ -318,14 +318,14 @@ export class Thing {
 
     }
 
-    recursiveGenerateParamsObject(source: Thing, parentPath: string | null, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } | null {
+    recursiveGenerateParamsObject(source: Thing, parentPath: string | null, object: { [param: string]: string | string[] }): { [param: string]: string | string[] } | undefined {
 
         let isThingInstance = false;
         if (source instanceof Thing) isThingInstance = true;
         if (!isThingInstance) {
 
             console.warn(`${source.constructor.name} is not a instance of Thing.`);
-            return null;
+            return undefined;
 
         }
 

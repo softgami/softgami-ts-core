@@ -15,6 +15,8 @@ export class PasswordTesterComponent {
     PasswordValidationErrorsEnum = PasswordValidationErrors;
     PASSWORD_VALIDATION_SPECIAL_CHARS = PASSWORD_VALIDATION_SPECIAL_CHARS;
     passwordStrength: number | null = null;
+    validPassword: string | undefined;
+    validPasswordLength = PasswordUtilsService.PASSWORD_MIN_LENGTH;
 
     onChangePassword(element: EventTarget | null): void {
 
@@ -35,6 +37,12 @@ export class PasswordTesterComponent {
             this.passwordStrength = PasswordUtilsService.getPasswordStrength(inputElement.value);
 
         }
+
+    }
+
+    generateValidPassword(length: number): void {
+
+        this.validPassword = PasswordUtilsService.generateValidPassword(length);
 
     }
 

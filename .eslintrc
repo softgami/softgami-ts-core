@@ -161,7 +161,7 @@
       "no-useless-escape": "warn",
       "no-useless-rename": "warn",
       "no-useless-return": "warn",
-      "no-void": "warn",
+      "no-void": "off",
       "no-whitespace-before-property": "warn",
       "no-with": "warn",
       "object-curly-newline": ["warn", { "multiline": true, "consistent": true }],

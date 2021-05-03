@@ -1,0 +1,26 @@
+<h1>Publication Tester</h1>
+<label for="">Name: </label>
+<input type="text" autocomplete="off" placeholder="Name" name="name" [(ngModel)]="publication.name" style="width: 50%;">
+<br>
+<label for="">Authors: </label>
+<input type="text" autocomplete="off" placeholder="Authors" name="authors" [(ngModel)]="authors" style="width: 50%;">
+<br>
+<label for="">City: </label>
+<input type="text" autocomplete="off" placeholder="City" name="cityName" [(ngModel)]="cityName" style="width: 50%;">
+<br>
+<label for="">Publisher: </label>
+<input type="text" autocomplete="off" placeholder="Publisher" name="publisherName" [(ngModel)]="publisherName" style="width: 50%;">
+<br>
+<label for="">Year: </label>
+<input type="text" autocomplete="off" placeholder="Year" name="year" [(ngModel)]="publication.year" style="width: 50%;">
+<br>
+<label for="">Edition: </label>
+<input type="text" autocomplete="off" placeholder="Edition" name="edition" [(ngModel)]="publication.edition" style="width: 50%;">
+<br>
+<button type="button" (click)="generateBibliographyReference()">Generate Bibliography Reference</button>
+<h2>Bibliography Reference:</h2>
+<p>{{ bibliographyReference }}</p>
+<br>
+<div>
+    {{ publication | json }}
+</div>

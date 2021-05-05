@@ -8,8 +8,8 @@ export class BibliographyReferenceService {
 
         switch (countryCode) {
 
-            case ('br' || 'BR'):
-                return BibliographyReferenceService.generateBibliographyReferenceBR(publication);
+            case 'br':
+            case 'BR':
             default:
                 return BibliographyReferenceService.generateBibliographyReferenceBR(publication);
 

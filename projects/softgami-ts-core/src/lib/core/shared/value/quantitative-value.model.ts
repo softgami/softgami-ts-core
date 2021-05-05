@@ -24,11 +24,11 @@ export class QuantitativeValue extends Thing {
     unityValue: UnityValue | null = null;
 
     @Schemable()
-    @Type({ type: Types.NUMBER })
+    @Type({ type: Types.DECIMAL })
     maxValue?: number | null = null;
 
     @Schemable()
-    @Type({ type: Types.NUMBER })
+    @Type({ type: Types.DECIMAL })
     minValue?: number | null = null;
 
     @Schemable()

@@ -24,7 +24,7 @@ export class PermissionCheck extends Thing {
 
     @Schemable()
     @Required()
-    @Enum(Object.keys(Actions).map((key: string) => Actions[key as keyof typeof Actions]))
+    @Enum(Object.keys(Actions).map(key => Actions[key as keyof typeof Actions]).filter(value => typeof value === 'number'))
     @Type({ type: Types.ENUM })
     action: Actions | null = null;
 

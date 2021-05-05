@@ -2,6 +2,8 @@
 import { AppInstance } from '../../core/app/app-instance/app-instance.model';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { Max } from '../../core/shared/decorators/max.decorator';
+import { Min } from '../../core/shared/decorators/min.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Thing } from '../../core/shared/thing/thing.model';
@@ -12,10 +14,14 @@ import { Types } from '../../core/shared/models/types.enum';
 export class Cover extends Thing {
 
     @Required()
+    @Min(0)
+    @Max(100000)
     @Type({ type: Types.NUMBER })
     index: number | null = null;
 
     @Type({ type: Types.NUMBER })
+    @Min(0)
+    @Max(100000)
     totalCovers?: number | null = null;
 
     @Type({ type: Types.BOOLEAN })

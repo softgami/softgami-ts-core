@@ -4,6 +4,7 @@ import { CompoundIndex } from '../../core/shared/decorators/compound-index.decor
 import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { Min } from '../../core/shared/decorators/min.decorator';
 import { PermissionCheck } from '../../core/permissions/permission/permission-check.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -44,6 +45,7 @@ export class Menu extends Thing {
     @Schemable()
     @Required()
     @Default(1)
+    @Min(1)
     @Type({ type: Types.NUMBER })
     index: number | null = null;
 

@@ -9,6 +9,8 @@ import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { File } from '../../content-maker/file/file.model';
+import { Max } from '../../core/shared/decorators/max.decorator';
+import { Min } from '../../core/shared/decorators/min.decorator';
 import { Priority } from '../../core/shared/models/priority.enum';
 import { Project } from '../project/project.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
@@ -142,6 +144,8 @@ export class Task extends Thing implements BoardListItem {
 
     @Schemable()
     @Sortable({ label: 'PERCENT_DONE' })
+    @Min(0)
+    @Max(100)
     @Type({ type: Types.NUMBER })
     percentDone?: number | null = null;
 
@@ -177,7 +181,7 @@ export class Task extends Thing implements BoardListItem {
     @QueryParam()
     @Sortable({ label: 'PRIORITY' })
     @Type({ type: Types.ENUM })
-    @Enum(Object.keys(Priority).map((key: string) => Priority[key as keyof typeof Priority]))
+    @Enum(Object.keys(Priority).map(key => Priority[key as keyof typeof Priority]).filter(value => typeof value === 'number'))
     priority?: Priority | null = null;
 
     @Schemable()
@@ -224,16 +228,22 @@ export class Task extends Thing implements BoardListItem {
 
     @Schemable()
     @Sortable({ label: 'ESTIMATE_HOURS' })
+    @Min(0)
+    @Max(100)
     @Type({ type: Types.DECIMAL })
     estimateHours?: number | null = null;
 
     @Schemable()
     @Sortable({ label: 'ESTIMATE_POINTS' })
+    @Min(0)
+    @Max(34)
     @Type({ type: Types.NUMBER })
     estimatePoints?: number | null = null;
 
     @Schemable()
     @Sortable({ label: 'TIME_TRACKING_HOURS' })
+    @Min(0)
+    @Max(100000)
     @Type({ type: Types.DECIMAL })
     timeTrackingHours?: number | null = null;
 
@@ -260,6 +270,8 @@ export class Task extends Thing implements BoardListItem {
 
     @Schemable()
     @QueryParam()
+    @Min(0)
+    @Max(1000)
     @Type({ type: Types.NUMBER })
     orderIndex?: number | null = null;
 

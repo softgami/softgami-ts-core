@@ -2,6 +2,8 @@ import { ActionAlias } from './action-alias.enum';
 import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Max } from '../../../core/shared/decorators/max.decorator';
+import { Min } from '../../../core/shared/decorators/min.decorator';
 import { Override } from '../../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -54,6 +56,8 @@ export class Action extends Thing {
     @QueryParam()
     @Required()
     @Sortable({ label: 'VALUE' })
+    @Min(0)
+    @Max(200)
     @Type({ type: Types.NUMBER })
     value: number | null = null;
 

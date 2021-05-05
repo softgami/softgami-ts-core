@@ -8,6 +8,8 @@ import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
+import { Max } from '../../core/shared/decorators/max.decorator';
+import { Min } from '../../core/shared/decorators/min.decorator';
 import { MonetaryValue } from '../../content-maker/currency/monetary-value.model';
 import { Person } from '../../content-maker/person/person.model';
 import { PersonType } from '../../content-maker/person/person-type.enum';
@@ -210,12 +212,15 @@ export class Publication extends Thing {
     digitalPublicationFormat?: Domain<DomainType.DIGITAL_PUBLICATION_FORMAT> | null = null;
 
     @Schemable()
+    @Min(0)
     @Type({ type: Types.NUMBER })
     sizeBytes?: number | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'QUALITY' })
+    @Min(0)
+    @Max(10)
     @Type({ type: Types.NUMBER })
     quality?: number | null = null;
 
@@ -236,16 +241,19 @@ export class Publication extends Thing {
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'NUMBER_OF_PAGES' })
+    @Min(1)
     @Type({ type: Types.NUMBER })
     numberOfPages?: number | null = null;
 
     @Schemable()
     @QueryParam()
     @Sortable({ label: 'YEAR' })
+    @Min(1)
     @Type({ type: Types.NUMBER })
     year?: number | null = null;
 
     @Schemable()
+    @Min(1)
     @Type({ type: Types.NUMBER })
     originalYear?: number | null = null;
 

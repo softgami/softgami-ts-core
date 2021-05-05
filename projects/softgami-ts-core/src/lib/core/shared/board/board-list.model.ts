@@ -3,6 +3,8 @@ import { BoardListItem } from './board-list-item.interface';
 import { CompoundIndex } from '../decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../decorators/extends.decorator';
+import { Max } from '../../../core/shared/decorators/max.decorator';
+import { Min } from '../../../core/shared/decorators/min.decorator';
 import { QueryParam } from '../decorators/query-param.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
@@ -50,6 +52,8 @@ export class BoardList extends Thing {
     @Schemable()
     @Required()
     @QueryParam()
+    @Min(0)
+    @Max(300)
     @Type({ type: Types.NUMBER })
     orderIndex: number | null = null;
 

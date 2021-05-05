@@ -4,6 +4,7 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { FileDownload } from './file-download.model';
+import { Min } from '../../core/shared/decorators/min.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -83,14 +84,17 @@ export class File extends Thing {
     mimetype?: string | null = null;
 
     @Schemable()
+    @Min(0)
     @Type({ type: Types.NUMBER })
     size?: number | null = null;
 
     @Schemable()
+    @Min(0)
     @Type({ type: Types.NUMBER })
     totalFilesChildren?: number | null = null;
 
     @Schemable()
+    @Min(0)
     @Type({ type: Types.NUMBER })
     totalDirectoriesChildren?: number | null = null;
 

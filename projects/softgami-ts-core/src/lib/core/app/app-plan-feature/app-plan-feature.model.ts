@@ -1,5 +1,6 @@
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Min } from '../../../core/shared/decorators/min.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
@@ -27,6 +28,7 @@ export class AppPlanFeature extends Thing {
     alias: string | null = null;
 
     @Schemable()
+    @Min(0)
     @Type({ type: Types.NUMBER })
     value?: number | null = null;
 

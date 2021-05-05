@@ -1,6 +1,8 @@
 import { Default } from '../decorators/default.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
+import { ExcludeIndexes } from '../decorators/exclude-indexes.decorator';
 import { Extends } from '../decorators/extends.decorator';
+import { Max } from '../decorators/max.decorator';
+import { Min } from '../decorators/min.decorator';
 import { QueryParam } from '../decorators/query-param.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
@@ -30,6 +32,8 @@ export class ChecklistItem extends Thing {
 
     @Schemable()
     @QueryParam()
+    @Min(0)
+    @Max(300)
     @Type({ type: Types.NUMBER })
     orderIndex?: number | null = null;
 

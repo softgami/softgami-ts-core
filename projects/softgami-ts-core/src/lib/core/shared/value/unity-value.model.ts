@@ -1,6 +1,8 @@
 import { CurrencyCodes } from '../../../content-maker/currency/currency-codes.enum';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Max } from '../../../core/shared/decorators/max.decorator';
+import { Min } from '../../../core/shared/decorators/min.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
@@ -39,10 +41,14 @@ export class UnityValue extends Thing {
     nativeSymbol?: string | null = null;
 
     @Schemable()
+    @Min(0)
+    @Max(20)
     @Type({ type: Types.NUMBER })
     decimalDigits?: number | null = null;
 
     @Schemable()
+    @Min(0)
+    @Max(20)
     @Type({ type: Types.NUMBER })
     rounding?: number | null = null;
 

@@ -620,10 +620,17 @@ export class Thing {
 
     }
 
-    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean, shouldValidate = false, type?: Types, parentPath?: string): void {
+    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean, shouldValidate = false, type?: Types, parentPath?: string, shouldValidateID = false): void {
 
         const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
         if (property === 'sort') return this.updateSortParam(object, value, isArrayItem);
+
+        if (property === '_id' && value === null && !shouldValidateID) {
+
+            (object as any)[property] = value;
+            return;
+
+        }
 
         if (shouldValidate) {
 
@@ -765,15 +772,15 @@ export class Thing {
 
     validate(json?: {
         [key: string]: string;
-    }): this {
+    }, shouldValidateID = false): this {
 
-        return this.fromJson(json, true);
+        return this.fromJson(json, true, shouldValidateID);
 
     }
 
     fromJson(json?: {
         [key: string]: string;
-    }, shouldValidate = false): this {
+    }, shouldValidate = false, shouldValidateID = false): this {
 
         const uniqueId: number | null | undefined = this.uniqueId;
         const object: this = this.clone();
@@ -787,7 +794,7 @@ export class Thing {
 
                 const typeParams: TypeParams<string> | undefined = this.getType(property);
                 const initialLevel = 1;
-                if (typeParams) object.updatePropertyByTypeFromJson(object, property, typeParams, initialLevel, false, json, shouldValidate);
+                if (typeParams) object.updatePropertyByTypeFromJson(object, property, typeParams, initialLevel, false, json, shouldValidate, undefined, shouldValidateID);
 
             });
 
@@ -802,6 +809,7 @@ export class Thing {
         },
         shouldValidate = false,
         parentPath?: string,
+        shouldValidateID = false,
     ): void {
 
         switch (typeParams.type) {
@@ -828,7 +836,7 @@ export class Thing {
             case Types.ENUM:
             case Types.DATE:
             case Types.STRING:
-                this.updateStringParam(object as Thing, property, json[property], isArrayItem, shouldValidate, typeParams.type, parentPath);
+                this.updateStringParam(object as Thing, property, json[property], isArrayItem, shouldValidate, typeParams.type, parentPath, shouldValidateID);
                 break;
             default:
                 break;

@@ -4,7 +4,9 @@ import { CompoundIndex } from '../../core/shared/decorators/compound-index.decor
 import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { PermissionCheck } from '../../core/permissions/permission/permission-check.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -62,6 +64,8 @@ export class Menu extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     icon?: string | null = null;
 

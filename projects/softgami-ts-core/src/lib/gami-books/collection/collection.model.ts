@@ -4,7 +4,9 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { Max } from '../../core/shared/decorators/max.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -92,6 +94,8 @@ export class Collection extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     friendlyUrl?: string | null = null;
 

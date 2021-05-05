@@ -3,6 +3,8 @@ import { City } from '../city/city.model';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
@@ -34,36 +36,40 @@ export class Address extends Thing {
     @Schemable()
     @Required()
     @Trim()
-    @Type({ type: Types.STRING })
-    name: string | null = null;
-
-    @Schemable()
-    @Required()
-    @Trim()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     postalCode: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(50)
     @Type({ type: Types.STRING })
     street: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(10)
     @Type({ type: Types.STRING })
     number: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(50)
     @Type({ type: Types.STRING })
     complement: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(50)
     @Type({ type: Types.STRING })
     district: string | null = null;
 

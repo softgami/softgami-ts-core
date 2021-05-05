@@ -3,6 +3,8 @@ import { Default } from '../../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
 import { Language } from '../../../content-maker/i18n/language/language.model';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { Override } from '../../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -40,6 +42,8 @@ export class Country extends Thing {
     @Sortable({ label: 'NAME' })
     @Override()
     @Unique()
+    @MinLength(1)
+    @MaxLength(50)
     @Type({ type: Types.STRING })
     name: string | null = null;
 
@@ -48,6 +52,8 @@ export class Country extends Thing {
     @Trim()
     @Unique()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(10)
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
     code: string | null = null;

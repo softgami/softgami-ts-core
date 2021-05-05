@@ -1,6 +1,8 @@
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { PhoneType } from './phone-type.enum';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
@@ -25,6 +27,8 @@ export class Phone extends Thing {
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     number: string | null = null;
 

@@ -4,6 +4,8 @@ import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { PersonType } from './person-type.enum';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
@@ -62,6 +64,9 @@ export class BasePerson<T extends PersonType> extends Thing {
     weight?: QuantitativeValue | null = null;
 
     @Schemable()
+    @Trim()
+    @MinLength(1)
+    @MaxLength(50)
     @Type({ type: Types.STRING })
     jobTitle?: string | null = null;
 

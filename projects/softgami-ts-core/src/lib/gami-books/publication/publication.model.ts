@@ -9,7 +9,9 @@ import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.dec
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
 import { Max } from '../../core/shared/decorators/max.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { MonetaryValue } from '../../content-maker/currency/monetary-value.model';
 import { Person } from '../../content-maker/person/person.model';
 import { PersonType } from '../../content-maker/person/person-type.enum';
@@ -143,6 +145,8 @@ export class Publication extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     originalName?: string | null = null;
 
@@ -154,11 +158,15 @@ export class Publication extends Thing {
     @Schemable()
     @Trim()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     subTitle?: string | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     originalSubTitle?: string | null = null;
 
@@ -196,11 +204,15 @@ export class Publication extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     contentRating?: string | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     friendlyUrl?: string | null = null;
 
@@ -227,6 +239,8 @@ export class Publication extends Thing {
     @Schemable()
     @Trim()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(50)
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
     code?: string | null = null;
@@ -234,6 +248,8 @@ export class Publication extends Thing {
     @Schemable()
     @Trim()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(50)
     @Sortable({ label: 'NUMBER' })
     @Type({ type: Types.STRING })
     number?: string | null = null;
@@ -259,12 +275,16 @@ export class Publication extends Thing {
 
     @Schemable()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(30)
     @Sortable({ label: 'ISBN10' })
     @Type({ type: Types.STRING })
     isbn10?: string | null = null;
 
     @Schemable()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(30)
     @Sortable({ label: 'ISBN13' })
     @Type({ type: Types.STRING })
     isbn13?: string | null = null;
@@ -289,11 +309,15 @@ export class Publication extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     edition?: string | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     originalEdition?: string | null = null;
 
@@ -312,6 +336,8 @@ export class Publication extends Thing {
     @Trim()
     @QueryParam()
     @Sortable({ label: 'TAGS', field: 'tags' })
+    @MinLength(1)
+    @MaxLength(30)
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
     tags?: string[] | null = null;
 
@@ -322,6 +348,8 @@ export class Publication extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     extraContent?: string | null = null;
 

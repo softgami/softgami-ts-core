@@ -2,7 +2,9 @@ import { CurrencyCodes } from '../../../content-maker/currency/currency-codes.en
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
 import { Max } from '../../../core/shared/decorators/max.decorator';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
@@ -32,11 +34,15 @@ export class UnityValue extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     symbol?: string | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     nativeSymbol?: string | null = null;
 
@@ -54,6 +60,8 @@ export class UnityValue extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     pluralName?: string | null = null;
 

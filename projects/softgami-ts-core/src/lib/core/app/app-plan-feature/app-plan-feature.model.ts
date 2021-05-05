@@ -1,6 +1,8 @@
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
@@ -24,6 +26,8 @@ export class AppPlanFeature extends Thing {
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     alias: string | null = null;
 
@@ -35,11 +39,15 @@ export class AppPlanFeature extends Thing {
     @Schemable()
     @Trim()
     @Default(null)
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
     info?: string[] | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     icon?: string | null = null;
 

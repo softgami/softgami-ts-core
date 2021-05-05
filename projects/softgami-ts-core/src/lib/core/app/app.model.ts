@@ -5,6 +5,8 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { Override } from '../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -54,6 +56,8 @@ export class App extends Thing {
     @Trim()
     @Override()
     @Unique()
+    @MinLength(1)
+    @MaxLength(30)
     @Type({ type: Types.STRING })
     name: string | null = null;
 
@@ -90,6 +94,8 @@ export class App extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     icon: string | null = null;
 

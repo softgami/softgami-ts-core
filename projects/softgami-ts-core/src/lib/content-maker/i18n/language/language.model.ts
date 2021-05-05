@@ -1,5 +1,7 @@
 import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { Override } from '../../../core/shared/decorators/override.decorator';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -33,6 +35,8 @@ export class Language extends Thing {
     @Sortable({ label: 'NAME' })
     @Override()
     @Unique()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     name: string | null = null;
 
@@ -41,6 +45,8 @@ export class Language extends Thing {
     @Trim()
     @Unique()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(10)
     @Sortable({ label: 'CODE' })
     @Type({ type: Types.STRING })
     code: string | null = null;

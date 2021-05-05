@@ -3,7 +3,9 @@ import { CompoundIndex } from '../../../core/shared/decorators/compound-index.de
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { MonetaryValue } from '../../../content-maker/currency/monetary-value.model';
 import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -46,12 +48,16 @@ export class AppPlan extends Thing {
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     alias: string | null = null;
 
     @Schemable()
     @Required()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     appId: string | null = null;
 
@@ -62,6 +68,8 @@ export class AppPlan extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     icon?: string | null = null;
 

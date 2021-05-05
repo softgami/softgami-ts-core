@@ -1,6 +1,8 @@
 import { DomainType } from './domain-type.enum';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -34,12 +36,16 @@ export class BaseDomain<T extends DomainType> extends Thing {
     @QueryParam()
     @Trim()
     @Required()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     value: string | null = null;
 
     @Schemable()
     @QueryParam()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     additionalMetadata?: string | null = null;
 

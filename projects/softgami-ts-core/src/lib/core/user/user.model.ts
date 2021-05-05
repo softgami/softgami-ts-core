@@ -12,6 +12,8 @@ import { Enum } from '../shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../shared/decorators/extends.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { Override } from '../shared/decorators/override.decorator';
 import { PersonType } from '../../content-maker/person/person-type.enum';
 import { Phone } from '../shared/phone/phone.model';
@@ -115,12 +117,16 @@ export class User extends BasePerson<PersonType.USER> {
     @Schemable()
     @Trim()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     timezone?: string | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(40)
     @Type({ type: Types.STRING })
     taxNumber?: string | null = null;
 

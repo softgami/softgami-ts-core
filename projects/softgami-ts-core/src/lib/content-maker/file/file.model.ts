@@ -4,7 +4,9 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { FileDownload } from './file-download.model';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -65,6 +67,8 @@ export class File extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(1000)
     @Type({ type: Types.STRING })
     path?: string | null = null;
 
@@ -80,6 +84,8 @@ export class File extends Thing {
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(50)
     @Type({ type: Types.STRING })
     mimetype?: string | null = null;
 

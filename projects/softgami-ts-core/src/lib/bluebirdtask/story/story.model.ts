@@ -3,6 +3,8 @@ import { CompoundIndex } from '../../core/shared/decorators/compound-index.decor
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { Project } from '../project/project.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -85,6 +87,8 @@ export class Story extends Thing {
     @QueryParam()
     @Unique()
     @Sortable({ label: 'KEY' })
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     key: string | null = null;
 

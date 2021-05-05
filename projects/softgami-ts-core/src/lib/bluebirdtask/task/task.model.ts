@@ -10,7 +10,9 @@ import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.dec
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { File } from '../../content-maker/file/file.model';
 import { Max } from '../../core/shared/decorators/max.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { Priority } from '../../core/shared/models/priority.enum';
 import { Project } from '../project/project.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
@@ -100,6 +102,8 @@ export class Task extends Thing implements BoardListItem {
     @QueryParam()
     @Unique()
     @Sortable({ label: 'KEY' })
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     key: string | null = null;
 
@@ -259,6 +263,8 @@ export class Task extends Thing implements BoardListItem {
     @QueryParam()
     @Default(null)
     @Trim()
+    @MinLength(1)
+    @MaxLength(30)
     @Sortable({ label: 'TAGS' })
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
     tags?: string[] | null = null;

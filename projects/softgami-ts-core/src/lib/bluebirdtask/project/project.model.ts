@@ -4,6 +4,8 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { ProjectStatus } from './project-status.enum';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -52,6 +54,8 @@ export class Project extends Thing {
     @QueryParam()
     @Unique()
     @Sortable({ label: 'KEY' })
+    @MinLength(1)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     key: string | null = null;
 

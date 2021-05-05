@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PasswordTesterComponent } from './password-tester/password-tester.component';
 import { PublicationTesterComponent } from './publication-tester/publication-tester.component';
+import { ValidationTesterComponent } from './validation-tester/validation-tester.component';
 
 const appRoutes: Routes = [
     {
@@ -12,6 +13,10 @@ const appRoutes: Routes = [
     {
         path: 'publication-tester',
         component: PublicationTesterComponent,
+    },
+    {
+        path: 'validation-tester',
+        component: ValidationTesterComponent,
     },
 ];
 

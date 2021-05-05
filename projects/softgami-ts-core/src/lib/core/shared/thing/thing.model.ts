@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
+import * as moment from 'moment';
+import validator from 'validator';
 
 import { CompoundIndexMetadataKey } from '../decorators/compound-index-metadata-key';
 import { CompoundIndexOption } from '../models/compound-index-option.interface';
@@ -9,8 +11,12 @@ import { DefaultMetadataKey } from '../decorators/default-metadata-key';
 import { EnumMetadataKey } from '../decorators/enum-metadata-key';
 import { ExcludeIndexesMetadataKey } from '../decorators/exclude-indexes-metadata-key';
 import { ExtendsMetadataKey } from '../decorators/extends-metadata-key';
+import { Max } from '../decorators/max.decorator';
+import { MaxLength } from '../decorators/max-length.decorator';
 import { MaxLengthMetadataKey } from '../decorators/max-length-metadata-key';
 import { MaxMetadataKey } from '../decorators/max-metadata-key';
+import { Min } from '../decorators/min.decorator';
+import { MinLength } from '../decorators/min-length.decorator';
 import { MinLengthMetadataKey } from '../decorators/min-length-metadata-key';
 import { MinMetadataKey } from '../decorators/min-metadata-key';
 import { OverrideMetadataKey } from '../decorators/override-metadata-key';
@@ -42,6 +48,8 @@ export class Thing {
     @Trim()
     @QueryParam()
     @Sortable({ label: 'NAME' })
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     name: string | null = null;
 
@@ -49,30 +57,42 @@ export class Thing {
     uniqueId?: number | null = new Date().getTime();
 
     @QueryParam()
+    @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     sort?: string | null = null;
 
     @QueryParam()
+    @Min(0)
+    @Max(200)
     @Type({ type: Types.NUMBER })
     limit?: number | null = null;
 
     @QueryParam()
+    @Min(0)
     @Type({ type: Types.NUMBER })
     skip?: number | null = null;
 
     @Schemable()
     @Trim()
     @QueryParam()
+    @MinLength(1)
+    @MaxLength(500)
     @Type({ type: Types.STRING })
     description?: string | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     url?: string | null = null;
 
     @Schemable()
     @Trim()
+    @MinLength(1)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     image?: string | null = null;
 
@@ -88,7 +108,7 @@ export class Thing {
     @Type({ type: Types.DATE })
     lastUpdate?: Date | null = null;
 
-    static getCompoundIndexes(classDefinition: new () => Thing): CompoundIndexOption[] {
+    static getCompoundIndexes(classDefinition: new () => Thing): CompoundIndexOption[] | undefined {
 
         return Reflect.getMetadata(CompoundIndexMetadataKey, classDefinition);
 
@@ -110,7 +130,7 @@ export class Thing {
         }
 
         let propertyInfo: PropertyInfo<Thing> | null = null;
-        let typeParams: TypeParams<Thing>;
+        let typeParams: TypeParams<Thing> | undefined;
         const isIndex = Thing.isIndex(TypeClass, property);
 
         while (arrProperties.length > 0 && level <= maxLevel) {
@@ -133,7 +153,7 @@ export class Thing {
 
                 propertyInfo.sortableOptions = object.getSortableOptions(propertyLevel);
 
-                propertyInfo.extendsClass = object.getExtendsClass(propertyLevel);
+                if (object.getExtendsClass(propertyLevel)) propertyInfo.extendsClass = object.getExtendsClass(propertyLevel);
 
                 propertyInfo.isDefault = object.isDefault(propertyLevel);
 
@@ -174,7 +194,7 @@ export class Thing {
 
     static isIndex(typeClass: new () => Thing, property: string): boolean {
 
-        const compoundIndexes: CompoundIndexOption[] = Thing.getCompoundIndexes(typeClass);
+        const compoundIndexes: CompoundIndexOption[] | undefined = Thing.getCompoundIndexes(typeClass);
 
         if (!compoundIndexes) return false;
 
@@ -199,19 +219,19 @@ export class Thing {
 
     }
 
-    getType<T>(property: string): TypeParams<T> {
+    getType<T>(property: string): TypeParams<T> | undefined {
 
         return Reflect.getMetadata(TypeMetadataKey, this, property);
 
     }
 
-    getEnumValues(property: string): string[] {
+    getEnumValues(property: string): string[] | undefined {
 
         return Reflect.getMetadata(EnumMetadataKey, this, property);
 
     }
 
-    getSortableOptions(property: string): SortBySelectOption | SortBySelectOption[] {
+    getSortableOptions(property: string): SortBySelectOption | SortBySelectOption[] | undefined {
 
         return Reflect.getMetadata(SortableMetadataKey, this, property);
 
@@ -219,91 +239,91 @@ export class Thing {
 
     isQueryParam(property: string): boolean {
 
-        const isQueryParam: boolean = Reflect.getMetadata(QueryParamMetadataKey, this, property);
-        return isQueryParam;
+        const isQueryParam: boolean | undefined = Reflect.getMetadata(QueryParamMetadataKey, this, property);
+        return isQueryParam || false;
 
     }
 
     isRequired(property: string): boolean {
 
-        const isRequired: boolean = Reflect.getMetadata(RequiredMetadataKey, this, property);
-        return isRequired;
+        const isRequired: boolean | undefined = Reflect.getMetadata(RequiredMetadataKey, this, property);
+        return isRequired || false;
 
     }
 
     isSchemable(property: string): boolean {
 
-        const isSchemable: boolean = Reflect.getMetadata(SchemableMetadataKey, this, property);
-        return isSchemable;
+        const isSchemable: boolean | undefined = Reflect.getMetadata(SchemableMetadataKey, this, property);
+        return isSchemable || false;
 
     }
 
     isTrim(property: string): boolean {
 
-        const isTrim: boolean = Reflect.getMetadata(TrimMetadataKey, this, property);
-        return isTrim;
+        const isTrim: boolean | undefined = Reflect.getMetadata(TrimMetadataKey, this, property);
+        return isTrim || false;
 
     }
 
     isUnique(property: string): boolean {
 
-        const isUnique: boolean = Reflect.getMetadata(UniqueMetadataKey, this, property);
-        return isUnique;
+        const isUnique: boolean | undefined = Reflect.getMetadata(UniqueMetadataKey, this, property);
+        return isUnique || false;
 
     }
 
     isDefault(property: string): boolean {
 
-        const isDefault: boolean = Reflect.getMetadata(DefaultMetadataKey, this, property);
-        return isDefault;
+        const isDefault: boolean | undefined = Reflect.getMetadata(DefaultMetadataKey, this, property);
+        return isDefault || false;
 
     }
 
     isExcludeIndexes(property: string): boolean {
 
-        const isExcludeIndexes: boolean = Reflect.getMetadata(ExcludeIndexesMetadataKey, this, property);
-        return isExcludeIndexes;
+        const isExcludeIndexes: boolean | undefined = Reflect.getMetadata(ExcludeIndexesMetadataKey, this, property);
+        return isExcludeIndexes || false;
 
     }
 
     isOverride(property: string): boolean {
 
-        const isOverride: boolean = Reflect.getMetadata(OverrideMetadataKey, this, property);
-        return isOverride;
+        const isOverride: boolean | undefined = Reflect.getMetadata(OverrideMetadataKey, this, property);
+        return isOverride || false;
 
     }
 
-    getExtendsClass(property: string): new () => Thing {
+    getExtendsClass(property: string): (new () => Thing) | undefined {
 
-        const typeClass: new () => Thing = Reflect.getMetadata(ExtendsMetadataKey, this, property);
+        const typeClass: (new () => Thing) | undefined = Reflect.getMetadata(ExtendsMetadataKey, this, property);
         return typeClass;
 
     }
 
-    getMax(property: string): number {
+    getMax(property: string): number | undefined {
 
-        const max: number = Reflect.getMetadata(MaxMetadataKey, this, property);
+        const max: number | undefined = Reflect.getMetadata(MaxMetadataKey, this, property);
         return max;
 
     }
 
-    getMaxLength(property: string): number {
+    getMaxLength(property: string): number | undefined {
 
-        const maxLength: number = Reflect.getMetadata(MaxLengthMetadataKey, this, property);
+        const maxLength: number | undefined = Reflect.getMetadata(MaxLengthMetadataKey, this, property);
         return maxLength;
 
     }
 
-    getMin(property: string): number {
+    getMin(property: string): number | undefined {
 
-        const min: number = Reflect.getMetadata(MinMetadataKey, this, property);
+        const min: number | undefined = Reflect.getMetadata(MinMetadataKey, this, property);
         return min;
 
     }
 
-    getMinLength(property: string): number {
+    getMinLength(property: string): number | undefined {
 
-        const minLength: number = Reflect.getMetadata(MinLengthMetadataKey, this, property);
+        const minLength: number | undefined = Reflect.getMetadata(MinLengthMetadataKey, this, property);
         return minLength;
 
     }
@@ -333,13 +353,13 @@ export class Thing {
 
             if (source.isQueryParam(property) === true && (source as any)[property] !== null && (source as any)[property] !== undefined) {
 
-                const typeParams: TypeParams<string> = source.getType(property);
+                const typeParams: TypeParams<string> | undefined = source.getType(property);
                 const joinedPath = parentPath ? [ parentPath, property ].join('.') : property;
-                if (typeParams.type === Types.OBJECT) {
+                if (typeParams?.type === Types.OBJECT) {
 
                     this.recursiveGenerateParamsObject((source as any)[property], joinedPath, object);
 
-                } else if (typeParams.type === Types.ARRAY) {
+                } else if (typeParams?.type === Types.ARRAY) {
 
                     if ((source as any)[property][0]) {
 
@@ -374,8 +394,8 @@ export class Thing {
         const returnValues: SortBySelectOption[] = [];
         Object.getOwnPropertyNames(this).forEach((property: string) => {
 
-            const typeParams: TypeParams<string> = this.getType(property);
-            let options: SortBySelectOption | SortBySelectOption[] = this.getSortableOptions(property);
+            const typeParams: TypeParams<string> | undefined = this.getType(property);
+            let options: SortBySelectOption | SortBySelectOption[] | undefined = this.getSortableOptions(property);
 
             if (options) {
 
@@ -383,7 +403,7 @@ export class Thing {
 
                 options.forEach((o: SortBySelectOption) => {
 
-                    if (typeParams.type !== Types.OBJECT && typeParams.type !== Types.ARRAY) o.field = property;
+                    if (typeParams?.type !== Types.OBJECT && typeParams?.type !== Types.ARRAY) o.field = property;
                     returnValues.push(o);
 
                 });
@@ -402,9 +422,9 @@ export class Thing {
 
         Object.getOwnPropertyNames(this).forEach((property: string) => {
 
-            const typeParams: TypeParams<string> = this.getType(property);
+            const typeParams: TypeParams<string> | undefined = this.getType(property);
 
-            if (this.isQueryParam(property)) {
+            if (this.isQueryParam(property) && typeParams) {
 
                 const initialLevel = 1;
                 this.updatePropertyByType(this, property, null, typeParams, initialLevel, false, params);
@@ -437,11 +457,9 @@ export class Thing {
                 this.updateArrayParam(object, property, typeParams, params);
                 break;
             case Types.NUMBER:
-                this.updateNumberParam(object, property, params[parentPath], isArrayItem);
-                break;
             case Types.DECIMAL128:
             case Types.DECIMAL:
-                this.updateDecimalParam(object, property, params[parentPath], isArrayItem);
+                this.updateNumberParam(object, property, params[parentPath], typeParams.type, isArrayItem);
                 break;
             case Types.BOOLEAN:
                 this.updateBooleanParam(object, property, params[parentPath], isArrayItem);
@@ -541,55 +559,103 @@ export class Thing {
 
     }
 
-    updateNumberParam(object: any, property: string, value: string, isArrayItem?: boolean): void {
+    updateNumberParam(object: any, property: string, value: any, type: Types, isArrayItem?: boolean, shouldValidate = false, parentPath?: string): void {
 
-        if (value !== null && value !== undefined) value = value.toString();
+        const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
+        if (shouldValidate) {
 
-        if (value && value !== null && value !== undefined) {
+            const isRequired: boolean = object.isRequired(property);
+            if (isRequired && (value === undefined || value === null)) throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
 
-            const numberValue: number = parseInt(value, 10);
+            if (value !== null && value !== undefined) {
+
+                if (typeof value !== 'number') throw new Error(`invalid ${propertyFullName}. Should be number but is ${typeof value}.`);
+
+            }
+
+        }
+
+        if (value !== null && value !== undefined) {
+
+            let numberValue: number | null = null;
+            numberValue = parseFloat(value.toString());
+
+            if (isNaN(numberValue) && shouldValidate) throw new Error(`invalid ${propertyFullName}. Should be valid number.`);
+
+            if (shouldValidate) {
+
+                const minValue: number | undefined = this.getMin(property);
+                if (minValue !== undefined && numberValue < minValue) throw new Error(`invalid ${propertyFullName}. Should not be less than ${minValue}.`);
+
+                const maxValue: number | undefined = this.getMax(property);
+                if (maxValue !== undefined && numberValue > maxValue) throw new Error(`invalid ${propertyFullName}. Should not be greater than ${maxValue}.`);
+
+            }
+
+            if (type === Types.NUMBER) numberValue = parseInt(numberValue.toString(), 10);
+
             object[property] = !isNaN(numberValue) ? numberValue : undefined;
 
-        } else object[property] = undefined;
+        } else object[property] = value;
 
     }
 
-    updateDecimalParam(object: any, property: string, value: string, isArrayItem?: boolean): void {
+    updateBooleanParam(object: any, property: string, value: any, isArrayItem?: boolean, shouldValidate = false, parentPath?: string): void {
 
-        if (value !== null && value !== undefined) value = value.toString();
+        const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
+        if (shouldValidate) {
 
-        if (value && value !== null && value !== undefined) {
+            const isRequired: boolean = object.isRequired(property);
+            if (isRequired && (value === undefined || value === null)) throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
 
-            const decimal: number = parseFloat(value);
-            object[property] = !isNaN(decimal) ? decimal : undefined;
+            if (value !== null && value !== undefined) {
 
-        } else object[property] = undefined;
+                if (typeof value !== 'boolean') throw new Error(`invalid ${propertyFullName}. Should be boolean but is ${typeof value}.`);
 
-    }
+            }
 
-    updateBooleanParam(object: any, property: string, value: string, isArrayItem?: boolean): void {
+        }
 
-        if (value !== null && value !== undefined) value = value.toString();
-
-        if (value && value !== null && value !== undefined) {
-
-            if (value === 'true') {
-
-                object[property] = true;
-
-            } else if (value === 'false') {
-
-                object[property] = false;
-
-            } else object[property] = undefined;
-
-        } else object[property] = undefined;
+        if (value === true || value === false || value === null || value === undefined) object[property] = value;
 
     }
 
-    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean): void {
+    updateStringParam(object: Thing, property: string, value: string, isArrayItem?: boolean, shouldValidate = false, type?: Types, parentPath?: string): void {
 
+        const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
         if (property === 'sort') return this.updateSortParam(object, value, isArrayItem);
+
+        if (shouldValidate) {
+
+            const isRequired: boolean = object.isRequired(property);
+            if (isRequired && (value === undefined || value === null)) throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
+            if (value !== null && value !== undefined) {
+
+                if (type !== Types.ENUM && typeof value !== 'string') throw new Error(`invalid ${propertyFullName}. Should be string but is ${typeof value}.`);
+
+                const isTrim: boolean = object.isTrim(property);
+                if (isTrim && value.trim() === '') throw new Error(`invalid ${propertyFullName}. Should not be empty.`);
+
+                const minLength: number | undefined = object.getMinLength(property);
+                if (minLength !== undefined && value.length < minLength) throw new Error(`invalid ${propertyFullName}. Should not have less than ${minLength} characters.`);
+
+                const maxLength: number | undefined = object.getMaxLength(property);
+                if (maxLength !== undefined && value.length > maxLength) throw new Error(`invalid ${propertyFullName}. Should not have more than ${maxLength} characters.`);
+
+                if (type === Types.ENUM) {
+
+                    const enumValues: string[] | undefined = object.getEnumValues(property);
+                    if (enumValues && !enumValues.find((v: string) => v === value)) throw new Error(`invalid ${propertyFullName}. Should be [${enumValues.toString()}]`);
+
+                }
+
+                if (type === Types.MONGO_OBJECT_ID && !validator.isMongoId(value.toString())) throw new Error(`invalid ${propertyFullName}. Should be valid Mongo ObjectId.`);
+
+                if (type === Types.DATE && !(moment(value, moment.ISO_8601, true).isValid())) throw new Error(`invalid ${propertyFullName}. Should be valid Date.`);
+
+            }
+
+        }
 
         (object as any)[property] = value;
 
@@ -636,8 +702,8 @@ export class Thing {
 
         if ((clone as any)[arrProperties[0]] === null || (clone as any)[arrProperties[0]] === undefined) {
 
-            const typeParams: TypeParams<string> = object.getType(arrProperties[0]);
-            if (typeParams.type === Types.OBJECT && typeParams.class) {
+            const typeParams: TypeParams<string> | undefined = object.getType(arrProperties[0]);
+            if (typeParams?.type === Types.OBJECT && typeParams.class) {
 
                 const TypeClass = typeParams.class;
                 (clone as any)[arrProperties[0]] = new TypeClass();
@@ -671,13 +737,13 @@ export class Thing {
 
             if ((clone as any)[property] !== null && (clone as any)[property] !== undefined) {
 
-                const typeParams: TypeParams<string> = clone.getType(property);
-                if (typeParams.type === Types.OBJECT && typeParams.class) {
+                const typeParams: TypeParams<string> | undefined = clone.getType(property);
+                if (typeParams?.type === Types.OBJECT && typeParams.class) {
 
                     (clone as any)[property] = (clone as any)[property].clone();
 
                 } else if (
-                    typeParams.type === Types.ARRAY && typeParams.arrayItemType === Types.OBJECT && typeParams.class &&
+                    typeParams?.type === Types.ARRAY && typeParams.arrayItemType === Types.OBJECT && typeParams.class &&
                     (clone as any)[property].length) {
 
                     const arrClone: any[] = [];
@@ -697,9 +763,17 @@ export class Thing {
 
     }
 
-    fromJson(json?: {
+    validate(json?: {
         [key: string]: string;
     }): this {
+
+        return this.fromJson(json, true);
+
+    }
+
+    fromJson(json?: {
+        [key: string]: string;
+    }, shouldValidate = false): this {
 
         const uniqueId: number | null | undefined = this.uniqueId;
         const object: this = this.clone();
@@ -711,10 +785,9 @@ export class Thing {
             .filter((property: string) => property !== 'sort' && property !== 'limit' && property !== 'skip' && property !== 'uniqueId')
             .forEach((property: string) => {
 
-                const typeParams: TypeParams<string> = this.getType(property);
-
+                const typeParams: TypeParams<string> | undefined = this.getType(property);
                 const initialLevel = 1;
-                object.updatePropertyByTypeFromJson(object, property, typeParams, initialLevel, false, json);
+                if (typeParams) object.updatePropertyByTypeFromJson(object, property, typeParams, initialLevel, false, json, shouldValidate);
 
             });
 
@@ -725,8 +798,10 @@ export class Thing {
     updatePropertyByTypeFromJson(
         object: any, property: string, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
         json: {
-            [key: string]: string;
+            [key: string]: any;
         },
+        shouldValidate = false,
+        parentPath?: string,
     ): void {
 
         switch (typeParams.type) {
@@ -734,28 +809,26 @@ export class Thing {
             case Types.OBJECT:
                 if (typeParams.class) {
 
-                    this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json);
+                    this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json, shouldValidate, parentPath);
 
                 }
                 break;
             case Types.ARRAY:
-                this.updateArrayFromJson(object, property, typeParams, json);
+                this.updateArrayFromJson(object, property, typeParams, json, shouldValidate, parentPath);
                 break;
             case Types.NUMBER:
-                this.updateNumberParam(object, property, json[property], isArrayItem);
-                break;
             case Types.DECIMAL128:
             case Types.DECIMAL:
-                this.updateDecimalParam(object, property, json[property], isArrayItem);
+                this.updateNumberParam(object, property, json[property], typeParams.type, isArrayItem, shouldValidate, parentPath);
                 break;
             case Types.BOOLEAN:
-                this.updateBooleanParam(object, property, json[property], isArrayItem);
+                this.updateBooleanParam(object, property, json[property], isArrayItem, shouldValidate, parentPath);
                 break;
             case Types.MONGO_OBJECT_ID:
             case Types.ENUM:
             case Types.DATE:
             case Types.STRING:
-                this.updateStringParam(object as Thing, property, json[property], isArrayItem);
+                this.updateStringParam(object as Thing, property, json[property], isArrayItem, shouldValidate, typeParams.type, parentPath);
                 break;
             default:
                 break;
@@ -768,16 +841,20 @@ export class Thing {
         object: any, property: string, TypeClass: new () => T, level = 1, isArrayItem: boolean,
         json: {
             [key: string]: any;
-        }): void {
+        },
+        shouldValidate = false,
+        parentPath?: string,
+    ): void {
 
         const maxLevel = 10;
         if (level > maxLevel) return;
+        const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
 
         if (object.hasOwnProperty(property) || (isArrayItem === true && property === '0')) {
 
             if (object[property]) {
 
-                if (!json[property]) {
+                if (!shouldValidate && !json[property]) {
 
                     object[property] = null;
                     return;
@@ -786,10 +863,22 @@ export class Thing {
 
             } else {
 
-                if (json[property]) object[property] = new TypeClass();
-                else return;
+                if (json[property] !== null && json[property] !== undefined) object[property] = new TypeClass();
+                else if (!shouldValidate) return;
 
             }
+
+            const isRequired: boolean = object.isRequired(property);
+
+            if (shouldValidate && isRequired && (json[property] === null || json[property] === undefined)) {
+
+                throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
+
+            }
+
+            if ((json[property] === null || json[property] === undefined) && !isRequired) return;
+
+            if ((json[property] !== null && json[property] !== undefined) && shouldValidate && typeof json[property] !== 'object') throw new Error(`invalid ${propertyFullName}. Should be object but is ${typeof json[property]}.`);
 
             Object.getOwnPropertyNames(object[property])
                 .filter((p: string) => p !== 'sort' && p !== 'limit' && p !== 'skip' && p !== 'uniqueId')
@@ -806,6 +895,8 @@ export class Thing {
                         json[property] as {
                             [key: string]: string;
                         },
+                        shouldValidate,
+                        parentPath ? `${parentPath}.${property}` : property,
                     );
 
                 });
@@ -816,11 +907,17 @@ export class Thing {
 
     updateArrayFromJson(object: any, property: string, typeParams: TypeParams<string>, json: {
         [key: string]: any;
-    }): void {
+    }, shouldValidate = false, parentPath?: string): void {
 
+        const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
+        const isRequired: boolean = object.isRequired(property);
         if (object[property]) {
 
-            if (!json[property]) {
+            if (shouldValidate && isRequired && (json[property] === null || json[property] === undefined)) {
+
+                throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
+
+            } else if (!shouldValidate && !json[property]) {
 
                 object[property] = null;
                 return;
@@ -829,13 +926,21 @@ export class Thing {
 
         } else {
 
-            if (json[property]) object[property] = [];
-            else return;
+            if (json[property] !== null && json[property] !== undefined) object[property] = [];
+            else {
+
+                if (shouldValidate && isRequired) throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
+                return;
+
+            }
 
         }
 
+        if (shouldValidate && !Array.isArray(json[property])) throw new Error(`invalid ${propertyFullName}. Should be array but is ${typeof json[property]}.`);
+
         if (typeParams.arrayItemType) {
 
+            const TypeClass = typeParams.class;
             const type: TypeParams<string> = {
                 type: typeParams.arrayItemType,
                 class: typeParams.class,
@@ -845,14 +950,18 @@ export class Thing {
 
                 (json[property] as any[]).forEach((element: any) => {
 
-                    const hostObject = {};
+                    const hostObject = TypeClass ? new TypeClass() : object.clone();
                     (hostObject as any)[property] = null;
                     const jsonHost = {};
                     (jsonHost as any)[property] = element;
-                    this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost);
+                    this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost, shouldValidate);
                     object[property].push((hostObject as any)[property]);
 
                 });
+
+            } else {
+
+                if (shouldValidate) throw new Error(`invalid ${propertyFullName}. Should not be empty array.`);
 
             }
 

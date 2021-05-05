@@ -1,0 +1,10 @@
+<h1>Validation Tester</h1>
+<label for="json">JSON: </label>
+<textarea name="json" id="json" cols="100" rows="10" [(ngModel)]="json"></textarea>
+<br>
+<button type="button" (click)="validate()">Validate</button>
+<h2 style="color: green" *ngIf="isValid">Valid</h2>
+<h2 style="color: red" *ngIf="!isValid">{{ invalidMessage }}</h2>
+<div>
+    {{ validObject | json }}
+</div>

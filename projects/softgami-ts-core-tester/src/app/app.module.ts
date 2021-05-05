@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PasswordTesterComponent } from './password-tester/password-tester.component';
 import { PublicationTesterComponent } from './publication-tester/publication-tester.component';
+import { ValidationTesterComponent } from './validation-tester/validation-tester.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         PasswordTesterComponent,
         PublicationTesterComponent,
+        ValidationTesterComponent,
     ],
     imports: [
         BrowserModule,

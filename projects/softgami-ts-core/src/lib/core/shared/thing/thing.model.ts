@@ -2,8 +2,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
 import validator from 'validator';
+
+const moment = moment_;
 
 import { CompoundIndexMetadataKey } from '../decorators/compound-index-metadata-key';
 import { CompoundIndexOption } from '../models/compound-index-option.interface';

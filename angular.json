@@ -70,7 +70,10 @@
             "styles": [
               "projects/softgami-ts-core-tester/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "validator"
+            ]
           },
           "configurations": {
             "production": {

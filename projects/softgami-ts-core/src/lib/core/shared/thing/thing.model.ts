@@ -625,7 +625,7 @@ export class Thing {
         const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
         if (property === 'sort') return this.updateSortParam(object, value, isArrayItem);
 
-        if (property === '_id' && value === null && !shouldValidateID) {
+        if (property === '_id' && (value === null || value === undefined) && !shouldValidateID) {
 
             (object as any)[property] = value;
             return;

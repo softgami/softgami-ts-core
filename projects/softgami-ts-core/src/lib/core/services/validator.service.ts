@@ -9,7 +9,7 @@ export class ValidatorService {
         const object = new ClassDefinition();
         if (object && object instanceof Thing) {
 
-            return object.validate(json, shouldValidateID);
+            return object.validateFromJson(json, shouldValidateID);
 
         }
         return undefined;

@@ -770,7 +770,7 @@ export class Thing {
 
     }
 
-    validate(json?: {
+    validateFromJson(json?: {
         [key: string]: string;
     }, shouldValidateID = false): this {
 

@@ -639,18 +639,20 @@ export class Thing {
             if (isRequired && (value === undefined || value === null)) throw new Error(`invalid ${propertyFullName}. It is required and non nullable.`);
             if (value !== null && value !== undefined) {
 
-                if (type !== Types.ENUM && typeof value !== 'string') throw new Error(`invalid ${propertyFullName}. Should be string but is ${typeof value}.`);
+                if (type !== Types.ENUM) {
 
-                const isTrim: boolean = object.isTrim(property);
-                if (isTrim && value.trim() === '') throw new Error(`invalid ${propertyFullName}. Should not be empty.`);
+                    if (typeof value !== 'string') throw new Error(`invalid ${propertyFullName}. Should be string but is ${typeof value}.`);
 
-                const minLength: number | undefined = object.getMinLength(property);
-                if (minLength !== undefined && value.length < minLength) throw new Error(`invalid ${propertyFullName}. Should not have less than ${minLength} characters.`);
+                    const isTrim: boolean = object.isTrim(property);
+                    if (isTrim && value.trim() === '') throw new Error(`invalid ${propertyFullName}. Should not be empty.`);
 
-                const maxLength: number | undefined = object.getMaxLength(property);
-                if (maxLength !== undefined && value.length > maxLength) throw new Error(`invalid ${propertyFullName}. Should not have more than ${maxLength} characters.`);
+                    const minLength: number | undefined = object.getMinLength(property);
+                    if (minLength !== undefined && value.length < minLength) throw new Error(`invalid ${propertyFullName}. Should not have less than ${minLength} characters.`);
 
-                if (type === Types.ENUM) {
+                    const maxLength: number | undefined = object.getMaxLength(property);
+                    if (maxLength !== undefined && value.length > maxLength) throw new Error(`invalid ${propertyFullName}. Should not have more than ${maxLength} characters.`);
+
+                } else {
 
                     const enumValues: string[] | undefined = object.getEnumValues(property);
                     if (enumValues && !enumValues.find((v: string) => v === value)) throw new Error(`invalid ${propertyFullName}. Should be [${enumValues.toString()}]`);
@@ -773,15 +775,15 @@ export class Thing {
 
     validateFromJson(json?: {
         [key: string]: string;
-    }, shouldValidateID = false): this {
+    }, shouldValidateID = false, shouldValidateFullEmbeddedObjects = true): this {
 
-        return this.fromJson(json, true, shouldValidateID);
+        return this.fromJson(json, true, shouldValidateID, shouldValidateFullEmbeddedObjects);
 
     }
 
     fromJson(json?: {
         [key: string]: string;
-    }, shouldValidate = false, shouldValidateID = false): this {
+    }, shouldValidate = false, shouldValidateID = false, shouldValidateFullEmbeddedObjects = true): this {
 
         const uniqueId: number | null | undefined = this.uniqueId;
         const object: this = this.clone();
@@ -795,7 +797,22 @@ export class Thing {
 
                 const typeParams: TypeParams<string> | undefined = this.getType(property);
                 const initialLevel = 1;
-                if (typeParams) object.updatePropertyByTypeFromJson(object, property, typeParams, initialLevel, false, json, shouldValidate, undefined, shouldValidateID);
+                if (typeParams) {
+
+                    object.updatePropertyByTypeFromJson(
+                        object,
+                        property,
+                        typeParams,
+                        initialLevel,
+                        false,
+                        json,
+                        shouldValidate,
+                        undefined,
+                        shouldValidateID,
+                        shouldValidateFullEmbeddedObjects,
+                    );
+
+                }
 
             });
 
@@ -811,6 +828,7 @@ export class Thing {
         shouldValidate = false,
         parentPath?: string,
         shouldValidateID = false,
+        shouldValidateFullEmbeddedObjects = true,
     ): void {
 
         switch (typeParams.type) {
@@ -818,12 +836,12 @@ export class Thing {
             case Types.OBJECT:
                 if (typeParams.class) {
 
-                    this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json, shouldValidate, parentPath);
+                    this.updateObjectFromJson(object, property, typeParams.class, level, isArrayItem, json, shouldValidate, parentPath, shouldValidateFullEmbeddedObjects);
 
                 }
                 break;
             case Types.ARRAY:
-                this.updateArrayFromJson(object, property, typeParams, json, shouldValidate, parentPath);
+                this.updateArrayFromJson(object, property, typeParams, json, shouldValidate, parentPath, shouldValidateFullEmbeddedObjects);
                 break;
             case Types.NUMBER:
             case Types.DECIMAL128:
@@ -853,6 +871,7 @@ export class Thing {
         },
         shouldValidate = false,
         parentPath?: string,
+        shouldValidateFullEmbeddedObjects = true,
     ): void {
 
         const maxLevel = 10;
@@ -891,6 +910,7 @@ export class Thing {
 
             Object.getOwnPropertyNames(object[property])
                 .filter((p: string) => p !== 'sort' && p !== 'limit' && p !== 'skip' && p !== 'uniqueId')
+                .filter((p: string) => shouldValidateFullEmbeddedObjects || p === '_id')
                 .forEach((p: string) => {
 
                     const typeParams: TypeParams<string> = object[property].getType(p);
@@ -906,6 +926,8 @@ export class Thing {
                         },
                         shouldValidate,
                         parentPath ? `${parentPath}.${property}` : property,
+                        true,
+                        shouldValidateFullEmbeddedObjects,
                     );
 
                 });
@@ -916,7 +938,7 @@ export class Thing {
 
     updateArrayFromJson(object: any, property: string, typeParams: TypeParams<string>, json: {
         [key: string]: any;
-    }, shouldValidate = false, parentPath?: string): void {
+    }, shouldValidate = false, parentPath?: string, shouldValidateFullEmbeddedObjects = true): void {
 
         const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
         const isRequired: boolean = object.isRequired(property);
@@ -963,7 +985,7 @@ export class Thing {
                     (hostObject as any)[property] = null;
                     const jsonHost = {};
                     (jsonHost as any)[property] = element;
-                    this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost, shouldValidate);
+                    this.updatePropertyByTypeFromJson(hostObject, property, type, 1, true, jsonHost, shouldValidate, undefined, true, shouldValidateFullEmbeddedObjects);
                     object[property].push((hostObject as any)[property]);
 
                 });

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SoftgamiTsUtilsService } from 'projects/softgami-ts-core/src/lib/core/services/softgami-ts-utils.service';
+import { Task } from 'projects/softgami-ts-core/src/lib/bluebirdtask/task/task.model';
 import { ValidatorService } from 'projects/softgami-ts-core/src/lib/core/services/validator.service';
-import { Publication } from 'projects/softgami-ts-core/src/lib/gami-books/publication/publication.model';
 
 @Component({
     selector: 'app-validation-tester',
@@ -8,11 +9,11 @@ import { Publication } from 'projects/softgami-ts-core/src/lib/gami-books/public
 })
 export class ValidationTesterComponent {
 
-    object: Publication = new Publication();
+    object: Task = new Task();
     json = '';
     isValid = false;
     invalidMessage = '';
-    validObject: Publication | undefined;
+    validObject: Task | undefined;
 
     constructor() {
 
@@ -28,7 +29,9 @@ export class ValidationTesterComponent {
             sessionStorage.setItem('json', this.json);
             const object = JSON.parse(this.json);
 
-            this.validObject = ValidatorService.validate(object, Publication);
+            this.validObject = ValidatorService.validate(object, Task, true, false);
+            this.validObject = SoftgamiTsUtilsService.cleanEmpty(this.validObject);
+            this.validObject = SoftgamiTsUtilsService.convertToCleanJson(this.validObject);
 
             this.isValid = true;
             console.log(this.validObject);

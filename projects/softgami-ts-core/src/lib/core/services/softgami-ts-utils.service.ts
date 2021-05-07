@@ -36,4 +36,39 @@ export abstract class SoftgamiTsUtilsService {
 
     }
 
+    static cleanEmpty<T>(obj: T): T {
+
+        Object.entries(obj).forEach(([ k, v ]) => {
+
+            if (obj[k as keyof T] === null || obj[k as keyof T] === undefined) delete obj[k as keyof T];
+            else if (Array.isArray(obj[k as keyof T])) {
+
+                (obj[k as keyof T] as any).forEach((el: any) => {
+
+                    if (el === Object(el)) {
+
+                        SoftgamiTsUtilsService.cleanEmpty(el);
+
+                    }
+
+                });
+
+            } else if (obj[k as keyof T] === Object(obj[k as keyof T])) {
+
+                SoftgamiTsUtilsService.cleanEmpty(obj[k as keyof T]);
+
+            }
+
+        });
+        return obj;
+
+    }
+
+    static convertToCleanJson<T>(obj: T): T {
+
+        const replacer = (_: any, value: any) => value ?? undefined;
+        return JSON.parse(JSON.stringify(obj, replacer)) as T;
+
+    }
+
 }

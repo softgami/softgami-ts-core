@@ -28,7 +28,7 @@ import { Required } from '../decorators/required.decorator';
 import { RequiredMetadataKey } from '../decorators/required-metadata-key';
 import { Schemable } from '../decorators/schemable.decorator';
 import { SchemableMetadataKey } from '../decorators/schemable-metadata-key';
-import { SkipID } from '../decorators/skip-id.decorator';
+import { SkipIDMetadataKey } from '../decorators/skip-id-metadata-key';
 import { Sortable } from '../decorators/sortable.decorator';
 import { SortableMetadataKey } from '../decorators/sortable-metadata-key';
 import { SortBySelectOption } from '../models/sort-by-select-options.interface';
@@ -41,7 +41,6 @@ import { Types } from '../models/types.enum';
 import { UniqueMetadataKey } from '../decorators/unique-metadata-key';
 
 // @dynamic
-@SkipID()
 export class Thing {
 
     @Schemable()
@@ -294,6 +293,13 @@ export class Thing {
 
     }
 
+    isSkipId(ClassDef: new () => Thing): boolean {
+
+        const isSkipId: boolean | undefined = Reflect.getMetadata(SkipIDMetadataKey, ClassDef);
+        return isSkipId || false;
+
+    }
+
     getExtendsClass(property: string): (new () => Thing) | undefined {
 
         const typeClass: (new () => Thing) | undefined = Reflect.getMetadata(ExtendsMetadataKey, this, property);
@@ -417,9 +423,7 @@ export class Thing {
 
     }
 
-    updatePropertiesFromParams(params: {
-        [key: string]: string;
-    }): void {
+    updatePropertiesFromParams(params: any): void {
 
         Object.getOwnPropertyNames(this).forEach((property: string) => {
 
@@ -438,9 +442,7 @@ export class Thing {
 
     updatePropertyByType(
         object: any, property: string, parentPath: string | null, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
-        params: {
-            [key: string]: string;
-        },
+        params: any,
     ): void {
 
         if (!parentPath) parentPath = property;
@@ -480,9 +482,7 @@ export class Thing {
 
     updateObjectParam<T>(
         object: any, property: string, parentPath: string, TypeClass: new () => T, level = 1, isArrayItem: boolean,
-        params: {
-            [key: string]: string;
-        }):void {
+        params: any):void {
 
         const maxLevel = 3;
         if (level > maxLevel) return;
@@ -525,9 +525,7 @@ export class Thing {
 
     }
 
-    updateArrayParam(object: any, property: string, typeParams: TypeParams<string>, params: {
-        [key: string]: string;
-    }): void {
+    updateArrayParam(object: any, property: string, typeParams: TypeParams<string>, params: any): void {
 
         const objectParams: string[] = Object.getOwnPropertyNames(params).filter((p: string) => p.indexOf(property) === 0);
 
@@ -773,17 +771,13 @@ export class Thing {
 
     }
 
-    validateFromJson(json?: {
-        [key: string]: string;
-    }, shouldValidateID = false, shouldValidateFullEmbeddedObjects = true): this {
+    validateFromJson(json?: any, shouldValidateID = false, shouldValidateFullEmbeddedObjects = true): this {
 
         return this.fromJson(json, true, shouldValidateID, shouldValidateFullEmbeddedObjects);
 
     }
 
-    fromJson(json?: {
-        [key: string]: string;
-    }, shouldValidate = false, shouldValidateID = false, shouldValidateFullEmbeddedObjects = true): this {
+    fromJson(json?: any, shouldValidate = false, shouldValidateID = false, shouldValidateFullEmbeddedObjects = true): this {
 
         const uniqueId: number | null | undefined = this.uniqueId;
         const object: this = this.clone();
@@ -822,9 +816,7 @@ export class Thing {
 
     updatePropertyByTypeFromJson(
         object: any, property: string, typeParams: TypeParams<string>, level = 1, isArrayItem: boolean,
-        json: {
-            [key: string]: any;
-        },
+        json: any,
         shouldValidate = false,
         parentPath?: string,
         shouldValidateID = false,
@@ -866,9 +858,7 @@ export class Thing {
 
     updateObjectFromJson<T>(
         object: any, property: string, TypeClass: new () => T, level = 1, isArrayItem: boolean,
-        json: {
-            [key: string]: any;
-        },
+        json: any,
         shouldValidate = false,
         parentPath?: string,
         shouldValidateFullEmbeddedObjects = true,
@@ -908,9 +898,11 @@ export class Thing {
 
             if ((json[property] !== null && json[property] !== undefined) && shouldValidate && typeof json[property] !== 'object') throw new Error(`invalid ${propertyFullName}. Should be object but is ${typeof json[property]}.`);
 
+            const isSkipId: boolean = object[property].isSkipId(TypeClass);
+
             Object.getOwnPropertyNames(object[property])
                 .filter((p: string) => p !== 'sort' && p !== 'limit' && p !== 'skip' && p !== 'uniqueId')
-                .filter((p: string) => shouldValidateFullEmbeddedObjects || p === '_id')
+                .filter((p: string) => shouldValidateFullEmbeddedObjects || isSkipId || p === '_id')
                 .forEach((p: string) => {
 
                     const typeParams: TypeParams<string> = object[property].getType(p);
@@ -921,9 +913,7 @@ export class Thing {
                         typeParams,
                         level + 1,
                         isArrayItem,
-                        json[property] as {
-                            [key: string]: string;
-                        },
+                        json[property],
                         shouldValidate,
                         parentPath ? `${parentPath}.${property}` : property,
                         true,
@@ -936,9 +926,8 @@ export class Thing {
 
     }
 
-    updateArrayFromJson(object: any, property: string, typeParams: TypeParams<string>, json: {
-        [key: string]: any;
-    }, shouldValidate = false, parentPath?: string, shouldValidateFullEmbeddedObjects = true): void {
+    updateArrayFromJson(object: any, property: string, typeParams: TypeParams<string>, json: any,
+        shouldValidate = false, parentPath?: string, shouldValidateFullEmbeddedObjects = true): void {
 
         const propertyFullName: string = parentPath ? `${parentPath}.${property}` : property;
         const isRequired: boolean = object.isRequired(property);

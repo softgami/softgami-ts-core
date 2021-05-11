@@ -5,6 +5,7 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
+import { Max } from '../../core/shared/decorators/max.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
 import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { PermissionCheck } from '../../core/permissions/permission/permission-check.model';
@@ -48,6 +49,7 @@ export class Menu extends Thing {
     @Required()
     @Default(1)
     @Min(1)
+    @Max(200)
     @Type({ type: Types.NUMBER })
     index: number | null = null;
 

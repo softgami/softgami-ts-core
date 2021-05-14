@@ -24,6 +24,8 @@ import { User } from '../../core/user/user.model';
     { fields: { 'appInstance._id': 1 }, options: { unique: false } },
     { fields: { index: 1 }, options: { unique: false } },
     { fields: { isActive: 1 }, options: { unique: false } },
+    { fields: { 'app._id': 1 }, options: { unique: false } },
+    { fields: { 'app.alias': 1 }, options: { unique: false } },
     { fields: { 'appInstance.creator._id': 1 }, options: { unique: false } },
     { fields: { 'permissionCheck.subject': 1 }, options: { unique: false } },
     { fields: { 'permissionCheck.action': 1 }, options: { unique: false } },
@@ -31,8 +33,6 @@ import { User } from '../../core/user/user.model';
     { fields: { 'parent.name': 1 }, options: { unique: false } },
     { fields: { 'ancestors._id': 1 }, options: { unique: false } },
     { fields: { 'ancestors.name': 1 }, options: { unique: false } },
-    { fields: { 'app._id': 1 }, options: { unique: false } },
-    { fields: { 'app.alias': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
 export class Menu extends Thing {
@@ -58,6 +58,13 @@ export class Menu extends Thing {
     @QueryParam()
     @Type({ type: Types.BOOLEAN })
     isActive: boolean | null = null;
+
+    @Schemable()
+    @Required()
+    @ExcludeIndexes()
+    @QueryParam()
+    @Type({ type: Types.OBJECT, class: App })
+    app: App | null = null;
 
     @Schemable()
     @ExcludeIndexes()
@@ -94,11 +101,5 @@ export class Menu extends Thing {
     @QueryParam()
     @Type({ type: Types.OBJECT, class: AppInstance })
     appInstance?: AppInstance | null = null;
-
-    @Schemable()
-    @ExcludeIndexes()
-    @QueryParam()
-    @Type({ type: Types.OBJECT, class: App })
-    app?: App | null = null;
 
 }

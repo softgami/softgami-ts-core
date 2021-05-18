@@ -72,7 +72,7 @@ export abstract class SoftgamiTsUtilsService {
     static convertToCleanJson<T>(obj: T, shouldCleanEmptyString = false): T {
 
         const replacer = shouldCleanEmptyString
-            ? (_: any, value: any) => value && (typeof value !== 'string' || value.trim() !== '') ? value : undefined
+            ? (_: any, value: any) => (value !== null && value !== undefined) && (typeof value !== 'string' || value.trim() !== '') ? value : undefined
             : (_: any, value: any) => value ?? undefined;
         return JSON.parse(JSON.stringify(obj, replacer)) as T;
 

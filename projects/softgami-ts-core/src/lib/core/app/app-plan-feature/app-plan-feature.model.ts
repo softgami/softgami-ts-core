@@ -40,7 +40,7 @@ export class AppPlanFeature extends Thing {
     @Trim()
     @Default(null)
     @MinLength(1)
-    @MaxLength(200)
+    @MaxLength(2000)
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
     info?: string[] | null = null;
 

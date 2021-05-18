@@ -139,12 +139,11 @@ export class Task extends Thing implements BoardListItem {
     project: Project | null = null;
 
     @Schemable()
-    @Required()
     @Default(true)
     @QueryParam()
     @Sortable({ label: 'BACKLOG' })
     @Type({ type: Types.BOOLEAN })
-    isBacklog: boolean | null = null;
+    isBacklog?: boolean | null = null;
 
     @Schemable()
     @Sortable({ label: 'PERCENT_DONE' })
@@ -264,7 +263,7 @@ export class Task extends Thing implements BoardListItem {
     @Default(null)
     @Trim()
     @MinLength(1)
-    @MaxLength(30)
+    @MaxLength(100)
     @Sortable({ label: 'TAGS' })
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })
     tags?: string[] | null = null;

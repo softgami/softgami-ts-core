@@ -30,7 +30,7 @@ export class Email extends Thing {
     @Trim()
     @Unique()
     @MinLength(1)
-    @MaxLength(50)
+    @MaxLength(100)
     @Type({ type: Types.STRING })
     address: string | null = null;
 

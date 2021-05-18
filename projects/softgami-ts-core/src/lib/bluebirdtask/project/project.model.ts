@@ -83,14 +83,12 @@ export class Project extends Thing {
     creator: User | null = null;
 
     @Schemable()
-    @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
     lead?: User | null = null;
 
     @Schemable()
-    @Required()
     @QueryParam()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })

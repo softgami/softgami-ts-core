@@ -46,7 +46,7 @@ export class Translation extends Thing {
     @Trim()
     @QueryParam()
     @MinLength(1)
-    @MaxLength(1000)
+    @MaxLength(2000)
     @Sortable({ label: 'VALUE' })
     @Type({ type: Types.STRING })
     value: string | null = null;

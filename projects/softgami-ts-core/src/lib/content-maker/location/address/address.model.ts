@@ -45,7 +45,7 @@ export class Address extends Thing {
     @Required()
     @Trim()
     @MinLength(1)
-    @MaxLength(50)
+    @MaxLength(200)
     @Type({ type: Types.STRING })
     street: string | null = null;
 
@@ -53,7 +53,7 @@ export class Address extends Thing {
     @Required()
     @Trim()
     @MinLength(1)
-    @MaxLength(10)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     number: string | null = null;
 
@@ -69,7 +69,7 @@ export class Address extends Thing {
     @Required()
     @Trim()
     @MinLength(1)
-    @MaxLength(50)
+    @MaxLength(100)
     @Type({ type: Types.STRING })
     district: string | null = null;
 

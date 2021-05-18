@@ -28,7 +28,7 @@ export class Phone extends Thing {
     @Required()
     @Trim()
     @MinLength(1)
-    @MaxLength(20)
+    @MaxLength(30)
     @Type({ type: Types.STRING })
     number: string | null = null;
 

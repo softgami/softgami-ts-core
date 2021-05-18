@@ -66,7 +66,7 @@ export class BasePerson<T extends PersonType> extends Thing {
     @Schemable()
     @Trim()
     @MinLength(1)
-    @MaxLength(50)
+    @MaxLength(100)
     @Type({ type: Types.STRING })
     jobTitle?: string | null = null;
 

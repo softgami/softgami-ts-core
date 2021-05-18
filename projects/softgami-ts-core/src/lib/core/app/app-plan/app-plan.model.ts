@@ -49,7 +49,7 @@ export class AppPlan extends Thing {
     @Required()
     @Trim()
     @MinLength(1)
-    @MaxLength(40)
+    @MaxLength(100)
     @Type({ type: Types.STRING })
     alias: string | null = null;
 

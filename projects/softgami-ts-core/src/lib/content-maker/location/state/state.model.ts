@@ -43,7 +43,7 @@ export class State extends Thing {
     @Trim()
     @Sortable({ label: 'CODE' })
     @MinLength(1)
-    @MaxLength(10)
+    @MaxLength(20)
     @Type({ type: Types.STRING })
     code?: string | null = null;
 

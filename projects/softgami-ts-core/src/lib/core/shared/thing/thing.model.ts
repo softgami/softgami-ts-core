@@ -49,7 +49,7 @@ export class Thing {
     @QueryParam()
     @Sortable({ label: 'NAME' })
     @MinLength(1)
-    @MaxLength(200)
+    @MaxLength(2000)
     @Type({ type: Types.STRING })
     name: string | null = null;
 
@@ -78,14 +78,14 @@ export class Thing {
     @Trim()
     @QueryParam()
     @MinLength(1)
-    @MaxLength(500)
+    @MaxLength(5000)
     @Type({ type: Types.STRING })
     description?: string | null = null;
 
     @Schemable()
     @Trim()
     @MinLength(1)
-    @MaxLength(200)
+    @MaxLength(2000)
     @Type({ type: Types.STRING })
     url?: string | null = null;
 

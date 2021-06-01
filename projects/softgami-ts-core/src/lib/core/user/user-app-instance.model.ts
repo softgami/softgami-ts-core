@@ -1,19 +1,21 @@
 import { Default } from '../shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { Extends } from '../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../shared/decorators/generate-mongo-object-id.decorator';
 import { HostUser } from './host-user.model';
 import { QueryParam } from '../shared/decorators/query-param.decorator';
 import { Required } from '../shared/decorators/required.decorator';
 import { Role } from '../permissions/role/role.model';
 import { Schemable } from '../shared/decorators/schemable.decorator';
 import { SkipID } from '../shared/decorators/skip-id.decorator';
-import { Thing } from '../../core/shared/thing/thing.model';
+import { Thing } from '../shared/thing/thing.model';
 import { Type } from '../shared/decorators/type.decorator';
 import { Types } from '../shared/models/types.enum';
 
 // @dynamic
 @SkipID()
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class UserAppInstance extends Thing {
 
     @Schemable()

@@ -9,6 +9,7 @@ import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { File } from '../../content-maker/file/file.model';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Max } from '../../core/shared/decorators/max.decorator';
 import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
@@ -76,6 +77,7 @@ import { WorkLog } from './work-log.model';
     { fields: { incrementalId: 1, 'project._id': 1 }, options: { unique: true } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Task extends Thing implements BoardListItem {
 
     @Schemable()

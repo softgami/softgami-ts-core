@@ -1,19 +1,20 @@
 import { AppInstanceInviteStatus } from './app-instance-invite-status.enum';
-import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
-import { Default } from '../../../core/shared/decorators/default.decorator';
+import { CompoundIndex } from '../../shared/decorators/compound-index.decorator';
+import { Default } from '../../shared/decorators/default.decorator';
 import { Enum } from '../../shared/decorators/enum.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Role } from '../../../core/permissions/role/role.model';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { Unique } from '../../../core/shared/decorators/unique.decorator';
-import { User } from '../../../core/user/user.model';
+import { ExcludeIndexes } from '../../shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../shared/decorators/generate-mongo-object-id.decorator';
+import { QueryParam } from '../../shared/decorators/query-param.decorator';
+import { Required } from '../../shared/decorators/required.decorator';
+import { Role } from '../../permissions/role/role.model';
+import { Schemable } from '../../shared/decorators/schemable.decorator';
+import { Thing } from '../../shared/thing/thing.model';
+import { Trim } from '../../shared/decorators/trim.decorator';
+import { Type } from '../../shared/decorators/type.decorator';
+import { Types } from '../../shared/models/types.enum';
+import { Unique } from '../../shared/decorators/unique.decorator';
+import { User } from '../../user/user.model';
 
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
@@ -26,6 +27,7 @@ import { User } from '../../../core/user/user.model';
     { fields: { 'roles.alias': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class AppInstanceInvite extends Thing {
 
     @Schemable()

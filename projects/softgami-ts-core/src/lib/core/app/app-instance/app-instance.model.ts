@@ -1,19 +1,20 @@
 import { App } from '../app.model';
-import { AppPlan } from '../../../core/app/app-plan/app-plan.model';
-import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
-import { Default } from '../../../core/shared/decorators/default.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Role } from '../../../core/permissions/role/role.model';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { Unique } from '../../../core/shared/decorators/unique.decorator';
-import { User } from '../../../core/user/user.model';
+import { AppPlan } from '../../app/app-plan/app-plan.model';
+import { CompoundIndex } from '../../shared/decorators/compound-index.decorator';
+import { Default } from '../../shared/decorators/default.decorator';
+import { ExcludeIndexes } from '../../shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../shared/decorators/generate-mongo-object-id.decorator';
+import { QueryParam } from '../../shared/decorators/query-param.decorator';
+import { Required } from '../../shared/decorators/required.decorator';
+import { Role } from '../../permissions/role/role.model';
+import { Schemable } from '../../shared/decorators/schemable.decorator';
+import { Thing } from '../../shared/thing/thing.model';
+import { Trim } from '../../shared/decorators/trim.decorator';
+import { Type } from '../../shared/decorators/type.decorator';
+import { Types } from '../../shared/models/types.enum';
+import { Unique } from '../../shared/decorators/unique.decorator';
+import { User } from '../../user/user.model';
 
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
@@ -36,6 +37,7 @@ import { User } from '../../../core/user/user.model';
     { fields: { 'users.name': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class AppInstance extends Thing {
 
     @Schemable()

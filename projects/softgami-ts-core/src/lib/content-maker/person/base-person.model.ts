@@ -4,6 +4,7 @@ import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { PersonType } from './person-type.enum';
@@ -19,6 +20,7 @@ import { Types } from '../../core/shared/models/types.enum';
 
 // @dynamic
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class BasePerson<T extends PersonType> extends Thing {
 
     @Schemable()

@@ -11,9 +11,10 @@ import { Email } from '../shared/email/email.model';
 import { Enum } from '../shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../shared/decorators/generate-mongo-object-id.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
-import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
-import { MinLength } from '../../core/shared/decorators/min-length.decorator';
+import { MaxLength } from '../shared/decorators/max-length.decorator';
+import { MinLength } from '../shared/decorators/min-length.decorator';
 import { Override } from '../shared/decorators/override.decorator';
 import { PersonType } from '../../content-maker/person/person-type.enum';
 import { Phone } from '../shared/phone/phone.model';
@@ -67,6 +68,7 @@ import { UserAppInstance } from './user-app-instance.model';
     { fields: { 'country.code': 1 }, options: { unique: false } },
 ])
 @Extends(BasePerson)
+@GenerateMongoObjectID()
 export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()

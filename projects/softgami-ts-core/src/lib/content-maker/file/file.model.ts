@@ -4,6 +4,7 @@ import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { FileDownload } from './file-download.model';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
 import { MinLength } from '../../core/shared/decorators/min-length.decorator';
@@ -38,6 +39,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'appInstance._id': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class File extends Thing {
 
     @Schemable()

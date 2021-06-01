@@ -3,6 +3,7 @@ import { City } from '../city/city.model';
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
@@ -16,6 +17,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
 // @dynamic
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Address extends Thing {
 
     @Schemable()

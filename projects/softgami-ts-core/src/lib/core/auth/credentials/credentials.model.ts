@@ -1,16 +1,18 @@
-import { Default } from '../../../core/shared/decorators/default.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Default } from '../../shared/decorators/default.decorator';
+import { Extends } from '../../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../shared/decorators/generate-mongo-object-id.decorator';
 import { Password } from '../password/password.model';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
+import { Required } from '../../shared/decorators/required.decorator';
+import { Schemable } from '../../shared/decorators/schemable.decorator';
+import { SkipID } from '../../shared/decorators/skip-id.decorator';
+import { Thing } from '../../shared/thing/thing.model';
+import { Type } from '../../shared/decorators/type.decorator';
+import { Types } from '../../shared/models/types.enum';
 
 // @dynamic
 @SkipID()
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class Credentials extends Thing {
 
     @Schemable()

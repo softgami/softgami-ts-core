@@ -1,13 +1,15 @@
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { User } from '../../../core/user/user.model';
+import { ExcludeIndexes } from '../decorators/exclude-indexes.decorator';
+import { Extends } from '../decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
+import { Schemable } from '../decorators/schemable.decorator';
+import { Thing } from '../thing/thing.model';
+import { Trim } from '../decorators/trim.decorator';
+import { Type } from '../decorators/type.decorator';
+import { Types } from '../models/types.enum';
+import { User } from '../../user/user.model';
 
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Organization extends Thing {
 
     @Schemable()

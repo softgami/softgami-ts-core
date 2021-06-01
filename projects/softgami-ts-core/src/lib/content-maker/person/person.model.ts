@@ -3,6 +3,7 @@ import { BasePerson } from './base-person.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { PersonType } from './person-type.enum';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -22,6 +23,7 @@ import { User } from '../../core/user/user.model';
     { fields: { type: 1 }, options: { unique: false } },
 ])
 @Extends(BasePerson)
+@GenerateMongoObjectID()
 export class Person<T extends PersonType> extends BasePerson<T> {
 
     @Schemable()

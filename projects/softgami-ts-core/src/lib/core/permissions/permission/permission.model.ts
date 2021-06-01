@@ -1,18 +1,19 @@
-import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
-import { Max } from '../../../core/shared/decorators/max.decorator';
-import { Min } from '../../../core/shared/decorators/min.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
+import { CompoundIndex } from '../../shared/decorators/compound-index.decorator';
+import { ExcludeIndexes } from '../../shared/decorators/exclude-indexes.decorator';
+import { Extends } from '../../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../shared/decorators/generate-mongo-object-id.decorator';
+import { QueryParam } from '../../shared/decorators/query-param.decorator';
+import { Max } from '../../shared/decorators/max.decorator';
+import { Min } from '../../shared/decorators/min.decorator';
+import { Required } from '../../shared/decorators/required.decorator';
 import { Role } from '../role/role.model';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
+import { Schemable } from '../../shared/decorators/schemable.decorator';
 import { Subject } from '../subject/subject.model';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { Unique } from '../../../core/shared/decorators/unique.decorator';
+import { Thing } from '../../shared/thing/thing.model';
+import { Trim } from '../../shared/decorators/trim.decorator';
+import { Type } from '../../shared/decorators/type.decorator';
+import { Types } from '../../shared/models/types.enum';
+import { Unique } from '../../shared/decorators/unique.decorator';
 
 @CompoundIndex([
     { fields: { 'subject._id': 1, 'role._id': 1 }, options: { unique: true } },
@@ -23,6 +24,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
     { fields: { 'role._id': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Permission extends Thing {
 
     @Schemable()

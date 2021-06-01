@@ -2,6 +2,7 @@ import { AppInstance } from '../../core/app/app-instance/app-instance.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Organization } from '../../core/shared/organization/organization.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -20,6 +21,7 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
     { fields: { 'creator._id': 1 }, options: { unique: false } },
 ])
 @Extends(Organization)
+@GenerateMongoObjectID()
 export class Publisher extends Organization {
 
     @Schemable()

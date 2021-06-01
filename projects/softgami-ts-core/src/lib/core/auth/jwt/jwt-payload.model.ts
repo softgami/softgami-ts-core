@@ -1,13 +1,15 @@
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { Extends } from '../../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../shared/decorators/generate-mongo-object-id.decorator';
 import { JwtRole } from './jwt-role.model';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
+import { Required } from '../../shared/decorators/required.decorator';
+import { Thing } from '../../shared/thing/thing.model';
+import { Trim } from '../../shared/decorators/trim.decorator';
+import { Type } from '../../shared/decorators/type.decorator';
+import { Types } from '../../shared/models/types.enum';
 
 // @dynamic
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class JwtPayload extends Thing {
 
     @Required()

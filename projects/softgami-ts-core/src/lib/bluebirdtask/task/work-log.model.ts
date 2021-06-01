@@ -1,5 +1,6 @@
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Max } from '../../core/shared/decorators/max.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
@@ -14,6 +15,7 @@ import { User } from '../../core/user/user.model';
 
 // @dynamic
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class WorkLog extends Thing {
 
     @Schemable()

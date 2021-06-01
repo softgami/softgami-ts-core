@@ -2,6 +2,7 @@ import { CompoundIndex } from '../../../core/shared/decorators/compound-index.de
 import { Default } from '../../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Language } from '../../../content-maker/i18n/language/language.model';
 import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
@@ -25,6 +26,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
     { fields: { 'languages.code': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Country extends Thing {
 
     @Schemable()

@@ -4,6 +4,7 @@ import { CompoundIndex } from '../../core/shared/decorators/compound-index.decor
 import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
 import { Max } from '../../core/shared/decorators/max.decorator';
 import { Min } from '../../core/shared/decorators/min.decorator';
@@ -35,6 +36,7 @@ import { User } from '../../core/user/user.model';
     { fields: { 'ancestors.name': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Menu extends Thing {
 
     @Schemable()

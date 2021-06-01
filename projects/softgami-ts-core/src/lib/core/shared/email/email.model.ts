@@ -1,22 +1,24 @@
-import { Default } from '../../../core/shared/decorators/default.decorator';
+import { Default } from '../decorators/default.decorator';
 import { EmailType } from './email-type.enum';
-import { Enum } from '../../../core/shared/decorators/enum.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
-import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
-import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Trim } from '../../../core/shared/decorators/trim.decorator';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
-import { Unique } from '../../../core/shared/decorators/unique.decorator';
+import { Enum } from '../decorators/enum.decorator';
+import { Extends } from '../decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
+import { MaxLength } from '../decorators/max-length.decorator';
+import { MinLength } from '../decorators/min-length.decorator';
+import { QueryParam } from '../decorators/query-param.decorator';
+import { Required } from '../decorators/required.decorator';
+import { Schemable } from '../decorators/schemable.decorator';
+import { SkipID } from '../decorators/skip-id.decorator';
+import { Thing } from '../thing/thing.model';
+import { Trim } from '../decorators/trim.decorator';
+import { Type } from '../decorators/type.decorator';
+import { Types } from '../models/types.enum';
+import { Unique } from '../decorators/unique.decorator';
 
 // @dynamic
 @SkipID()
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class Email extends Thing {
 
     @Schemable()

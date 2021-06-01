@@ -1,5 +1,6 @@
 import { CompoundIndex } from '../../../core/shared/decorators/compound-index.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
 import { Override } from '../../../core/shared/decorators/override.decorator';
@@ -18,6 +19,7 @@ import { Unique } from '../../../core/shared/decorators/unique.decorator';
     { fields: { code: 1 }, options: { unique: true } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Language extends Thing {
 
     @Schemable()

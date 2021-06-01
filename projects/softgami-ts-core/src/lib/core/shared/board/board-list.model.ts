@@ -1,10 +1,11 @@
 import { AppInstance } from '../../app/app-instance/app-instance.model';
 import { BoardListItem } from './board-list-item.interface';
 import { CompoundIndex } from '../decorators/compound-index.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
+import { ExcludeIndexes } from '../decorators/exclude-indexes.decorator';
 import { Extends } from '../decorators/extends.decorator';
-import { Max } from '../../../core/shared/decorators/max.decorator';
-import { Min } from '../../../core/shared/decorators/min.decorator';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
+import { Max } from '../decorators/max.decorator';
+import { Min } from '../decorators/min.decorator';
 import { QueryParam } from '../decorators/query-param.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
@@ -25,6 +26,7 @@ import { User } from '../../user/user.model';
     { fields: { orderIndex: 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class BoardList extends Thing {
 
     @Schemable()

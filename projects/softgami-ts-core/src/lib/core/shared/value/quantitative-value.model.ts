@@ -1,15 +1,17 @@
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
-import { Extends } from '../../../core/shared/decorators/extends.decorator';
-import { Required } from '../../../core/shared/decorators/required.decorator';
-import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
-import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
-import { Thing } from '../../../core/shared/thing/thing.model';
-import { Type } from '../../../core/shared/decorators/type.decorator';
-import { Types } from '../../../core/shared/models/types.enum';
+import { ExcludeIndexes } from '../decorators/exclude-indexes.decorator';
+import { Extends } from '../decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
+import { Required } from '../decorators/required.decorator';
+import { Schemable } from '../decorators/schemable.decorator';
+import { SkipID } from '../decorators/skip-id.decorator';
+import { Thing } from '../thing/thing.model';
+import { Type } from '../decorators/type.decorator';
+import { Types } from '../models/types.enum';
 import { UnityValue } from './unity-value.model';
 
 @SkipID()
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class QuantitativeValue extends Thing {
 
     @Schemable()

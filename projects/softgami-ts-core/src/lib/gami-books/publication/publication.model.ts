@@ -7,6 +7,7 @@ import { Domain } from '../../content-maker/domain/domain.model';
 import { DomainType } from '../../content-maker/domain/domain-type.enum';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
 import { Max } from '../../core/shared/decorators/max.decorator';
 import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
@@ -86,6 +87,7 @@ import { User } from '../../core/user/user.model';
     { fields: { sourcePublicationId: 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Publication extends Thing {
 
     @Schemable()

@@ -1,6 +1,7 @@
 import { Default } from '../decorators/default.decorator';
 import { ExcludeIndexes } from '../decorators/exclude-indexes.decorator';
 import { Extends } from '../decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
 import { Max } from '../decorators/max.decorator';
 import { Min } from '../decorators/min.decorator';
 import { QueryParam } from '../decorators/query-param.decorator';
@@ -15,6 +16,7 @@ import { User } from '../../user/user.model';
 // @dynamic
 @SkipID()
 @Extends(Thing)
+@GenerateMongoObjectID(false)
 export class ChecklistItem extends Thing {
 
     @Schemable()

@@ -3,6 +3,7 @@ import { DateTimePeriods } from '../../core/shared/date-time/date-time-periods.e
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Override } from '../../core/shared/decorators/override.decorator';
 import { QuantitativeValue } from '../../core/shared/value/quantitative-value.model';
 import { Required } from '../../core/shared/decorators/required.decorator';
@@ -16,6 +17,7 @@ import { Unique } from '../../core/shared/decorators/unique.decorator';
 // @dynamic
 @SkipID()
 @Extends(QuantitativeValue)
+@GenerateMongoObjectID(false)
 export class MonetaryValue extends QuantitativeValue {
 
     @Schemable()

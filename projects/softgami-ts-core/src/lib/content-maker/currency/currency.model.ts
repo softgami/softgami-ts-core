@@ -1,6 +1,7 @@
 import { CurrencyCodes } from './currency-codes.enum';
 import { Enum } from '../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Override } from '../../core/shared/decorators/override.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
@@ -14,6 +15,7 @@ import { UnityValue } from '../../core/shared/value/unity-value.model';
 // @dynamic
 @Extends(UnityValue)
 @SkipID()
+@GenerateMongoObjectID(false)
 export class Currency extends UnityValue {
 
     @Schemable()

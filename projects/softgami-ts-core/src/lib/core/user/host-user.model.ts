@@ -1,10 +1,11 @@
 import { Default } from '../shared/decorators/default.decorator';
 import { Email } from '../shared/email/email.model';
 import { Extends } from '../shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../shared/decorators/generate-mongo-object-id.decorator';
 import { QueryParam } from '../shared/decorators/query-param.decorator';
 import { Required } from '../shared/decorators/required.decorator';
 import { Schemable } from '../shared/decorators/schemable.decorator';
-import { Thing } from '../../core/shared/thing/thing.model';
+import { Thing } from '../shared/thing/thing.model';
 import { Trim } from '../shared/decorators/trim.decorator';
 import { Type } from '../shared/decorators/type.decorator';
 import { Types } from '../shared/models/types.enum';
@@ -12,6 +13,7 @@ import { Unique } from '../shared/decorators/unique.decorator';
 
 // @dynamic
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class HostUser extends Thing {
 
     @Schemable()

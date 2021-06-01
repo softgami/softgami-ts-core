@@ -12,6 +12,8 @@ import { DefaultMetadataKey } from '../decorators/default-metadata-key';
 import { EnumMetadataKey } from '../decorators/enum-metadata-key';
 import { ExcludeIndexesMetadataKey } from '../decorators/exclude-indexes-metadata-key';
 import { ExtendsMetadataKey } from '../decorators/extends-metadata-key';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
+import { GenerateMongoObjectIDMetadataKey } from '../decorators/generate-mongo-object-id-metadata-key';
 import { Max } from '../decorators/max.decorator';
 import { MaxLength } from '../decorators/max-length.decorator';
 import { MaxLengthMetadataKey } from '../decorators/max-length-metadata-key';
@@ -41,6 +43,7 @@ import { Types } from '../models/types.enum';
 import { UniqueMetadataKey } from '../decorators/unique-metadata-key';
 
 // @dynamic
+@GenerateMongoObjectID(false)
 export class Thing {
 
     @Schemable()
@@ -297,6 +300,13 @@ export class Thing {
 
         const isSkipId: boolean | undefined = Reflect.getMetadata(SkipIDMetadataKey, ClassDef);
         return isSkipId || false;
+
+    }
+
+    isGenerateMongoObjectID(ClassDef: new () => Thing): boolean {
+
+        const isGenerateMongoObjectID: boolean | undefined = Reflect.getMetadata(GenerateMongoObjectIDMetadataKey, ClassDef);
+        return isGenerateMongoObjectID || false;
 
     }
 

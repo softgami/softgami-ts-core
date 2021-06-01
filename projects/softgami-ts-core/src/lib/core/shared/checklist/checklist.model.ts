@@ -2,8 +2,9 @@ import { AppInstance } from '../../app/app-instance/app-instance.model';
 import { ChecklistItem } from './checklist-item.model';
 import { CompoundIndex } from '../decorators/compound-index.decorator';
 import { Default } from '../decorators/default.decorator';
-import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
+import { ExcludeIndexes } from '../decorators/exclude-indexes.decorator';
 import { Extends } from '../decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
 import { QueryParam } from '../decorators/query-param.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
@@ -23,6 +24,7 @@ import { User } from '../../user/user.model';
     { fields: { 'creator._id': 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Checklist extends Thing {
 
     @Schemable()

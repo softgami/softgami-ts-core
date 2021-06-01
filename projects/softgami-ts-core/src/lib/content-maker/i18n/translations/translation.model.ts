@@ -3,6 +3,7 @@ import { CompoundIndex } from '../../../core/shared/decorators/compound-index.de
 import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
+import { GenerateMongoObjectID } from '../../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Language } from '../../../content-maker/i18n/language/language.model';
 import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
@@ -31,6 +32,7 @@ import { User } from '../../../core/user/user.model';
     { fields: { createdAt: 1 }, options: { unique: false } },
 ])
 @Extends(Thing)
+@GenerateMongoObjectID()
 export class Translation extends Thing {
 
     @Schemable()

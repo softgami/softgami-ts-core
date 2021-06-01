@@ -34,6 +34,7 @@ export class City extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @ExcludeIndexes()
     @Sortable([
         { label: 'STATE', field: 'state.name' },

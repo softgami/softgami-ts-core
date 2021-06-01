@@ -5,4 +5,6 @@ export enum AppAlias {
     CONTENTMAKER = 'contentmaker',
     BLUEBIRDTASK = 'bluebirdtask',
     CORE = 'core',
+    POKERTOOLS = 'pokertools',
+    ORIGAMI = 'origami',
 }

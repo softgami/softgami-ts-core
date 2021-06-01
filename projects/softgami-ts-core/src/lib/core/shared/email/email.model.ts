@@ -4,6 +4,7 @@ import { Enum } from '../../../core/shared/decorators/enum.decorator';
 import { Extends } from '../../../core/shared/decorators/extends.decorator';
 import { MaxLength } from '../../../core/shared/decorators/max-length.decorator';
 import { MinLength } from '../../../core/shared/decorators/min-length.decorator';
+import { QueryParam } from '../../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../../core/shared/decorators/schemable.decorator';
 import { SkipID } from '../../../core/shared/decorators/skip-id.decorator';
@@ -26,6 +27,7 @@ export class Email extends Thing {
     type: EmailType | null = null;
 
     @Schemable()
+    @QueryParam()
     @Required()
     @Trim()
     @Unique()

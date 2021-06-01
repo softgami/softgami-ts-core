@@ -7,14 +7,12 @@ import { MinLength } from '../decorators/min-length.decorator';
 import { PhoneType } from './phone-type.enum';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
-import { SkipID } from '../decorators/skip-id.decorator';
 import { Thing } from '../thing/thing.model';
 import { Trim } from '../decorators/trim.decorator';
 import { Type } from '../decorators/type.decorator';
 import { Types } from '../models/types.enum';
 
 // @dynamic
-@SkipID()
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class Phone extends Thing {

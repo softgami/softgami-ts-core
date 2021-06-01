@@ -26,8 +26,6 @@ export { Required } from './required.decorator';
 export { RequiredMetadataKey } from './required-metadata-key';
 export { Schemable } from './schemable.decorator';
 export { SchemableMetadataKey } from './schemable-metadata-key';
-export { SkipID } from './skip-id.decorator';
-export { SkipIDMetadataKey } from './skip-id-metadata-key';
 export { Sortable } from './sortable.decorator';
 export { SortableMetadataKey } from './sortable-metadata-key';
 export { Trim } from './trim.decorator';

@@ -30,7 +30,6 @@ import { Required } from '../decorators/required.decorator';
 import { RequiredMetadataKey } from '../decorators/required-metadata-key';
 import { Schemable } from '../decorators/schemable.decorator';
 import { SchemableMetadataKey } from '../decorators/schemable-metadata-key';
-import { SkipIDMetadataKey } from '../decorators/skip-id-metadata-key';
 import { Sortable } from '../decorators/sortable.decorator';
 import { SortableMetadataKey } from '../decorators/sortable-metadata-key';
 import { SortBySelectOption } from '../models/sort-by-select-options.interface';
@@ -293,13 +292,6 @@ export class Thing {
 
         const isOverride: boolean | undefined = Reflect.getMetadata(OverrideMetadataKey, this, property);
         return isOverride || false;
-
-    }
-
-    isSkipId(ClassDef: new () => Thing): boolean {
-
-        const isSkipId: boolean | undefined = Reflect.getMetadata(SkipIDMetadataKey, ClassDef);
-        return isSkipId || false;
 
     }
 
@@ -908,11 +900,11 @@ export class Thing {
 
             if ((json[property] !== null && json[property] !== undefined) && shouldValidate && typeof json[property] !== 'object') throw new Error(`invalid ${propertyFullName}. Should be object but is ${typeof json[property]}.`);
 
-            const isSkipId: boolean = object[property].isSkipId(TypeClass);
+            const isGenerateMongoObjectID: boolean = (object[property] as Thing).isGenerateMongoObjectID(TypeClass as unknown as new () => Thing);
 
             Object.getOwnPropertyNames(object[property])
                 .filter((p: string) => p !== 'sort' && p !== 'limit' && p !== 'skip' && p !== 'uniqueId')
-                .filter((p: string) => shouldValidateFullEmbeddedObjects || isSkipId || p === '_id')
+                .filter((p: string) => shouldValidateFullEmbeddedObjects || !isGenerateMongoObjectID || p === '_id')
                 .forEach((p: string) => {
 
                     const typeParams: TypeParams<string> = object[property].getType(p);

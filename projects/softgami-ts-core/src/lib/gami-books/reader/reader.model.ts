@@ -1,12 +1,11 @@
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
-import { SkipID } from '../../core/shared/decorators/skip-id.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
 import { User } from '../../core/user/user.model';
 
-@SkipID()
+// @dynamic
 @Extends(User)
 @GenerateMongoObjectID(false)
 export class Reader extends User {

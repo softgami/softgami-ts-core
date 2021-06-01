@@ -6,14 +6,12 @@ import { GenerateMongoObjectID } from '../../shared/decorators/generate-mongo-ob
 import { Required } from '../../shared/decorators/required.decorator';
 import { RoleAlias } from '../role/role-alias.enum';
 import { Schemable } from '../../shared/decorators/schemable.decorator';
-import { SkipID } from '../../shared/decorators/skip-id.decorator';
 import { SubjectAlias } from '../subject/subject-alias.enum';
 import { Thing } from '../../shared/thing/thing.model';
 import { Type } from '../../shared/decorators/type.decorator';
 import { Types } from '../../shared/models/types.enum';
 
 // @dynamic
-@SkipID()
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class PermissionCheck extends Thing {

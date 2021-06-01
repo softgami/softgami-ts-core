@@ -8,7 +8,6 @@ import { Min } from '../decorators/min.decorator';
 import { MinLength } from '../decorators/min-length.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
-import { SkipID } from '../decorators/skip-id.decorator';
 import { Thing } from '../thing/thing.model';
 import { Trim } from '../decorators/trim.decorator';
 import { Type } from '../decorators/type.decorator';
@@ -21,7 +20,6 @@ const currencyCodes: string[] = Object.keys(CurrencyCodes).map<string>((k: strin
 const codes: string[] = [ ...new Set(unityValueCodes.concat(currencyCodes)) ];
 
 // @dynamic
-@SkipID()
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class UnityValue extends Thing {

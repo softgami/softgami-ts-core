@@ -7,14 +7,12 @@ import { Min } from '../decorators/min.decorator';
 import { QueryParam } from '../decorators/query-param.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
-import { SkipID } from '../decorators/skip-id.decorator';
 import { Thing } from '../thing/thing.model';
 import { Type } from '../decorators/type.decorator';
 import { Types } from '../models/types.enum';
 import { User } from '../../user/user.model';
 
 // @dynamic
-@SkipID()
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class ChecklistItem extends Thing {

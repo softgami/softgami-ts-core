@@ -7,13 +7,11 @@ import { QueryParam } from '../shared/decorators/query-param.decorator';
 import { Required } from '../shared/decorators/required.decorator';
 import { Role } from '../permissions/role/role.model';
 import { Schemable } from '../shared/decorators/schemable.decorator';
-import { SkipID } from '../shared/decorators/skip-id.decorator';
 import { Thing } from '../shared/thing/thing.model';
 import { Type } from '../shared/decorators/type.decorator';
 import { Types } from '../shared/models/types.enum';
 
 // @dynamic
-@SkipID()
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class UserAppInstance extends Thing {

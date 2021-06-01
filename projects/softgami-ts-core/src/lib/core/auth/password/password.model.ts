@@ -4,14 +4,12 @@ import { MaxLength } from '../../shared/decorators/max-length.decorator';
 import { MinLength } from '../../shared/decorators/min-length.decorator';
 import { Required } from '../../shared/decorators/required.decorator';
 import { Schemable } from '../../shared/decorators/schemable.decorator';
-import { SkipID } from '../../shared/decorators/skip-id.decorator';
 import { Thing } from '../../shared/thing/thing.model';
 import { Trim } from '../../shared/decorators/trim.decorator';
 import { Type } from '../../shared/decorators/type.decorator';
 import { Types } from '../../shared/models/types.enum';
 
 // @dynamic
-@SkipID()
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class Password extends Thing {

@@ -3,13 +3,12 @@ import { Extends } from '../decorators/extends.decorator';
 import { GenerateMongoObjectID } from '../decorators/generate-mongo-object-id.decorator';
 import { Required } from '../decorators/required.decorator';
 import { Schemable } from '../decorators/schemable.decorator';
-import { SkipID } from '../decorators/skip-id.decorator';
 import { Thing } from '../thing/thing.model';
 import { Type } from '../decorators/type.decorator';
 import { Types } from '../models/types.enum';
 import { UnityValue } from './unity-value.model';
 
-@SkipID()
+// @dynamic
 @Extends(Thing)
 @GenerateMongoObjectID(false)
 export class QuantitativeValue extends Thing {

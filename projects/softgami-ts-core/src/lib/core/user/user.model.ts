@@ -61,6 +61,8 @@ import { UserAppInstance } from './user-app-instance.model';
     { fields: { 'appInstances.appInstanceId': 1 }, options: { unique: false } },
     { fields: { 'appInstances.roles._id': 1 }, options: { unique: false } },
     { fields: { 'appInstances.roles.alias': 1 }, options: { unique: false } },
+    { fields: { 'appInstances.host._id': 1 }, options: { unique: false } },
+    { fields: { 'appInstances.host.name': 1 }, options: { unique: false } },
     { fields: { 'country._id': 1 }, options: { unique: false } },
     { fields: { 'country.code': 1 }, options: { unique: false } },
 ])

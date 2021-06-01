@@ -34,6 +34,7 @@ export class State extends Thing {
 
     @Schemable()
     @Required()
+    @QueryParam()
     @ExcludeIndexes()
     @Sortable({ label: 'COUNTRY', field: 'country.name' })
     @Type({ type: Types.OBJECT, class: Country })
@@ -41,6 +42,7 @@ export class State extends Thing {
 
     @Schemable()
     @Trim()
+    @QueryParam()
     @Sortable({ label: 'CODE' })
     @MinLength(1)
     @MaxLength(20)

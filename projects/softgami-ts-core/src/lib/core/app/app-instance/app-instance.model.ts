@@ -18,6 +18,7 @@ import { User } from '../../../core/user/user.model';
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { isActive: 1 }, options: { unique: false } },
+    { fields: { numberOfUsers: 1 }, options: { unique: false } },
     { fields: { 'app._id': 1 }, options: { unique: false } },
     { fields: { 'app.alias': 1 }, options: { unique: false } },
     { fields: { 'roles._id': 1 }, options: { unique: false } },
@@ -85,5 +86,14 @@ export class AppInstance extends Thing {
     @Default(null)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
     users?: User[] | null = null;
+
+    @Schemable()
+    @QueryParam()
+    @Type({ type: Types.NUMBER })
+    numberOfUsers?: number | null = null;
+
+    @Schemable()
+    @Type({ type: Types.BOOLEAN })
+    isFavorite?: boolean | null = null;
 
 }

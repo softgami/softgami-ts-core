@@ -97,6 +97,6 @@ export class App extends Thing {
     @MinLength(1)
     @MaxLength(40)
     @Type({ type: Types.STRING })
-    icon: string | null = null;
+    icon?: string | null = null;
 
 }

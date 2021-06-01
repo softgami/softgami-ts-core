@@ -8,6 +8,8 @@ export { ExcludeIndexes } from './exclude-indexes.decorator';
 export { ExcludeIndexesMetadataKey } from './exclude-indexes-metadata-key';
 export { Extends } from './extends.decorator';
 export { ExtendsMetadataKey } from './extends-metadata-key';
+export { GenerateMongoObjectID } from './generate-mongo-object-id.decorator';
+export { GenerateMongoObjectIDMetadataKey } from './generate-mongo-object-id-metadata-key';
 export { Max } from './max.decorator';
 export { MaxLength } from './max-length.decorator';
 export { MaxLengthMetadataKey } from './max-length-metadata-key';

@@ -1,5 +1,6 @@
 import { AppInstance } from '../../core/app/app-instance/app-instance.model';
 import { BasePerson } from './base-person.model';
+import { BaseUser } from '../../core/user/base-user.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
@@ -12,7 +13,6 @@ import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
-import { User } from '../../core/user/user.model';
 
 // @dynamic
 @CompoundIndex([
@@ -42,7 +42,7 @@ export class Person<T extends PersonType> extends BasePerson<T> {
 
     @Schemable()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: User })
-    creator?: User | null = null;
+    @Type({ type: Types.OBJECT, class: BaseUser })
+    creator?: BaseUser | null = null;
 
 }

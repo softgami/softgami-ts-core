@@ -38,12 +38,4 @@ export class Password extends Thing {
     @Type({ type: Types.STRING })
     algorithm: string | null = null;
 
-    @Schemable()
-    @Type({ type: Types.DATE })
-    createdAt?: Date | null = null;
-
-    @Schemable()
-    @Type({ type: Types.DATE })
-    lastUpdate?: Date | null = null;
-
 }

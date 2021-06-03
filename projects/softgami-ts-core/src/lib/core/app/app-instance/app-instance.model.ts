@@ -16,6 +16,7 @@ import { Types } from '../../shared/models/types.enum';
 import { Unique } from '../../shared/decorators/unique.decorator';
 import { User } from '../../user/user.model';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { isActive: 1 }, options: { unique: false } },
@@ -71,7 +72,7 @@ export class AppInstance extends Thing {
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles?: Role[] | null = null;
 
@@ -85,7 +86,7 @@ export class AppInstance extends Thing {
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
     users?: User[] | null = null;
 

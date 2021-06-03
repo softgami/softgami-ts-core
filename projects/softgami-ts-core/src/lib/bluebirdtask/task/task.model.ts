@@ -164,14 +164,14 @@ export class Task extends Thing implements BoardListItem {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: File, arrayItemType: Types.OBJECT })
     attachments?: File[] | null = null;
 
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
     assignees?: User[] | null = null;
 
@@ -199,7 +199,7 @@ export class Task extends Thing implements BoardListItem {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: WorkLog, arrayItemType: Types.OBJECT })
     workLogs?: WorkLog[] | null = null;
 
@@ -227,7 +227,7 @@ export class Task extends Thing implements BoardListItem {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Comment, arrayItemType: Types.OBJECT })
     comments?: Comment[] | null = null;
 
@@ -255,14 +255,14 @@ export class Task extends Thing implements BoardListItem {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Checklist, arrayItemType: Types.OBJECT })
     checklists?: Checklist[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Trim()
     @MinLength(1)
     @MaxLength(100)

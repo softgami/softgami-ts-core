@@ -12,6 +12,7 @@ import { Thing } from '../../core/shared/thing/thing.model';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
 
+// @dynamic
 @Extends(Thing)
 export class Cover extends Thing {
 

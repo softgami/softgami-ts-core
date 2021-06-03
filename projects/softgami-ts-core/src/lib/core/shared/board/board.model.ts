@@ -54,7 +54,7 @@ export class Board extends Thing {
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: BoardList, arrayItemType: Types.OBJECT })
     boardLists?: BoardList[] | null = null;
 

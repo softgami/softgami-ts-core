@@ -1,33 +1,28 @@
 import { Address } from '../../content-maker/location/address/address.model';
 import { BaseDomain } from '../../content-maker/domain/base-domain.model';
-import { BasePerson } from '../../content-maker/person/base-person.model';
+import { BaseUser } from './base-user.model';
 import { CompoundIndex } from '../shared/decorators/compound-index.decorator';
 import { Country } from '../../content-maker/location/country/country.model';
 import { Credentials } from '../auth/credentials/credentials.model';
 import { Currency } from '../../content-maker/currency/currency.model';
 import { Default } from '../shared/decorators/default.decorator';
 import { DomainType } from '../../content-maker/domain/domain-type.enum';
-import { Email } from '../shared/email/email.model';
-import { Enum } from '../shared/decorators/enum.decorator';
 import { ExcludeIndexes } from '../shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../shared/decorators/extends.decorator';
 import { GenerateMongoObjectID } from '../shared/decorators/generate-mongo-object-id.decorator';
 import { Language } from '../../content-maker/i18n/language/language.model';
 import { MaxLength } from '../shared/decorators/max-length.decorator';
 import { MinLength } from '../shared/decorators/min-length.decorator';
-import { Override } from '../shared/decorators/override.decorator';
-import { PersonType } from '../../content-maker/person/person-type.enum';
 import { Phone } from '../shared/phone/phone.model';
 import { QueryParam } from '../shared/decorators/query-param.decorator';
-import { Required } from '../shared/decorators/required.decorator';
 import { Role } from '../permissions/role/role.model';
 import { Schemable } from '../shared/decorators/schemable.decorator';
 import { Trim } from '../shared/decorators/trim.decorator';
 import { Type } from '../shared/decorators/type.decorator';
 import { Types } from '../shared/models/types.enum';
-import { Unique } from '../shared/decorators/unique.decorator';
 import { UserAppInstance } from './user-app-instance.model';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { isActive: 1 }, options: { unique: false } },
@@ -67,50 +62,14 @@ import { UserAppInstance } from './user-app-instance.model';
     { fields: { 'country._id': 1 }, options: { unique: false } },
     { fields: { 'country.code': 1 }, options: { unique: false } },
 ])
-@Extends(BasePerson)
+@Extends(BaseUser)
 @GenerateMongoObjectID()
-export class User extends BasePerson<PersonType.USER> {
-
-    @Schemable()
-    @Required()
-    @Trim()
-    @QueryParam()
-    @Unique()
-    @Type({ type: Types.MONGO_OBJECT_ID })
-    _id: string | null = null;
-
-    @Schemable()
-    @Required()
-    @QueryParam()
-    @Trim()
-    @Enum([ PersonType.USER ])
-    @Override()
-    @Type({ type: Types.ENUM })
-    type: PersonType.USER | null = null;
-
-    @Schemable()
-    @Required()
-    @QueryParam()
-    @Default(true)
-    @Type({ type: Types.BOOLEAN })
-    isIndividual: boolean | null = null;
-
-    @Schemable()
-    @Default(undefined)
-    @QueryParam()
-    @Type({ type: Types.ARRAY, class: Email, arrayItemType: Types.OBJECT })
-    emails?: Email[] | null = null;
+export class User extends BaseUser {
 
     @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: Credentials })
     credentials?: Credentials | null = null;
-
-    @Schemable()
-    @Default(true)
-    @QueryParam()
-    @Type({ type: Types.BOOLEAN })
-    isActive?: boolean | null = null;
 
     @Schemable()
     @ExcludeIndexes()
@@ -137,11 +96,11 @@ export class User extends BasePerson<PersonType.USER> {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Type({ type: Types.OBJECT, class: User })
-    creator?: User | null = null;
+    @Type({ type: Types.OBJECT, class: BaseUser })
+    creator?: BaseUser | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @ExcludeIndexes()
     @QueryParam()
     @Type({ type: Types.ARRAY, class: Phone, arrayItemType: Types.OBJECT })
@@ -168,7 +127,7 @@ export class User extends BasePerson<PersonType.USER> {
     educationLevel?: BaseDomain<DomainType.EDUCATION_LEVEL> | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Address, arrayItemType: Types.OBJECT })
     addresses?: Address[] | null = null;
@@ -180,12 +139,12 @@ export class User extends BasePerson<PersonType.USER> {
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles?: Role[] | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @QueryParam()
     @Type({ type: Types.ARRAY, class: UserAppInstance, arrayItemType: Types.OBJECT })
     appInstances?: UserAppInstance[] | null = null;

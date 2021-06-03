@@ -99,7 +99,7 @@ export class Project extends Thing {
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: User, arrayItemType: Types.OBJECT })
     members?: User[] | null = null;
 

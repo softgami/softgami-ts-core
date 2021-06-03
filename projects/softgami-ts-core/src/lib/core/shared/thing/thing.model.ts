@@ -157,7 +157,7 @@ export class Thing {
 
                 if (object.getExtendsClass(propertyLevel)) propertyInfo.extendsClass = object.getExtendsClass(propertyLevel);
 
-                propertyInfo.isDefault = object.isDefault(propertyLevel);
+                propertyInfo.isDefault = object.getDefault(propertyLevel);
 
                 propertyInfo.isExcludeIndexes = object.isExcludeIndexes(propertyLevel);
 
@@ -274,10 +274,10 @@ export class Thing {
 
     }
 
-    isDefault(property: string): boolean {
+    getDefault(property: string): boolean | undefined {
 
-        const isDefault: boolean | undefined = Reflect.getMetadata(DefaultMetadataKey, this, property);
-        return isDefault || false;
+        const defaultValue: boolean | undefined = Reflect.getMetadata(DefaultMetadataKey, this, property);
+        return defaultValue;
 
     }
 

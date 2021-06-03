@@ -27,7 +27,7 @@ export class Credentials extends Thing {
     confirm?: Password | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Password, arrayItemType: Types.OBJECT })
     old?: Password[] | null = null;
 

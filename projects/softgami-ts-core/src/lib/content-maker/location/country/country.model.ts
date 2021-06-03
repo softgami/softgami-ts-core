@@ -17,6 +17,7 @@ import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: true } },
     { fields: { code: 1 }, options: { unique: true } },
@@ -68,7 +69,7 @@ export class Country extends Thing {
     language?: Language | null = null;
 
     @Schemable()
-    @Default(undefined)
+    @Default(void 0)
     @ExcludeIndexes()
     @QueryParam()
     @Sortable({ label: 'LANGUAGE', field: 'language.name' })

@@ -22,7 +22,6 @@ import { Unique } from '../../shared/decorators/unique.decorator';
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: true } },
     { fields: { alias: 1 }, options: { unique: true } },
-    { fields: { value: 1 }, options: { unique: true } },
 ])
 @Extends(Thing)
 @GenerateMongoObjectID()

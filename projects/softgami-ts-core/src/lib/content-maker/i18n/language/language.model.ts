@@ -14,6 +14,7 @@ import { Type } from '../../../core/shared/decorators/type.decorator';
 import { Types } from '../../../core/shared/models/types.enum';
 import { Unique } from '../../../core/shared/decorators/unique.decorator';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: true } },
     { fields: { code: 1 }, options: { unique: true } },
@@ -36,7 +37,7 @@ export class Language extends Thing {
     @QueryParam()
     @Sortable({ label: 'NAME' })
     @Override()
-    @Unique()
+    @Unique(true)
     @MinLength(1)
     @MaxLength(20)
     @Type({ type: Types.STRING })

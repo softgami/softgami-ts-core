@@ -15,6 +15,7 @@ import { Type } from '../../shared/decorators/type.decorator';
 import { Types } from '../../shared/models/types.enum';
 import { Unique } from '../../shared/decorators/unique.decorator';
 
+// @dynamic
 @CompoundIndex([
     { fields: { 'subject._id': 1, 'role._id': 1 }, options: { unique: true } },
     { fields: { 'subject.alias': 1, 'role.alias': 1 }, options: { unique: true } },

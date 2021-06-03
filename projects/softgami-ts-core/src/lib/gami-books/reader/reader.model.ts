@@ -7,7 +7,7 @@ import { User } from '../../core/user/user.model';
 
 // @dynamic
 @Extends(User)
-@GenerateMongoObjectID(false)
+@GenerateMongoObjectID()
 export class Reader extends User {
 
     @Schemable()

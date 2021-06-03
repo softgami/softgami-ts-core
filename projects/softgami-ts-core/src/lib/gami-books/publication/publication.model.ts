@@ -30,6 +30,7 @@ import { Types } from '../../core/shared/models/types.enum';
 import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { createdAt: 1 }, options: { unique: false } },
@@ -129,7 +130,7 @@ export class Publication extends Thing {
     @Schemable()
     @Required()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @QueryParam()
     @Sortable([
         { label: 'COLLECTION', field: 'collections.name' },
@@ -174,7 +175,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @QueryParam()
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
     authors?: Person<PersonType.AUTHOR>[] | null = null;
@@ -182,7 +183,7 @@ export class Publication extends Thing {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
     illustrators?: Person<PersonType.ILLUSTRATOR>[] | null = null;
 
@@ -200,7 +201,7 @@ export class Publication extends Thing {
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Person, arrayItemType: Types.OBJECT })
     translators?: Person<PersonType.TRANSLATOR>[] | null = null;
 
@@ -293,7 +294,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: QuantitativeValue, arrayItemType: Types.OBJECT })
     dimensions?: QuantitativeValue[] | null = null;
 
@@ -334,7 +335,7 @@ export class Publication extends Thing {
     originalCity?: City | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @Trim()
     @QueryParam()
     @Sortable({ label: 'TAGS', field: 'tags' })
@@ -361,7 +362,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Reader, arrayItemType: Types.OBJECT })
     readers?: Reader[] | null = null;
 
@@ -372,7 +373,7 @@ export class Publication extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Reader, arrayItemType: Types.OBJECT })
     waitingList?: Reader[] | null = null;
 

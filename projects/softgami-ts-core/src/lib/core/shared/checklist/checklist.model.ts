@@ -39,7 +39,7 @@ export class Checklist extends Thing {
     @Required()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: ChecklistItem, arrayItemType: Types.OBJECT })
     items: ChecklistItem[] | null = null;
 

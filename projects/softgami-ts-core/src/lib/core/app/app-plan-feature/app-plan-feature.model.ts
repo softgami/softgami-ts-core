@@ -13,6 +13,7 @@ import { Type } from '../../shared/decorators/type.decorator';
 import { Types } from '../../shared/models/types.enum';
 import { Unique } from '../../shared/decorators/unique.decorator';
 
+// @dynamic
 @Extends(Thing)
 @GenerateMongoObjectID()
 export class AppPlanFeature extends Thing {
@@ -40,7 +41,7 @@ export class AppPlanFeature extends Thing {
 
     @Schemable()
     @Trim()
-    @Default(null)
+    @Default(void 0)
     @MinLength(1)
     @MaxLength(2000)
     @Type({ type: Types.ARRAY, arrayItemType: Types.STRING })

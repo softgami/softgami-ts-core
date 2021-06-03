@@ -1,8 +1,8 @@
+import { BaseUser } from './base-user.model';
 import { Default } from '../shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../shared/decorators/extends.decorator';
 import { GenerateMongoObjectID } from '../shared/decorators/generate-mongo-object-id.decorator';
-import { HostUser } from './host-user.model';
 import { QueryParam } from '../shared/decorators/query-param.decorator';
 import { Required } from '../shared/decorators/required.decorator';
 import { Role } from '../permissions/role/role.model';
@@ -25,15 +25,15 @@ export class UserAppInstance extends Thing {
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles?: Role[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
     @QueryParam()
-    @Type({ type: Types.OBJECT, class: HostUser })
-    host?: HostUser | null = null;
+    @Type({ type: Types.OBJECT, class: BaseUser })
+    host?: BaseUser | null = null;
 
     @Schemable()
     @Type({ type: Types.BOOLEAN })

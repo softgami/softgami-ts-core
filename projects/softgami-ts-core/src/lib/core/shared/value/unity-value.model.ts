@@ -1,3 +1,4 @@
+import { CompoundIndex } from '../decorators/compound-index.decorator';
 import { CurrencyCodes } from '../../../content-maker/currency/currency-codes.enum';
 import { Enum } from '../decorators/enum.decorator';
 import { Extends } from '../decorators/extends.decorator';
@@ -21,6 +22,9 @@ const codes: string[] = [ ...new Set(unityValueCodes.concat(currencyCodes)) ];
 
 // @dynamic
 @Extends(Thing)
+@CompoundIndex([
+    { fields: { code: 1 }, options: { unique: true } },
+])
 @GenerateMongoObjectID(false)
 export class UnityValue extends Thing {
 

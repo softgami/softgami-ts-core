@@ -18,6 +18,7 @@ import { Types } from '../../shared/models/types.enum';
 import { Unique } from '../../shared/decorators/unique.decorator';
 import { User } from '../../user/user.model';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { alias: 1 }, options: { unique: false } },
@@ -77,19 +78,19 @@ export class AppPlan extends Thing {
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: AppPlanFeature, arrayItemType: Types.OBJECT })
     appPlanFeatures?: AppPlanFeature[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: MonetaryValue, arrayItemType: Types.OBJECT })
     prices?: MonetaryValue[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: MonetaryValue, arrayItemType: Types.OBJECT })
     pricesHistory?: MonetaryValue[] | null = null;
 

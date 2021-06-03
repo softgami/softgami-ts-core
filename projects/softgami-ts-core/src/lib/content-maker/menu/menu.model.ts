@@ -1,25 +1,20 @@
 import { App } from '../../core/app/app.model';
 import { AppInstance } from '../../core/app/app-instance/app-instance.model';
+import { BaseMenu } from './base-menu.model';
 import { CompoundIndex } from '../../core/shared/decorators/compound-index.decorator';
 import { Default } from '../../core/shared/decorators/default.decorator';
 import { ExcludeIndexes } from '../../core/shared/decorators/exclude-indexes.decorator';
 import { Extends } from '../../core/shared/decorators/extends.decorator';
 import { GenerateMongoObjectID } from '../../core/shared/decorators/generate-mongo-object-id.decorator';
-import { MaxLength } from '../../core/shared/decorators/max-length.decorator';
-import { Max } from '../../core/shared/decorators/max.decorator';
-import { Min } from '../../core/shared/decorators/min.decorator';
-import { MinLength } from '../../core/shared/decorators/min-length.decorator';
 import { PermissionCheck } from '../../core/permissions/permission/permission-check.model';
 import { QueryParam } from '../../core/shared/decorators/query-param.decorator';
 import { Required } from '../../core/shared/decorators/required.decorator';
 import { Schemable } from '../../core/shared/decorators/schemable.decorator';
-import { Thing } from '../../core/shared/thing/thing.model';
-import { Trim } from '../../core/shared/decorators/trim.decorator';
 import { Type } from '../../core/shared/decorators/type.decorator';
 import { Types } from '../../core/shared/models/types.enum';
-import { Unique } from '../../core/shared/decorators/unique.decorator';
 import { User } from '../../core/user/user.model';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { 'appInstance._id': 1 }, options: { unique: false } },
@@ -35,31 +30,9 @@ import { User } from '../../core/user/user.model';
     { fields: { 'ancestors._id': 1 }, options: { unique: false } },
     { fields: { 'ancestors.name': 1 }, options: { unique: false } },
 ])
-@Extends(Thing)
+@Extends(BaseMenu)
 @GenerateMongoObjectID()
-export class Menu extends Thing {
-
-    @Schemable()
-    @Required()
-    @Trim()
-    @QueryParam()
-    @Unique()
-    @Type({ type: Types.MONGO_OBJECT_ID })
-    _id: string | null = null;
-
-    @Schemable()
-    @Required()
-    @Default(1)
-    @Min(1)
-    @Max(200)
-    @Type({ type: Types.NUMBER })
-    index: number | null = null;
-
-    @Schemable()
-    @Required()
-    @QueryParam()
-    @Type({ type: Types.BOOLEAN })
-    isActive: boolean | null = null;
+export class Menu extends BaseMenu {
 
     @Schemable()
     @Required()
@@ -74,13 +47,6 @@ export class Menu extends Thing {
     permissionCheck?: PermissionCheck | null = null;
 
     @Schemable()
-    @Trim()
-    @MinLength(1)
-    @MaxLength(20)
-    @Type({ type: Types.STRING })
-    icon?: string | null = null;
-
-    @Schemable()
     @ExcludeIndexes()
     @Type({ type: Types.OBJECT, class: User })
     creator?: User | null = null;
@@ -88,15 +54,15 @@ export class Menu extends Thing {
     @Schemable()
     @QueryParam()
     @ExcludeIndexes()
-    @Type({ type: Types.OBJECT, class: Menu, isSelf: true })
-    parent?: Menu | null = null;
+    @Type({ type: Types.OBJECT, class: BaseMenu, isSelf: true })
+    parent?: BaseMenu | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @QueryParam()
     @ExcludeIndexes()
-    @Type({ type: Types.ARRAY, class: Menu, arrayItemType: Types.OBJECT, isSelf: true })
-    ancestors?: Menu[] | null = null;
+    @Type({ type: Types.ARRAY, class: BaseMenu, arrayItemType: Types.OBJECT, isSelf: true })
+    ancestors?: BaseMenu[] | null = null;
 
     @Schemable()
     @ExcludeIndexes()

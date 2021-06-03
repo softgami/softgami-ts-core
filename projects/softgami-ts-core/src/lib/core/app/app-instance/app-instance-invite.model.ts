@@ -16,6 +16,7 @@ import { Types } from '../../shared/models/types.enum';
 import { Unique } from '../../shared/decorators/unique.decorator';
 import { User } from '../../user/user.model';
 
+// @dynamic
 @CompoundIndex([
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { appInstanceId: 1 }, options: { unique: false } },
@@ -69,7 +70,7 @@ export class AppInstanceInvite extends Thing {
     @Required()
     @QueryParam()
     @ExcludeIndexes()
-    @Default(null)
+    @Default(void 0)
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles: Role[] | null = null;
 

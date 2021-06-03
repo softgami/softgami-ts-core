@@ -83,13 +83,13 @@ export class App extends Thing {
     isPublic: boolean | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: Role, arrayItemType: Types.OBJECT })
     roles?: Role[] | null = null;
 
     @Schemable()
-    @Default(null)
+    @Default(void 0)
     @ExcludeIndexes()
     @Type({ type: Types.ARRAY, class: AppPlan, arrayItemType: Types.OBJECT })
     appPlans?: AppPlan[] | null = null;

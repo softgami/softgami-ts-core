@@ -8,6 +8,7 @@ import { Type } from '../decorators/type.decorator';
 import { Types } from '../models/types.enum';
 import { User } from '../../user/user.model';
 
+// @dynamic
 @Extends(Thing)
 @GenerateMongoObjectID()
 export class Organization extends Thing {

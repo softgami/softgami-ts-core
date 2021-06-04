@@ -25,7 +25,7 @@ import { User } from '../../core/user/user.model';
     { fields: { name: 1 }, options: { unique: false } },
     { fields: { createdAt: 1 }, options: { unique: false } },
     { fields: { key: 1 }, options: { unique: true } },
-    { fields: { status: 1 }, options: { unique: true } },
+    { fields: { status: 1 }, options: { unique: false } },
     { fields: { 'project._id': 1 }, options: { unique: false } },
     { fields: { 'project.name': 1 }, options: { unique: false } },
     { fields: { 'project.key': 1 }, options: { unique: false } },

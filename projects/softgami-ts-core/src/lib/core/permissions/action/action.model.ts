@@ -54,7 +54,7 @@ export class Action extends Thing {
     @Unique()
     @Enum(Object.keys(ActionAlias).map((key: string) => ActionAlias[key as keyof typeof ActionAlias]))
     @Sortable({ label: 'ALIAS' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     alias: ActionAlias | null = null;
 
     @Schemable()

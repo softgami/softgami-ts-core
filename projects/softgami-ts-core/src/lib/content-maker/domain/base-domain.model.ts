@@ -31,7 +31,7 @@ export class BaseDomain<T extends DomainType> extends Thing {
     @Trim()
     @Required()
     @Enum(Object.keys(DomainType).map((key: string) => DomainType[key as keyof typeof DomainType]))
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     type: T | null = null;
 
     @Schemable()

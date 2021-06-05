@@ -22,7 +22,7 @@ export class Currency extends UnityValue {
     @Enum(Object.keys(CurrencyCodes).map((key: string) => CurrencyCodes[key as keyof typeof CurrencyCodes]))
     @Unique()
     @Trim()
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     code: CurrencyCodes | null = null;
 
 }

@@ -35,7 +35,7 @@ export class MonetaryValue extends QuantitativeValue {
     @Trim()
     @Unique()
     @Enum(Object.keys(DateTimePeriods).map((key: string) => DateTimePeriods[key as keyof typeof DateTimePeriods]))
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     dateTimePeriod: DateTimePeriods | null = null;
 
     @Schemable()

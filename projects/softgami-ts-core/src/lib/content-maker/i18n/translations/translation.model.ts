@@ -58,7 +58,7 @@ export class Translation extends Thing {
     @Enum(Object.keys(TranslationType).map((key: string) => TranslationType[key as keyof typeof TranslationType]))
     @QueryParam()
     @Sortable({ label: 'TYPE' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     type: TranslationType | null = null;
 
     @Schemable()

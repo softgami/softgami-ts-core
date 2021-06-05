@@ -54,7 +54,7 @@ export class Subject extends Thing {
     @Unique()
     @Enum(Object.keys(SubjectAlias).map((key: string) => SubjectAlias[key as keyof typeof SubjectAlias]))
     @Sortable({ label: 'ALIAS' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     alias: SubjectAlias | null = null;
 
     @Schemable()

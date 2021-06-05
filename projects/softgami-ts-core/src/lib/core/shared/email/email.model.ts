@@ -23,7 +23,7 @@ export class Email extends Thing {
     @Enum(Object.keys(EmailType).map((key: string) => EmailType[key as keyof typeof EmailType]))
     @Required()
     @Trim()
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     type: EmailType | null = null;
 
     @Schemable()

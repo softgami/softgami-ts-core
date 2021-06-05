@@ -19,18 +19,18 @@ export class PermissionCheck extends Thing {
     @Schemable()
     @Required()
     @Enum(Object.keys(SubjectAlias).map((key: string) => SubjectAlias[key as keyof typeof SubjectAlias]))
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     subject: SubjectAlias | null = null;
 
     @Schemable()
     @Required()
     @Enum(Object.keys(Actions).map(key => Actions[key as keyof typeof Actions]).filter(value => typeof value === 'number'))
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.NUMBER })
     action: Actions | null = null;
 
     @Schemable()
     @Enum(Object.keys(RoleAlias).map((key: string) => RoleAlias[key as keyof typeof RoleAlias]))
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     role?: RoleAlias | null = null;
 
     @Schemable()

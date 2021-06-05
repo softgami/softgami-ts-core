@@ -54,7 +54,7 @@ export class Role extends Thing {
     @Unique()
     @Enum(Object.keys(RoleAlias).map((key: string) => RoleAlias[key as keyof typeof RoleAlias]))
     @Sortable({ label: 'ALIAS' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     alias: RoleAlias | null = null;
 
     @Schemable()

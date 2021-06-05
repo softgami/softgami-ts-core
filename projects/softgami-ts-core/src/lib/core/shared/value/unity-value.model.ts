@@ -33,7 +33,7 @@ export class UnityValue extends Thing {
     @Unique()
     @Trim()
     @Enum(codes)
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     code: UnityValueCodes | CurrencyCodes | null = null;
 
     @Schemable()

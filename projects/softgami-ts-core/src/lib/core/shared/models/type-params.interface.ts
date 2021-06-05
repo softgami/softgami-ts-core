@@ -5,4 +5,5 @@ export interface TypeParams<T> {
     class?: new () => T;
     arrayItemType?: Types;
     isSelf?: boolean;
+    enumItemType?: Types;
 }

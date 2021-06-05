@@ -32,7 +32,7 @@ export class Address extends Thing {
     @Required()
     @Enum(Object.keys(AddressType).map((key: string) => AddressType[key as keyof typeof AddressType]))
     @Trim()
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     type: AddressType | null = null;
 
     @Schemable()

@@ -56,7 +56,7 @@ export class Story extends Thing {
     @Required()
     @Trim()
     @QueryParam()
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     @Sortable({ label: 'STATUS' })
     @Enum(Object.keys(TaskStatus).map((key: string) => TaskStatus[key as keyof typeof TaskStatus]))
     status: TaskStatus | null = null;

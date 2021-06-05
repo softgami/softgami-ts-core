@@ -48,7 +48,7 @@ export class AppInstanceInvite extends Thing {
     @Schemable()
     @Required()
     @QueryParam()
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     @Enum(Object.keys(AppInstanceInviteStatus).map((key: string) => AppInstanceInviteStatus[key as keyof typeof AppInstanceInviteStatus]))
     status: AppInstanceInviteStatus | null = null;
 

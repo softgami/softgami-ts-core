@@ -93,7 +93,7 @@ export class Task extends Thing implements BoardListItem {
     @Required()
     @Trim()
     @QueryParam()
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     @Sortable({ label: 'TYPE' })
     @Enum(Object.keys(TaskType).map((key: string) => TaskType[key as keyof typeof TaskType]))
     type: TaskType | null = null;
@@ -114,7 +114,7 @@ export class Task extends Thing implements BoardListItem {
     @Trim()
     @QueryParam()
     @Sortable({ label: 'STATUS' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     @Enum(Object.keys(TaskStatus).map((key: string) => TaskStatus[key as keyof typeof TaskStatus]))
     status: TaskStatus | null = null;
 
@@ -185,7 +185,7 @@ export class Task extends Thing implements BoardListItem {
     @Trim()
     @QueryParam()
     @Sortable({ label: 'PRIORITY' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.NUMBER })
     @Enum(Object.keys(Priority).map(key => Priority[key as keyof typeof Priority]).filter(value => typeof value === 'number'))
     priority?: Priority | null = null;
 

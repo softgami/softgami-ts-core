@@ -66,7 +66,7 @@ export class Project extends Thing {
     @Trim()
     @QueryParam()
     @Sortable({ label: 'STATUS' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     @Enum(Object.keys(ProjectStatus).map((key: string) => ProjectStatus[key as keyof typeof ProjectStatus]))
     status: ProjectStatus | null = null;
 

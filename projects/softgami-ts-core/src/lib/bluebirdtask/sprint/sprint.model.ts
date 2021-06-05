@@ -59,7 +59,7 @@ export class Sprint extends Thing {
     @Trim()
     @QueryParam()
     @Sortable({ label: 'STATUS' })
-    @Type({ type: Types.ENUM })
+    @Type({ type: Types.ENUM, enumItemType: Types.STRING })
     @Enum(Object.keys(SprintStatus).map((key: string) => SprintStatus[key as keyof typeof SprintStatus]))
     status: SprintStatus | null = null;
 

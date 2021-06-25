@@ -7,4 +7,5 @@ export enum AppAlias {
     CORE = 'core',
     POKERTOOLS = 'pokertools',
     ORIGAMI = 'origami',
+    MYACCOUNT = 'myaccount',
 }

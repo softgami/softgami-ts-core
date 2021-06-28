@@ -14,4 +14,5 @@ module.exports = {
     testPathIgnorePatterns: [
         '<rootDir>/projects/softgami-ts-core-tester/src/test.ts',
     ],
+    modulePaths: [ '<rootDir>/dist' ],
 };

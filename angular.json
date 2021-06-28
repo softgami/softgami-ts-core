@@ -21,14 +21,6 @@
             }
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/softgami-ts-core/src/test.ts",
-            "tsConfig": "projects/softgami-ts-core/tsconfig.spec.json",
-            "karmaConfig": "projects/softgami-ts-core/karma.conf.js"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -120,23 +112,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "softgami-ts-core-tester:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/softgami-ts-core-tester/src/test.ts",
-            "polyfills": "projects/softgami-ts-core-tester/src/polyfills.ts",
-            "tsConfig": "projects/softgami-ts-core-tester/tsconfig.spec.json",
-            "karmaConfig": "projects/softgami-ts-core-tester/karma.conf.js",
-            "assets": [
-              "projects/softgami-ts-core-tester/src/favicon.ico",
-              "projects/softgami-ts-core-tester/src/assets"
-            ],
-            "styles": [
-              "projects/softgami-ts-core-tester/src/styles.scss"
-            ],
-            "scripts": []
           }
         },
         "lint": {

@@ -1,3 +1,4 @@
+export * from './password/services';
 export { Credentials } from './credentials/credentials.model';
 export { Jwt } from './jwt/jwt.model';
 export { JwtPayload } from './jwt/jwt-payload.model';

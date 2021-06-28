@@ -1,9 +1,9 @@
-import { AT_LEAST_ONE_DIGIT_REGEX } from '../../shared/regex/numbers/at-least-one-digit.regex';
-import { AT_LEAST_ONE_LOWERCASE_REGEX } from '../../shared/regex/chars/at-least-one-lowercase.regex';
-import { AT_LEAST_ONE_UPPERCASE_REGEX } from '../../shared/regex/chars/at-least-one-uppercase.regex';
-import { PASSWORD_SPECIAL_CHARS_REGEX } from '../../shared/regex/password/password-special-chars.regex';
+import { AT_LEAST_ONE_DIGIT_REGEX } from '../../../shared/regex/numbers/at-least-one-digit.regex';
+import { AT_LEAST_ONE_LOWERCASE_REGEX } from '../../../shared/regex/chars/at-least-one-lowercase.regex';
+import { AT_LEAST_ONE_UPPERCASE_REGEX } from '../../../shared/regex/chars/at-least-one-uppercase.regex';
+import { PASSWORD_SPECIAL_CHARS_REGEX } from '../../../shared/regex/password/password-special-chars.regex';
 import { PasswordValidationErrors } from './password-validation-errors.enum';
-import { VALID_PASSWORD_REGEX } from '../../shared/regex/password/valid-password.regex';
+import { VALID_PASSWORD_REGEX } from '../../../shared/regex/password/valid-password.regex';
 import { PASSWORD_VALIDATION_SPECIAL_CHARS } from './password-validation-special-chars';
 
 export class PasswordUtilsService {

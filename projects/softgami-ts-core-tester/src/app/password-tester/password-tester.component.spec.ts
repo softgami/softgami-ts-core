@@ -1,32 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { PasswordTesterComponent } from './password-tester.component';
 
 describe('PasswordTesterComponent', () => {
 
-    let component: PasswordTesterComponent;
     let fixture: ComponentFixture<PasswordTesterComponent>;
-
-    beforeEach(async(() => {
-
-        TestBed.configureTestingModule({
-            declarations: [ PasswordTesterComponent ],
-        })
-            .compileComponents();
-
-    }));
+    let app: PasswordTesterComponent;
 
     beforeEach(() => {
 
-        fixture = TestBed.createComponent(PasswordTesterComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+        TestBed.configureTestingModule({
+            imports: [
+                FormsModule,
+            ],
+            declarations: [
+                PasswordTesterComponent,
+            ],
+        }).compileComponents();
 
     });
 
-    it('should create', () => {
+    test('should create the app', () => {
 
-        expect(component).toBeTruthy();
+        fixture = TestBed.createComponent(PasswordTesterComponent);
+        app = fixture.componentInstance;
+        expect(app).toBeTruthy();
 
     });
 

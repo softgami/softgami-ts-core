@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { SoftgamiTsUtilsService } from 'projects/softgami-ts-core/src/lib/core/services/softgami-ts-utils.service';
-import { User } from 'projects/softgami-ts-core/src/lib/core/user/user.model';
-import { ValidatorService } from 'projects/softgami-ts-core/src/lib/core/services/validator.service';
+import { SoftgamiTsUtilsService, User, ValidatorService } from 'softgami-ts-core';
 
 export class Temp {}
 

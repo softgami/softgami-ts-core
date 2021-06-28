@@ -1,32 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { PublicationTesterComponent } from './publication-tester.component';
 
 describe('PublicationTesterComponent', () => {
 
-    let component: PublicationTesterComponent;
     let fixture: ComponentFixture<PublicationTesterComponent>;
-
-    beforeEach(async(() => {
-
-        TestBed.configureTestingModule({
-            declarations: [ PublicationTesterComponent ],
-        })
-            .compileComponents();
-
-    }));
+    let app: PublicationTesterComponent;
 
     beforeEach(() => {
 
-        fixture = TestBed.createComponent(PublicationTesterComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+        TestBed.configureTestingModule({
+            imports: [
+                FormsModule,
+            ],
+            declarations: [
+                PublicationTesterComponent,
+            ],
+        }).compileComponents();
 
     });
 
-    it('should create', () => {
+    test('should create the app', () => {
 
-        expect(component).toBeTruthy();
+        fixture = TestBed.createComponent(PublicationTesterComponent);
+        app = fixture.componentInstance;
+        expect(app).toBeTruthy();
 
     });
 

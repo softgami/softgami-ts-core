@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import { PasswordValidationErrors } from 'projects/softgami-ts-core/src/lib/core/services/password/password-validation-errors.enum';
-import { PasswordUtilsService } from 'projects/softgami-ts-core/src/lib/core/services/password/password-utils.service';
-import {
-    PASSWORD_VALIDATION_SPECIAL_CHARS,
-} from 'projects/softgami-ts-core/src/lib/core/services/password/password-validation-special-chars';
+import { PasswordUtilsService, PasswordValidationErrors, PASSWORD_VALIDATION_SPECIAL_CHARS } from 'softgami-ts-core';
 
 @Component({
     selector: 'app-password-tester',

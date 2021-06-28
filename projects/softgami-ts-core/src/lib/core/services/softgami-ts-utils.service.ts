@@ -3,7 +3,7 @@
 
 export abstract class SoftgamiTsUtilsService {
 
-    static resolveObjectPath<T>(obj: any, path: string): T | undefined {
+    static resolveObjectPath<T>(obj: any, path?: string | null): T | undefined {
 
         if (obj === null || obj === undefined) return undefined;
         if (path === null || path === undefined) return undefined;

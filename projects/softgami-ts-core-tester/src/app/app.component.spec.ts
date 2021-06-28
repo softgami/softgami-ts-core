@@ -1,12 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
 
-    beforeEach(async() => {
+    let fixture: ComponentFixture<AppComponent>;
+    let app: AppComponent;
 
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+
+        TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
             ],
@@ -17,28 +21,12 @@ describe('AppComponent', () => {
 
     });
 
-    it('should create the app', () => {
+    test('should create the app', () => {
 
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.componentInstance;
+        fixture = TestBed.createComponent(AppComponent);
+        app = fixture.componentInstance;
         expect(app).toBeTruthy();
-
-    });
-
-    it('should have as title \'softgami-ts-core-tester\'', () => {
-
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.componentInstance;
-        expect(app.title).toEqual('softgami-ts-core-tester');
-
-    });
-
-    it('should render title', () => {
-
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-        const compiled = fixture.nativeElement;
-        expect(compiled.querySelector('.content span').textContent).toContain('softgami-ts-core-tester app is running!');
+        expect(app.title).toBe('softgami-ts-core-tester');
 
     });
 

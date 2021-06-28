@@ -1,10 +1,12 @@
-import { BibliographyReferenceService } from 'projects/softgami-ts-core/src/lib/gami-books/services/bibliography-reference.service';
-import { City } from 'projects/softgami-ts-core/src/lib/content-maker/location/city/city.model';
+import {
+    BibliographyReferenceService,
+    City,
+    Person,
+    PersonType,
+    Publication,
+    Publisher,
+} from 'softgami-ts-core';
 import { Component } from '@angular/core';
-import { Person } from 'projects/softgami-ts-core/src/lib/content-maker/person/person.model';
-import { PersonType } from 'projects/softgami-ts-core/src/lib/content-maker/person/person-type.enum';
-import { Publication } from 'projects/softgami-ts-core/src/lib/gami-books/publication/publication.model';
-import { Publisher } from 'projects/softgami-ts-core/src/lib/gami-books/publisher/publisher.model';
 
 @Component({
     selector: 'app-publication-tester',
